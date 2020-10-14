@@ -24,7 +24,7 @@ let testIntervalCollectionConstructor = function() {
   ]
 
   testCasesValid.forEach(([input, output]) => {
-    test(`expected constructor to correctly initialize IntervalCollection class`, () => {
+    test(`expected constructor to correctly initialize IntervalCollection class for [${input}]`, () => {
       let testCase = new IntervalCollection(input);
       expect(testCase.getIntervals()).toStrictEqual(output);
       expect(testCase.getNotesInScale()).toBe(output.length);
@@ -32,7 +32,7 @@ let testIntervalCollectionConstructor = function() {
   })
 
   testCasesInvalid.forEach(input => {
-    test('expected constructor to throw error', () => {
+    test(`expected constructor to throw error when initializing IntervalCollection class for [${input}]`, () => {
       let testCase = () => new IntervalCollection(input);
       expect(testCase).toThrowError("Interval collection exceeds an octave!");
     })
@@ -41,7 +41,7 @@ let testIntervalCollectionConstructor = function() {
 
 /**
  * Testing Strategy for Mode
- * methods: constructor, getIntervals, getNotesInScale
+ * methods: constructor, getIntervals, getNotesInScale, getPitches, getPitchCenter
  * Array length: 0, 1, 2+
  * Sum of array values: 12, <12, >12
  * pitchCenter value: <0, 0 - 11, >11
@@ -70,16 +70,17 @@ let testModeConstructor = function() {
   ]
 
   testCasesValid.forEach(([input, [ints, pitches]]) => {
-    test(`expected constructor to correctly initialize Mode class`, () => {
+    test(`expected constructor to correctly initialize Mode class for [${input[0]}] and ${input[1]}`, () => {
       let testCase = new Mode(...input);
       expect(testCase.getIntervals()).toStrictEqual(ints);
       expect(testCase.getNotesInScale()).toBe(ints.length);
-      expect(testCase.getPitches()).toBe(pitches)
+      expect(testCase.getPitches()).toStrictEqual(pitches);
+      expect(testCase.getPitchCenter()).toBe(pitches[0]);
     })
   })
 
   testCasesInvalid.forEach(input => {
-    test('expected constructor to throw error', () => {
+    test(`expected constructor to throw error when initializing Mode class for [${input[0]}] and ${input[1]}`, () => {
       let testCase = () => new Mode(...input);
       expect(testCase).toThrowError("Interval collection exceeds an octave!");
     })

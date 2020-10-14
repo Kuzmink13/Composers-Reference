@@ -1,3 +1,8 @@
+const notesInOctave = 12;
+const octaveMod = function(pitch) {
+  return ((pitch % notesInOctave) + notesInOctave) % notesInOctave;
+}
+
 /**
  * A collection of successive intervals totaling an octave;
  */
@@ -8,7 +13,6 @@ class IntervalCollection {
    * @throws {Error} if the sum of the intervals is greater than the number of notes in an octave
    */
   constructor(intervals) {
-    const notesInOctave = 12;
     let ints = intervals.slice()
     let span = ints.reduce((acc, el) => acc + el, 0);
 
@@ -38,6 +42,20 @@ class Mode extends IntervalCollection {
    * @throws {Error} if the sum of the intervals is greater than the number of notes in an octave
    */
   constructor(intervals, pitchCenter) {
+    super(intervals);
+    let pitches = [octaveMod(pitchCenter)];
+
+    this.getIntervals().forEach(el => {
+      pitches.push(octaveMod(pitches[pitches.length - 1] + el));
+    })
+
+    this.getPitches = function() {
+      return pitches.slice(0, -1)
+    }
+
+    this.getPitchCenter = function() {
+      return pitches[0];
+    }
   }
 }
 
