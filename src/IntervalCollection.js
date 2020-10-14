@@ -1,4 +1,12 @@
+/**
+ * A collection of successive intervals totaling an octave;
+ */
 class IntervalCollection {
+  /**
+   * Creates a new IntervalCollection object
+   * @param {Array<Numbers>} intervals - an array of intervals where each interval is represented by its size in half-steps
+   * @throws {Error} if the sum of the intervals is greater than the number of notes in an octave
+   */
   constructor(intervals) {
     const notesInOctave = 12;
     let ints = intervals.slice()

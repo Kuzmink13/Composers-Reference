@@ -1,6 +1,12 @@
 const { test, expect } = require("@jest/globals")
 const IntervalCollection = require("./../src/IntervalCollection")
 
+/**
+ * Testing Strategy:
+ * methods: constructor, getIntervals, getNotesInScale
+ * Array length: 0, 1, 2+
+ * Sum of array values: 12, 12-, 12+
+ */
 let testConstructor = function() {
   let testCasesValid = [
     [[], [12]],
