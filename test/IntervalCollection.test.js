@@ -10,6 +10,10 @@ let testConstructor = function() {
     [[1, 1,], [1, 1, 10]]
   ]
 
+  let testCasesInvalid = [
+    [13], [11, 2]
+  ]
+
   testCasesValid.forEach(([input, output]) => {
     test(`expected constructor to initialize [${input}] as [${output}]`, () => {
       let testCase = new IntervalCollection(input);
@@ -18,17 +22,9 @@ let testConstructor = function() {
     })
   })
 
-  let testCasesInvalid = [
-    [13], [11, 2]
-  ]
-
-
-
   testCasesInvalid.forEach(input => {
     test('expected constructor to throw error', () => {
-      let testCase = function() {
-        new IntervalCollection(input)
-      }
+      let testCase = () => new IntervalCollection(input);
       expect(testCase).toThrowError("Interval collection exceeds an octave!");
     })
   })
