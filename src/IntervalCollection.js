@@ -41,4 +41,7 @@ class Mode extends IntervalCollection {
   }
 }
 
-module.exports = IntervalCollection;
+module.exports = {
+  IntervalCollection: IntervalCollection,
+  Mode: Mode
+}
