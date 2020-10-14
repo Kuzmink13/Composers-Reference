@@ -1,0 +1,24 @@
+{
+  "name": "Composers-Reference",
+  "version": "1.0.0",
+  "description": "A one-stop interactive tool that assists composers in analyzing chords, scales, modes, and more.",
+  "main": "index.js",
+  "dependencies": {
+    "jest": "^26.5.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kuzmink13/Composers-Reference.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kuzmink13/Composers-Reference/issues"
+  },
+  "homepage": "https://github.com/Kuzmink13/Composers-Reference#readme"
+}
