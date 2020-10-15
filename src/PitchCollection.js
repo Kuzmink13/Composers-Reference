@@ -32,7 +32,7 @@ class PitchCollection {
    * @param {Number} pitchCenter - a number representing a pitch class where 0 is c, 1 is c-sharp/d-flat, ... , 11 is b 
    * @returns {Mode} - a new Mode object
    */
-  CreateMode(pitchCenter) {
+  createMode(pitchCenter) {
     // not implemented
   }
 
