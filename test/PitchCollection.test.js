@@ -137,4 +137,12 @@ describe('Testing Class: Mode', () => {
     let expectedOutput = 10;
     expect(testCase.getPitchCenter()).toBe(expectedOutput);
   })
+
+  test('getRelatives returns all relative modes for a given Mode object', () => {
+    let testCase = (new Mode([0, 1, 3], 0)).getRelatives();
+    let outputList = [[0, 1, 3], [1, 3, 12], [3, 12, 13]];
+    testCase.forEach((el, i) => {
+      expect(el.getAbsolutePitches()).toStrictEqual(outputList[i]);
+    })
+  })
 })
