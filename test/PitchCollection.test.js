@@ -4,138 +4,123 @@ const music = require("../src/PitchCollection")
 let PitchCollection = music.PitchCollection;
 let Mode = music.Mode;
 
-/**
- * Testing Strategy for PitchCollection constructor
- * methods: constructor, getAbstractPitches, getNoteQuantity
- * Array length: 1, 2+
- * First element: 0, <0, >0
- * Array range: <12, >12
- */
-let testPitchCollectionConstructor = function() {
-  let testCasesValid = [
-    [[-3], [0]],
-    [[0], [0]],
-    [[1], [0]],
-    [[-3, -2], [0, 1]],
-    [[0, 3], [0, 3]],
-    [[2, 7], [0, 5]]
-  ]
+describe('Testing Class: PitchCollection', () => {
 
-  let testCasesInvalid = [
-    [-20, -4], [-7, 8], [0, 12], [2, 16]
-  ]
-
-  testCasesValid.forEach(([input, output]) => {
-    test(`expected constructor to correctly initialize PitchCollection class for [${input}]`, () => {
-      let testCase = new PitchCollection(input);
-      expect(testCase.getAbstractPitches()).toStrictEqual(output);
-      expect(testCase.getNoteQuantity()).toBe(output.length);
-    })
+  test(`constructor throws error when range of input array exceeds octave`, () => {
+    let testCase = () => new PitchCollection([0, 1, 3, 5, 13]);
+    expect(testCase).toThrowError("Range of PitchCollection exceeds an octave!");
   })
 
-  testCasesInvalid.forEach(input => {
-    test(`expected constructor to throw error when initializing PitchCollection class for [${input}]`, () => {
-      let testCase = () => new PitchCollection(input);
-      expect(testCase).toThrowError("Range of PitchCollection exceeds an octave!");
-    })
-  })
-}
-
-/**
- * Testing Strategy for PitchCollection.CreateMode
- * Pitch center: <0, 0-11, >11
- */
-let testPitchCollectionCreateMode = function() {
-  let inputs = [
-    [[0, 1, 3], -3],
-    [[0, 1, 3], 2],
-    [[0, 1, 3], 13]
-  ]
-
-  inputs.forEach(([pitches, pitchCenter]) => {
-    test(`expected PitchCollection.createMode to return correct Mode object for [${pitches}] and ${pitchCenter}`, () => {
-      let testCase = new PitchCollection(pitches);
-      let output = new Mode(pitches, pitchCenter);
-      expect(testCase.createMode(pitchCenter)).toStrictEqual(output);
-    })
-  })
-}
-
-/**
- * Testing Strategy for PitchCollection.CreateMode
- * Match: yes, no
- * Offset: yes, no
- */
-let testPitchCollectionMatchMode = function() {
-  let matchInputs = [
-    [[0, 2, 3, 6], [0, 3], 0, 0],
-    [[0, 2, 3, 6], [0, 3], 2, -3]
-  ]
-
-  let noMatchInputs = [
-    [[0, 2, 3, 6], [0, 1], 0],
-    [[0, 2, 3, 6], [0, 3], 1]
-  ]
-
-  matchInputs.forEach(([pitchCol, mode, offset, pitchCenter]) => {
-    test(`expected PitchCollection.matchMode to return the correct Mode object`, () => {
-      let testCase = new PitchCollection(pitchCol);
-      let testMode = new Mode(mode, 0)
-      let output = new Mode(pitchCol, pitchCenter);
-      expect(testCase.matchMode(testMode, offset)).toStrictEqual(output);
-    })
+  test('getAbstractPitches returns an array equal to the orignal when the first element is 0', () => {
+    let testCase = new PitchCollection([0, 1, 3, 5]);
+    let expectedOutput = [0, 1, 3, 5];
+    expect(testCase.getAbstractPitches()).toStrictEqual(expectedOutput);
   })
 
-  noMatchInputs.forEach(([pitchCol, mode, offset]) => {
-    test(`expected PitchCollection.matchMode to return false`, () => {
-      let testCase = new PitchCollection(pitchCol);
-      let testMode = new Mode(mode, 0)
-      expect(testCase.matchMode(testMode, offset)).toBe(false);
-    })
-  })
-}
-
-/**
- * Testing Strategy for Mode constructor
- * methods: constructor, getAbstractPitches, getNoteQuantity, getAbsolutePitches, getPitchCenter
- * Array length: 1, 2+
- * First element: 0, <0, >0
- * Pitch center: <0, 0-11, >11
- * Array range: <12, >12
- */
-let testModeConstructor = function() {
-  let testCasesValid = [
-    [[[-3], -1], [[0], [11]]],
-    [[[0], 4], [[0], [4]]],
-    [[[1], 15], [[0], [3]]],
-    [[[-3, -2], -1], [[0, 1], [11, 12]]],
-    [[[0, 3], 4], [[0, 3], [4, 7]]],
-    [[[2, 7], 15], [[0, 5], [3, 8]]],
-  ]
-
-  let testCasesInvalid = [
-    [[-20, -4], -1], [[-7, 8], 0], [[0, 12], 1], [[2, 16], 14]
-  ]
-
-  testCasesValid.forEach(([[inputArr, pitchCenter], [outArrAbtract, outputArrAbsolute]]) => {
-    test(`expected constructor to correctly initialize Mode class for [${inputArr}] and ${pitchCenter}`, () => {
-      let testCase = new Mode(inputArr, pitchCenter);
-      expect(testCase.getAbstractPitches()).toStrictEqual(outArrAbtract);
-      expect(testCase.getNoteQuantity()).toBe(outArrAbtract.length);
-      expect(testCase.getAbsolutePitches()).toStrictEqual(outputArrAbsolute);
-      expect(testCase.getPitchCenter()).toBe(outputArrAbsolute[0]);
-    })
+  test('getAbstractPitches returns an array where each element is zeroed by the first element', () => {
+    let testCase = new PitchCollection([2, 3, 5, 7]);
+    let expectedOutput = [0, 1, 3, 5];
+    expect(testCase.getAbstractPitches()).toStrictEqual(expectedOutput);
   })
 
-  testCasesInvalid.forEach(([inputArr, pitchCenter]) => {
-    test(`expected constructor to throw error when initializing Mode class for [${inputArr}] and ${pitchCenter}`, () => {
-      let testCase = () => new Mode(inputArr, pitchCenter);
-      expect(testCase).toThrowError("Range of PitchCollection exceeds an octave!");
-    })
+  test('getAbstractPitches returns an array that is safe from rep exposure', () => {
+    let inputArray = [0, 1, 3, 5]
+    let testCase = new PitchCollection(inputArray);
+    let expectedOutput = [0, 1, 3, 5];
+    inputArray.push(7);
+    testCase.getAbstractPitches().push(9);
+    expect(testCase.getAbstractPitches()).toStrictEqual(expectedOutput);
   })
-}
 
-testPitchCollectionConstructor();
-testPitchCollectionCreateMode();
-testPitchCollectionMatchMode();
-testModeConstructor();
+  test('getNoteQuatity returns the length of the original array', () => {
+    let testCase = new PitchCollection([0, 1, 3, 5]);
+    let expectedOutput = 4;
+    expect(testCase.getNoteQuantity()).toBe(expectedOutput);
+  })
+
+  test('createMode returns a Mode object with the correct properties', () => {
+    let [pitches, pitchCenter] = [[1, 2, 4, 6], -3];
+    let testCase = (new PitchCollection(pitches)).createMode(pitchCenter);
+    let output = new Mode(pitchCenter, pitchCenter);
+    expect(testCase.getAbstractPitches()).toStrictEqual(output.getAbstractPitches());
+    expect(testCase.getAbsolutePitches()).toStrictEqual(output.getAbsolutePitches());
+    expect(testCase.getNoteQuantity()).toBe(output.getNoteQuantity());
+    expect(testCase.getPitchCenter()).toBe(output.getPitchCenter());
+  })
+
+  test('matchMode returns false if there is no match', () => {
+    let [pitches, mode, pitchCenter, offset] = [[0, 2, 3, 6], [0, 1], 0, 0]
+    let testCase = (new PitchCollection(pitches)).matchMode(new Mode(mode, pitchCenter), offset);
+    expect(testCase).toBe(false);
+  })
+
+  test('matchMode returns false if there is no match after offset', () => {
+    let [pitches, mode, pitchCenter, offset] = [[0, 2, 3, 6], [0, 3], 0, 1]
+    let testCase = (new PitchCollection(pitches)).matchMode(new Mode(mode, pitchCenter), offset);
+    expect(testCase).toBe(false);
+  })
+
+  test('matchMode returns correct Mode object if there is a match', () => {
+    let [pitches, mode, pitchCenter, pitchCenterAdj, offset] = [[0, 2, 3, 6], [0, 3], 0, 0, 0]
+    let testCase = (new PitchCollection(pitches)).matchMode(new Mode(mode, pitchCenter), offset);
+    let output = new Mode(pitches, pitchCenterAdj)
+    expect(testCase.getAbstractPitches()).toStrictEqual(output.getAbstractPitches());
+    expect(testCase.getAbsolutePitches()).toStrictEqual(output.getAbsolutePitches());
+    expect(testCase.getNoteQuantity()).toBe(output.getNoteQuantity());
+    expect(testCase.getPitchCenter()).toBe(output.getPitchCenter());
+  })
+
+  test('matchMode returns correct Mode object if there is a match after offset', () => {
+    let [pitches, mode, pitchCenter, pitchCenterAdj, offset] = [[0, 2, 3, 6], [0, 3], 0, -3, 2]
+    let testCase = (new PitchCollection(pitches)).matchMode(new Mode(mode, pitchCenter), offset);
+    let output = new Mode(pitches, pitchCenterAdj)
+    expect(testCase.getAbstractPitches()).toStrictEqual(output.getAbstractPitches());
+    expect(testCase.getAbsolutePitches()).toStrictEqual(output.getAbsolutePitches());
+    expect(testCase.getNoteQuantity()).toBe(output.getNoteQuantity());
+    expect(testCase.getPitchCenter()).toBe(output.getPitchCenter());
+  })
+})
+
+
+
+describe('Testing Class: Mode', () => {
+  
+  test('getAbsolutePitches returns the correct zeroed array when pitchCenter is 0', () => {
+    let testCase = new Mode([0, 1, 3, 5], 0);
+    let expectedOutput = [0, 1, 3, 5];
+    expect(testCase.getAbsolutePitches()).toStrictEqual(expectedOutput);
+  })
+
+  test('getAbsolutePitches returns the correct array offset by the pitchCenter value', () => {
+    let testCase = new Mode([0, 1, 3, 5], 1);
+    let expectedOutput = [1, 2, 4, 6];
+    expect(testCase.getAbsolutePitches()).toStrictEqual(expectedOutput);
+  })
+
+  test('getAbsolutePitches returns the correct array offset by the pitchCenter value, but by no more than an octave', () => {
+    let testCase = new Mode([0, 1, 3, 5], 14);
+    let expectedOutput = [2, 3, 5, 7];
+    expect(testCase.getAbsolutePitches()).toStrictEqual(expectedOutput);
+  })
+
+  test('getAbsolutePitches returns an array that is safe from rep exposure', () => {
+    let inputArray = [0, 1, 3, 5]
+    let testCase = new Mode(inputArray, 0);
+    let expectedOutput = [0, 1, 3, 5];
+    inputArray.push(7);
+    testCase.getAbsolutePitches().push(9);
+    expect(testCase.getAbsolutePitches()).toStrictEqual(expectedOutput);
+  })
+
+  test('getPitchCenter returns the original pitchCenter value when it is in the range of the center octave', () => {
+    let testCase = new Mode([0, 1, 3, 5], 2);
+    let expectedOutput = 2;
+    expect(testCase.getPitchCenter()).toBe(expectedOutput);
+  })
+
+  test('getPitchCenter returns the correct pitchCenter value when modulated to the center octave', () => {
+    let testCase = new Mode([0, 1, 3, 5], -2);
+    let expectedOutput = 10;
+    expect(testCase.getPitchCenter()).toBe(expectedOutput);
+  })
+})
