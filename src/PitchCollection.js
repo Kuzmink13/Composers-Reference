@@ -101,6 +101,22 @@ class Mode extends PitchCollection {
       return absolutePitches[0];
     }
   }
+
+  /**
+   * Generates a list of Modes relative to and including this
+   * @returns {Array<Mode>} - an array of new Mode objects that correspond to all the relative modes of this
+   */
+  getRelatives() {
+    let offsets = this.getAbsolutePitches();
+    let output = [];
+
+    offsets.forEach((el, i) => {
+      output.push(new Mode(offsets, offsets[0]));
+      offsets.push(offsets.shift() + 12);
+    })
+
+    return output;
+  }
 }
 
 module.exports = {
