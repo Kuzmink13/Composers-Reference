@@ -24,7 +24,7 @@ describe('Testing Class: PitchCollection', () => {
   })
 
   test('getAbstractPitches returns an array that is safe from rep exposure', () => {
-    let inputArray = [0, 1, 3, 5]
+    let inputArray = [0, 1, 3, 5];
     let testCase = new PitchCollection(inputArray);
     let expectedOutput = [0, 1, 3, 5];
     inputArray.push(7);
@@ -49,21 +49,21 @@ describe('Testing Class: PitchCollection', () => {
   })
 
   test('matchMode returns false if there is no match', () => {
-    let [pitches, mode, pitchCenter, offset] = [[0, 2, 3, 6], [0, 1], 0, 0]
+    let [pitches, mode, pitchCenter, offset] = [[0, 2, 3, 6], [0, 1], 0, 0];
     let testCase = (new PitchCollection(pitches)).matchMode(new Mode(mode, pitchCenter), offset);
     expect(testCase).toBe(false);
   })
 
   test('matchMode returns false if there is no match after offset', () => {
-    let [pitches, mode, pitchCenter, offset] = [[0, 2, 3, 6], [0, 3], 0, 1]
+    let [pitches, mode, pitchCenter, offset] = [[0, 2, 3, 6], [0, 3], 0, 1];
     let testCase = (new PitchCollection(pitches)).matchMode(new Mode(mode, pitchCenter), offset);
     expect(testCase).toBe(false);
   })
 
   test('matchMode returns correct Mode object if there is a match', () => {
-    let [pitches, mode, pitchCenter, pitchCenterAdj, offset] = [[0, 2, 3, 6], [0, 3], 0, 0, 0]
+    let [pitches, mode, pitchCenter, pitchCenterAdj, offset] = [[0, 2, 3, 6], [0, 3], 0, 0, 0];
     let testCase = (new PitchCollection(pitches)).matchMode(new Mode(mode, pitchCenter), offset);
-    let output = new Mode(pitches, pitchCenterAdj)
+    let output = new Mode(pitches, pitchCenterAdj);
     expect(testCase.getAbstractPitches()).toStrictEqual(output.getAbstractPitches());
     expect(testCase.getAbsolutePitches()).toStrictEqual(output.getAbsolutePitches());
     expect(testCase.getNoteQuantity()).toBe(output.getNoteQuantity());
@@ -71,17 +71,31 @@ describe('Testing Class: PitchCollection', () => {
   })
 
   test('matchMode returns correct Mode object if there is a match after offset', () => {
-    let [pitches, mode, pitchCenter, pitchCenterAdj, offset] = [[0, 2, 3, 6], [0, 3], 0, -3, 2]
+    let [pitches, mode, pitchCenter, pitchCenterAdj, offset] = [[0, 2, 3, 6], [0, 3], 0, -3, 2];
     let testCase = (new PitchCollection(pitches)).matchMode(new Mode(mode, pitchCenter), offset);
-    let output = new Mode(pitches, pitchCenterAdj)
+    let output = new Mode(pitches, pitchCenterAdj);
     expect(testCase.getAbstractPitches()).toStrictEqual(output.getAbstractPitches());
     expect(testCase.getAbsolutePitches()).toStrictEqual(output.getAbsolutePitches());
     expect(testCase.getNoteQuantity()).toBe(output.getNoteQuantity());
     expect(testCase.getPitchCenter()).toBe(output.getPitchCenter());
   })
+
+  test('matchAll should return an empty array if there are no possible mathces', () => {
+    let [pitches, mode, pitchCenter] = [[0, 2, 3, 5], [0, 4], 0];
+    let testCase = (new PitchCollection(pitches)).matchAll(new Mode(mode, pitchCenter));
+    expect(testCase).toStrictEqual([]);
+  })
+
+  test('matchAll should return an array containing all possible Modes geterated by matchMode', () => {
+    let [pitches, mode, pitchCenter] = [[0, 2, 3, 5], [0, 3], 0];
+    let testCase = (new PitchCollection(pitches)).matchAll(new Mode(mode, pitchCenter));
+    let outputPitchCenters = [0, -2]
+    testCase.forEach((el, i) => {
+      expect(el.getAbstractPitches()).toStrictEqual(pitches);
+      expect(el.getPitchCenter()).toBe(outputPitchCenters[i]);
+    })
+  })  
 })
-
-
 
 describe('Testing Class: Mode', () => {
   
@@ -104,7 +118,7 @@ describe('Testing Class: Mode', () => {
   })
 
   test('getAbsolutePitches returns an array that is safe from rep exposure', () => {
-    let inputArray = [0, 1, 3, 5]
+    let inputArray = [0, 1, 3, 5];
     let testCase = new Mode(inputArray, 0);
     let expectedOutput = [0, 1, 3, 5];
     inputArray.push(7);
