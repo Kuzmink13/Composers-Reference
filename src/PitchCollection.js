@@ -1,7 +1,7 @@
-const notesInOctave = 12;
-const octaveMod = function(pitch) {
-  return ((pitch % notesInOctave) + notesInOctave) % notesInOctave;
-}
+const utils = require("./Utilities")
+
+const notesInOctave = utils.notesInOctave;
+const octaveMod = utils.octaveMod
 
 /**
  * A collection of successive pitches contained within an octave
