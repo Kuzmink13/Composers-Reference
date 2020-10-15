@@ -1,4 +1,3 @@
-const { test, expect } = require("@jest/globals")
 const music = require("../src/PitchCollection")
 
 let PitchCollection = music.PitchCollection;
