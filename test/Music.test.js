@@ -5,7 +5,7 @@ describe("Testing Class: Music", () => {
 
   test("compareModes returns true if resulting modes are identical, even with different inputs", () => {
     let mode1 = new Mode([0, 1, 3], 1);
-    let mode2 = new Mode([1, 2, 4], 0);
+    let mode2 = new Mode([1, 2, 4], 1);
     let testCase = Music.compareModes(mode1, mode2);
     expect(testCase).toBe(true);
   })
@@ -47,7 +47,7 @@ describe("Testing Class: Music", () => {
   })
 
   test("removeDuplicates returns an array that contains only unique modes", () => {
-    let modes = [new Mode([0, 1, 3], 1), new Mode([1, 2, 4], 0), new Mode([0, 1, 4], 0)];
+    let modes = [new Mode([0, 1, 3], 1), new Mode([1, 2, 4], 1), new Mode([0, 1, 4], 0)];
     let testCase = Music.removeDuplicates(modes);
     let output = [[1, 2, 4], [0, 1, 4]];
     testCase.forEach((el, i) => {
