@@ -49,7 +49,7 @@ class PitchCollection {
 
     for (let el of basePitches) {
       if (el === currentPitch) {
-        if (!modePitchesWithOffset.length) return new Mode(basePitches, -offset)
+        if (!modePitchesWithOffset.length) return new Mode(basePitches, mode.getPitchCenter() - offset)
         currentPitch = modePitchesWithOffset.shift();
       } else if (el > currentPitch) return false;
     }
