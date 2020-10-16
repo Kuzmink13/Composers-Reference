@@ -1,7 +1,4 @@
-const music = require("../src/PitchCollection")
-
-let PitchCollection = music.PitchCollection;
-let Mode = music.Mode;
+const { PitchCollection, Mode } = require("../src/PitchCollection")
 
 describe('Testing Class: PitchCollection', () => {
 
