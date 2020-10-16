@@ -69,21 +69,21 @@ describe("Testing Class: Music", () => {
   
   test("generateModes returns all concrete modes of the pitch collection - not filtered", () => {
     let [collectionPithces, modePitches] = [[0, 3, 4, 7], [1, 4]];
-    let output = [[1, 4], [4, 13], [5, 8], [8, 17]];
+    let output = [[1, 4, 5, 8], [4, 5, 8, 13], [5, 8, 13, 16], [8, 13, 16, 17], [9, 12, 13, 16], [0, 1, 4, 9], [1, 4, 9, 12], [4, 9, 12, 13]];
     let testCase = Music.generateModes(collectionPithces, modePitches);
 
-    expect(testCase.length).toBe(4);
+    expect(testCase.length).toBe(8);
     testCase.forEach((el, i) => {
       expect(el.getAbsolutePitches()).toStrictEqual(output[i]);
     })
   })
 
   test("generateModes returns all concrete modes of the pitch collection - filtered", () => {
-    let [collectionPithces, modePitches] = [[0, 3, 4, 7], [1, 4], 1];
-    let output = [[1, 4]];
-    let testCase = Music.generateModes(collectionPithces, modePitches);
+    let [collectionPithces, modePitches, pitchCenter] = [[0, 3, 4, 7], [1, 4], 1];
+    let output = [[1, 4, 5, 8], [1, 4, 9, 12]];
+    let testCase = Music.generateModes(collectionPithces, modePitches, pitchCenter);
 
-    expect(testCase.length).toBe(1);
+    expect(testCase.length).toBe(2);
     testCase.forEach((el, i) => {
       expect(el.getAbsolutePitches()).toStrictEqual(output[i]);
     })
