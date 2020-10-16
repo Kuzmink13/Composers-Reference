@@ -97,6 +97,12 @@ class Mode extends PitchCollection {
     this.getPitchCenter = function() {
       return absolutePitches[0];
     }
+    this.getAbstractModeCode = function() {
+      return this.getAbstractPitches().map(el => el.toString(notesInOctave)).join('');
+    }
+    this.getAbsoluteModeCode = function() {
+      return `${this.getAbstractModeCode()}//${this.getPitchCenter()}`
+    }
   }
 
   /**

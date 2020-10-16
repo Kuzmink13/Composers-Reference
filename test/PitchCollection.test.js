@@ -134,6 +134,16 @@ describe('Testing Class: Mode', () => {
     expect(testCase.getPitchCenter()).toBe(expectedOutput);
   })
 
+  test('getAbstractModeCode returns the correct string representation of the abstract pitches in the mode', () => {
+    let testCase = new Mode([0, 2, 4, 5, 7, 9, 11], 1)
+    expect(testCase.getAbstractModeCode()).toBe('024579b')
+  })
+
+  test('getAbsoluteModeCode returns the correct string representation of the absolute pitches in the mode', () => {
+    let testCase = new Mode([0, 2, 4, 5, 7, 9, 11], 1)
+    expect(testCase.getAbsoluteModeCode()).toBe('024579b//1')
+  })
+
   test('getRelatives returns all relative modes for a given Mode object', () => {
     let testCase = (new Mode([0, 1, 3], 0)).getRelatives();
     let outputList = [[0, 1, 3], [1, 3, 12], [3, 12, 13]];
