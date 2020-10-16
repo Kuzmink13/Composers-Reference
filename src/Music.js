@@ -75,7 +75,7 @@ class Music {
     let matches = collection.matchAll(given);
     let allModes = [];
 
-    matches.forEach(el => allModes.concat(el.getRelatives()));
+    matches.forEach(el => el.getRelatives().forEach(el => allModes.push(el)));
 
     return (pitchCenter === undefined) ? this.removeDuplicates(allModes) : this.removeDuplicates(this.filterModes(allModes, pitchCenter));
   }
