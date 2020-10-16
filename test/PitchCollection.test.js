@@ -59,7 +59,17 @@ describe('Testing Class: PitchCollection', () => {
   test('matchMode returns correct Mode object if there is a match', () => {
     let [pitches, mode, pitchCenter, pitchCenterAdj] = [[0, 2, 3, 6], [0, 3], 0, 0];
     let testCase = (new PitchCollection(pitches)).matchMode(new Mode(mode, pitchCenter));
-    let output = new Mode(pitches, pitchCenterAdj);
+    let output = new Mode(pitches, pitchCenter + pitchCenterAdj);
+    expect(testCase.getAbstractPitches()).toStrictEqual(output.getAbstractPitches());
+    expect(testCase.getAbsolutePitches()).toStrictEqual(output.getAbsolutePitches());
+    expect(testCase.getNoteQuantity()).toBe(output.getNoteQuantity());
+    expect(testCase.getPitchCenter()).toBe(output.getPitchCenter());
+  })
+
+  test('matchMode returns correct Mode object if there is a match with non-zero pitch center', () => {
+    let [pitches, mode, pitchCenter, pitchCenterAdj] = [[0, 2, 3, 6], [0, 3], 1, 0];
+    let testCase = (new PitchCollection(pitches)).matchMode(new Mode(mode, pitchCenter));
+    let output = new Mode(pitches, pitchCenter + pitchCenterAdj);
     expect(testCase.getAbstractPitches()).toStrictEqual(output.getAbstractPitches());
     expect(testCase.getAbsolutePitches()).toStrictEqual(output.getAbsolutePitches());
     expect(testCase.getNoteQuantity()).toBe(output.getNoteQuantity());
@@ -69,7 +79,7 @@ describe('Testing Class: PitchCollection', () => {
   test('matchMode returns correct Mode object if there is a match after offset', () => {
     let [pitches, mode, pitchCenter, pitchCenterAdj, scaleDegree] = [[0, 2, 3, 6], [0, 3], 0, -3, 2];
     let testCase = (new PitchCollection(pitches)).matchMode(new Mode(mode, pitchCenter), scaleDegree);
-    let output = new Mode(pitches, pitchCenterAdj);
+    let output = new Mode(pitches, pitchCenter + pitchCenterAdj);
     expect(testCase.getAbstractPitches()).toStrictEqual(output.getAbstractPitches());
     expect(testCase.getAbsolutePitches()).toStrictEqual(output.getAbsolutePitches());
     expect(testCase.getNoteQuantity()).toBe(output.getNoteQuantity());
@@ -86,6 +96,18 @@ describe('Testing Class: PitchCollection', () => {
     let [pitches, mode, pitchCenter] = [[0, 2, 3, 5], [0, 3], 0];
     let testCase = (new PitchCollection(pitches)).matchAll(new Mode(mode, pitchCenter));
     let outputPitchCenters = [0, 10]
+
+    expect(testCase.length).toBe(2);
+    testCase.forEach((el, i) => {
+      expect(el.getAbstractPitches()).toStrictEqual(pitches);
+      expect(el.getPitchCenter()).toBe(outputPitchCenters[i]);
+    })
+  })
+
+  test('matchAll should return an array containing all possible Modes geterated by matchMode with pitch center offset', () => {
+    let [pitches, mode, pitchCenter] = [[0, 2, 3, 5], [0, 3], 1];
+    let testCase = (new PitchCollection(pitches)).matchAll(new Mode(mode, pitchCenter));
+    let outputPitchCenters = [1, 11]
 
     expect(testCase.length).toBe(2);
     testCase.forEach((el, i) => {
