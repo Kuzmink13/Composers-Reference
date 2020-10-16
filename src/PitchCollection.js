@@ -1,7 +1,4 @@
-const utils = require("./Utilities")
-
-const notesInOctave = utils.notesInOctave;
-const octaveMod = utils.octaveMod
+const { notesInOctave, octaveMod } = require("./Utilities")
 
 /**
  * A collection of successive pitches contained within an octave

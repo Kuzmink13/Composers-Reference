@@ -1,6 +1,4 @@
-const utils = require("../src/Utilities")
-
-const octaveMod = utils.octaveMod
+const { octaveMod } = require("../src/Utilities")
 
 describe('Testing OctaveMod', () => {
 
