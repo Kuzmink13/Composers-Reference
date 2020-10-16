@@ -86,11 +86,26 @@ describe('Testing Class: PitchCollection', () => {
     let [pitches, mode, pitchCenter] = [[0, 2, 3, 5], [0, 3], 0];
     let testCase = (new PitchCollection(pitches)).matchAll(new Mode(mode, pitchCenter));
     let outputPitchCenters = [0, 10]
+
+    expect(testCase.length).toBe(2);
     testCase.forEach((el, i) => {
       expect(el.getAbstractPitches()).toStrictEqual(pitches);
       expect(el.getPitchCenter()).toBe(outputPitchCenters[i]);
     })
-  })  
+  })
+
+  test('matchAll should return an array containing all possible Modes geterated by matchMode even when crossing the octave', () => {
+    let [pitches, mode, pitchCenter] = [[0, 2, 4, 5, 7, 9, 11], [0, 3, 7], 0];
+    let testCase = (new PitchCollection(pitches)).matchAll(new Mode(mode, pitchCenter));
+    let outputPitchCenters = [10, 8, 3];
+
+    expect(testCase.length).toBe(3);
+    testCase.forEach((el, i) => {
+      expect(el.getAbstractPitches()).toStrictEqual(pitches);
+      expect(el.getPitchCenter()).toBe(outputPitchCenters[i]);
+    })
+  })
+
 })
 
 describe('Testing Class: Mode', () => {
@@ -147,6 +162,8 @@ describe('Testing Class: Mode', () => {
   test('getRelatives returns all relative modes for a given Mode object', () => {
     let testCase = (new Mode([0, 1, 3], 0)).getRelatives();
     let outputList = [[0, 1, 3], [1, 3, 12], [3, 12, 13]];
+    
+    expect(testCase.length).toBe(3);
     testCase.forEach((el, i) => {
       expect(el.getAbsolutePitches()).toStrictEqual(outputList[i]);
     })
