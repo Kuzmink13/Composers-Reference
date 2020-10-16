@@ -44,7 +44,7 @@ class PitchCollection {
   matchMode(mode, scaleDegree=0) {
     let basePitches = this.getAbstractPitches()
     let offset = basePitches[scaleDegree]
-    let modePitchesWithOffset = mode.getAbstractPitches().map(el => el + offset);
+    let modePitchesWithOffset = mode.getAbstractPitches().map(el => octaveMod(el + offset)).sort((a, b) => a-b);
     let currentPitch = modePitchesWithOffset.shift();
 
     for (let el of basePitches) {
