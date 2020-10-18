@@ -1,25 +1,34 @@
 {
-  "name": "Composers-Reference",
-  "version": "1.0.0",
-  "description": "A one-stop interactive tool that assists composers in analyzing chords, scales, modes, and more.",
-  "main": "index.js",
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "jest": "^26.5.3"
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-scripts": "3.4.3"
   },
-  "devDependencies": {},
   "scripts": {
-    "test": "jest",
-    "testwatch": "jest --watchAll"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Kuzmink13/Composers-Reference.git"
+  "eslintConfig": {
+    "extends": "react-app"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Kuzmink13/Composers-Reference/issues"
-  },
-  "homepage": "https://github.com/Kuzmink13/Composers-Reference#readme"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

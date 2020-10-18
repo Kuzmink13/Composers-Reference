@@ -1,5 +1,5 @@
-const { Music } = require("../public/Music");
-const { Mode } = require("../public/PitchCollection");
+const { Music } = require("../Music");
+const { Mode } = require("../PitchCollection");
 
 describe("Testing Class: Music", () => {
 

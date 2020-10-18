@@ -1,4 +1,4 @@
-const { octaveMod } = require("../public/Utilities")
+const { octaveMod } = require("../Utilities")
 
 describe('Testing OctaveMod', () => {
 

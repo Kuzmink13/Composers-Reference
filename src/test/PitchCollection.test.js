@@ -1,4 +1,4 @@
-const { PitchCollection, Mode } = require("../public/PitchCollection")
+const { PitchCollection, Mode } = require("../PitchCollection")
 
 describe('Testing Class: PitchCollection', () => {
 
