@@ -1,4 +1,4 @@
-import Utilities from "./Utilities";
+import Utilities from './Utilities';
 
 /**
  * A collection of successive pitches contained within an octave
@@ -14,17 +14,20 @@ class PitchCollection {
   constructor(pitches) {
     let abstractPitches = pitches.map((el, i, arr) => el - arr[0]);
 
-    if (abstractPitches.slice(-1) >= Utilities.notesInOctave) throw new Error("Range of PitchCollection exceeds an octave!");
+    if (abstractPitches.slice(-1) >= Utilities.notesInOctave)
+      throw new Error('Range of PitchCollection exceeds an octave!');
 
-    this.getAbstractPitches = function() {
+    this.getAbstractPitches = function () {
       return abstractPitches.slice();
-    }
-    this.getAbstractModeCode = function () {
-      return this.getAbstractPitches().map(el => el.toString(Utilities.notesInOctave)).join('');
     };
-    this.getNoteQuantity = function() {
+    this.getAbstractModeCode = function () {
+      return this.getAbstractPitches()
+        .map((el) => el.toString(Utilities.notesInOctave))
+        .join('');
+    };
+    this.getNoteQuantity = function () {
       return abstractPitches.length;
-    }
+    };
   }
 }
 
