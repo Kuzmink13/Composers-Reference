@@ -1,5 +1,5 @@
-import PitchCollection from "./PitchCollection";
-import Utilities from "./Utilities";
+import PitchCollection from './PitchCollection';
+import Utilities from './Utilities';
 
 /**
  * A collection of successive pitches contained within an octave that start at a specific note
@@ -15,7 +15,9 @@ class Mode extends PitchCollection {
    */
   constructor(pitches, pitchCenter) {
     super(pitches);
-    let absolutePitches = this.getAbstractPitches().map(el => Utilities.octaveMod(pitchCenter) + el);
+    let absolutePitches = this.getAbstractPitches().map(
+      (el) => Utilities.octaveMod(pitchCenter) + el
+    );
 
     this.getAbsolutePitches = function () {
       return absolutePitches.slice();
@@ -26,22 +28,6 @@ class Mode extends PitchCollection {
     this.getAbsoluteModeCode = function () {
       return `${this.getAbstractModeCode()}//${this.getPitchCenter()}`;
     };
-  }
-
-  /**
-   * Generates a list of Modes relative to and including this
-   * @returns {Array<Mode>} - an array of new Mode objects that correspond to all the relative modes of this
-   */
-  getRelatives() {
-    let offsets = this.getAbsolutePitches();
-    let output = [];
-
-    offsets.forEach((el, i) => {
-      output.push(new Mode(offsets, offsets[0]));
-      offsets.push(offsets.shift() + 12);
-    });
-
-    return output;
   }
 }
 

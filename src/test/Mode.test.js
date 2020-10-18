@@ -1,7 +1,6 @@
-import Mode from "../Mode";
+import Mode from '../Mode';
 
 describe('Testing getAbsolutePitches', () => {
-
   test('returns the correct zeroed array when pitchCenter is 0', () => {
     let testCase = new Mode([0, 1, 3, 5], 0);
     let expectedOutput = [0, 1, 3, 5];
@@ -28,11 +27,9 @@ describe('Testing getAbsolutePitches', () => {
     testCase.getAbsolutePitches().push(9);
     expect(testCase.getAbsolutePitches()).toStrictEqual(expectedOutput);
   });
-
-})
+});
 
 describe('Testing getPitchCenter', () => {
-
   test('returns the original pitchCenter value when it is in the range of the center octave', () => {
     let testCase = new Mode([0, 1, 3, 5], 2);
     let expectedOutput = 2;
@@ -44,28 +41,11 @@ describe('Testing getPitchCenter', () => {
     let expectedOutput = 10;
     expect(testCase.getPitchCenter()).toBe(expectedOutput);
   });
-
-})
+});
 
 describe('Testing getAbsoluteModeCode', () => {
-
   test('returns the correct string representation of the absolute pitches in the mode', () => {
     let testCase = new Mode([0, 2, 4, 5, 7, 9, 11], 1);
     expect(testCase.getAbsoluteModeCode()).toBe('024579b//1');
   });
-
-})
-
-describe('Testing getRelatives', () => {
-
-  test('returns all relative modes for a given Mode object', () => {
-    let testCase = (new Mode([0, 1, 3], 0)).getRelatives();
-    let outputList = [[0, 1, 3], [1, 3, 12], [3, 12, 13]];
-
-    expect(testCase.length).toBe(3);
-    testCase.forEach((el, i) => {
-      expect(el.getAbsolutePitches()).toStrictEqual(outputList[i]);
-    });
-  });
-
 });
