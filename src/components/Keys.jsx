@@ -11,20 +11,24 @@ class Keys extends Component {
       root: undefined,
     };
     this.handlePress = this.handlePress.bind(this);
+    this.handleRootPress = this.handleRootPress.bind(this);
   }
 
   handlePress(index) {
     this.setState((state) => ({
       pressedArray: state.pressedArray.map((el, i) => (i === index ? !el : el)),
+      root: index === state.root ? undefined : state.root,
     }));
   }
 
-  // handleRootPress() {
-  //   this.setState((state) => ({
-  //     pressed: !state.pressed || !state.root,
-  //     root: !state.pressed || !state.root,
-  //   }));
-  // }
+  handleRootPress(index) {
+    this.setState((state) => ({
+      pressedArray: state.pressedArray.map((el, i) =>
+        i === index ? (i === state.root ? false : true) : el
+      ),
+      root: index === state.root ? undefined : index,
+    }));
+  }
 
   render() {
     let sequence = Utilities.noteNames.map((el, i) => (
@@ -36,6 +40,7 @@ class Keys extends Component {
         root={this.state.root}
         pressed={this.state.pressedArray[i]}
         handlePress={this.handlePress}
+        handleRootPress={this.handleRootPress}
       />
     ));
     return (

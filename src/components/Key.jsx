@@ -76,7 +76,7 @@ class Key extends Component {
     return (
       <div
         onClick={() => this.props.handlePress(this.props.index)}
-        // onDoubleClick={this.handleRootPress}
+        onDoubleClick={() => this.props.handleRootPress(this.props.index)}
         className={this.props.noteName.length === 1 ? 'z-0' : 'z-10'}
       >
         {this.getElement()}
