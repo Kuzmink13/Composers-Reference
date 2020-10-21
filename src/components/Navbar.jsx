@@ -5,8 +5,8 @@ class Navbar extends Component {
   render() {
     return (
       <div className="p-2 bg-white border-b border-gray-400">
-        <h1 className="text-2xl font-bold text-center text-gray-800">
-          Composer's Reference
+        <h1 className="text-2xl font-bold tracking-widest text-center text-gray-800">
+          COMPOSER'S REFERENCE
         </h1>
       </div>
     );
