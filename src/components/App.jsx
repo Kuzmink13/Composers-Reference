@@ -11,9 +11,12 @@ class App extends Component {
       noteNamesOn: false,
       keysPressed: Array(12).fill(false),
       root: undefined,
+      tonalitySelector: 1,
+      isWide: window.innerWidth >= 1024,
     };
     this.handlePress = this.handlePress.bind(this);
     this.handleRootPress = this.handleRootPress.bind(this);
+    this.handleResize = this.handleResize.bind(this);
   }
 
   handlePress(noteIndex) {
@@ -34,12 +37,26 @@ class App extends Component {
     }));
   }
 
+  handleResize() {
+    this.setState({
+      isWide: window.innerWidth >= 1024,
+    });
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.handleResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
   render() {
     return (
       <div className="flex flex-col h-screen bg-gray-100">
         <Navbar />
 
-        <div className="h-full w-full mx-auto lg:max-w-screen-lg">
+        <div className="h-full w-full flex flex-col mx-auto lg:max-w-screen-lg">
           <Keys
             noteNamesOn={this.state.noteNamesOn}
             keysPressed={this.state.keysPressed}
@@ -48,7 +65,12 @@ class App extends Component {
             handleRootPress={this.handleRootPress}
           />
           <ButtonPanel />
-          <ModePanel />
+          <ModePanel
+            keysPressed={this.state.keysPressed}
+            root={this.state.root}
+            tonalitySelector={this.state.tonalitySelector}
+            isWide={this.state.isWide}
+          />
         </div>
       </div>
     );
