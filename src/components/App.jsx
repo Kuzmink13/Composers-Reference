@@ -16,19 +16,21 @@ class App extends Component {
     this.handleRootPress = this.handleRootPress.bind(this);
   }
 
-  handlePress(index) {
+  handlePress(noteIndex) {
     this.setState((state) => ({
-      keysPressed: state.keysPressed.map((el, i) => (i === index ? !el : el)),
-      root: index === state.root ? undefined : state.root,
+      keysPressed: state.keysPressed.map((el, i) =>
+        i === noteIndex ? !el : el
+      ),
+      root: noteIndex === state.root ? undefined : state.root,
     }));
   }
 
-  handleRootPress(index) {
+  handleRootPress(noteIndex) {
     this.setState((state) => ({
       keysPressed: state.keysPressed.map((el, i) =>
-        i === index ? (i === state.root ? false : true) : el
+        i === noteIndex ? (i === state.root ? false : true) : el
       ),
-      root: index === state.root ? undefined : index,
+      root: noteIndex === state.root ? undefined : noteIndex,
     }));
   }
 

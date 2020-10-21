@@ -11,7 +11,7 @@ class Key extends Component {
     const base = 'h-64 w-10 border rounded-md shadow-md flex justify-center';
     const text = 'self-end p-2 font-semibold text-lg';
     switch (true) {
-      case this.props.index === this.props.root:
+      case this.props.noteIndex === this.props.root:
         return (
           <div
             className={`${base} bg-blue-400 border-blue-500 hover:bg-blue-300 hover:border-blue-400`}
@@ -36,7 +36,7 @@ class Key extends Component {
       default:
         return (
           <div
-            className={`${base} bg-white border-gray-400 hover:bg-purple-200 hover:border-purple-300`}
+            className={`${base} bg-white border-gray-400 hover:bg-purple-100 hover:border-purple-200`}
           >
             <span className={`${text} text-gray-800`}>
               {this.props.noteNamesOn && this.props.noteName}
@@ -49,7 +49,7 @@ class Key extends Component {
   getKeyElementBlack() {
     const base = 'h-40 w-6 -mx-3 border rounded-md shadow-md';
     switch (true) {
-      case this.props.index === this.props.root:
+      case this.props.noteIndex === this.props.root:
         return (
           <div
             className={`${base} bg-blue-800 border-blue-900 hover:bg-blue-700 hover:border-gray-800`}
@@ -75,8 +75,8 @@ class Key extends Component {
   render() {
     return (
       <div
-        onClick={() => this.props.handlePress(this.props.index)}
-        onDoubleClick={() => this.props.handleRootPress(this.props.index)}
+        onClick={() => this.props.handlePress(this.props.noteIndex)}
+        onDoubleClick={() => this.props.handleRootPress(this.props.noteIndex)}
         className={this.props.noteName.length === 1 ? 'z-0' : 'z-10'}
       >
         {this.getElement()}

@@ -3,11 +3,11 @@ import Key from './Key';
 import Utilities from '../Utilities';
 
 class Keys extends Component {
-  render() {
-    let sequence = Utilities.noteNames.map((el, i) => (
+  generateKeys() {
+    return Utilities.noteNames.map((el, i) => (
       <Key
         key={i}
-        index={i}
+        noteIndex={i}
         noteName={el}
         noteNamesOn={this.props.noteNamesOn}
         root={this.props.root}
@@ -16,12 +16,15 @@ class Keys extends Component {
         handleRootPress={this.props.handleRootPress}
       />
     ));
+  }
+
+  render() {
     return (
       <div className="p-8 flex flex-row justify-center h-auto border-b border-gray-400">
         <div className="flex flex-row">
-          <div className="flex flex-row">{sequence}</div>
-          <div className="hidden sm:flex flex-row">{sequence}</div>
-          <div className="hidden lg:flex flex-row">{sequence}</div>
+          <div className="flex flex-row">{this.generateKeys()}</div>
+          <div className="hidden sm:flex flex-row">{this.generateKeys()}</div>
+          <div className="hidden lg:flex flex-row">{this.generateKeys()}</div>
         </div>
       </div>
     );
