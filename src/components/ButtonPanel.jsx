@@ -10,9 +10,11 @@ class ButtonPanel extends Component {
         {buttons.map((el, i) => (
           <ModeButton
             key={i}
+            tonalityIndex={i}
             name={el}
             tonalitySelector={this.props.tonalitySelector}
             size={this.props.filteredLists[i].length}
+            handleSelectorChange={this.props.handleSelectorChange}
           />
         ))}
       </div>

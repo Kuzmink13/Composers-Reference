@@ -18,6 +18,7 @@ class App extends Component {
     this.updateModeList = this.updateModeList.bind(this);
     this.handlePress = this.handlePress.bind(this);
     this.handleRootPress = this.handleRootPress.bind(this);
+    this.handleSelectorChange = this.handleSelectorChange.bind(this);
     this.handleResize = this.handleResize.bind(this);
   }
 
@@ -48,6 +49,12 @@ class App extends Component {
       root: noteIndex === state.root ? undefined : noteIndex,
     }));
     this.updateModeList();
+  }
+
+  handleSelectorChange(tonalityIndex) {
+    this.setState({
+      tonalitySelector: tonalityIndex,
+    });
   }
 
   handleResize() {
@@ -81,6 +88,7 @@ class App extends Component {
             modeList={this.state.modeList}
             tonalitySelector={this.state.tonalitySelector}
             isWide={this.state.isWide}
+            handleSelectorChange={this.handleSelectorChange}
           />
         </div>
       </div>
