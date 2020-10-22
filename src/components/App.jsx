@@ -3,6 +3,7 @@ import Navbar from './Navbar';
 import Keys from './Keys';
 import ButtonPanel from './ButtonPanel';
 import ModePanel from './ModePanel';
+import Music from '../Music';
 
 class App extends Component {
   constructor(props) {
@@ -11,12 +12,23 @@ class App extends Component {
       noteNamesOn: false,
       keysPressed: Array(12).fill(false),
       root: undefined,
-      tonalitySelector: 1,
+      tonalitySelector: 7,
       isWide: window.innerWidth >= 1024,
+      modeList: [],
     };
+    this.updateModeList = this.updateModeList.bind(this);
     this.handlePress = this.handlePress.bind(this);
     this.handleRootPress = this.handleRootPress.bind(this);
     this.handleResize = this.handleResize.bind(this);
+  }
+
+  updateModeList() {
+    this.setState((state) => ({
+      modeList: Music.generateAllModes(
+        Music.buildScale(state.keysPressed),
+        state.root
+      ),
+    }));
   }
 
   handlePress(noteIndex) {
@@ -26,6 +38,7 @@ class App extends Component {
       ),
       root: noteIndex === state.root ? undefined : state.root,
     }));
+    this.updateModeList();
   }
 
   handleRootPress(noteIndex) {
@@ -35,6 +48,7 @@ class App extends Component {
       ),
       root: noteIndex === state.root ? undefined : noteIndex,
     }));
+    this.updateModeList();
   }
 
   handleResize() {
@@ -64,10 +78,13 @@ class App extends Component {
             handlePress={this.handlePress}
             handleRootPress={this.handleRootPress}
           />
-          <ButtonPanel />
+          <ButtonPanel
+            modeList={this.state.modeList}
+            tonalitySelector={this.state.tonalitySelector}
+            isWide={this.state.isWide}
+          />
           <ModePanel
-            keysPressed={this.state.keysPressed}
-            root={this.state.root}
+            modeList={this.state.modeList}
             tonalitySelector={this.state.tonalitySelector}
             isWide={this.state.isWide}
           />

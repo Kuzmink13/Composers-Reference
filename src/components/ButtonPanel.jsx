@@ -5,10 +5,9 @@ class ButtonPanel extends Component {
   render() {
     return (
       <div className="flex flex-row py-2 px-6 font-semibold tracking-wider text-center">
-        <div className="flex-1">WHOLE TONE</div>
-        <div className="flex-1">MAJOR</div>
-        <div className="flex-1">MINOR</div>
-        <div className="flex-1">DIMINISHED</div>
+        <div className="flex-1">SIX NOTE</div>
+        <div className="flex-1">SEVEN NOTE</div>
+        <div className="flex-1">EIGHT NOTE</div>
       </div>
     );
   }
