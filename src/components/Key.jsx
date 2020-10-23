@@ -8,8 +8,9 @@ class Key extends Component {
   }
 
   getKeyElementWhite() {
-    const base = 'h-64 w-10 border rounded-md shadow-md flex justify-center';
-    const text = 'self-end p-2 font-semibold text-lg';
+    const base =
+      'h-64 w-10 border rounded-md shadow-md flex justify-center items-end';
+    const text = 'p-2 font-semibold text-lg';
     switch (true) {
       case this.props.noteIndex === this.props.root:
         return (

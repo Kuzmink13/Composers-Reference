@@ -20,12 +20,10 @@ class Keys extends Component {
 
   render() {
     return (
-      <div className="p-8 flex flex-row justify-center h-auto border-b border-gray-400">
-        <div className="flex flex-row">
-          <div className="flex flex-row">{this.generateKeys()}</div>
-          <div className="hidden sm:flex flex-row">{this.generateKeys()}</div>
-          <div className="hidden lg:flex flex-row">{this.generateKeys()}</div>
-        </div>
+      <div className="p-8 flex flex-row justify-center border-b border-gray-400">
+        <div className="flex flex-row">{this.generateKeys()}</div>
+        <div className="hidden sm:flex flex-row">{this.generateKeys()}</div>
+        <div className="hidden lg:flex flex-row">{this.generateKeys()}</div>
       </div>
     );
   }

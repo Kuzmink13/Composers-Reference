@@ -6,7 +6,7 @@ class ButtonPanel extends Component {
   render() {
     let buttons = ['SIX', 'SEVEN', 'EIGHT'];
     return (
-      <div className="flex flex-row justify-center font-semibold tracking-wider text-center">
+      <div className="flex flex-row justify-center">
         {buttons.map((el, i) => (
           <ModeButton
             key={i}

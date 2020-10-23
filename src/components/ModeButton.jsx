@@ -8,7 +8,7 @@ class ModeButton extends Component {
         onClick={() =>
           this.props.handleSelectorChange(this.props.tonalityIndex)
         }
-        className={`px-3 py-3 mx-0 sm:px-6 lg:mx-6 ${
+        className={`p-3 mx-0 sm:mx-6 lg:mx-12 font-semibold tracking-wider ${
           isSelected ? 'border-t border-gray-900' : 'text-gray-500'
         }`}
       >
