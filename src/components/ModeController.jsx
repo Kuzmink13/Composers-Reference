@@ -25,7 +25,7 @@ class ModeController extends Component {
           handleSelectorChange={this.props.handleSelectorChange}
         />
         <ModePanel
-          filteredLists={filteredLists}
+          filteredList={filteredLists[this.props.tonalitySelector]}
           tonalitySelector={this.props.tonalitySelector}
           isWide={this.props.isWide}
         />

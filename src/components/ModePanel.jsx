@@ -1,25 +1,18 @@
 import React, { Component } from 'react';
-import ModeList from './ModeList';
+import ModeBlock from './ModeBlock';
 
 class ModePanel extends Component {
   render() {
+    const lists = this.props.filteredList.length ? (
+      this.props.filteredList.map((el, i) => (
+        <ModeBlock key={i} code={el.getAbsoluteModeCode()} />
+      ))
+    ) : (
+      <div className="m-8">no modes available</div>
+    );
     return (
-      <div className="flex-grow flex px-6">
-        {this.props.filteredLists.reduce((acc, el) => acc + el.length, 0) ? (
-          this.props.isWide ? (
-            this.props.filteredLists.map((el, i) => (
-              <ModeList key={i} filteredList={el} />
-            ))
-          ) : (
-            <ModeList
-              filteredList={
-                this.props.filteredLists[this.props.tonalitySelector]
-              }
-            />
-          )
-        ) : (
-          <div className="flex-1 text-center">no scales available</div>
-        )}
+      <div className="mx-8 h-full overflow-y-auto scrolling-auto flex justify-center items-start flex-wrap">
+        {lists}
       </div>
     );
   }
