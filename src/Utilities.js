@@ -3,18 +3,18 @@
  */
 class Utilities {
   static noteNames = [
-    'c',
-    'c-Sharp',
-    'd',
-    'd-sharp',
-    'e',
-    'f',
-    'f-sharp',
-    'g',
-    'g-sharp',
-    'a',
-    'a-sharp',
-    'b',
+    'C',
+    'C\u266F',
+    'D',
+    'E\u266D',
+    'E',
+    'F',
+    'F\u266F',
+    'G',
+    'A\u266D',
+    'A',
+    'B\u266D',
+    'B',
   ];
 
   static tonalities = [
@@ -28,6 +28,48 @@ class Utilities {
   ];
 
   static supportedScaleLengths = [6, 7, 8];
+
+  static modeNames = {
+    '02468a': 'Whole-Tone',
+
+    '03478b': 'Augmented',
+    '014589': 'Augmented Inverse',
+
+    '024679b': 'Lydian',
+    '024579b': 'Ionian',
+    '024579a': 'Mixolydian',
+    '023579a': 'Dorian',
+    '023578a': 'Aeolian',
+    '013578a': 'Phrygian',
+    '013568a': 'Locrian',
+
+    '024689b': 'Lydian Augmented',
+    '024679a': 'Lydian Dominant',
+    '024578a': 'Aeolian Dominant',
+    '023579b': 'Melodic Minor',
+    '013579a': 'Dorian \u266D2',
+    '023568a': 'Locrian \u266E2',
+    '013468a': 'Altered',
+
+    '024589b': 'Major Augmented',
+    '034679b': 'Lydian sharp-2',
+    '014578a': 'Phrygian Dominant',
+    '023578b': 'Harmonic Minor',
+    '023679a': 'Lydian Minor',
+    '013569a': 'Locrian \u266E6',
+    '0134689': 'Altered Diminished',
+
+    '034689b': 'Lydian Augmented \u266F2',
+    '024578b': 'Harmonic Minor',
+    '014579a': 'Mixolydian \u266D2',
+    '023679b': 'Melodic Minor \u266F4',
+    '013478a': 'Altered \u266E5',
+    '023569a': 'Dorian \u266D5',
+    '0135689': 'Locrian \uD834\uDD2B7',
+
+    '0235689b': 'Whole-Half Diminished',
+    '0134679a': 'Half-Whole Diminished',
+  };
 
   static notesInOctave = 12;
 

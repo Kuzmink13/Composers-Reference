@@ -5,7 +5,11 @@ class ModePanel extends Component {
   render() {
     const lists = this.props.filteredList.length ? (
       this.props.filteredList.map((el, i) => (
-        <ModeBlock key={i} code={el.getAbsoluteModeCode()} />
+        <ModeBlock
+          key={i}
+          note={el.getPitchCenter()}
+          code={el.getAbstractModeCode()}
+        />
       ))
     ) : (
       <div className="m-8">no modes available</div>
