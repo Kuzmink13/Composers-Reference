@@ -76,7 +76,7 @@ class App extends Component {
       <div className="flex flex-col h-screen bg-gray-100">
         <Navbar />
 
-        <div className="h-full flex flex-col mx-auto lg:max-w-screen-lg">
+        <div className="h-full w-full mx-auto flex flex-col lg:max-w-screen-lg">
           <Keys
             noteNamesOn={this.state.noteNamesOn}
             keysPressed={this.state.keysPressed}
