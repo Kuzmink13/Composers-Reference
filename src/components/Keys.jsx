@@ -4,7 +4,7 @@ import Utilities from '../Utilities';
 
 class Keys extends Component {
   generateKeys() {
-    return Utilities.noteNames.map((el, i) => (
+    return Utilities.noteNamesSharp.map((el, i) => (
       <Key
         key={i}
         noteIndex={i}

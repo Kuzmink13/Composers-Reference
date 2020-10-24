@@ -28,6 +28,15 @@ class Mode extends PitchCollection {
     this.getAbsoluteModeCode = function () {
       return `${this.getAbstractModeCode()}//${this.getPitchCenter()}`;
     };
+    this.getModeName = function () {
+      const key = this.getPitchCenter();
+      const code = this.getAbstractModeCode();
+      return `${
+        Utilities.keyHasSharps(key, code)
+          ? Utilities.noteNamesSharp[key]
+          : Utilities.noteNamesFlat[key]
+      } ${Utilities.modeNames[code]}`;
+    };
   }
 }
 

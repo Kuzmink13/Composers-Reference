@@ -2,14 +2,29 @@
  * A class containing basic static methods and constants
  */
 class Utilities {
-  static noteNames = [
+  static noteNamesSharp = [
     'C',
     'C\u266F',
+    'D',
+    'D\u266F',
+    'E',
+    'F',
+    'F\u266F',
+    'G',
+    'G\u266F',
+    'A',
+    'A\u266F',
+    'B',
+  ];
+
+  static noteNamesFlat = [
+    'C',
+    'D\u266D',
     'D',
     'E\u266D',
     'E',
     'F',
-    'F\u266F',
+    'G\u266D',
     'G',
     'A\u266D',
     'A',
@@ -70,6 +85,60 @@ class Utilities {
     '0235689b': 'Whole-Half Diminished',
     '0134679a': 'Half-Whole Diminished',
   };
+
+  static modeNumbers = {
+    '02468a': 0,
+
+    '03478b': 0,
+    '014589': 0,
+
+    '024679b': 0,
+    '024579b': 1,
+    '024579a': 2,
+    '023579a': 3,
+    '023578a': 4,
+    '013578a': 5,
+    '013568a': 6,
+
+    '024689b': 0,
+    '024679a': 1,
+    '024578a': 2,
+    '023579b': 3,
+    '013579a': 4,
+    '023568a': 5,
+    '013468a': 6,
+
+    '024589b': 0,
+    '034679b': 1,
+    '014578a': 2,
+    '023578b': 3,
+    '023679a': 4,
+    '013569a': 5,
+    '0134689': 6,
+
+    '034689b': 0,
+    '024578b': 1,
+    '014579a': 2,
+    '023679b': 3,
+    '013478a': 4,
+    '023569a': 5,
+    '0135689': 6,
+
+    '0235689b': 0,
+    '0134679a': 0,
+  };
+
+  static circleOfFifths = [6, 1, 8, 3, 10, 5, 0, 7, 2, 9, 4, 11];
+
+  static getCompositeShapness(pitchCenter, modeCode) {
+    return this.octaveMod(
+      this.circleOfFifths[pitchCenter] - this.modeNumbers[modeCode]
+    );
+  }
+
+  static keyHasSharps(note, modeCode) {
+    return this.notesInOctave / 2 <= this.getCompositeShapness(note, modeCode);
+  }
 
   static notesInOctave = 12;
 
