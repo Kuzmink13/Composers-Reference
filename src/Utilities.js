@@ -75,7 +75,7 @@ class Utilities {
     '0134689': 'Altered Diminished',
 
     '034689b': 'Lydian Augmented \u266F2',
-    '024578b': 'Harmonic Minor',
+    '024578b': 'Harmonic Major',
     '014579a': 'Mixolydian \u266D2',
     '023679b': 'Melodic Minor \u266F4',
     '013478a': 'Altered \u266E5',

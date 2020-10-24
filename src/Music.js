@@ -144,7 +144,7 @@ class Music {
    * @returns {Array[Boolean]} - an array of abstract pitches where the difference between elements corresponds to the
    *    distance between the pitches in half-steps.
    */
-  static buildScale(pitchArray) {
+  static buildScaleArray(pitchArray) {
     return pitchArray
       .map((el, i) => (el ? i : null))
       .filter((el) => el != null);

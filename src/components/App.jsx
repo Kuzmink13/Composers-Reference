@@ -8,67 +8,61 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      noteNamesOn: false,
-      keysPressed: Array(12).fill(false),
+      areNoteNamesShownOnKeys: false,
+      isNoteSelected: Array(12).fill(false),
       root: undefined,
-      tonalitySelector: 1,
+      selectedScaleList: 1,
       isWide: window.innerWidth >= 1024,
       modeList: [],
     };
     this.updateModeList = this.updateModeList.bind(this);
-    this.handlePress = this.handlePress.bind(this);
-    this.handleRootPress = this.handleRootPress.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleRootKeyPress = this.handleRootKeyPress.bind(this);
     this.handleSelectorChange = this.handleSelectorChange.bind(this);
-    this.handleResize = this.handleResize.bind(this);
   }
 
   updateModeList() {
     this.setState((state) => ({
       modeList: Music.generateAllModes(
-        Music.buildScale(state.keysPressed),
+        Music.buildScaleArray(state.isNoteSelected),
         state.root
       ),
     }));
   }
 
-  handlePress(noteIndex) {
+  handleKeyPress(pressedNote) {
     this.setState((state) => ({
-      keysPressed: state.keysPressed.map((el, i) =>
-        i === noteIndex ? !el : el
-      ),
-      root: noteIndex === state.root ? undefined : state.root,
+      isNoteSelected: state.isNoteSelected.map((key, i) => {
+        const isKeyGettingPressed = i === pressedNote;
+        return isKeyGettingPressed ? !key : key;
+      }),
+      root: (() => {
+        const isPressedNoteCurrentRoot = pressedNote === state.root;
+        return isPressedNoteCurrentRoot ? undefined : state.root;
+      })(),
     }));
     this.updateModeList();
   }
 
-  handleRootPress(noteIndex) {
+  handleRootKeyPress(pressedNote) {
     this.setState((state) => ({
-      keysPressed: state.keysPressed.map((el, i) =>
-        i === noteIndex ? (i === state.root ? false : true) : el
-      ),
-      root: noteIndex === state.root ? undefined : noteIndex,
+      isNoteSelected: state.isNoteSelected.map((key, i) => {
+        const isKeyGettingPressed = i === pressedNote;
+        const isKeyCurrentRoot = i === state.root;
+        return isKeyGettingPressed ? (isKeyCurrentRoot ? false : true) : key;
+      }),
+      root: (() => {
+        const isPressedNoteCurrentRoot = pressedNote === state.root;
+        return isPressedNoteCurrentRoot ? undefined : pressedNote;
+      })(),
     }));
     this.updateModeList();
   }
 
-  handleSelectorChange(tonalityIndex) {
+  handleSelectorChange(scaleList) {
     this.setState({
-      tonalitySelector: tonalityIndex,
+      selectedScaleList: scaleList,
     });
-  }
-
-  handleResize() {
-    this.setState({
-      isWide: window.innerWidth >= 1024,
-    });
-  }
-
-  componentDidMount() {
-    window.addEventListener('resize', this.handleResize);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize);
   }
 
   render() {
@@ -78,16 +72,15 @@ class App extends Component {
 
         <div className="w-full overflow-y-hidden mx-auto flex flex-col lg:max-w-screen-lg">
           <Keys
-            noteNamesOn={this.state.noteNamesOn}
-            keysPressed={this.state.keysPressed}
+            areNoteNamesShownOnKeys={this.state.areNoteNamesShownOnKeys}
+            isNoteSelected={this.state.isNoteSelected}
             root={this.state.root}
-            handlePress={this.handlePress}
-            handleRootPress={this.handleRootPress}
+            handleKeyPress={this.handleKeyPress}
+            handleRootKeyPress={this.handleRootKeyPress}
           />
           <ModeController
             modeList={this.state.modeList}
-            tonalitySelector={this.state.tonalitySelector}
-            isWide={this.state.isWide}
+            selectedScaleList={this.state.selectedScaleList}
             handleSelectorChange={this.handleSelectorChange}
           />
         </div>

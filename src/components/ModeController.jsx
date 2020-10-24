@@ -5,7 +5,7 @@ import ModePanel from './ModePanel';
 class ModeController extends Component {
   filterByQuan(noteQuan) {
     return this.props.modeList.filter(
-      (el) => el.getNoteQuantity() === noteQuan
+      (Mode) => Mode.getNoteQuantity() === noteQuan
     );
   }
 
@@ -20,15 +20,10 @@ class ModeController extends Component {
       <Fragment>
         <ButtonPanel
           filteredLists={filteredLists}
-          tonalitySelector={this.props.tonalitySelector}
-          isWide={this.props.isWide}
+          selectedScaleList={this.props.selectedScaleList}
           handleSelectorChange={this.props.handleSelectorChange}
         />
-        <ModePanel
-          filteredList={filteredLists[this.props.tonalitySelector]}
-          tonalitySelector={this.props.tonalitySelector}
-          isWide={this.props.isWide}
-        />
+        <ModePanel filteredList={filteredLists[this.props.selectedScaleList]} />
       </Fragment>
     );
   }

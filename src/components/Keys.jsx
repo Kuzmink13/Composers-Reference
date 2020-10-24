@@ -4,16 +4,16 @@ import Utilities from '../Utilities';
 
 class Keys extends Component {
   generateKeys() {
-    return Utilities.noteNamesSharp.map((el, i) => (
+    return Utilities.noteNamesSharp.map((noteName, i) => (
       <Key
         key={i}
-        noteIndex={i}
-        noteName={el}
-        noteNamesOn={this.props.noteNamesOn}
+        noteName={noteName}
+        noteValue={i}
+        areNoteNamesShownOnKeys={this.props.areNoteNamesShownOnKeys}
         root={this.props.root}
-        pressed={this.props.keysPressed[i]}
-        handlePress={this.props.handlePress}
-        handleRootPress={this.props.handleRootPress}
+        isNoteSelected={this.props.isNoteSelected[i]}
+        handleKeyPress={this.props.handleKeyPress}
+        handleRootKeyPress={this.props.handleRootKeyPress}
       />
     ));
   }

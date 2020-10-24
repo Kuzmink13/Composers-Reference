@@ -3,16 +3,17 @@ import ModeBlock from './ModeBlock';
 
 class ModePanel extends Component {
   render() {
-    const lists = this.props.filteredList.length ? (
-      this.props.filteredList.map((el, i) => (
-        <ModeBlock key={i} name={el.getModeName()} />
-      ))
-    ) : (
-      <div className="m-8">no modes available</div>
-    );
+    const isListEmpty = !this.props.filteredList.length;
+
     return (
       <div className="mx-8 h-full overflow-y-auto scrolling-auto flex justify-center items-start flex-wrap">
-        {lists}
+        {isListEmpty ? (
+          <div className="m-8">no modes available</div>
+        ) : (
+          this.props.filteredList.map((mode, i) => (
+            <ModeBlock key={i} modeName={mode.getModeName()} />
+          ))
+        )}
       </div>
     );
   }
