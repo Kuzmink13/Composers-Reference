@@ -67,7 +67,7 @@ class Utilities {
     '013468a': 'Altered',
 
     '024589b': 'Major Augmented',
-    '034679b': 'Lydian sharp-2',
+    '034679b': 'Lydian \u266F2',
     '014578a': 'Phrygian Dominant',
     '023578b': 'Harmonic Minor',
     '023679a': 'Lydian Minor',
