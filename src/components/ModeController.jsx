@@ -23,7 +23,10 @@ class ModeController extends Component {
           selectedScaleList={this.props.selectedScaleList}
           handleSelectorChange={this.props.handleSelectorChange}
         />
-        <ModePanel filteredList={filteredLists[this.props.selectedScaleList]} />
+        <ModePanel
+          hasEnoughNotes={this.props.hasEnoughNotes}
+          filteredList={filteredLists[this.props.selectedScaleList]}
+        />
       </Fragment>
     );
   }

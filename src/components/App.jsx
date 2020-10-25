@@ -10,12 +10,14 @@ class App extends Component {
     this.state = {
       areNoteNamesShownOnKeys: false,
       isNoteSelected: Array(12).fill(false),
+      hasEnoughNotes: false,
       root: undefined,
       selectedScaleList: 1,
       isWide: window.innerWidth >= 1024,
       modeList: [],
     };
     this.updateModeList = this.updateModeList.bind(this);
+    this.updateHasEnoughNotes = this.updateHasEnoughNotes.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleRootKeyPress = this.handleRootKeyPress.bind(this);
     this.handleSelectorChange = this.handleSelectorChange.bind(this);
@@ -27,6 +29,13 @@ class App extends Component {
         Music.buildScaleArray(state.isNoteSelected),
         state.root
       ),
+    }));
+  }
+
+  updateHasEnoughNotes() {
+    this.setState((state) => ({
+      hasEnoughNotes:
+        state.isNoteSelected.reduce((acc, el) => acc + Number(el), 0) > 1,
     }));
   }
 
@@ -42,6 +51,7 @@ class App extends Component {
       })(),
     }));
     this.updateModeList();
+    this.updateHasEnoughNotes();
   }
 
   handleRootKeyPress(pressedNote) {
@@ -57,6 +67,7 @@ class App extends Component {
       })(),
     }));
     this.updateModeList();
+    this.updateHasEnoughNotes();
   }
 
   handleSelectorChange(scaleList) {
@@ -79,6 +90,7 @@ class App extends Component {
             handleRootKeyPress={this.handleRootKeyPress}
           />
           <ModeController
+            hasEnoughNotes={this.state.hasEnoughNotes}
             modeList={this.state.modeList}
             selectedScaleList={this.state.selectedScaleList}
             handleSelectorChange={this.handleSelectorChange}
