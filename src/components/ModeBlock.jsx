@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import Staff from './Staff';
 
 class ModeBlock extends Component {
   render() {
     return (
-      <div className=" h-32 w-64 my-2 mx-6 p-2 bg-white border border-gray-400 rounded-lg text-center">
+      <div className=" h-32 m-2 p-2 bg-white border border-gray-400 rounded-lg text-center text-gray-800">
         {this.props.modeName}
+        <Staff modeName={this.props.modeName} vf={this.props.vf} />
       </div>
     );
   }
