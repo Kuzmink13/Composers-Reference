@@ -32,6 +32,21 @@ class Utilities {
     'B',
   ];
 
+  static enharmonics = [
+    { B: 'B#', C: 'C', D: 'Dbb' },
+    { B: 'B##', C: 'C#', D: 'Db' },
+    { C: 'C##', D: 'D', E: 'Ebb' },
+    { D: 'D#', E: 'Eb', F: 'Fbb' },
+    { D: 'D##', E: 'E', F: 'Fb' },
+    { E: 'E#', F: 'F', G: 'Gbb' },
+    { E: 'E##', F: 'F#', G: 'Gb' },
+    { F: 'F##', G: 'G', A: 'Abb' },
+    { G: 'G#', A: 'Ab' },
+    { G: 'G##', A: 'A', B: 'Bbb' },
+    { A: 'A#', B: 'Bb', C: 'Cbb' },
+    { A: 'A##', B: 'B', C: 'Cb' },
+  ];
+
   static tonalities = [
     [0, 2, 4, 6, 8, 10],
     [0, 3, 4, 7, 8, 11],

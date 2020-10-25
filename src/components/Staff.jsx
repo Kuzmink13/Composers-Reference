@@ -15,26 +15,18 @@ class Staff extends Component {
 
     let context = renderer.getContext();
 
-    let stave = new vf.Stave(0, -20, 280);
+    let stave = new vf.Stave(0, -10, 280);
 
     stave.addClef('treble');
 
-    let myNotes = ['c', 'd', 'e', 'f', 'g', 'a', 'b'];
-
-    let realNotes = myNotes.map((note) =>
-      new vf.StaveNote({
-        clef: 'treble',
-        keys: [`${note}/4`],
-        duration: 'w',
-      }).addAccidental(0, new vf.Accidental('b'))
-    );
+    let notes = this.props.vexScale;
 
     let voice = new vf.Voice({
-      num_beats: myNotes.length,
+      num_beats: notes.length,
       beat_value: 1,
     });
 
-    voice.addTickables(realNotes);
+    voice.addTickables(notes);
 
     let formatter = new vf.Formatter();
     formatter.format([voice], 260);
