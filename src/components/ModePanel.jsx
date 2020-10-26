@@ -13,7 +13,7 @@ class ModePanel extends Component {
           ) : (
             this.props.filteredList.map((mode, i) => (
               <ModeBlock
-                key={i}
+                key={mode.getAbsoluteModeCode()}
                 pitchCenter={mode.getPitchCenter()}
                 absolutePitches={mode.getAbsolutePitches()}
                 modeCode={mode.getAbstractModeCode()}
