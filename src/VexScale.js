@@ -1,6 +1,8 @@
 import Utilities from './Utilities';
 import Vex from 'vexflow';
 
+const { noteNamesSharp, noteNamesFlat, alphaLetters, enharmonics } = Utilities;
+
 class VexScale {
   static getVFNote(note, octave) {
     const vf = Vex.Flow;
@@ -18,22 +20,22 @@ class VexScale {
   static getBaseNotes68(absolutePitches, keyHasSharps) {
     return absolutePitches.map((el) =>
       keyHasSharps
-        ? Utilities.noteNamesSharp[Utilities.octaveMod(el)]
-        : Utilities.noteNamesFlat[Utilities.octaveMod(el)]
+        ? noteNamesSharp[Utilities.octaveMod(el)]
+        : noteNamesFlat[Utilities.octaveMod(el)]
     );
   }
 
   static getBaseNotes7(pitchCenter, absolutePitches, keyHasSharps) {
     const firstNote = keyHasSharps
-      ? Utilities.noteNamesSharp[pitchCenter]
-      : Utilities.noteNamesFlat[pitchCenter];
-    const indexFirst = Utilities.alphaLetters.indexOf(firstNote[0]);
-    const alphaScale = Utilities.alphaLetters
+      ? noteNamesSharp[pitchCenter]
+      : noteNamesFlat[pitchCenter];
+    const indexFirst = alphaLetters.indexOf(firstNote[0]);
+    const alphaScale = alphaLetters
       .slice(indexFirst)
-      .concat(Utilities.alphaLetters.slice(0, indexFirst));
+      .concat(alphaLetters.slice(0, indexFirst));
 
     return absolutePitches.map(
-      (el) => Utilities.enharmonics[Utilities.octaveMod(el)][alphaScale.shift()]
+      (el) => enharmonics[Utilities.octaveMod(el)][alphaScale.shift()]
     );
   }
 
@@ -52,6 +54,36 @@ class VexScale {
       el[0] === 'B' && octave++;
       return note;
     });
+  }
+
+  static generateStaff(elementID, pitchCenter, modeCode, absolutePitches) {
+    const vf = Vex.Flow;
+
+    let div = document.getElementById(elementID);
+    let renderer = new vf.Renderer(div, vf.Renderer.Backends.SVG);
+
+    renderer.resize(280, 90);
+
+    let context = renderer.getContext();
+
+    let stave = new vf.Stave(0, -10, 280);
+
+    stave.addClef('treble');
+
+    let notes = this.getVexScale(pitchCenter, modeCode, absolutePitches);
+
+    let voice = new vf.Voice({
+      num_beats: notes.length,
+      beat_value: 1,
+    });
+
+    voice.addTickables(notes);
+
+    let formatter = new vf.Formatter();
+    formatter.format([voice], 260);
+
+    stave.setContext(context).draw();
+    voice.draw(context, stave);
   }
 }
 

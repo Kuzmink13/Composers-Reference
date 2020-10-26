@@ -1,15 +1,7 @@
 import React, { Component } from 'react';
 import ModeBlock from './ModeBlock';
-import Vex from 'vexflow';
-import VexScale from '../VexScale';
 
 class ModePanel extends Component {
-  constructor() {
-    super();
-    this.state = {
-      vf: Vex.Flow,
-    };
-  }
   render() {
     const isListEmpty = !this.props.filteredList.length;
 
@@ -22,14 +14,10 @@ class ModePanel extends Component {
             this.props.filteredList.map((mode, i) => (
               <ModeBlock
                 key={i}
-                vexScale={VexScale.getVexScale(
-                  mode.getPitchCenter(),
-                  mode.getAbstractModeCode(),
-                  mode.getAbsolutePitches(),
-                  this.state.vf
-                )}
+                pitchCenter={mode.getPitchCenter()}
+                absolutePitches={mode.getAbsolutePitches()}
+                modeCode={mode.getAbstractModeCode()}
                 modeName={mode.getModeName()}
-                vf={this.state.vf}
               />
             ))
           )
