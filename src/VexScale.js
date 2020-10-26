@@ -1,71 +1,54 @@
 import Utilities from './Utilities';
+import Vex from 'vexflow';
 
 class VexScale {
-  static noteNamesSharp = [
-    'C',
-    'C#',
-    'D',
-    'D#',
-    'E',
-    'F',
-    'F#',
-    'G',
-    'G#',
-    'A',
-    'A#',
-    'B',
-  ];
+  static getVFNote(note, octave) {
+    const vf = Vex.Flow;
+    let vfNote = new vf.StaveNote({
+      clef: 'treble',
+      keys: [`${note}/${octave}`],
+      duration: 'w',
+    });
 
-  static noteNamesFlat = [
-    'C',
-    'Db',
-    'D',
-    'Eb',
-    'E',
-    'F',
-    'Gb',
-    'G',
-    'Ab',
-    'A',
-    'Bb',
-    'B',
-  ];
+    return note.length > 1
+      ? vfNote.addAccidental(0, new vf.Accidental(note.slice(1)))
+      : vfNote;
+  }
 
-  static alphaLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+  static getBaseNotes68(absolutePitches, keyHasSharps) {
+    return absolutePitches.map((el) =>
+      keyHasSharps
+        ? Utilities.noteNamesSharp[Utilities.octaveMod(el)]
+        : Utilities.noteNamesFlat[Utilities.octaveMod(el)]
+    );
+  }
 
-  static getBaseNotes(pitchCenter, modeCode, absolutePitches) {
-    const keyHasSharps = Utilities.keyHasSharps(pitchCenter, modeCode);
+  static getBaseNotes7(pitchCenter, absolutePitches, keyHasSharps) {
     const firstNote = keyHasSharps
-      ? this.noteNamesSharp[pitchCenter]
-      : this.noteNamesFlat[pitchCenter];
-    const indexFirst = this.alphaLetters.indexOf(firstNote[0]);
-    const alphaScale = this.alphaLetters
+      ? Utilities.noteNamesSharp[pitchCenter]
+      : Utilities.noteNamesFlat[pitchCenter];
+    const indexFirst = Utilities.alphaLetters.indexOf(firstNote[0]);
+    const alphaScale = Utilities.alphaLetters
       .slice(indexFirst)
-      .concat(this.alphaLetters.slice(0, indexFirst));
+      .concat(Utilities.alphaLetters.slice(0, indexFirst));
 
     return absolutePitches.map(
       (el) => Utilities.enharmonics[Utilities.octaveMod(el)][alphaScale.shift()]
     );
   }
 
-  static getVexScale(pitchCenter, modeCode, abstractPitches, vf) {
-    const baseNotes = this.getBaseNotes(pitchCenter, modeCode, abstractPitches);
-    console.log(baseNotes);
+  static getVexScale(pitchCenter, modeCode, absolutePitches) {
+    const keyHasSharps = Utilities.keyHasSharps(pitchCenter, modeCode);
+    const scaleHasSevenNotes = absolutePitches.length === 7;
+
+    const baseNotes = scaleHasSevenNotes
+      ? this.getBaseNotes7(pitchCenter, absolutePitches, keyHasSharps)
+      : this.getBaseNotes68(absolutePitches, keyHasSharps);
+
     let octave = 4;
 
     return baseNotes.map((el) => {
-      const note =
-        el.length > 1
-          ? new vf.StaveNote({
-              clef: 'treble',
-              keys: [`${el}/${octave}`],
-              duration: 'w',
-            }).addAccidental(0, new vf.Accidental(el.slice(1)))
-          : new vf.StaveNote({
-              clef: 'treble',
-              keys: [`${el}/${octave}`],
-              duration: 'w',
-            });
+      const note = this.getVFNote(el, octave);
       el[0] === 'B' && octave++;
       return note;
     });
