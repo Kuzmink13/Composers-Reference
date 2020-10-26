@@ -4,31 +4,31 @@
 class Utilities {
   static noteNamesSharp = [
     'C',
-    'C\u266F',
+    'C#',
     'D',
-    'D\u266F',
+    'D#',
     'E',
     'F',
-    'F\u266F',
+    'F#',
     'G',
-    'G\u266F',
+    'G#',
     'A',
-    'A\u266F',
+    'A#',
     'B',
   ];
 
   static noteNamesFlat = [
     'C',
-    'D\u266D',
+    'Db',
     'D',
-    'E\u266D',
+    'Eb',
     'E',
     'F',
-    'G\u266D',
+    'Gb',
     'G',
-    'A\u266D',
+    'Ab',
     'A',
-    'B\u266D',
+    'Bb',
     'B',
   ];
 
@@ -77,25 +77,25 @@ class Utilities {
     '024679a': 'Lydian Dominant',
     '024578a': 'Aeolian Dominant',
     '023579b': 'Melodic Minor',
-    '013579a': 'Dorian \u266D2',
-    '023568a': 'Locrian \u266E2',
+    '013579a': 'Dorian b2',
+    '023568a': 'Locrian nat2',
     '013468a': 'Altered',
 
     '024589b': 'Major Augmented',
-    '034679b': 'Lydian \u266F2',
+    '034679b': 'Lydian #2',
     '014578a': 'Phrygian Dominant',
     '023578b': 'Harmonic Minor',
     '023679a': 'Lydian Minor',
-    '013569a': 'Locrian \u266E6',
+    '013569a': 'Locrian nat6',
     '0134689': 'Altered Diminished',
 
-    '034689b': 'Lydian Augmented \u266F2',
+    '034689b': 'Lydian Augmented #2',
     '024578b': 'Harmonic Major',
-    '014579a': 'Mixolydian \u266D2',
-    '023679b': 'Melodic Minor \u266F4',
-    '013478a': 'Altered \u266E5',
-    '023569a': 'Dorian \u266D5',
-    '0135689': 'Locrian \uD834\uDD2B7',
+    '014579a': 'Mixolydian b2',
+    '023679b': 'Melodic Minor #4',
+    '013478a': 'Altered nat5',
+    '023569a': 'Dorian b5',
+    '0135689': 'Locrian double-flat7',
 
     '0235689b': 'Whole-Half Diminished',
     '0134679a': 'Half-Whole Diminished',
@@ -142,6 +142,8 @@ class Utilities {
     '0235689b': 0,
     '0134679a': 0,
   };
+
+  static alphaLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
 
   static circleOfFifths = [6, 1, 8, 3, 10, 5, 0, 7, 2, 9, 4, 11];
 
