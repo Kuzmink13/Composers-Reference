@@ -3,29 +3,31 @@ import ButtonPanel from './ButtonPanel';
 import ModePanel from './ModePanel';
 
 class ModeController extends Component {
-  filterByQuan(noteQuan) {
-    return this.props.modeList.filter(
-      (Mode) => Mode.getNoteQuantity() === noteQuan
-    );
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedScaleList: 1,
+    };
+    this.handleSelectorChange = this.handleSelectorChange.bind(this);
+  }
+
+  handleSelectorChange(scaleList) {
+    this.setState({
+      selectedScaleList: scaleList,
+    });
   }
 
   render() {
-    let filteredLists = [
-      this.filterByQuan(6),
-      this.filterByQuan(7),
-      this.filterByQuan(8),
-    ];
-
     return (
       <Fragment>
         <ButtonPanel
-          filteredLists={filteredLists}
-          selectedScaleList={this.props.selectedScaleList}
-          handleSelectorChange={this.props.handleSelectorChange}
+          filteredLists={this.props.filteredLists}
+          selectedScaleList={this.state.selectedScaleList}
+          handleSelectorChange={this.handleSelectorChange}
         />
         <ModePanel
           hasEnoughNotes={this.props.hasEnoughNotes}
-          filteredList={filteredLists[this.props.selectedScaleList]}
+          filteredList={this.props.filteredLists[this.state.selectedScaleList]}
         />
       </Fragment>
     );

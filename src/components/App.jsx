@@ -3,32 +3,37 @@ import Navbar from './Navbar';
 import Keys from './Keys';
 import ModeController from './ModeController';
 import Music from '../Music';
+import Utilities from '../Utilities';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      areNoteNamesShownOnKeys: false,
       isNoteSelected: Array(12).fill(false),
       hasEnoughNotes: false,
       root: undefined,
-      selectedScaleList: 1,
-      isWide: window.innerWidth >= 1024,
-      modeList: [],
+      filteredLists: Array(3).fill([]),
     };
-    this.updateModeList = this.updateModeList.bind(this);
+    this.updateFilteredLists = this.updateFilteredLists.bind(this);
     this.updateHasEnoughNotes = this.updateHasEnoughNotes.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleRootKeyPress = this.handleRootKeyPress.bind(this);
-    this.handleSelectorChange = this.handleSelectorChange.bind(this);
   }
 
-  updateModeList() {
+  updateFilteredLists() {
+    const filterByQuan = (modes, noteQuan) =>
+      modes.filter((mode) => mode.getNoteQuantity() === noteQuan);
+
     this.setState((state) => ({
-      modeList: Music.generateAllModes(
-        Music.buildScaleArray(state.isNoteSelected),
-        state.root
-      ),
+      filteredLists: (() => {
+        const modes = Music.generateAllModes(
+          Music.buildScaleArray(state.isNoteSelected),
+          state.root
+        );
+        return Utilities.supportedScaleLengths.map((quan) =>
+          filterByQuan(modes, quan)
+        );
+      })(),
     }));
   }
 
@@ -50,7 +55,7 @@ class App extends Component {
         return isPressedNoteCurrentRoot ? undefined : state.root;
       })(),
     }));
-    this.updateModeList();
+    this.updateFilteredLists();
     this.updateHasEnoughNotes();
   }
 
@@ -66,14 +71,8 @@ class App extends Component {
         return isPressedNoteCurrentRoot ? undefined : pressedNote;
       })(),
     }));
-    this.updateModeList();
+    this.updateFilteredLists();
     this.updateHasEnoughNotes();
-  }
-
-  handleSelectorChange(scaleList) {
-    this.setState({
-      selectedScaleList: scaleList,
-    });
   }
 
   render() {
@@ -83,7 +82,6 @@ class App extends Component {
 
         <div className="w-full overflow-y-hidden mx-auto flex flex-col lg:max-w-screen-lg">
           <Keys
-            areNoteNamesShownOnKeys={this.state.areNoteNamesShownOnKeys}
             isNoteSelected={this.state.isNoteSelected}
             root={this.state.root}
             handleKeyPress={this.handleKeyPress}
@@ -91,9 +89,7 @@ class App extends Component {
           />
           <ModeController
             hasEnoughNotes={this.state.hasEnoughNotes}
-            modeList={this.state.modeList}
-            selectedScaleList={this.state.selectedScaleList}
-            handleSelectorChange={this.handleSelectorChange}
+            filteredLists={this.state.filteredLists}
           />
         </div>
       </div>

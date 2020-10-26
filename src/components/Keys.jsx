@@ -3,13 +3,20 @@ import Key from './Key';
 import Utilities from '../Utilities';
 
 class Keys extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      areNoteNamesShownOnKeys: false,
+    };
+  }
+
   generateKeys() {
     return Utilities.noteNamesSharp.map((noteName, i) => (
       <Key
         key={i}
         noteName={noteName}
         noteValue={i}
-        areNoteNamesShownOnKeys={this.props.areNoteNamesShownOnKeys}
+        areNoteNamesShownOnKeys={this.state.areNoteNamesShownOnKeys}
         root={this.props.root}
         isNoteSelected={this.props.isNoteSelected[i]}
         handleKeyPress={this.props.handleKeyPress}
