@@ -147,6 +147,8 @@ class Utilities {
 
   static circleOfFifths = [6, 1, 8, 3, 10, 5, 0, 7, 2, 9, 4, 11];
 
+  static notesInOctave = 12;
+
   static getCompositeShapness(pitchCenter, modeCode) {
     return this.octaveMod(
       this.circleOfFifths[pitchCenter] - this.modeNumbers[modeCode]
@@ -156,8 +158,6 @@ class Utilities {
   static keyHasSharps(note, modeCode) {
     return this.notesInOctave / 2 <= this.getCompositeShapness(note, modeCode);
   }
-
-  static notesInOctave = 12;
 
   static octaveMod(pitch) {
     return (
