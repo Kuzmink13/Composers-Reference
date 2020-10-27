@@ -47,6 +47,14 @@ class Utilities {
     { A: 'A##', B: 'B', C: 'Cb' },
   ];
 
+  static jsMusicSymbols = [
+    { '##': '\uD834\uDD2A' },
+    { bb: '\uD834\uDD2B' },
+    { '#': '\u266F' },
+    { b: '\u266D' },
+    { nat: '\u266E' },
+  ];
+
   static tonalities = [
     [0, 2, 4, 6, 8, 10],
     [0, 3, 4, 7, 8, 11],
@@ -95,7 +103,7 @@ class Utilities {
     '023679b': 'Melodic Minor #4',
     '013478a': 'Altered nat5',
     '023569a': 'Dorian b5',
-    '0135689': 'Locrian double-flat7',
+    '0135689': 'Locrian bb7',
 
     '0235689b': 'Whole-Half Diminished',
     '0134679a': 'Half-Whole Diminished',
