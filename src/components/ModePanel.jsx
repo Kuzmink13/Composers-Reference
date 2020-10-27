@@ -7,22 +7,18 @@ class ModePanel extends Component {
 
     return (
       <div className="h-full overflow-y-auto scrolling-auto flex justify-center items-start flex-wrap">
-        {this.props.hasEnoughNotes ? (
-          isListEmpty ? (
-            <div className="my-8">no modes available</div>
-          ) : (
-            this.props.filteredList.map((mode, i) => (
-              <ModeBlock
-                key={mode.getAbsoluteModeCode()}
-                pitchCenter={mode.getPitchCenter()}
-                absolutePitches={mode.getAbsolutePitches()}
-                modeCode={mode.getAbstractModeCode()}
-                modeName={mode.getModeName()}
-              />
-            ))
-          )
+        {isListEmpty ? (
+          <div className="my-8">no modes available</div>
         ) : (
-          <div className="my-8">select at least two notes</div>
+          this.props.filteredList.map((mode, i) => (
+            <ModeBlock
+              key={mode.getAbsoluteModeCode()}
+              pitchCenter={mode.getPitchCenter()}
+              absolutePitches={mode.getAbsolutePitches()}
+              modeCode={mode.getAbstractModeCode()}
+              modeName={mode.getModeName()}
+            />
+          ))
         )}
       </div>
     );

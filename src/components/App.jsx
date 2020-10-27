@@ -10,12 +10,10 @@ class App extends Component {
     super(props);
     this.state = {
       isNoteSelected: Array(12).fill(false),
-      hasEnoughNotes: false,
       root: undefined,
       filteredLists: Array(3).fill([]),
     };
     this.updateFilteredLists = this.updateFilteredLists.bind(this);
-    this.updateHasEnoughNotes = this.updateHasEnoughNotes.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleRootKeyPress = this.handleRootKeyPress.bind(this);
   }
@@ -37,13 +35,6 @@ class App extends Component {
     }));
   }
 
-  updateHasEnoughNotes() {
-    this.setState((state) => ({
-      hasEnoughNotes:
-        state.isNoteSelected.reduce((acc, el) => acc + Number(el), 0) > 1,
-    }));
-  }
-
   handleKeyPress(pressedNote) {
     this.setState((state) => ({
       isNoteSelected: state.isNoteSelected.map((key, i) => {
@@ -56,7 +47,6 @@ class App extends Component {
       })(),
     }));
     this.updateFilteredLists();
-    this.updateHasEnoughNotes();
   }
 
   handleRootKeyPress(pressedNote) {
@@ -72,7 +62,6 @@ class App extends Component {
       })(),
     }));
     this.updateFilteredLists();
-    this.updateHasEnoughNotes();
   }
 
   render() {
@@ -87,10 +76,7 @@ class App extends Component {
             handleKeyPress={this.handleKeyPress}
             handleRootKeyPress={this.handleRootKeyPress}
           />
-          <ModeController
-            hasEnoughNotes={this.state.hasEnoughNotes}
-            filteredLists={this.state.filteredLists}
-          />
+          <ModeController filteredLists={this.state.filteredLists} />
         </div>
       </div>
     );

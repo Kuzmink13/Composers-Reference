@@ -26,7 +26,6 @@ class ModeController extends Component {
           handleSelectorChange={this.handleSelectorChange}
         />
         <ModePanel
-          hasEnoughNotes={this.props.hasEnoughNotes}
           filteredList={this.props.filteredLists[this.state.selectedScaleList]}
         />
       </Fragment>
