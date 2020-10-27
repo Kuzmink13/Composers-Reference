@@ -18,6 +18,7 @@ class ModeController extends Component {
   }
 
   render() {
+    const selectedList = this.props.filteredLists[this.state.selectedScaleList];
     return (
       <Fragment>
         <ButtonPanel
@@ -25,9 +26,14 @@ class ModeController extends Component {
           selectedScaleList={this.state.selectedScaleList}
           handleSelectorChange={this.handleSelectorChange}
         />
-        <ModePanel
-          filteredList={this.props.filteredLists[this.state.selectedScaleList]}
-        />
+        {selectedList.length ? (
+          <ModePanel
+            key={selectedList.toString()}
+            filteredList={selectedList}
+          />
+        ) : (
+          <div className="m-auto">no modes available</div>
+        )}
       </Fragment>
     );
   }
