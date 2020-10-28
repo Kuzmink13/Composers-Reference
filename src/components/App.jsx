@@ -65,6 +65,10 @@ class App extends Component {
   }
 
   render() {
+    const appCode = `${this.state.isNoteSelected
+      .map((el) => Number(el))
+      .join('')}//${this.state.root}`;
+
     return (
       <div className="flex flex-col h-screen bg-gray-100">
         <Navbar />
@@ -76,7 +80,10 @@ class App extends Component {
             handleKeyPress={this.handleKeyPress}
             handleRootKeyPress={this.handleRootKeyPress}
           />
-          <ModeController filteredLists={this.state.filteredLists} />
+          <ModeController
+            filteredLists={this.state.filteredLists}
+            appCode={appCode}
+          />
         </div>
       </div>
     );

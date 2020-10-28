@@ -15,12 +15,12 @@ class ModePanel extends Component {
     this.setState((state, props) => {
       const cardsToLoad = 6;
       const numLoaded = state.items.length;
-      const listLen = props.filteredList.length;
+      const listLen = props.selectedList.length;
       const nextIncrement = Math.min(listLen, numLoaded + cardsToLoad);
 
       return {
         items: state.items.concat(
-          props.filteredList
+          props.selectedList
             .slice(numLoaded, nextIncrement)
             .map((mode) => this.generateModeBlock(mode))
         ),
