@@ -5,6 +5,8 @@ import ModeController from './ModeController';
 import Music from '../Music';
 import Utilities from '../Utilities';
 
+const { supportedScaleLengths } = Utilities;
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -19,48 +21,62 @@ class App extends Component {
   }
 
   updateFilteredLists() {
-    const filterByQuan = (modes, noteQuan) =>
-      modes.filter((mode) => mode.getNoteQuantity() === noteQuan);
+    this.setState((state) => {
+      const filterByQuantity = (modes, noteQuantity) =>
+        modes.filter((mode) => mode.getNoteQuantity() === noteQuantity);
+      const modes = Music.generateAllModes(
+        Music.buildScaleArray(state.isNoteSelected),
+        state.root
+      );
 
-    this.setState((state) => ({
-      filteredLists: (() => {
-        const modes = Music.generateAllModes(
-          Music.buildScaleArray(state.isNoteSelected),
-          state.root
-        );
-        return Utilities.supportedScaleLengths.map((quan) =>
-          filterByQuan(modes, quan)
-        );
-      })(),
-    }));
+      return {
+        filteredLists: supportedScaleLengths.map((quantity) =>
+          filterByQuantity(modes, quantity)
+        ),
+      };
+    });
+  }
+
+  static keyPressUtilities(state, pressedNote) {
+    return {
+      isKeyGettingPressed: (i) => i === pressedNote,
+      isKeyCurrentRoot: (i) => i === state.root,
+      isPressedNoteCurrentRoot: pressedNote === state.root,
+    };
   }
 
   handleKeyPress(pressedNote) {
-    this.setState((state) => ({
-      isNoteSelected: state.isNoteSelected.map((key, i) => {
-        const isKeyGettingPressed = i === pressedNote;
-        return isKeyGettingPressed ? !key : key;
-      }),
-      root: (() => {
-        const isPressedNoteCurrentRoot = pressedNote === state.root;
-        return isPressedNoteCurrentRoot ? undefined : state.root;
-      })(),
-    }));
+    this.setState((state) => {
+      const {
+        isKeyGettingPressed,
+        isPressedNoteCurrentRoot,
+      } = App.keyPressUtilities(state, pressedNote);
+
+      return {
+        isNoteSelected: state.isNoteSelected.map((key, i) =>
+          isKeyGettingPressed(i) ? !key : key
+        ),
+        root: isPressedNoteCurrentRoot ? undefined : state.root,
+      };
+    });
     this.updateFilteredLists();
   }
 
   handleRootKeyPress(pressedNote) {
-    this.setState((state) => ({
-      isNoteSelected: state.isNoteSelected.map((key, i) => {
-        const isKeyGettingPressed = i === pressedNote;
-        const isKeyCurrentRoot = i === state.root;
-        return isKeyGettingPressed ? (isKeyCurrentRoot ? false : true) : key;
-      }),
-      root: (() => {
-        const isPressedNoteCurrentRoot = pressedNote === state.root;
-        return isPressedNoteCurrentRoot ? undefined : pressedNote;
-      })(),
-    }));
+    this.setState((state) => {
+      const {
+        isKeyGettingPressed,
+        isKeyCurrentRoot,
+        isPressedNoteCurrentRoot,
+      } = App.keyPressUtilities(state, pressedNote);
+
+      return {
+        isNoteSelected: state.isNoteSelected.map((key, i) =>
+          isKeyGettingPressed(i) ? (isKeyCurrentRoot(i) ? false : true) : key
+        ),
+        root: isPressedNoteCurrentRoot ? undefined : pressedNote,
+      };
+    });
     this.updateFilteredLists();
   }
 
