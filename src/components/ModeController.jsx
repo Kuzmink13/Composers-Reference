@@ -28,7 +28,10 @@ class ModeController extends Component {
           handleSelectorChange={this.handleSelectorChange}
         />
         {selectedList.length ? (
-          <ModePanel key={this.props.appCode} selectedList={selectedList} />
+          <ModePanel
+            key={`${this.props.appCode}(${this.state.selectedScaleList})`}
+            selectedList={selectedList}
+          />
         ) : (
           <div className="m-auto">no modes available</div>
         )}
