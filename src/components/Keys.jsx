@@ -2,26 +2,12 @@ import React, { Component } from 'react';
 import Key from './Key';
 import Utilities from '../Utilities';
 
-class Keys extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      areNoteNamesShownOnKeys: false,
-    };
-  }
+const { notesInOctave, octaveMod } = Utilities;
 
+class Keys extends Component {
   generateKeys() {
-    return Utilities.noteNamesSharp.map((noteName, i) => (
-      <Key
-        key={i}
-        noteName={noteName}
-        noteValue={i}
-        areNoteNamesShownOnKeys={this.state.areNoteNamesShownOnKeys}
-        root={this.props.root}
-        isNoteSelected={this.props.isNoteSelected[i]}
-        handleKeyPress={this.props.handleKeyPress}
-        handleRootKeyPress={this.props.handleRootKeyPress}
-      />
+    return Array.from(Array(notesInOctave), (el, i) => (
+      <Key key={i} value={octaveMod(i)} {...this.props} />
     ));
   }
 

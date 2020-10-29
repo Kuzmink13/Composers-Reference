@@ -14,6 +14,7 @@ class App extends Component {
       isNoteSelected: Array(12).fill(false),
       root: undefined,
       filteredLists: Array(3).fill([]),
+      areNoteNamesShownOnKeys: false,
     };
     this.updateFilteredLists = this.updateFilteredLists.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -93,6 +94,7 @@ class App extends Component {
           <Keys
             isNoteSelected={this.state.isNoteSelected}
             root={this.state.root}
+            areNoteNamesShownOnKeys={this.state.areNoteNamesShownOnKeys}
             handleKeyPress={this.handleKeyPress}
             handleRootKeyPress={this.handleRootKeyPress}
           />
