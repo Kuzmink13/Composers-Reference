@@ -157,21 +157,18 @@ class Utilities {
 
   static notesInOctave = 12;
 
-  static getCompositeShapness(pitchCenter, modeCode) {
-    return this.octaveMod(
+  static getCompositeSharpness = (pitchCenter, modeCode) =>
+    this.octaveMod(
       this.circleOfFifths[pitchCenter] - this.modeNumbers[modeCode]
     );
-  }
 
-  static keyHasSharps(note, modeCode) {
-    return this.notesInOctave / 2 <= this.getCompositeShapness(note, modeCode);
-  }
+  static keyHasSharps = (note, modeCode) =>
+    this.notesInOctave / 2 <= this.getCompositeSharpness(note, modeCode);
 
-  static octaveMod(pitch) {
-    return (
-      ((pitch % this.notesInOctave) + this.notesInOctave) % this.notesInOctave
-    );
-  }
+  static octaveMod = (pitch) =>
+    ((pitch % this.notesInOctave) + this.notesInOctave) % this.notesInOctave;
+
+  static isWhite = (note) => this.noteNamesSharp[note].length === 1;
 }
 
 export default Utilities;
