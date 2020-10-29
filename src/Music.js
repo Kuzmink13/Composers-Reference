@@ -2,6 +2,14 @@ import PitchCollection from './PitchCollection';
 import Mode from './Mode';
 import Utilities from './Utilities';
 
+const {
+  supportedScaleLengths,
+  notesInOctave,
+  tonalities,
+  modeNumbers,
+  octaveMod,
+} = Utilities;
+
 /**
  * A class containing static methods for working with PitchCollection and Mode Objects
  */
@@ -21,7 +29,7 @@ class Music {
     let offset = basePitches[scaleDegree];
     let modePitchesWithOffset = mode
       .getAbstractPitches()
-      .map((el) => Utilities.octaveMod(el + offset))
+      .map((el) => octaveMod(el + offset))
       .sort((a, b) => a - b);
     let currentPitch = modePitchesWithOffset.shift();
 
@@ -65,7 +73,7 @@ class Music {
 
     offsets.forEach((el, i) => {
       output.push(new Mode(offsets, offsets[0]));
-      offsets.push(offsets.shift() + Utilities.notesInOctave);
+      offsets.push(offsets.shift() + notesInOctave);
     });
 
     return output;
@@ -162,7 +170,7 @@ class Music {
    */
   static generateAllModes(givenPitches, pitchCenter = undefined) {
     let output = [];
-    Utilities.tonalities.forEach((el) => {
+    tonalities.forEach((el) => {
       output = output.concat(
         this.generateModes(el, givenPitches, pitchCenter).sort((a, b) => {
           const aRoot = a.getPitchCenter();
@@ -174,8 +182,8 @@ class Music {
             return aRoot - bRoot;
           } else {
             return (
-              Utilities.modeNumbers[a.getAbstractModeCode()] -
-              Utilities.modeNumbers[b.getAbstractModeCode()]
+              modeNumbers[a.getAbstractModeCode()] -
+              modeNumbers[b.getAbstractModeCode()]
             );
           }
         })
@@ -183,6 +191,20 @@ class Music {
     });
 
     return output;
+  }
+
+  static getFilterdLists(isNoteSelected, root) {
+    const filterByQuantity = (modes, noteQuantity) =>
+      modes.filter((mode) => mode.getNoteQuantity() === noteQuantity);
+
+    const modes = this.generateAllModes(
+      this.buildScaleArray(isNoteSelected),
+      root
+    );
+
+    return supportedScaleLengths.map((quantity) =>
+      filterByQuantity(modes, quantity)
+    );
   }
 }
 

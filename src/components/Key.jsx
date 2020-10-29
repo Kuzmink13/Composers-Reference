@@ -3,7 +3,7 @@ import Utilities from '../Utilities';
 
 const { isWhite, noteNamesSharp } = Utilities;
 
-const Key = (props) => {
+function Key(props) {
   const isNoteSelected = props.isNoteSelected[props.value];
   const isNoteRoot = props.root === props.value;
   const noteName = noteNamesSharp[props.value];
@@ -16,8 +16,8 @@ const Key = (props) => {
 
   return (
     <div
-      onClick={() => props.handleKeyPress(props.value)}
-      onDoubleClick={() => props.handleRootKeyPress(props.value)}
+      onClick={() => props.handleKeyPress(props.value, false)}
+      onDoubleClick={() => props.handleKeyPress(props.value, true)}
       className={`key key-${color} key-${color}-${selection}`}
     >
       {props.areNoteNamesShownOnKeys && isWhite(props.value) && (
@@ -25,6 +25,6 @@ const Key = (props) => {
       )}
     </div>
   );
-};
+}
 
 export default Key;
