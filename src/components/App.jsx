@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from './Navbar';
 import Keys from './Keys';
 import ModeController from './ModeController';
@@ -9,35 +9,52 @@ const { notesInOctave, supportedScaleLengths } = Utilities;
 
 function App() {
   const [isNoteSelected, setIsNoteSelected] = useState(
-    Array.from(Array(notesInOctave), () => false)
+    Array(notesInOctave).fill(false)
   );
-  const [root, setRoot] = useState(undefined);
   const [filteredLists, setFilteredLists] = useState(
-    Array.from(Array(supportedScaleLengths.length), () => [])
+    Array(supportedScaleLengths.length).fill([])
   );
   const [areNoteNamesShownOnKeys] = useState(false);
+  const [root, setRoot] = useState(undefined);
+  const [appCode, setAppCode] = useState('');
+  const [screenSize, setScreenSize] = useState(getScreenSize());
 
   function handleKeyPress(pressedNote, isRootPress) {
     const isKeyGettingPressed = (i) => i === pressedNote;
     const isPressedNoteCurrentRoot = pressedNote === root;
     const newNote = isRootPress ? true : !isNoteSelected[pressedNote];
 
-    const NewIsNoteSelected = isNoteSelected.map((key, i) =>
-      isKeyGettingPressed(i) ? newNote : key
+    setIsNoteSelected(
+      isNoteSelected.map((key, i) => (isKeyGettingPressed(i) ? newNote : key))
     );
-
-    const newRoot = isPressedNoteCurrentRoot
-      ? undefined
-      : isRootPress
-      ? pressedNote
-      : root;
-
-    setIsNoteSelected(NewIsNoteSelected);
-    setRoot(newRoot);
-    setFilteredLists(Music.getFilterdLists(NewIsNoteSelected, newRoot));
+    setRoot(
+      isPressedNoteCurrentRoot ? undefined : isRootPress ? pressedNote : root
+    );
   }
 
-  const appCode = `${isNoteSelected.map((el) => Number(el)).join('')}//${root}`;
+  useEffect(() => {
+    setFilteredLists(Music.getFilterdLists(isNoteSelected, root));
+    setAppCode(`${isNoteSelected.map((el) => Number(el)).join('')}//${root}`);
+  }, [isNoteSelected, root]);
+
+  function getScreenSize() {
+    switch (true) {
+      case window.innerWidth < 640:
+        return 1;
+      case window.innerWidth < 1024:
+        return 2;
+      default:
+        return 3;
+    }
+  }
+
+  useEffect(() => {
+    const handleResize = () => setScreenSize(getScreenSize());
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  });
 
   return (
     <div className="flex flex-col h-screen bg-gray-100">
@@ -48,6 +65,7 @@ function App() {
           isNoteSelected={isNoteSelected}
           root={root}
           areNoteNamesShownOnKeys={areNoteNamesShownOnKeys}
+          screenSize={screenSize}
           handleKeyPress={handleKeyPress}
         />
         <ModeController filteredLists={filteredLists} appCode={appCode} />
