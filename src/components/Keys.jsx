@@ -1,25 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Key from './Key';
 import Utilities from '../Utilities';
 
 const { notesInOctave, octaveMod } = Utilities;
 
-class Keys extends Component {
-  generateKeys() {
-    return Array.from(Array(notesInOctave), (el, i) => (
-      <Key key={i} value={octaveMod(i)} {...this.props} />
+function Keys(props) {
+  function generateKeys() {
+    return Array.from(Array(notesInOctave * props.screenSize), (el, i) => (
+      <Key key={i} value={octaveMod(i)} {...props} />
     ));
   }
 
-  render() {
-    return (
-      <div className="mx-8 p-8 flex flex-row justify-center border-b border-gray-400">
-        <div className="flex flex-row">{this.generateKeys()}</div>
-        <div className="hidden sm:flex flex-row">{this.generateKeys()}</div>
-        <div className="hidden lg:flex flex-row">{this.generateKeys()}</div>
-      </div>
-    );
-  }
+  return (
+    <div className="mx-8 py-8 flex flex-row justify-center border-b border-gray-400">
+      {generateKeys()}
+    </div>
+  );
 }
 
 export default Keys;
