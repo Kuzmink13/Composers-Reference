@@ -41,12 +41,13 @@ function ModePanel(props) {
       ref={(ref) => (scrollParentRef = ref)}
     >
       <InfiniteScroll
+        className="flex justify-center items-start flex-wrap"
         loadMore={loadMore}
         hasMore={hasMore}
         useWindow={false}
         getScrollParent={scrollParentRef}
       >
-        <div className="flex justify-center items-start flex-wrap">{items}</div>
+        {items}
       </InfiniteScroll>
     </div>
   );
