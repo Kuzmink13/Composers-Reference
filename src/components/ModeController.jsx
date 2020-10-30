@@ -1,43 +1,32 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import ButtonPanel from './ButtonPanel';
 import ModePanel from './ModePanel';
 
-class ModeController extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedScaleList: 1,
-    };
-    this.handleSelectorChange = this.handleSelectorChange.bind(this);
+function ModeController(props) {
+  const [selectedScaleList, setSelectedScaleList] = useState(1);
+  const selectedList = props.filteredLists[selectedScaleList];
+
+  function handleSelectorChange(newSelector) {
+    setSelectedScaleList(newSelector);
   }
 
-  handleSelectorChange(scaleList) {
-    this.setState({
-      selectedScaleList: scaleList,
-    });
-  }
-
-  render() {
-    const selectedList = this.props.filteredLists[this.state.selectedScaleList];
-
-    return (
-      <Fragment>
-        <ButtonPanel
-          filteredLists={this.props.filteredLists}
-          selectedScaleList={this.state.selectedScaleList}
-          handleSelectorChange={this.handleSelectorChange}
+  return (
+    <Fragment>
+      <ButtonPanel
+        filteredLists={props.filteredLists}
+        selectedScaleList={selectedScaleList}
+        handleSelectorChange={handleSelectorChange}
+      />
+      {selectedList.length ? (
+        <ModePanel
+          key={`${props.appCode}(${selectedScaleList})`}
+          selectedList={selectedList}
         />
-        {selectedList.length ? (
-          <ModePanel
-            key={`${this.props.appCode}(${this.state.selectedScaleList})`}
-            selectedList={selectedList}
-          />
-        ) : (
-          <div className="m-auto">no modes available</div>
-        )}
-      </Fragment>
-    );
-  }
+      ) : (
+        <div className="m-auto">no modes available</div>
+      )}
+    </Fragment>
+  );
 }
 
 export default ModeController;
