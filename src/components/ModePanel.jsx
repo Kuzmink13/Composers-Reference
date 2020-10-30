@@ -1,35 +1,29 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import ModeBlock from './ModeBlock';
 
-class ModePanel extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: [],
-      hasMore: true,
-    };
+function ModePanel(props) {
+  const [items, setItems] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
+  let scrollParentRef;
+
+  function loadMore() {
+    const cardsToLoad = 6;
+    const numLoaded = items.length;
+    const listLen = props.selectedList.length;
+    const nextIncrement = Math.min(listLen, numLoaded + cardsToLoad);
+
+    setItems(
+      items.concat(
+        props.selectedList
+          .slice(numLoaded, nextIncrement)
+          .map((mode) => generateModeBlock(mode))
+      )
+    );
+    setHasMore(listLen > numLoaded);
   }
 
-  loadMore() {
-    this.setState((state, props) => {
-      const cardsToLoad = 6;
-      const numLoaded = state.items.length;
-      const listLen = props.selectedList.length;
-      const nextIncrement = Math.min(listLen, numLoaded + cardsToLoad);
-
-      return {
-        items: state.items.concat(
-          props.selectedList
-            .slice(numLoaded, nextIncrement)
-            .map((mode) => this.generateModeBlock(mode))
-        ),
-        hasMore: listLen > numLoaded,
-      };
-    });
-  }
-
-  generateModeBlock(mode) {
+  function generateModeBlock(mode) {
     return (
       <ModeBlock
         key={mode.getAbsoluteModeCode()}
@@ -41,25 +35,21 @@ class ModePanel extends Component {
     );
   }
 
-  render() {
-    return (
-      <div
-        className="h-full overflow-y-auto scrolling-auto"
-        ref={(ref) => (this.scrollParentRef = ref)}
+  return (
+    <div
+      className="h-full overflow-y-auto scrolling-auto"
+      ref={(ref) => (scrollParentRef = ref)}
+    >
+      <InfiniteScroll
+        loadMore={loadMore}
+        hasMore={hasMore}
+        useWindow={false}
+        getScrollParent={scrollParentRef}
       >
-        <InfiniteScroll
-          loadMore={this.loadMore.bind(this)}
-          hasMore={this.state.hasMore}
-          useWindow={false}
-          getScrollParent={() => this.scrollParentRef}
-        >
-          <div className="flex justify-center items-start flex-wrap">
-            {this.state.items}
-          </div>
-        </InfiniteScroll>
-      </div>
-    );
-  }
+        <div className="flex justify-center items-start flex-wrap">{items}</div>
+      </InfiniteScroll>
+    </div>
+  );
 }
 
 export default ModePanel;
