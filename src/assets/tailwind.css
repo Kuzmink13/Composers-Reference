@@ -52,4 +52,15 @@
   .key-black-root:hover {
     @apply bg-blue-700 border-blue-800;
   }
+
+  .drop-down {
+    @apply absolute flex flex-col right-0 z-20 font-semibold bg-white border border-gray-500 rounded-lg shadow-xl;
+  }
+
+  .menu-item {
+    @apply px-4 py-2 border-t border-b border-transparent;
+  }
+  .menu-item:hover {
+    @apply bg-purple-100 border-purple-200 text-purple-800;
+  }
 }

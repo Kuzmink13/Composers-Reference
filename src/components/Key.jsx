@@ -20,7 +20,7 @@ function Key(props) {
       onDoubleClick={() => props.handleKeyPress(props.value, true)}
       className={`key key-${color} key-${color}-${selection}`}
     >
-      {props.areNoteNamesShownOnKeys && isWhite(props.value) && (
+      {props.areNoteNamesVisible && isWhite(props.value) && (
         <div className="p-2 font-semibold text-md">{noteName}</div>
       )}
     </div>

@@ -14,7 +14,7 @@ function App() {
   const [filteredLists, setFilteredLists] = useState(
     Array(supportedScaleLengths.length).fill([])
   );
-  const [areNoteNamesShownOnKeys] = useState(false);
+  const [areNoteNamesVisible, setareNoteNamesVisible] = useState(false);
   const [root, setRoot] = useState(undefined);
   const [appCode, setAppCode] = useState('');
   const [screenSize, setScreenSize] = useState(getScreenSize());
@@ -30,6 +30,10 @@ function App() {
     setRoot(
       isPressedNoteCurrentRoot ? undefined : isRootPress ? pressedNote : root
     );
+  }
+
+  function handleNoteNamesVisible() {
+    setareNoteNamesVisible(!areNoteNamesVisible);
   }
 
   useEffect(() => {
@@ -58,13 +62,16 @@ function App() {
 
   return (
     <div className="flex flex-col h-screen bg-gray-100">
-      <Navbar />
+      <Navbar
+        areNoteNamesVisible={areNoteNamesVisible}
+        handleNoteNamesVisible={handleNoteNamesVisible}
+      />
 
       <div className="w-full overflow-y-hidden mx-auto flex flex-col lg:max-w-screen-lg">
         <Keys
           isNoteSelected={isNoteSelected}
           root={root}
-          areNoteNamesShownOnKeys={areNoteNamesShownOnKeys}
+          areNoteNamesVisible={areNoteNamesVisible}
           screenSize={screenSize}
           handleKeyPress={handleKeyPress}
         />
