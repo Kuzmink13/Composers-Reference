@@ -8,13 +8,9 @@ import Utilities from '../Utilities';
 const { notesInOctave, supportedScaleLengths } = Utilities;
 
 function App() {
-  /** An array of boolean values corresponding to whether a key at a given note
-   * index is currently selected */
   const [isNoteSelected, setIsNoteSelected] = useState(
     Array(notesInOctave).fill(false)
   );
-  /** An array containing lists of Mode objects that correspond to each
-   * supported scale length and the application state*/
   const [filteredLists, setFilteredLists] = useState(
     Array(supportedScaleLengths.length).fill([])
   );
@@ -23,12 +19,6 @@ function App() {
   const [appCode, setAppCode] = useState('');
   const [screenSize, setScreenSize] = useState(getScreenSize());
 
-  /**
-   * Updates the application state based on a user note selection event
-   * @param {Number} pressedNote - an index corresponding to the selected note
-   * @param {Boolean} isRootPress - whether the selection also designates the
-   * note as the root
-   */
   function handleKeyPress(pressedNote, isRootPress) {
     const isKeyGettingPressed = (i) => i === pressedNote;
     const isPressedNoteCurrentRoot = pressedNote === root;
@@ -42,14 +32,11 @@ function App() {
     );
   }
 
-  /** Generates a new filteredList array and appCode after isNoteSelected or
-   * root changes */
   useEffect(() => {
     setFilteredLists(Music.getFilterdLists(isNoteSelected, root));
     setAppCode(`${isNoteSelected.map((el) => Number(el)).join('')}//${root}`);
   }, [isNoteSelected, root]);
 
-  /** Returns a value corresponding to the current screen-size breakpoint */
   function getScreenSize() {
     switch (true) {
       case window.innerWidth < 640:
@@ -61,7 +48,6 @@ function App() {
     }
   }
 
-  /** Window-size event listener/handler */
   useEffect(() => {
     const handleResize = () => setScreenSize(getScreenSize());
     window.addEventListener('resize', handleResize);
