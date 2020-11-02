@@ -32,6 +32,15 @@ function App() {
     );
   }
 
+  function clearAll() {
+    setIsNoteSelected(Array(notesInOctave).fill(false));
+    setRoot(undefined);
+  }
+
+  function handleDelete(event) {
+    (event.key === 'Del' || event.key === 'Delete') && clearAll();
+  }
+
   function handleNoteNamesVisible() {
     setareNoteNamesVisible(!areNoteNamesVisible);
   }
@@ -60,10 +69,18 @@ function App() {
     };
   });
 
+  useEffect(() => {
+    document.addEventListener('keydown', handleDelete);
+    return () => {
+      document.removeEventListener('keydown', handleDelete);
+    };
+  });
+
   return (
     <div className="flex flex-col h-screen bg-gray-100">
       <Navbar
         areNoteNamesVisible={areNoteNamesVisible}
+        clearAll={clearAll}
         handleNoteNamesVisible={handleNoteNamesVisible}
       />
 
