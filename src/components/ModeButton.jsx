@@ -1,7 +1,7 @@
 import React from 'react';
 
 function ModeButton(props) {
-  const isSelected = props.scaleList === props.selectedScaleList;
+  const isSelected = props.scaleList === props.selectedListIndex;
 
   return (
     <div

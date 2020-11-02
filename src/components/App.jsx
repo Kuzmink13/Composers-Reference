@@ -20,7 +20,6 @@ function App() {
   const [areNoteNamesVisible, setareNoteNamesVisible] = useState(false);
   const [isFilteredBySelection, setIsFilteredBySelection] = useState(false);
   const [root, setRoot] = useState(undefined);
-  const [appCode, setAppCode] = useState('');
   const [screenSize, setScreenSize] = useState(getScreenSize());
 
   function handleKeyPress(pressedNote, isRootPress) {
@@ -70,15 +69,6 @@ function App() {
         isFilteredBySelection
       )
     );
-    setAppCode(
-      `${isNoteSelected
-        .map((el) => Number(el))
-        .join(
-          ''
-        )}//${root}//${isFilteredBySelection}//${selectedTonalities
-        .map((el) => Number(el))
-        .join('')}`
-    );
   }, [isNoteSelected, root, selectedTonalities, isFilteredBySelection]);
 
   function getScreenSize() {
@@ -127,7 +117,7 @@ function App() {
           screenSize={screenSize}
           handleKeyPress={handleKeyPress}
         />
-        <ModeController filteredLists={filteredLists} appCode={appCode} />
+        <ModeController filteredLists={filteredLists} />
       </div>
     </div>
   );

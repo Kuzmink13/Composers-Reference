@@ -1,27 +1,28 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 import ButtonPanel from './ButtonPanel';
 import ModePanel from './ModePanel';
 
 function ModeController(props) {
-  const [selectedScaleList, setSelectedScaleList] = useState(1);
-  const selectedList = props.filteredLists[selectedScaleList];
+  const [selectedListIndex, setSelectedListIndex] = useState(1);
+  const [selectedList, setSelectedList] = useState([]);
 
   function handleSelectorChange(newSelector) {
-    setSelectedScaleList(newSelector);
+    setSelectedListIndex(newSelector);
   }
+
+  useEffect(() => {
+    setSelectedList(props.filteredLists[selectedListIndex]);
+  }, [props.filteredLists, selectedListIndex]);
 
   return (
     <Fragment>
       <ButtonPanel
         filteredLists={props.filteredLists}
-        selectedScaleList={selectedScaleList}
+        selectedListIndex={selectedListIndex}
         handleSelectorChange={handleSelectorChange}
       />
       {selectedList.length ? (
-        <ModePanel
-          key={`${props.appCode}(${selectedScaleList})`}
-          selectedList={selectedList}
-        />
+        <ModePanel key={selectedList} selectedList={selectedList} />
       ) : (
         <div className="m-auto">no modes available</div>
       )}
