@@ -12,8 +12,12 @@ function Options(props) {
           />
           Display note names on keys
         </div>
-        <div>
-          <input type="checkbox" className="mr-2" />
+        <div onClick={props.handleIsFilteredBySelection}>
+          <input
+            type="checkbox"
+            className="mr-2"
+            checked={props.isFilteredBySelection}
+          />
           Display scale only if its root is selected
         </div>
       </div>

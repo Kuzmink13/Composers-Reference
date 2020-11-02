@@ -15,6 +15,7 @@ function App() {
     Array(supportedScaleLengths.length).fill([])
   );
   const [areNoteNamesVisible, setareNoteNamesVisible] = useState(false);
+  const [isFilteredBySelection, setIsFilteredBySelection] = useState(false);
   const [root, setRoot] = useState(undefined);
   const [appCode, setAppCode] = useState('');
   const [screenSize, setScreenSize] = useState(getScreenSize());
@@ -45,10 +46,20 @@ function App() {
     setareNoteNamesVisible(!areNoteNamesVisible);
   }
 
+  function handleIsFilteredBySelection() {
+    setIsFilteredBySelection(!isFilteredBySelection);
+  }
+
   useEffect(() => {
-    setFilteredLists(Music.getFilterdLists(isNoteSelected, root));
-    setAppCode(`${isNoteSelected.map((el) => Number(el)).join('')}//${root}`);
-  }, [isNoteSelected, root]);
+    setFilteredLists(
+      Music.getFilterdLists(isNoteSelected, root, isFilteredBySelection)
+    );
+    setAppCode(
+      `${isNoteSelected
+        .map((el) => Number(el))
+        .join('')}//${root}//${isFilteredBySelection}`
+    );
+  }, [isNoteSelected, root, isFilteredBySelection]);
 
   function getScreenSize() {
     switch (true) {
@@ -80,8 +91,10 @@ function App() {
     <div className="flex flex-col h-screen bg-gray-100">
       <Navbar
         areNoteNamesVisible={areNoteNamesVisible}
+        isFilteredBySelection={isFilteredBySelection}
         clearAll={clearAll}
         handleNoteNamesVisible={handleNoteNamesVisible}
+        handleIsFilteredBySelection={handleIsFilteredBySelection}
       />
 
       <div className="w-full overflow-y-hidden mx-auto flex flex-col lg:max-w-screen-lg">

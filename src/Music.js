@@ -193,18 +193,21 @@ class Music {
     return output;
   }
 
-  static getFilterdLists(isNoteSelected, root) {
-    const filterByQuantity = (modes, noteQuantity) =>
+  static getFilterdLists(isNoteSelected, root, isFilteredBySelection) {
+    const filterByQuantity = (noteQuantity) =>
       modes.filter((mode) => mode.getNoteQuantity() === noteQuantity);
 
-    const modes = this.generateAllModes(
+    const filterBySelected = () =>
+      (modes = modes.filter((mode) => isNoteSelected[mode.getPitchCenter()]));
+
+    let modes = this.generateAllModes(
       this.buildScaleArray(isNoteSelected),
       root
     );
 
-    return supportedScaleLengths.map((quantity) =>
-      filterByQuantity(modes, quantity)
-    );
+    isFilteredBySelection && filterBySelected();
+
+    return supportedScaleLengths.map((quantity) => filterByQuantity(quantity));
   }
 }
 
