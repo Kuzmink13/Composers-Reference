@@ -65,6 +65,16 @@ class Utilities {
     [0, 1, 3, 4, 6, 7, 9, 10],
   ];
 
+  static tonalityNames = [
+    'Whole-Tone',
+    'Augmented',
+    'Major',
+    'Melodic Minor',
+    'Harmonic Minor',
+    'Harmonic Major',
+    'Diminished',
+  ];
+
   static supportedScaleLengths = [6, 7, 8];
 
   static modeNames = {

@@ -1,4 +1,7 @@
 import React from 'react';
+import Utilities from '../Utilities';
+
+const { tonalityNames } = Utilities;
 
 function Options(props) {
   return (
@@ -40,34 +43,16 @@ function Options(props) {
 
       <div className="py-1">
         Exclude Tonalities:
-        <div>
-          <input type="checkbox" className="mx-2" />
-          Whole-Tone
-        </div>
-        <div>
-          <input type="checkbox" className="mx-2" />
-          Augmented
-        </div>
-        <div>
-          <input type="checkbox" className="mx-2" />
-          Major
-        </div>
-        <div>
-          <input type="checkbox" className="mx-2" />
-          Melodic Minor
-        </div>
-        <div>
-          <input type="checkbox" className="mx-2" />
-          Harmonic Minor
-        </div>
-        <div>
-          <input type="checkbox" className="mx-2" />
-          Harmonic Major
-        </div>
-        <div>
-          <input type="checkbox" className="mx-2" />
-          Diminished
-        </div>
+        {tonalityNames.map((el, i) => (
+          <div onClick={() => props.handleSelectedTonalityChange(i)}>
+            <input
+              type="checkbox"
+              className="mx-2"
+              checked={!props.selectedTonalities[i]}
+            />
+            {el}
+          </div>
+        ))}
       </div>
     </div>
   );

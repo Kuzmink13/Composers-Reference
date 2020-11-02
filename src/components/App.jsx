@@ -5,7 +5,7 @@ import ModeController from './ModeController';
 import Music from '../Music';
 import Utilities from '../Utilities';
 
-const { notesInOctave, supportedScaleLengths } = Utilities;
+const { notesInOctave, supportedScaleLengths, tonalities } = Utilities;
 
 function App() {
   const [isNoteSelected, setIsNoteSelected] = useState(
@@ -13,6 +13,9 @@ function App() {
   );
   const [filteredLists, setFilteredLists] = useState(
     Array(supportedScaleLengths.length).fill([])
+  );
+  const [selectedTonalities, setSelectedTonalities] = useState(
+    Array.from(tonalities, () => true)
   );
   const [areNoteNamesVisible, setareNoteNamesVisible] = useState(false);
   const [isFilteredBySelection, setIsFilteredBySelection] = useState(false);
@@ -50,16 +53,33 @@ function App() {
     setIsFilteredBySelection(!isFilteredBySelection);
   }
 
+  function handleSelectedTonalityChange(tonalityIndex) {
+    const isUpdating = (i) => tonalityIndex === i;
+
+    setSelectedTonalities(
+      selectedTonalities.map((el, i) => (isUpdating(i) ? !el : el))
+    );
+  }
+
   useEffect(() => {
     setFilteredLists(
-      Music.getFilterdLists(isNoteSelected, root, isFilteredBySelection)
+      Music.getFilterdLists(
+        isNoteSelected,
+        root,
+        selectedTonalities,
+        isFilteredBySelection
+      )
     );
     setAppCode(
       `${isNoteSelected
         .map((el) => Number(el))
-        .join('')}//${root}//${isFilteredBySelection}`
+        .join(
+          ''
+        )}//${root}//${isFilteredBySelection}//${selectedTonalities
+        .map((el) => Number(el))
+        .join('')}`
     );
-  }, [isNoteSelected, root, isFilteredBySelection]);
+  }, [isNoteSelected, root, selectedTonalities, isFilteredBySelection]);
 
   function getScreenSize() {
     switch (true) {
@@ -92,9 +112,11 @@ function App() {
       <Navbar
         areNoteNamesVisible={areNoteNamesVisible}
         isFilteredBySelection={isFilteredBySelection}
+        selectedTonalities={selectedTonalities}
         clearAll={clearAll}
         handleNoteNamesVisible={handleNoteNamesVisible}
         handleIsFilteredBySelection={handleIsFilteredBySelection}
+        handleSelectedTonalityChange={handleSelectedTonalityChange}
       />
 
       <div className="w-full overflow-y-hidden mx-auto flex flex-col lg:max-w-screen-lg">
