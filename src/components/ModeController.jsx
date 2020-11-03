@@ -22,11 +22,7 @@ function ModeController(props) {
         handleSelectorChange={handleSelectorChange}
       />
       {selectedList.length ? (
-        <ModePanel
-          key={selectedList + props.clef}
-          selectedList={selectedList}
-          clef={props.clef}
-        />
+        <ModePanel selectedList={selectedList} clef={props.clef} />
       ) : (
         <div className="m-auto">no modes available</div>
       )}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import ModeBlock from './ModeBlock';
 
@@ -35,6 +35,11 @@ function ModePanel(props) {
       />
     );
   }
+
+  useEffect(() => {
+    setItems([]);
+    setHasMore(true);
+  }, [props.selectedList, props.clef]);
 
   return (
     <div
