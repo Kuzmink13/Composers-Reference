@@ -7,12 +7,13 @@ function ModeBlock(props) {
       props.modeName,
       props.pitchCenter,
       props.modeCode,
-      props.absolutePitches
+      props.absolutePitches,
+      props.clef
     );
   });
 
   return (
-    <div className=" h-32 m-2 p-2 bg-white border border-gray-400 rounded-lg text-center text-gray-800">
+    <div className="m-2 p-2 bg-white border border-gray-400 rounded-lg text-center tracking-wide font-medium">
       {props.modeName}
       <div id={props.modeName}></div>
     </div>

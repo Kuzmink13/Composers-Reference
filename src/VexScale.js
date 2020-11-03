@@ -4,10 +4,10 @@ import Vex from 'vexflow';
 const { noteNamesSharp, noteNamesFlat, alphaLetters, enharmonics } = Utilities;
 
 class VexScale {
-  static getVFNote(note, octave) {
+  static getVFNote(note, octave, clef) {
     const vf = Vex.Flow;
     let vfNote = new vf.StaveNote({
-      clef: 'treble',
+      clef: clef,
       keys: [`${note}/${octave}`],
       duration: 'w',
     });
@@ -39,7 +39,7 @@ class VexScale {
     );
   }
 
-  static getVexScale(pitchCenter, modeCode, absolutePitches) {
+  static getVexScale(pitchCenter, modeCode, absolutePitches, clef) {
     const keyHasSharps = Utilities.keyHasSharps(pitchCenter, modeCode);
     const scaleHasSevenNotes = absolutePitches.length === 7;
 
@@ -47,30 +47,47 @@ class VexScale {
       ? this.getBaseNotes7(pitchCenter, absolutePitches, keyHasSharps)
       : this.getBaseNotes68(absolutePitches, keyHasSharps);
 
-    let octave = 4;
+    const getTransposition = () => {
+      switch (clef) {
+        case 'treble':
+          return 4;
+        case 'alto':
+          return baseNotes[0][0] === 'C' ? 4 : 3;
+        default:
+          return baseNotes[0][0] === 'C' || baseNotes[0][0] === 'D' ? 3 : 2;
+      }
+    };
+
+    let octave = getTransposition();
 
     return baseNotes.map((el) => {
-      const note = this.getVFNote(el, octave);
+      const note = this.getVFNote(el, octave, clef);
       el[0] === 'B' && octave++;
       return note;
     });
   }
 
-  static generateStaff(elementID, pitchCenter, modeCode, absolutePitches) {
+  static generateStaff(
+    elementID,
+    pitchCenter,
+    modeCode,
+    absolutePitches,
+    clef
+  ) {
     const vf = Vex.Flow;
 
     let div = document.getElementById(elementID);
     let renderer = new vf.Renderer(div, vf.Renderer.Backends.SVG);
 
-    renderer.resize(280, 90);
+    renderer.resize(280, 85);
 
     let context = renderer.getContext();
 
-    let stave = new vf.Stave(0, -10, 280);
+    let stave = new vf.Stave(0, -15, 280);
 
-    stave.addClef('treble');
+    stave.addClef(clef);
 
-    let notes = this.getVexScale(pitchCenter, modeCode, absolutePitches);
+    let notes = this.getVexScale(pitchCenter, modeCode, absolutePitches, clef);
 
     let voice = new vf.Voice({
       num_beats: notes.length,

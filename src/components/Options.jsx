@@ -1,7 +1,7 @@
 import React from 'react';
 import Utilities from '../Utilities';
 
-const { tonalityNames } = Utilities;
+const { tonalityNames, supportedClefs } = Utilities;
 
 function Options(props) {
   return (
@@ -27,24 +27,24 @@ function Options(props) {
 
       <div className="py-1">
         Clef Selection:
-        <div>
-          <input type="radio" name="clef" className="mx-2" />
-          Treble
-        </div>
-        <div>
-          <input type="radio" name="clef" className="mx-2" />
-          Alto
-        </div>
-        <div>
-          <input type="radio" name="clef" className="mx-2" />
-          Bass
-        </div>
+        {supportedClefs.map((el) => (
+          <div key={el} onClick={() => props.handleClefChange(el)}>
+            <input
+              type="radio"
+              id={el}
+              name="clef"
+              className="mx-2"
+              checked={el === props.clef}
+            />
+            {el}
+          </div>
+        ))}
       </div>
 
       <div className="py-1">
         Exclude Tonalities:
         {tonalityNames.map((el, i) => (
-          <div onClick={() => props.handleSelectedTonalityChange(i)}>
+          <div key={el} onClick={() => props.handleSelectedTonalityChange(i)}>
             <input
               type="checkbox"
               className="mx-2"

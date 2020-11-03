@@ -5,7 +5,12 @@ import ModeController from './ModeController';
 import Music from '../Music';
 import Utilities from '../Utilities';
 
-const { notesInOctave, supportedScaleLengths, tonalities } = Utilities;
+const {
+  notesInOctave,
+  supportedScaleLengths,
+  tonalities,
+  supportedClefs,
+} = Utilities;
 
 function App() {
   const [isNoteSelected, setIsNoteSelected] = useState(
@@ -19,6 +24,7 @@ function App() {
   );
   const [areNoteNamesVisible, setareNoteNamesVisible] = useState(false);
   const [isFilteredBySelection, setIsFilteredBySelection] = useState(false);
+  const [clef, setClef] = useState(supportedClefs[0]);
   const [root, setRoot] = useState(undefined);
   const [screenSize, setScreenSize] = useState(getScreenSize());
 
@@ -50,6 +56,10 @@ function App() {
 
   function handleIsFilteredBySelection() {
     setIsFilteredBySelection(!isFilteredBySelection);
+  }
+
+  function handleClefChange(newClef) {
+    setClef(newClef);
   }
 
   function handleSelectedTonalityChange(tonalityIndex) {
@@ -103,10 +113,12 @@ function App() {
         areNoteNamesVisible={areNoteNamesVisible}
         isFilteredBySelection={isFilteredBySelection}
         selectedTonalities={selectedTonalities}
+        clef={clef}
         clearAll={clearAll}
         handleNoteNamesVisible={handleNoteNamesVisible}
         handleIsFilteredBySelection={handleIsFilteredBySelection}
         handleSelectedTonalityChange={handleSelectedTonalityChange}
+        handleClefChange={handleClefChange}
       />
 
       <div className="w-full overflow-y-hidden mx-auto flex flex-col lg:max-w-screen-lg">
@@ -117,7 +129,7 @@ function App() {
           screenSize={screenSize}
           handleKeyPress={handleKeyPress}
         />
-        <ModeController filteredLists={filteredLists} />
+        <ModeController filteredLists={filteredLists} clef={clef} />
       </div>
     </div>
   );

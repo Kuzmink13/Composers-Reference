@@ -31,6 +31,7 @@ function ModePanel(props) {
         absolutePitches={mode.getAbsolutePitches()}
         modeCode={mode.getAbstractModeCode()}
         modeName={mode.getModeName()}
+        clef={props.clef}
       />
     );
   }

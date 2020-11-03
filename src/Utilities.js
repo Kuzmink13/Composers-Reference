@@ -75,6 +75,8 @@ class Utilities {
     'Diminished',
   ];
 
+  static supportedClefs = ['treble', 'alto', 'bass'];
+
   static supportedScaleLengths = [6, 7, 8];
 
   static modeNames = {
