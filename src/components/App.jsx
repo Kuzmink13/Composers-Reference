@@ -13,20 +13,11 @@ const {
 } = Utilities;
 
 function App() {
+  // NOTE/ROOT SELECTION
   const [isNoteSelected, setIsNoteSelected] = useState(
     Array(notesInOctave).fill(false)
   );
-  const [filteredLists, setFilteredLists] = useState(
-    Array(supportedScaleLengths.length).fill([])
-  );
-  const [selectedTonalities, setSelectedTonalities] = useState(
-    Array.from(tonalities, () => true)
-  );
-  const [areNoteNamesVisible, setareNoteNamesVisible] = useState(false);
-  const [isFilteredBySelection, setIsFilteredBySelection] = useState(false);
-  const [clef, setClef] = useState(supportedClefs[0]);
   const [root, setRoot] = useState(undefined);
-  const [screenSize, setScreenSize] = useState(getScreenSize());
 
   function handleKeyPress(pressedNote, isRootPress) {
     const isKeyGettingPressed = (i) => i === pressedNote;
@@ -50,17 +41,38 @@ function App() {
     (event.key === 'Del' || event.key === 'Delete') && clearAll();
   }
 
+  useEffect(() => {
+    document.addEventListener('keydown', handleDelete);
+    return () => {
+      document.removeEventListener('keydown', handleDelete);
+    };
+  });
+
+  // NOTE NAME VISIBILITY TOGGLE
+  const [areNoteNamesVisible, setareNoteNamesVisible] = useState(false);
+
   function handleNoteNamesVisible() {
     setareNoteNamesVisible(!areNoteNamesVisible);
   }
+
+  // FILTER RESULTS BY NOTE SELECTION TOGGLE
+  const [isFilteredBySelection, setIsFilteredBySelection] = useState(false);
 
   function handleIsFilteredBySelection() {
     setIsFilteredBySelection(!isFilteredBySelection);
   }
 
+  // CLEF SELECTION CONTROL
+  const [clef, setClef] = useState(supportedClefs[0]);
+
   function handleClefChange(newClef) {
     setClef(newClef);
   }
+
+  // SELECTED TONALITIES CONTROL
+  const [selectedTonalities, setSelectedTonalities] = useState(
+    Array.from(tonalities, () => true)
+  );
 
   function handleSelectedTonalityChange(tonalityIndex) {
     const isUpdating = (i) => tonalityIndex === i;
@@ -70,16 +82,8 @@ function App() {
     );
   }
 
-  useEffect(() => {
-    setFilteredLists(
-      Music.getFilterdLists(
-        isNoteSelected,
-        root,
-        selectedTonalities,
-        isFilteredBySelection
-      )
-    );
-  }, [isNoteSelected, root, selectedTonalities, isFilteredBySelection]);
+  // SCREEN SIZE CONTROL
+  const [screenSize, setScreenSize] = useState(getScreenSize());
 
   function getScreenSize() {
     switch (true) {
@@ -100,12 +104,21 @@ function App() {
     };
   });
 
+  // FILTERED LIST GENERATION
+  const [filteredLists, setFilteredLists] = useState(
+    Array(supportedScaleLengths.length).fill([])
+  );
+
   useEffect(() => {
-    document.addEventListener('keydown', handleDelete);
-    return () => {
-      document.removeEventListener('keydown', handleDelete);
-    };
-  });
+    setFilteredLists(
+      Music.getFilterdLists(
+        isNoteSelected,
+        root,
+        selectedTonalities,
+        isFilteredBySelection
+      )
+    );
+  }, [isNoteSelected, root, selectedTonalities, isFilteredBySelection]);
 
   return (
     <div className="flex flex-col h-screen bg-gray-100">
