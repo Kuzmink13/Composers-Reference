@@ -6,7 +6,7 @@ const { tonalityNames, supportedClefs } = Utilities;
 function Options(props) {
   return (
     <div className="drop-down mr-16 px-4 py-2">
-      <div className="py-1">
+      <div className="flex flex-col items-start py-1">
         <div onClick={props.handleNoteNamesVisible}>
           <input
             type="checkbox"
@@ -25,7 +25,7 @@ function Options(props) {
         </div>
       </div>
 
-      <div className="py-1">
+      <div className="flex flex-col items-start py-1">
         Clef Selection:
         {supportedClefs.map((el) => (
           <div key={el} onClick={() => props.handleClefChange(el)}>
@@ -41,7 +41,7 @@ function Options(props) {
         ))}
       </div>
 
-      <div className="py-1">
+      <div className="flex flex-col items-start py-1">
         Exclude Tonalities:
         {tonalityNames.map((el, i) => (
           <div key={el} onClick={() => props.handleSelectedTonalityChange(i)}>
