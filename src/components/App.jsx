@@ -32,6 +32,7 @@ function App() {
     );
   }
 
+  // CLEAR NOTE/ROOT SELECTION
   function clearAll() {
     setIsNoteSelected(Array(notesInOctave).fill(false));
     setRoot(undefined);
