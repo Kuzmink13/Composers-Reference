@@ -54,6 +54,12 @@ function Options(props) {
           </div>
         ))}
       </div>
+
+      <div className="flex flex-col items-center pt-4 pb-2">
+        <div onClick={props.handleRevertSettings} className="btn">
+          REVERT TO DEFAULT
+        </div>
+      </div>
     </div>
   );
 }

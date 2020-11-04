@@ -14,10 +14,10 @@ const {
 
 function App() {
   // NOTE/ROOT SELECTION
-  const [isNoteSelected, setIsNoteSelected] = useState(
-    Array(notesInOctave).fill(false)
-  );
-  const [root, setRoot] = useState(undefined);
+  const isNoteSelectedDefault = () => Array(notesInOctave).fill(false);
+  const rootDefault = undefined;
+  const [isNoteSelected, setIsNoteSelected] = useState(isNoteSelectedDefault());
+  const [root, setRoot] = useState(rootDefault);
 
   function handleKeyPress(pressedNote, isRootPress) {
     const isKeyGettingPressed = (i) => i === pressedNote;
@@ -28,14 +28,14 @@ function App() {
       isNoteSelected.map((key, i) => (isKeyGettingPressed(i) ? newNote : key))
     );
     setRoot(
-      isPressedNoteCurrentRoot ? undefined : isRootPress ? pressedNote : root
+      isPressedNoteCurrentRoot ? rootDefault : isRootPress ? pressedNote : root
     );
   }
 
   // CLEAR NOTE/ROOT SELECTION
   function clearAll() {
-    setIsNoteSelected(Array(notesInOctave).fill(false));
-    setRoot(undefined);
+    setIsNoteSelected(isNoteSelectedDefault());
+    setRoot(rootDefault);
   }
 
   function handleDelete(event) {
@@ -50,29 +50,49 @@ function App() {
   });
 
   // NOTE NAME VISIBILITY TOGGLE
-  const [areNoteNamesVisible, setareNoteNamesVisible] = useState(false);
+  const noteNameVisibilityDefault = false;
+  const [areNoteNamesVisible, setareNoteNamesVisible] = useState(
+    noteNameVisibilityDefault
+  );
 
   function handleNoteNamesVisible() {
     setareNoteNamesVisible(!areNoteNamesVisible);
   }
 
+  function revertNoteNamesVisible() {
+    setareNoteNamesVisible(noteNameVisibilityDefault);
+  }
+
   // FILTER RESULTS BY NOTE SELECTION TOGGLE
-  const [isFilteredBySelection, setIsFilteredBySelection] = useState(false);
+  const isFilteredBySelectionDefault = false;
+  const [isFilteredBySelection, setIsFilteredBySelection] = useState(
+    isFilteredBySelectionDefault
+  );
 
   function handleIsFilteredBySelection() {
     setIsFilteredBySelection(!isFilteredBySelection);
   }
 
+  function revertIsFilteredBySelection() {
+    setIsFilteredBySelection(isFilteredBySelectionDefault);
+  }
+
   // CLEF SELECTION CONTROL
-  const [clef, setClef] = useState(supportedClefs[0]);
+  const clefDefault = supportedClefs[0];
+  const [clef, setClef] = useState(clefDefault);
 
   function handleClefChange(newClef) {
     setClef(newClef);
   }
 
+  function revertClef() {
+    setClef(clefDefault);
+  }
+
   // SELECTED TONALITIES CONTROL
+  const selectedTonalitiesDefault = () => Array.from(tonalities, () => true);
   const [selectedTonalities, setSelectedTonalities] = useState(
-    Array.from(tonalities, () => true)
+    selectedTonalitiesDefault()
   );
 
   function handleSelectedTonalityChange(tonalityIndex) {
@@ -81,6 +101,18 @@ function App() {
     setSelectedTonalities(
       selectedTonalities.map((el, i) => (isUpdating(i) ? !el : el))
     );
+  }
+
+  function revertSelectedTonalities() {
+    setSelectedTonalities(selectedTonalitiesDefault());
+  }
+
+  // REVERT TO DEFAULT SETTINGS
+  function handleRevertSettings() {
+    revertNoteNamesVisible();
+    revertIsFilteredBySelection();
+    revertClef();
+    revertSelectedTonalities();
   }
 
   // SCREEN SIZE CONTROL
@@ -133,6 +165,7 @@ function App() {
         handleIsFilteredBySelection={handleIsFilteredBySelection}
         handleSelectedTonalityChange={handleSelectedTonalityChange}
         handleClefChange={handleClefChange}
+        handleRevertSettings={handleRevertSettings}
       />
 
       <div className="w-full overflow-y-hidden mx-auto flex flex-col lg:max-w-screen-lg">
