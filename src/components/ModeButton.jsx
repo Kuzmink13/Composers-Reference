@@ -6,7 +6,7 @@ function ModeButton(props) {
   return (
     <div
       onClick={() => props.handleSelectorChange(props.scaleList)}
-      className={`p-3 mx-0 sm:mx-6 lg:mx-12 font-semibold tracking-wider ${
+      className={`p-3 mx-0 sm:mx-6 lg:mx-12 font-semibold tracking-wider cursor-pointer ${
         isSelected ? 'border-t border-gray-900' : 'text-gray-500'
       }`}
     >

@@ -7,7 +7,7 @@ function Options(props) {
   return (
     <div className="drop-down mr-16 px-4 py-2">
       <div className="flex flex-col items-start py-1">
-        <div onClick={props.handleNoteNamesVisible}>
+        <div onClick={props.handleNoteNamesVisible} className="cursor-pointer">
           <input
             type="checkbox"
             className="mr-2"
@@ -15,7 +15,10 @@ function Options(props) {
           />
           Display note names on keys
         </div>
-        <div onClick={props.handleIsFilteredBySelection}>
+        <div
+          onClick={props.handleIsFilteredBySelection}
+          className="cursor-pointer"
+        >
           <input
             type="checkbox"
             className="mr-2"
@@ -28,7 +31,11 @@ function Options(props) {
       <div className="flex flex-col items-start py-1">
         Clef Selection:
         {supportedClefs.map((el) => (
-          <div key={el} onClick={() => props.handleClefChange(el)}>
+          <div
+            key={el}
+            onClick={() => props.handleClefChange(el)}
+            className="cursor-pointer"
+          >
             <input
               type="radio"
               id={el}
@@ -44,7 +51,11 @@ function Options(props) {
       <div className="flex flex-col items-start py-1">
         Exclude Tonalities:
         {tonalityNames.map((el, i) => (
-          <div key={el} onClick={() => props.handleSelectedTonalityChange(i)}>
+          <div
+            key={el}
+            onClick={() => props.handleSelectedTonalityChange(i)}
+            className="cursor-pointer"
+          >
             <input
               type="checkbox"
               className="mx-2"
@@ -56,7 +67,10 @@ function Options(props) {
       </div>
 
       <div className="flex flex-col items-center pt-4 pb-2">
-        <div onClick={props.handleRevertSettings} className="btn">
+        <div
+          onClick={props.handleRevertSettings}
+          className="btn cursor-pointer"
+        >
           REVERT TO DEFAULT
         </div>
       </div>
