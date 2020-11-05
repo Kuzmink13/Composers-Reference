@@ -169,6 +169,37 @@ class Utilities {
 
   static notesInOctave = 12;
 
+  static keyMap = {
+    q: 0,
+    2: 1,
+    w: 2,
+    3: 3,
+    e: 4,
+    r: 5,
+    5: 6,
+    t: 7,
+    6: 8,
+    y: 9,
+    7: 10,
+    u: 11,
+    i: 0,
+
+    z: 0,
+    s: 1,
+    x: 2,
+    d: 3,
+    c: 4,
+    v: 5,
+    g: 6,
+    b: 7,
+    h: 8,
+    n: 9,
+    j: 10,
+    m: 11,
+    ',': 0,
+    '<': 0,
+  };
+
   static getCompositeSharpness = (pitchCenter, modeCode) =>
     this.octaveMod(
       this.circleOfFifths[pitchCenter] - this.modeNumbers[modeCode]

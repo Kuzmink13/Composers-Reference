@@ -10,6 +10,7 @@ const {
   supportedScaleLengths,
   tonalities,
   supportedClefs,
+  keyMap,
 } = Utilities;
 
 function App() {
@@ -31,6 +32,19 @@ function App() {
       isPressedNoteCurrentRoot ? rootDefault : isRootPress ? pressedNote : root
     );
   }
+
+  function handleKeyBoardPress(event) {
+    const pressedNote = keyMap[event.key.toLowerCase()];
+    const isRootPress = event.shiftKey;
+    pressedNote !== undefined && handleKeyPress(pressedNote, isRootPress);
+  }
+
+  useEffect(() => {
+    document.addEventListener('keypress', handleKeyBoardPress);
+    return () => {
+      document.removeEventListener('keypress', handleKeyBoardPress);
+    };
+  });
 
   // CLEAR NOTE/ROOT SELECTION
   function clearAll() {
