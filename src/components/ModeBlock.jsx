@@ -13,7 +13,10 @@ function ModeBlock(props) {
   });
 
   return (
-    <div className="m-2 p-2 bg-white border border-gray-400 rounded-lg text-center tracking-wide font-medium">
+    <div
+      onClick={props.getCard}
+      className="m-2 p-2 bg-white border border-gray-400 rounded-lg text-center tracking-wide font-medium"
+    >
       {props.modeName}
       <div id={props.modeName}></div>
     </div>

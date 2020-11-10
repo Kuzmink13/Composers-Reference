@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import ModeBlock from './ModeBlock';
+import ModeCard from './ModeCard';
 
 function ModePanel(props) {
+  // LOAD AND GENERATE MODE CARDS
   const [items, setItems] = useState([]);
   const [hasMore, setHasMore] = useState(true);
-  let scrollParentRef;
 
   function loadMore() {
     const cardsToLoad = 6;
@@ -26,6 +27,7 @@ function ModePanel(props) {
   function generateModeBlock(mode) {
     return (
       <ModeBlock
+        getCard={getCard}
         key={mode.getAbsoluteModeCode()}
         pitchCenter={mode.getPitchCenter()}
         absolutePitches={mode.getAbsolutePitches()}
@@ -36,16 +38,49 @@ function ModePanel(props) {
     );
   }
 
+  // RESET PANEL ON SETTINGS CHANGE
   useEffect(() => {
     setItems([]);
     setHasMore(true);
   }, [props.selectedList, props.clef]);
 
+  // MODE CARD CONTROLLER
+  const [isModeCardShown, setIsModeCardShown] = useState(false);
+
+  function getCard() {
+    setIsModeCardShown(true);
+  }
+
+  function closeCard() {
+    setIsModeCardShown(false);
+  }
+
+  function handleEscape(event) {
+    (event.key === 'Esc' || event.key === 'Escape') && closeCard();
+  }
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  });
+
+  // RENDER
+  let scrollParentRef;
   return (
     <div
       className="h-full overflow-y-auto scrolling-auto"
       ref={(ref) => (scrollParentRef = ref)}
     >
+      {isModeCardShown && (
+        <div
+          className="fixed h-full w-full inset-0 z-30 flex bg-gray-400 bg-opacity-25"
+          onClick={closeCard}
+        >
+          <ModeCard />
+        </div>
+      )}
       <InfiniteScroll
         className="flex justify-center items-start flex-wrap"
         loadMore={loadMore}
