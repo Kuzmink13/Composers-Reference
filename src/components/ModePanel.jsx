@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import ModeBlock from './ModeBlock';
 import ModeCard from './ModeCard';
-import Chords from '../Chords';
 
 function ModePanel(props) {
   // LOAD AND GENERATE MODE CARDS
@@ -48,16 +47,16 @@ function ModePanel(props) {
 
   // MODE CARD CONTROLLER
   const [isModeCardShown, setIsModeCardShown] = useState(false);
-  const [modePitches, setModePitches] = useState(undefined);
+  const [modeProps, setModeProps] = useState(undefined);
 
-  function getCard(modePitches) {
+  function getCard(modeProps) {
     setIsModeCardShown(true);
-    setModePitches(Chords.treeCrawler(modePitches));
+    setModeProps(modeProps);
   }
 
   function closeCard() {
     setIsModeCardShown(false);
-    setModePitches(undefined);
+    setModeProps(undefined);
   }
 
   function handleEscape(event) {
@@ -83,7 +82,7 @@ function ModePanel(props) {
           className="fixed h-full w-full inset-0 z-30 flex bg-gray-400 bg-opacity-25"
           onClick={closeCard}
         >
-          <ModeCard modePitches={modePitches} />
+          <ModeCard {...modeProps} />
         </div>
       )}
       <InfiniteScroll
