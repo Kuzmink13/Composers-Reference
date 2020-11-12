@@ -9,6 +9,7 @@ class Chords {
     augmentedFourth: 6,
     diminishedFifth: 6,
     perfectFifth: 7,
+    augmentedFifth: 8,
     minorSixth: 8,
     majorSixth: 9,
     diminishedSeventh: 9,
@@ -65,7 +66,7 @@ class Chords {
                 {
                   minorSecond: ['7 flat-5 flat-9', {}],
                   majorSecond: ['9 flat-5', {}],
-                  AugmentedSecond: ['7 flat-5 sharp-9', {}],
+                  augmentedSecond: ['7 flat-5 sharp-9', {}],
                 },
               ],
               majorSeventh: [
@@ -73,7 +74,7 @@ class Chords {
                 {
                   minorSecond: ['major 7 flat-5 flat-9', {}],
                   majorSecond: ['major 9 flat-5', {}],
-                  AugmentedSecond: ['major 7 flat-5 sharp-9', {}],
+                  augmentedSecond: ['major 7 flat-5 sharp-9', {}],
                 },
               ],
             },
