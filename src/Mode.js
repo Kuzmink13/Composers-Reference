@@ -1,7 +1,7 @@
 import PitchCollection from './PitchCollection';
 import Utilities from './Utilities';
 
-const { noteNamesSharp, noteNamesFlat, modeNames, jsMusicSymbols } = Utilities;
+const { noteNamesSharp, noteNamesFlat, modeNames } = Utilities;
 
 /**
  * A collection of successive pitches contained within an octave that start at a specific note
@@ -39,10 +39,7 @@ class Mode extends PitchCollection {
           : noteNamesFlat[key]
       } ${modeNames[code]}`;
 
-      return jsMusicSymbols.reduce((acc, el) => {
-        const key = Object.keys(el)[0];
-        return acc.replace(key, el[key]);
-      }, name);
+      return Utilities.replaceSymbols(name);
     };
   }
 }

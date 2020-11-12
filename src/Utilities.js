@@ -53,6 +53,8 @@ class Utilities {
     { '#': '\u266F' },
     { b: '\u266D' },
     { nat: '\u266E' },
+    { 'half-diminished': '\uD834\uDDA9' },
+    { diminished: '\u00B0' },
   ];
 
   static tonalities = [
@@ -212,6 +214,13 @@ class Utilities {
     ((pitch % this.notesInOctave) + this.notesInOctave) % this.notesInOctave;
 
   static isWhite = (note) => this.noteNamesSharp[note].length === 1;
+
+  static replaceSymbols(name) {
+    return this.jsMusicSymbols.reduce((acc, el) => {
+      const key = Object.keys(el)[0];
+      return acc.replace(key, el[key]);
+    }, name);
+  }
 }
 
 export default Utilities;

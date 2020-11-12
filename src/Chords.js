@@ -1,3 +1,5 @@
+import Utilities from './Utilities';
+
 class Chords {
   static intervals = {
     minorSecond: 1,
@@ -22,192 +24,192 @@ class Chords {
       diminishedFifth: [
         '',
         {
-          minorSecond: ['sus-flat-2 flat-5', {}],
-          majorSecond: ['sus-2 flat-5', {}],
+          minorSecond: ['susb2 (b5)', {}],
+          majorSecond: ['sus2 (b5)', {}],
           minorThird: [
-            'diminished triad',
+            'diminished',
             {
               diminishedSeventh: [
-                'diminished 7',
+                'diminished7',
                 {
-                  minorSecond: ['fully-diminished 7 flat-9', {}],
-                  majorSecond: ['fully-diminished 9', {}],
+                  minorSecond: ['diminished7 (b9)', {}],
+                  majorSecond: ['diminished9', {}],
                 },
               ],
               minorSeventh: [
-                'half-diminished 7',
+                'half-diminished7',
                 {
-                  minorSecond: ['half-diminished 7 flat-9', {}],
-                  majorSecond: ['half-diminished 9', {}],
+                  minorSecond: ['half-diminished7 (b9)', {}],
+                  majorSecond: ['half-diminished9', {}],
                 },
               ],
               majorSeventh: [
-                'minor-major 7 flat-5',
+                'm-maj7 (b5)',
                 {
-                  minorSecond: ['minor-major 7 flat-5 flat-9', {}],
-                  majorSecond: ['minor-major 9 flat-5', {}],
+                  minorSecond: ['m-maj7 (b5) (b9)', {}],
+                  majorSecond: ['m-maj9 (b5)', {}],
                 },
               ],
             },
           ],
           majorThird: [
-            'major triad flat-5',
+            ' (b5)',
             {
               majorSixth: [
-                '6 flat-5',
+                '6 (b5)',
                 {
-                  minorSecond: ['6 flat-5 flat-9', {}],
-                  majorSecond: ['6/9 flat-5', {}],
-                  augmentedSecond: ['6 flat-5 sharp-9', {}],
+                  minorSecond: ['6 (b5) (b9)', {}],
+                  majorSecond: ['6/9 (b5)', {}],
+                  augmentedSecond: ['6 (b5) (#9)', {}],
                 },
               ],
               minorSeventh: [
-                'dominant 7 flat-5',
+                '7 (b5)',
                 {
-                  minorSecond: ['7 flat-5 flat-9', {}],
-                  majorSecond: ['9 flat-5', {}],
-                  augmentedSecond: ['7 flat-5 sharp-9', {}],
+                  minorSecond: ['7 (b5) (b9)', {}],
+                  majorSecond: ['9 (b5)', {}],
+                  augmentedSecond: ['7 (b5) (#9)', {}],
                 },
               ],
               majorSeventh: [
-                'major 7 flat-5',
+                'maj7 (b5)',
                 {
-                  minorSecond: ['major 7 flat-5 flat-9', {}],
-                  majorSecond: ['major 9 flat-5', {}],
-                  augmentedSecond: ['major 7 flat-5 sharp-9', {}],
+                  minorSecond: ['maj7 (b5) (b9)', {}],
+                  majorSecond: ['maj9 (b5)', {}],
+                  augmentedSecond: ['maj7 (b5) (#9)', {}],
                 },
               ],
             },
           ],
-          perfectFourth: ['sus-4 flat-5', {}],
+          perfectFourth: ['sus4 (b5)', {}],
         },
       ],
       perfectFifth: [
         '',
         {
-          minorSecond: ['sus-flat-2', {}],
-          majorSecond: ['sus-2', {}],
+          minorSecond: ['susb2', {}],
+          majorSecond: ['sus2', {}],
           minorThird: [
-            'minor triad',
+            'm',
             {
               majorSixth: [
-                'minor 6',
+                'm6',
                 {
-                  minorSecond: ['minor 6 flat-9', {}],
-                  majorSecond: ['minor 6/9', {}],
+                  minorSecond: ['m6 (b9)', {}],
+                  majorSecond: ['m6/9', {}],
                 },
               ],
               minorSeventh: [
-                'minor 7',
+                'm7',
                 {
-                  minorSecond: ['minor 7 flat-9', {}],
-                  majorSecond: ['minor 9', {}],
+                  minorSecond: ['m7 (b9)', {}],
+                  majorSecond: ['m9', {}],
                 },
               ],
               majorSeventh: [
-                'minor-major 7',
+                'm-maj7',
                 {
-                  minorSecond: ['minor-major 7 flat-9', {}],
-                  majorSecond: ['minor-major 9', {}],
+                  minorSecond: ['m-maj7 (b9)', {}],
+                  majorSecond: ['m-maj9', {}],
                 },
               ],
             },
           ],
           majorThird: [
-            'major triad',
+            ' ',
             {
               majorSixth: [
                 '6',
                 {
-                  minorSecond: ['6 flat-9', {}],
+                  minorSecond: ['6 (b9)', {}],
                   majorSecond: ['6/9', {}],
-                  augmentedSecond: ['6 sharp-9', {}],
+                  augmentedSecond: ['6 (#9)', {}],
                 },
               ],
               minorSeventh: [
-                'dominant 7',
+                '7',
                 {
-                  minorSecond: ['7 flat-9', {}],
+                  minorSecond: ['7 (b9)', {}],
                   majorSecond: ['9', {}],
-                  augmentedSecond: ['7 sharp-9', {}],
+                  augmentedSecond: ['7 (#9)', {}],
                 },
               ],
               majorSeventh: [
-                'major 7',
+                'maj7',
                 {
-                  minorSecond: ['major 7 flat-9', {}],
-                  majorSecond: ['major 9', {}],
-                  augmentedSecond: ['major 7 sharp-9', {}],
+                  minorSecond: ['maj7 (b9)', {}],
+                  majorSecond: ['maj9', {}],
+                  augmentedSecond: ['maj7 (#9)', {}],
                 },
               ],
             },
           ],
-          perfectFourth: ['sus-4', {}],
-          augmentedFourth: ['sus-sharp-4', {}],
+          perfectFourth: ['sus4', {}],
+          augmentedFourth: ['sus#4', {}],
         },
       ],
       augmentedFifth: [
         '',
         {
-          minorSecond: ['sus-flat-2 sharp-5', {}],
-          majorSecond: ['sus-2 sharp-5', {}],
+          minorSecond: ['susb2 (#5)', {}],
+          majorSecond: ['sus2 (#5)', {}],
           minorThird: [
-            'minor sharp-5',
+            'm (#5)',
             {
               majorSixth: [
-                'minor 6 sharp-5',
+                'm6 (#5)',
                 {
-                  minorSecond: ['minor 6 sharp-5 flat-9', {}],
-                  majorSecond: ['minor 6/9 sharp-5', {}],
+                  minorSecond: ['m6 (#5) (b9)', {}],
+                  majorSecond: ['m6/9 (#5)', {}],
                 },
               ],
               minorSeventh: [
-                'minor 7 sharp-5',
+                'm7 (#5)',
                 {
-                  minorSecond: ['minor 7 sharp-5 flat-9', {}],
-                  majorSecond: ['minor 9 sharp-5', {}],
+                  minorSecond: ['m7 (#5) (b9)', {}],
+                  majorSecond: ['m9 (#5)', {}],
                 },
               ],
               majorSeventh: [
-                'minor-major 7 sharp-5',
+                'm-maj7 (#5)',
                 {
-                  minorSecond: ['minor-major 7 sharp-5 flat-9', {}],
-                  majorSecond: ['minor-major 9 sharp-5', {}],
+                  minorSecond: ['m-maj7 (#5) (b9)', {}],
+                  majorSecond: ['m-maj9 (#5)', {}],
                 },
               ],
             },
           ],
           majorThird: [
-            'augmented triad',
+            '+',
             {
               majorSixth: [
-                'augmented 6',
+                '+6',
                 {
-                  minorSecond: ['augmented 6 flat-9', {}],
-                  majorSecond: ['augmented 6/9', {}],
-                  augmentedSecond: ['augmented 6 sharp-9', {}],
+                  minorSecond: ['+6 (b9)', {}],
+                  majorSecond: ['+6/9', {}],
+                  augmentedSecond: ['+6 (#9)', {}],
                 },
               ],
               minorSeventh: [
-                '7 sharp-5',
+                '7 (#5)',
                 {
-                  minorSecond: ['7 sharp-5 flat-9', {}],
-                  majorSecond: ['9 sharp-5', {}],
-                  augmentedSecond: ['7 sharp-5 sharp-9', {}],
+                  minorSecond: ['7 (#5) (b9)', {}],
+                  majorSecond: ['9 (#5)', {}],
+                  augmentedSecond: ['7 (#5) (#9)', {}],
                 },
               ],
               majorSeventh: [
-                'major 7 sharp-5',
+                'maj7 (#5)',
                 {
-                  minorSecond: ['major 7 sharp-5 flat-9', {}],
-                  majorSecond: ['major 9 sharp-5', {}],
-                  augmentedSecond: ['major 7 sharp-5 sharp-9', {}],
+                  minorSecond: ['maj7 (#5) (b9)', {}],
+                  majorSecond: ['maj9 (#5)', {}],
+                  augmentedSecond: ['maj7 (#5) (#9)', {}],
                 },
               ],
             },
           ],
-          perfectFourth: ['sus-4 sharp-5', {}],
-          augmentedFourth: ['sus-sharp-4 sharp-5', {}],
+          perfectFourth: ['sus4 (#5)', {}],
+          augmentedFourth: ['sus#4 (#5)', {}],
         },
       ],
     };
@@ -217,6 +219,7 @@ class Chords {
     let output = [];
 
     const pushAndGo = (name, next) => {
+      name = Utilities.replaceSymbols(name);
       name && output.push(name);
       output = output.concat(this.treeCrawler(absolutePitches, next));
     };
