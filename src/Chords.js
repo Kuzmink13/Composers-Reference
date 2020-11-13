@@ -236,7 +236,7 @@ class Chords {
     };
   };
 
-  static chordGenerator(pitchCenter, modeCode, absolutePitches) {
+  static chordGenerator(pitchCenter, modeCode, abstractPitches) {
     const tree = this.chordTree();
     const scaleDegrees = ['1'];
     const pitches = [0];
@@ -263,7 +263,7 @@ class Chords {
       const constructNode = ([interval, [chordName, nextNode]]) => {
         const [intervalSize, nextDegree] = this.intervals[interval];
 
-        absolutePitches.includes(intervalSize) &&
+        abstractPitches.includes(intervalSize) &&
           addToChordList(chordName, nextDegree, intervalSize, nextNode);
       };
 
