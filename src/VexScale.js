@@ -1,8 +1,6 @@
 import Utilities from './Utilities';
 import Vex from 'vexflow';
 
-const { noteNamesSharp, noteNamesFlat, alphaLetters, enharmonics } = Utilities;
-
 class VexScale {
   static getVFNote(note, octave, clef) {
     const vf = Vex.Flow;
@@ -17,35 +15,12 @@ class VexScale {
       : vfNote;
   }
 
-  static getBaseNotes68(absolutePitches, keyHasSharps) {
-    return absolutePitches.map((el) =>
-      keyHasSharps
-        ? noteNamesSharp[Utilities.octaveMod(el)]
-        : noteNamesFlat[Utilities.octaveMod(el)]
-    );
-  }
-
-  static getBaseNotes7(pitchCenter, absolutePitches, keyHasSharps) {
-    const firstNote = keyHasSharps
-      ? noteNamesSharp[pitchCenter]
-      : noteNamesFlat[pitchCenter];
-    const indexFirst = alphaLetters.indexOf(firstNote[0]);
-    const alphaScale = alphaLetters
-      .slice(indexFirst)
-      .concat(alphaLetters.slice(0, indexFirst));
-
-    return absolutePitches.map(
-      (el) => enharmonics[Utilities.octaveMod(el)][alphaScale.shift()]
-    );
-  }
-
   static getVexScale(pitchCenter, modeCode, absolutePitches, clef) {
-    const keyHasSharps = Utilities.keyHasSharps(pitchCenter, modeCode);
-    const scaleHasSevenNotes = absolutePitches.length === 7;
-
-    const baseNotes = scaleHasSevenNotes
-      ? this.getBaseNotes7(pitchCenter, absolutePitches, keyHasSharps)
-      : this.getBaseNotes68(absolutePitches, keyHasSharps);
+    const baseNotes = Utilities.getBaseNotes(
+      pitchCenter,
+      modeCode,
+      absolutePitches
+    );
 
     const getTransposition = () => {
       switch (clef) {

@@ -221,6 +221,37 @@ class Utilities {
       return acc.replace(key, el[key]);
     }, name);
   }
+
+  static getBaseNotes68(absolutePitches, keyHasSharps) {
+    return absolutePitches.map((el) =>
+      keyHasSharps
+        ? this.noteNamesSharp[this.octaveMod(el)]
+        : this.noteNamesFlat[this.octaveMod(el)]
+    );
+  }
+
+  static getBaseNotes7(pitchCenter, absolutePitches, keyHasSharps) {
+    const firstNote = keyHasSharps
+      ? this.noteNamesSharp[pitchCenter]
+      : this.noteNamesFlat[pitchCenter];
+    const indexFirst = this.alphaLetters.indexOf(firstNote[0]);
+    const alphaScale = this.alphaLetters
+      .slice(indexFirst)
+      .concat(this.alphaLetters.slice(0, indexFirst));
+
+    return absolutePitches.map(
+      (el) => this.enharmonics[this.octaveMod(el)][alphaScale.shift()]
+    );
+  }
+
+  static getBaseNotes(pitchCenter, modeCode, absolutePitches) {
+    const keyHasSharps = this.keyHasSharps(pitchCenter, modeCode);
+    const scaleHasSevenNotes = absolutePitches.length === 7;
+
+    return scaleHasSevenNotes
+      ? this.getBaseNotes7(pitchCenter, absolutePitches, keyHasSharps)
+      : this.getBaseNotes68(absolutePitches, keyHasSharps);
+  }
 }
 
 export default Utilities;
