@@ -23,7 +23,7 @@ function ModeCard(props) {
       <VexStaff {...props} />
 
       {/* Chord table */}
-      <div className="mt-3">
+      <div className="max-h-card mt-3 overflow-y-auto scrolling-auto">
         {Array.from(modeChords, ([chord, names, degrees]) => (
           <Fragment>
             {/* row-divider */}
