@@ -81,88 +81,185 @@ class Utilities {
 
   static supportedScaleLengths = [6, 7, 8];
 
-  static modeNames = {
-    '02468a': 'Whole-Tone',
+  static modeProperties = {
+    // WHOLE TONE SCALES
+    '02468a': {
+      modeName: 'Whole-Tone',
+      modeNumber: 0,
+      parentTonality: 'Whole-Tone',
+    },
 
-    '03478b': 'Augmented',
-    '014589': 'Augmented Inverse',
+    // AUGMENTED SCALES
+    '03478b': {
+      modeName: 'Augmented',
+      modeNumber: 0,
+      parentTonality: 'Augmented',
+    },
+    '014589': {
+      modeName: 'Augmented Inverse',
+      modeNumber: 0,
+      parentTonality: 'Augmented',
+    },
 
-    '024679b': 'Lydian',
-    '024579b': 'Ionian',
-    '024579a': 'Mixolydian',
-    '023579a': 'Dorian',
-    '023578a': 'Aeolian',
-    '013578a': 'Phrygian',
-    '013568a': 'Locrian',
+    // MAJOR SCALES
+    '024679b': {
+      modeName: 'Lydian',
+      modeNumber: 0,
+      parentTonality: 'Major',
+    },
+    '024579b': {
+      modeName: 'Ionian',
+      modeNumber: 1,
+      parentTonality: 'Major',
+    },
+    '024579a': {
+      modeName: 'Mixolydian',
+      modeNumber: 2,
+      parentTonality: 'Major',
+    },
+    '023579a': {
+      modeName: 'Dorian',
+      modeNumber: 3,
+      parentTonality: 'Major',
+    },
+    '023578a': {
+      modeName: 'Aeolian',
+      modeNumber: 4,
+      parentTonality: 'Major',
+    },
+    '013578a': {
+      modeName: 'Phrygian',
+      modeNumber: 5,
+      parentTonality: 'Major',
+    },
+    '013568a': {
+      modeName: 'Locrian',
+      modeNumber: 6,
+      parentTonality: 'Major',
+    },
 
-    '024689b': 'Lydian Augmented',
-    '024679a': 'Lydian Dominant',
-    '024578a': 'Aeolian Dominant',
-    '023579b': 'Melodic Minor',
-    '013579a': 'Dorian b2',
-    '023568a': 'Locrian nat2',
-    '013468a': 'Altered',
+    // MELODIC MINOR SCALES
+    '024689b': {
+      modeName: 'Lydian Augmented',
+      modeNumber: 0,
+      parentTonality: 'Melodic Minor',
+    },
+    '024679a': {
+      modeName: 'Lydian Dominant',
+      modeNumber: 1,
+      parentTonality: 'Melodic Minor',
+    },
+    '024578a': {
+      modeName: 'Aeolian Dominant',
+      modeNumber: 2,
+      parentTonality: 'Melodic Minor',
+    },
+    '023579b': {
+      modeName: 'Melodic Minor',
+      modeNumber: 3,
+      parentTonality: 'Melodic Minor',
+    },
+    '013579a': {
+      modeName: 'Dorian b2',
+      modeNumber: 4,
+      parentTonality: 'Melodic Minor',
+    },
+    '023568a': {
+      modeName: 'Locrian nat2',
+      modeNumber: 5,
+      parentTonality: 'Melodic Minor',
+    },
+    '013468a': {
+      modeName: 'Altered',
+      modeNumber: 6,
+      parentTonality: 'Melodic Minor',
+    },
 
-    '024589b': 'Major Augmented',
-    '034679b': 'Lydian #2',
-    '014578a': 'Phrygian Dominant',
-    '023578b': 'Harmonic Minor',
-    '023679a': 'Lydian Minor',
-    '013569a': 'Locrian nat6',
-    '0134689': 'Altered Diminished',
+    // HARMONIC MINOR SCALES
+    '024589b': {
+      modeName: 'Major Augmented',
+      modeNumber: 0,
+      parentTonality: 'Harmonic Minor',
+    },
+    '034679b': {
+      modeName: 'Lydian #2',
+      modeNumber: 1,
+      parentTonality: 'Harmonic Minor',
+    },
+    '014578a': {
+      modeName: 'Phrygian Dominant',
+      modeNumber: 2,
+      parentTonality: 'Harmonic Minor',
+    },
+    '023578b': {
+      modeName: 'Harmonic Minor',
+      modeNumber: 3,
+      parentTonality: 'Harmonic Minor',
+    },
+    '023679a': {
+      modeName: 'Lydian Minor',
+      modeNumber: 4,
+      parentTonality: 'Harmonic Minor',
+    },
+    '013569a': {
+      modeName: 'Locrian nat6',
+      modeNumber: 5,
+      parentTonality: 'Harmonic Minor',
+    },
+    '0134689': {
+      modeName: 'Altered Diminished',
+      modeNumber: 6,
+      parentTonality: 'Harmonic Minor',
+    },
 
-    '034689b': 'Lydian Augmented #2',
-    '024578b': 'Harmonic Major',
-    '014579a': 'Mixolydian b2',
-    '023679b': 'Melodic Minor #4',
-    '013478a': 'Altered nat5',
-    '023569a': 'Dorian b5',
-    '0135689': 'Locrian bb7',
+    // HARMONIC MAJOR SCALES
+    '034689b': {
+      modeName: 'Lydian Augmented #2',
+      modeNumber: 0,
+      parentTonality: 'Harmonic Major',
+    },
+    '024578b': {
+      modeName: 'Harmonic Major',
+      modeNumber: 1,
+      parentTonality: 'Harmonic Major',
+    },
+    '014579a': {
+      modeName: 'Mixolydian b2',
+      modeNumber: 2,
+      parentTonality: 'Harmonic Major',
+    },
+    '023679b': {
+      modeName: 'Melodic Minor #4',
+      modeNumber: 3,
+      parentTonality: 'Harmonic Major',
+    },
+    '013478a': {
+      modeName: 'Altered nat5',
+      modeNumber: 4,
+      parentTonality: 'Harmonic Major',
+    },
+    '023569a': {
+      modeName: 'Dorian b5',
+      modeNumber: 5,
+      parentTonality: 'Harmonic Major',
+    },
+    '0135689': {
+      modeName: 'Locrian bb7',
+      modeNumber: 6,
+      parentTonality: 'Harmonic Major',
+    },
 
-    '0235689b': 'Whole-Half Diminished',
-    '0134679a': 'Half-Whole Diminished',
-  };
-
-  static modeNumbers = {
-    '02468a': 0,
-
-    '03478b': 0,
-    '014589': 0,
-
-    '024679b': 0,
-    '024579b': 1,
-    '024579a': 2,
-    '023579a': 3,
-    '023578a': 4,
-    '013578a': 5,
-    '013568a': 6,
-
-    '024689b': 0,
-    '024679a': 1,
-    '024578a': 2,
-    '023579b': 3,
-    '013579a': 4,
-    '023568a': 5,
-    '013468a': 6,
-
-    '024589b': 0,
-    '034679b': 1,
-    '014578a': 2,
-    '023578b': 3,
-    '023679a': 4,
-    '013569a': 5,
-    '0134689': 6,
-
-    '034689b': 0,
-    '024578b': 1,
-    '014579a': 2,
-    '023679b': 3,
-    '013478a': 4,
-    '023569a': 5,
-    '0135689': 6,
-
-    '0235689b': 0,
-    '0134679a': 0,
+    // DIMINISHED SCALES
+    '0235689b': {
+      modeName: 'Whole-Half Diminished',
+      modeNumber: 0,
+      parentTonality: 'Diminished',
+    },
+    '0134679a': {
+      modeName: 'Half-Whole Diminished',
+      modeNumber: 0,
+      parentTonality: 'Diminished',
+    },
   };
 
   static alphaLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
@@ -204,7 +301,8 @@ class Utilities {
 
   static getCompositeSharpness = (pitchCenter, modeCode) =>
     this.octaveMod(
-      this.circleOfFifths[pitchCenter] - this.modeNumbers[modeCode]
+      this.circleOfFifths[pitchCenter] -
+        this.modeProperties[modeCode].modeNumber
     );
 
   static keyHasSharps = (note, modeCode) =>

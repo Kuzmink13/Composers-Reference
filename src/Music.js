@@ -6,7 +6,7 @@ const {
   supportedScaleLengths,
   notesInOctave,
   tonalities,
-  modeNumbers,
+  modeProperties,
   octaveMod,
 } = Utilities;
 
@@ -184,8 +184,8 @@ class Music {
               return aRoot - bRoot;
             } else {
               return (
-                modeNumbers[a.getAbstractModeCode()] -
-                modeNumbers[b.getAbstractModeCode()]
+                modeProperties[a.getAbstractModeCode()].modeNumber -
+                modeProperties[b.getAbstractModeCode()].modeNumber
               );
             }
           })
