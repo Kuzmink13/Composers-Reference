@@ -142,111 +142,111 @@ class Utilities {
     '024689b': {
       modeName: 'Lydian Augmented',
       modeNumber: 0,
-      parentTonality: 'Melodic Minor',
+      parentTonality: 'Melodic-Minor',
     },
     '024679a': {
       modeName: 'Lydian Dominant',
       modeNumber: 1,
-      parentTonality: 'Melodic Minor',
+      parentTonality: 'Melodic-Minor',
     },
     '024578a': {
       modeName: 'Aeolian Dominant',
       modeNumber: 2,
-      parentTonality: 'Melodic Minor',
+      parentTonality: 'Melodic-Minor',
     },
     '023579b': {
       modeName: 'Melodic Minor',
       modeNumber: 3,
-      parentTonality: 'Melodic Minor',
+      parentTonality: 'Melodic-Minor',
     },
     '013579a': {
       modeName: 'Dorian b2',
       modeNumber: 4,
-      parentTonality: 'Melodic Minor',
+      parentTonality: 'Melodic-Minor',
     },
     '023568a': {
       modeName: 'Locrian nat2',
       modeNumber: 5,
-      parentTonality: 'Melodic Minor',
+      parentTonality: 'Melodic-Minor',
     },
     '013468a': {
       modeName: 'Altered',
       modeNumber: 6,
-      parentTonality: 'Melodic Minor',
+      parentTonality: 'Melodic-Minor',
     },
 
     // HARMONIC MINOR SCALES
     '024589b': {
       modeName: 'Major Augmented',
       modeNumber: 0,
-      parentTonality: 'Harmonic Minor',
+      parentTonality: 'Harmonic-Minor',
     },
     '034679b': {
       modeName: 'Lydian #2',
       modeNumber: 1,
-      parentTonality: 'Harmonic Minor',
+      parentTonality: 'Harmonic-Minor',
     },
     '014578a': {
       modeName: 'Phrygian Dominant',
       modeNumber: 2,
-      parentTonality: 'Harmonic Minor',
+      parentTonality: 'Harmonic-Minor',
     },
     '023578b': {
       modeName: 'Harmonic Minor',
       modeNumber: 3,
-      parentTonality: 'Harmonic Minor',
+      parentTonality: 'Harmonic-Minor',
     },
     '023679a': {
       modeName: 'Lydian Minor',
       modeNumber: 4,
-      parentTonality: 'Harmonic Minor',
+      parentTonality: 'Harmonic-Minor',
     },
     '013569a': {
       modeName: 'Locrian nat6',
       modeNumber: 5,
-      parentTonality: 'Harmonic Minor',
+      parentTonality: 'Harmonic-Minor',
     },
     '0134689': {
       modeName: 'Altered Diminished',
       modeNumber: 6,
-      parentTonality: 'Harmonic Minor',
+      parentTonality: 'Harmonic-Minor',
     },
 
     // HARMONIC MAJOR SCALES
     '034689b': {
       modeName: 'Lydian Augmented #2',
       modeNumber: 0,
-      parentTonality: 'Harmonic Major',
+      parentTonality: 'Harmonic-Major',
     },
     '024578b': {
       modeName: 'Harmonic Major',
       modeNumber: 1,
-      parentTonality: 'Harmonic Major',
+      parentTonality: 'Harmonic-Major',
     },
     '014579a': {
       modeName: 'Mixolydian b2',
       modeNumber: 2,
-      parentTonality: 'Harmonic Major',
+      parentTonality: 'Harmonic-Major',
     },
     '023679b': {
       modeName: 'Melodic Minor #4',
       modeNumber: 3,
-      parentTonality: 'Harmonic Major',
+      parentTonality: 'Harmonic-Major',
     },
     '013478a': {
       modeName: 'Altered nat5',
       modeNumber: 4,
-      parentTonality: 'Harmonic Major',
+      parentTonality: 'Harmonic-Major',
     },
     '023569a': {
       modeName: 'Dorian b5',
       modeNumber: 5,
-      parentTonality: 'Harmonic Major',
+      parentTonality: 'Harmonic-Major',
     },
     '0135689': {
       modeName: 'Locrian bb7',
       modeNumber: 6,
-      parentTonality: 'Harmonic Major',
+      parentTonality: 'Harmonic-Major',
     },
 
     // DIMINISHED SCALES

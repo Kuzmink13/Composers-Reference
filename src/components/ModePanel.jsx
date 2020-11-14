@@ -34,6 +34,7 @@ function ModePanel(props) {
         abstractPitches={mode.getAbstractPitches()}
         modeCode={mode.getAbstractModeCode()}
         modeName={mode.getModeName()}
+        parentTonality={mode.getParentTonality()}
         clef={props.clef}
       />
     );

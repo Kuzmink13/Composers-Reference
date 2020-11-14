@@ -15,15 +15,16 @@ function ModeCard(props) {
 
   return (
     <div className="text-gray-800 relative flex flex-col py-8 items-center w-full max-w-md m-auto border border-gray-400 bg-white rounded-lg shadow-xl">
-      {/* Mode Card Title */}
+      {/* Mode Card Heading */}
       <div className="text-lg font-bold uppercase tracking-widest">
         {props.modeName}
       </div>
+      <div className="italic tracking-wider lowercase mb-3">{`from the ${props.parentTonality} scale family`}</div>
 
       <VexStaff {...props} />
 
       {/* Chord table */}
-      <div className="max-h-card mt-3 overflow-y-auto scrolling-auto">
+      <div className="max-h-card mt-5 overflow-y-auto scrolling-auto">
         {Array.from(modeChords, ([chord, names, degrees]) => (
           <Fragment>
             {/* row-divider */}

@@ -41,6 +41,9 @@ class Mode extends PitchCollection {
 
       return Utilities.replaceSymbols(name);
     };
+    this.getParentTonality = function () {
+      return modeProperties[this.getAbstractModeCode()].parentTonality;
+    };
   }
 }
 
