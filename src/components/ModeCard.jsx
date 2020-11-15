@@ -26,7 +26,7 @@ function ModeCard(props) {
       {/* Chord table */}
       <div className="max-h-card mt-5 overflow-y-auto scrolling-auto">
         {Array.from(modeChords, ([chord, names, degrees]) => (
-          <Fragment>
+          <Fragment key={chord}>
             {/* row-divider */}
             {isThreeNoteChord(names) && !isFirstChord(chord) && (
               <div className="border-t border-gray-400 mt-2 mb-1" />
