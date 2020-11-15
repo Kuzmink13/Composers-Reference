@@ -17,6 +17,9 @@ class Chords {
     diminishedSeventh: [9, 'bb7'],
     minorSeventh: [10, 'b7'],
     majorSeventh: [11, '7'],
+    minorNinth: [1, 'b9'],
+    majorNinth: [2, '9'],
+    augmentedNinth: [3, '#9'],
   };
 
   static fifthOrder = {
@@ -42,195 +45,210 @@ class Chords {
 
   static chordTree = () => {
     return {
-      diminishedFifth: [
+      minorSecond: [
         '',
         {
-          minorSecond: ['susb2 (b5)', {}],
-          majorSecond: ['sus2 (b5)', {}],
-          minorThird: [
+          diminishedFifth: ['susb2 (b5)', {}],
+          perfectFifth: ['susb2', {}],
+          augmentedFifth: ['susb2 (#5)', {}],
+        },
+      ],
+      majorSecond: [
+        '',
+        {
+          diminishedFifth: ['sus2 (b5)', {}],
+          perfectFifth: ['sus2', {}],
+          augmentedFifth: ['sus2 (#5)', {}],
+        },
+      ],
+      minorThird: [
+        '',
+        {
+          diminishedFifth: [
             'diminished',
             {
               diminishedSeventh: [
                 'diminished7',
                 {
-                  minorSecond: ['diminished7 (b9)', {}],
-                  majorSecond: ['diminished9', {}],
+                  minorNinth: ['diminished7 (b9)', {}],
+                  majorNinth: ['diminished9', {}],
                 },
               ],
               minorSeventh: [
                 'half-diminished7',
                 {
-                  minorSecond: ['half-diminished7 (b9)', {}],
-                  majorSecond: ['half-diminished9', {}],
+                  minorNinth: ['half-diminished7 (b9)', {}],
+                  majorNinth: ['half-diminished9', {}],
                 },
               ],
               majorSeventh: [
                 'm-maj7 (b5)',
                 {
-                  minorSecond: ['m-maj7 (b5) (b9)', {}],
-                  majorSecond: ['m-maj9 (b5)', {}],
+                  minorNinth: ['m-maj7 (b5) (b9)', {}],
+                  majorNinth: ['m-maj9 (b5)', {}],
                 },
               ],
             },
           ],
-          majorThird: [
-            ' (b5)',
-            {
-              majorSixth: [
-                '6 (b5)',
-                {
-                  minorSecond: ['6 (b5) (b9)', {}],
-                  majorSecond: ['6/9 (b5)', {}],
-                  augmentedSecond: ['6 (b5) (#9)', {}],
-                },
-              ],
-              minorSeventh: [
-                '7 (b5)',
-                {
-                  minorSecond: ['7 (b5) (b9)', {}],
-                  majorSecond: ['9 (b5)', {}],
-                  augmentedSecond: ['7 (b5) (#9)', {}],
-                },
-              ],
-              majorSeventh: [
-                'maj7 (b5)',
-                {
-                  minorSecond: ['maj7 (b5) (b9)', {}],
-                  majorSecond: ['maj9 (b5)', {}],
-                  augmentedSecond: ['maj7 (b5) (#9)', {}],
-                },
-              ],
-            },
-          ],
-          perfectFourth: ['sus4 (b5)', {}],
-        },
-      ],
-      perfectFifth: [
-        '',
-        {
-          minorSecond: ['susb2', {}],
-          majorSecond: ['sus2', {}],
-          minorThird: [
+          perfectFifth: [
             'm',
             {
               majorSixth: [
                 'm6',
                 {
-                  minorSecond: ['m6 (b9)', {}],
-                  majorSecond: ['m6/9', {}],
+                  minorNinth: ['m6 (b9)', {}],
+                  majorNinth: ['m6/9', {}],
                 },
               ],
               minorSeventh: [
                 'm7',
                 {
-                  minorSecond: ['m7 (b9)', {}],
-                  majorSecond: ['m9', {}],
+                  minorNinth: ['m7 (b9)', {}],
+                  majorNinth: ['m9', {}],
                 },
               ],
               majorSeventh: [
                 'm-maj7',
                 {
-                  minorSecond: ['m-maj7 (b9)', {}],
-                  majorSecond: ['m-maj9', {}],
+                  minorNinth: ['m-maj7 (b9)', {}],
+                  majorNinth: ['m-maj9', {}],
                 },
               ],
             },
           ],
-          majorThird: [
-            ' ',
-            {
-              majorSixth: [
-                '6',
-                {
-                  minorSecond: ['6 (b9)', {}],
-                  majorSecond: ['6/9', {}],
-                  augmentedSecond: ['6 (#9)', {}],
-                },
-              ],
-              minorSeventh: [
-                '7',
-                {
-                  minorSecond: ['7 (b9)', {}],
-                  majorSecond: ['9', {}],
-                  augmentedSecond: ['7 (#9)', {}],
-                },
-              ],
-              majorSeventh: [
-                'maj7',
-                {
-                  minorSecond: ['maj7 (b9)', {}],
-                  majorSecond: ['maj9', {}],
-                  augmentedSecond: ['maj7 (#9)', {}],
-                },
-              ],
-            },
-          ],
-          perfectFourth: ['sus4', {}],
-          augmentedFourth: ['sus#4', {}],
-        },
-      ],
-      augmentedFifth: [
-        '',
-        {
-          minorSecond: ['susb2 (#5)', {}],
-          majorSecond: ['sus2 (#5)', {}],
-          minorThird: [
+          augmentedFifth: [
             'm (#5)',
             {
               majorSixth: [
                 'm6 (#5)',
                 {
-                  minorSecond: ['m6 (#5) (b9)', {}],
-                  majorSecond: ['m6/9 (#5)', {}],
+                  minorNinth: ['m6 (#5) (b9)', {}],
+                  majorNinth: ['m6/9 (#5)', {}],
                 },
               ],
               minorSeventh: [
                 'm7 (#5)',
                 {
-                  minorSecond: ['m7 (#5) (b9)', {}],
-                  majorSecond: ['m9 (#5)', {}],
+                  minorNinth: ['m7 (#5) (b9)', {}],
+                  majorNinth: ['m9 (#5)', {}],
                 },
               ],
               majorSeventh: [
                 'm-maj7 (#5)',
                 {
-                  minorSecond: ['m-maj7 (#5) (b9)', {}],
-                  majorSecond: ['m-maj9 (#5)', {}],
+                  minorNinth: ['m-maj7 (#5) (b9)', {}],
+                  majorNinth: ['m-maj9 (#5)', {}],
                 },
               ],
             },
           ],
-          majorThird: [
+        },
+      ],
+      majorThird: [
+        '',
+        {
+          diminishedFifth: [
+            'maj (b5)',
+            {
+              majorSixth: [
+                '6 (b5)',
+                {
+                  minorNinth: ['6 (b5) (b9)', {}],
+                  majorNinth: ['6/9 (b5)', {}],
+                  augmentedNinth: ['6 (b5) (#9)', {}],
+                },
+              ],
+              minorSeventh: [
+                '7 (b5)',
+                {
+                  minorNinth: ['7 (b5) (b9)', {}],
+                  majorNinth: ['9 (b5)', {}],
+                  augmentedNinth: ['7 (b5) (#9)', {}],
+                },
+              ],
+              majorSeventh: [
+                'maj7 (b5)',
+                {
+                  minorNinth: ['maj7 (b5) (b9)', {}],
+                  majorNinth: ['maj9 (b5)', {}],
+                  augmentedNinth: ['maj7 (b5) (#9)', {}],
+                },
+              ],
+            },
+          ],
+          perfectFifth: [
+            ' ',
+            {
+              majorSixth: [
+                '6',
+                {
+                  minorNinth: ['6 (b9)', {}],
+                  majorNinth: ['6/9', {}],
+                  augmentedNinth: ['6 (#9)', {}],
+                },
+              ],
+              minorSeventh: [
+                '7',
+                {
+                  minorNinth: ['7 (b9)', {}],
+                  majorNinth: ['9', {}],
+                  augmentedNinth: ['7 (#9)', {}],
+                },
+              ],
+              majorSeventh: [
+                'maj7',
+                {
+                  minorNinth: ['maj7 (b9)', {}],
+                  majorNinth: ['maj9', {}],
+                  augmentedNinth: ['maj7 (#9)', {}],
+                },
+              ],
+            },
+          ],
+          augmentedFifth: [
             '+',
             {
               majorSixth: [
                 '+6',
                 {
-                  minorSecond: ['+6 (b9)', {}],
-                  majorSecond: ['+6/9', {}],
-                  augmentedSecond: ['+6 (#9)', {}],
+                  minorNinth: ['+6 (b9)', {}],
+                  majorNinth: ['+6/9', {}],
+                  augmentedNinth: ['+6 (#9)', {}],
                 },
               ],
               minorSeventh: [
                 '+7',
                 {
-                  minorSecond: ['+7 (b9)', {}],
-                  majorSecond: ['+9', {}],
-                  augmentedSecond: ['+7 (#9)', {}],
+                  minorNinth: ['+7 (b9)', {}],
+                  majorNinth: ['+9', {}],
+                  augmentedNinth: ['+7 (#9)', {}],
                 },
               ],
               majorSeventh: [
                 '+maj7',
                 {
-                  minorSecond: ['+maj7 (b9)', {}],
-                  majorSecond: ['+maj9', {}],
-                  augmentedSecond: ['+maj7 (#9)', {}],
+                  minorNinth: ['+maj7 (b9)', {}],
+                  majorNinth: ['+maj9', {}],
+                  augmentedNinth: ['+maj7 (#9)', {}],
                 },
               ],
             },
           ],
-          perfectFourth: ['+sus4', {}],
-          augmentedFourth: ['+sus#4', {}],
+        },
+      ],
+      perfectFourth: [
+        '',
+        {
+          diminishedFifth: ['sus4 (b5)', {}],
+          perfectFifth: ['sus4', {}],
+          augmentedFifth: ['+sus4', {}],
+        },
+      ],
+      augmentedFourth: [
+        '',
+        {
+          perfectFifth: ['sus#4', {}],
+          augmentedFifth: ['+sus#4', {}],
         },
       ],
     };
@@ -279,12 +297,10 @@ class Chords {
         Utilities.getBaseNotes(
           pitchCenter,
           modeCode,
-          name.map((el) => el + pitchCenter).sort((a, b) => a - b)
+          name.map((el) => el + pitchCenter)
         ).map((el) => Utilities.replaceSymbols(el)),
 
-        degrees
-          .map((el) => Utilities.replaceSymbols(el))
-          .sort((a, b) => Number(a.slice(-1)) - Number(b.slice(-1))),
+        degrees.map((el) => Utilities.replaceSymbols(el)),
       ]);
     };
 
@@ -293,10 +309,10 @@ class Chords {
       const b_pitches = b[1];
       const a_len = a_pitches.length;
       const b_len = b_pitches.length;
-      const a_fifth = this.fifthOrder[a_pitches[1]];
-      const b_fifth = this.fifthOrder[b_pitches[1]];
-      const a_third = this.thirdOrder[a_pitches[2]];
-      const b_third = this.thirdOrder[b_pitches[2]];
+      const a_fifth = this.fifthOrder[a_pitches[2]];
+      const b_fifth = this.fifthOrder[b_pitches[2]];
+      const a_third = this.thirdOrder[a_pitches[1]];
+      const b_third = this.thirdOrder[b_pitches[1]];
       const a_seventh = this.seventhOrder[a_pitches[3]] || Number.MIN_VALUE;
       const b_seventh = this.seventhOrder[b_pitches[3]] || Number.MIN_VALUE;
 
