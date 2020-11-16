@@ -14,8 +14,15 @@ function ModeCard(props) {
   const isFirstChord = (chord) => chord === modeChords[0][0];
   const isThreeNoteChord = (names) => names.length === 3;
 
+  function cancelClose(event) {
+    event.stopPropagation();
+  }
+
   return (
-    <div className="text-gray-800 relative flex flex-col py-8 items-center w-full max-w-md m-auto border border-gray-400 bg-white rounded-lg shadow-xl">
+    <div
+      onClick={cancelClose}
+      className="text-gray-800 relative flex flex-col py-8 items-center w-full max-w-md m-auto border border-gray-400 bg-white rounded-lg shadow-xl"
+    >
       {/* Mode Card Heading */}
       <div className="text-lg font-bold uppercase tracking-widest">
         {props.modeName}
