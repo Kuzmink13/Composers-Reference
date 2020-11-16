@@ -7,7 +7,8 @@ function ModeCard(props) {
   const modeChords = Chords.chordGenerator(
     props.pitchCenter,
     props.modeCode,
-    props.abstractPitches
+    props.abstractPitches,
+    props.absolutePitches
   );
 
   const isFirstChord = (chord) => chord === modeChords[0][0];

@@ -22,26 +22,32 @@ class Chords {
     augmentedNinth: [3, '#9'],
   };
 
-  static fifthOrder = {
-    7: 0,
-    6: 1,
-    8: 2,
-  };
+  static order(pitches) {
+    const fifthOrder = {
+      7: 0,
+      6: 1,
+      8: 2,
+    };
+    const thirdOrder = {
+      4: 0,
+      3: 1,
+      2: 2,
+      5: 3,
+      1: 4,
+      6: 5,
+    };
+    const seventhOrder = {
+      10: 0,
+      11: 1,
+      9: 2,
+    };
 
-  static thirdOrder = {
-    4: 0,
-    3: 1,
-    2: 2,
-    5: 3,
-    1: 4,
-    6: 5,
-  };
-
-  static seventhOrder = {
-    10: 0,
-    11: 1,
-    9: 2,
-  };
+    return {
+      third: thirdOrder[pitches[1]],
+      fifth: fifthOrder[pitches[2]],
+      seventh: seventhOrder[pitches[3]] || Number.MIN_VALUE,
+    };
+  }
 
   static chordTree = () => {
     return {
@@ -254,12 +260,25 @@ class Chords {
     };
   };
 
-  static chordGenerator(pitchCenter, modeCode, abstractPitches) {
+  static chordGenerator(
+    pitchCenter,
+    modeCode,
+    abstractPitches,
+    absolutePitches
+  ) {
     const tree = this.chordTree();
-    const scaleDegrees = ['1'];
-    const pitches = [0];
 
-    const treeCrawler = (nextNode, scaleDegrees, pitches) => {
+    const baseNotes = Utilities.getBaseNotes(
+      pitchCenter,
+      modeCode,
+      absolutePitches
+    );
+
+    const pitches = [0];
+    const scaleDegrees = ['1'];
+    const noteNames = [baseNotes[0]];
+
+    const treeCrawler = (nextNode, pitches, scaleDegrees, noteNames) => {
       let chordList = [];
 
       const addToChordList = (
@@ -268,13 +287,22 @@ class Chords {
         intervalSize,
         nextNode
       ) => {
-        const newScaleDegrees = scaleDegrees.concat(nextDegree);
         const newPitches = pitches.concat(intervalSize);
+        const newNoteNames = noteNames.concat(
+          baseNotes[abstractPitches.indexOf(intervalSize)]
+        );
+        const newScaleDegrees = scaleDegrees.concat(nextDegree);
 
-        chordName && chordList.push([chordName, newPitches, newScaleDegrees]);
+        chordName &&
+          chordList.push({
+            chordName: chordName,
+            pitches: newPitches,
+            noteNames: newNoteNames,
+            scaleDegrees: newScaleDegrees,
+          });
 
         chordList = chordList.concat(
-          treeCrawler(nextNode, newScaleDegrees, newPitches)
+          treeCrawler(nextNode, newPitches, newScaleDegrees, newNoteNames)
         );
       };
 
@@ -291,39 +319,29 @@ class Chords {
     };
 
     const formatChordList = (chordList) => {
-      return chordList.map(([chord, name, degrees]) => [
-        Utilities.replaceSymbols(chord),
+      return chordList.map(({ chordName, noteNames, scaleDegrees }) => [
+        Utilities.replaceSymbols(chordName),
 
-        Utilities.getBaseNotes(
-          pitchCenter,
-          modeCode,
-          name.map((el) => el + pitchCenter)
-        ).map((el) => Utilities.replaceSymbols(el)),
+        noteNames.map((el) => Utilities.replaceSymbols(el)),
 
-        degrees.map((el) => Utilities.replaceSymbols(el)),
+        scaleDegrees.map((el) => Utilities.replaceSymbols(el)),
       ]);
     };
 
     const chordListSorter = (a, b) => {
-      const a_pitches = a[1];
-      const b_pitches = b[1];
-      const a_len = a_pitches.length;
-      const b_len = b_pitches.length;
-      const a_fifth = this.fifthOrder[a_pitches[2]];
-      const b_fifth = this.fifthOrder[b_pitches[2]];
-      const a_third = this.thirdOrder[a_pitches[1]];
-      const b_third = this.thirdOrder[b_pitches[1]];
-      const a_seventh = this.seventhOrder[a_pitches[3]] || Number.MIN_VALUE;
-      const b_seventh = this.seventhOrder[b_pitches[3]] || Number.MIN_VALUE;
+      const a_order = this.order(a.pitches);
+      const b_order = this.order(b.pitches);
 
-      if (a_fifth !== b_fifth) return a_fifth - b_fifth;
-      if (a_third !== b_third) return a_third - b_third;
-      if (a_len !== b_len) return a_len - b_len;
-      if (a_seventh !== b_seventh) return a_seventh - b_seventh;
+      if (a_order.fifth !== b_order.fifth) return a_order.fifth - b_order.fifth;
+      if (a_order.third !== b_order.third) return a_order.third - b_order.third;
+      if (a.pitches.length !== b.pitches.length)
+        return a.pitches.length - b.pitches.length;
+      if (a_order.seventh !== b_order.seventh)
+        return a_order.seventh - b_order.seventh;
     };
 
     return formatChordList(
-      treeCrawler(tree, scaleDegrees, pitches).sort(chordListSorter)
+      treeCrawler(tree, pitches, scaleDegrees, noteNames).sort(chordListSorter)
     );
   }
 }
