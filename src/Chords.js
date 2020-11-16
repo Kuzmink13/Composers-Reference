@@ -260,19 +260,10 @@ class Chords {
     };
   };
 
-  static chordGenerator(
-    pitchCenter,
-    modeCode,
-    abstractPitches,
-    absolutePitches
-  ) {
+  static chordGenerator(pitchCenter, abstractPitches, absolutePitches) {
     const tree = this.chordTree();
 
-    const baseNotes = Utilities.getBaseNotes(
-      pitchCenter,
-      modeCode,
-      absolutePitches
-    );
+    const baseNotes = Utilities.getBaseNotes(pitchCenter, absolutePitches);
 
     const pitches = [0];
     const scaleDegrees = ['1'];

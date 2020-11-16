@@ -6,7 +6,6 @@ function ModeCard(props) {
   const chordRoot = props.modeName.split(' ')[0];
   const modeChords = Chords.chordGenerator(
     props.pitchCenter,
-    props.modeCode,
     props.abstractPitches,
     props.absolutePitches
   );

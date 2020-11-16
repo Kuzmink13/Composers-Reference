@@ -1,7 +1,7 @@
 import PitchCollection from './PitchCollection';
 import Utilities from './Utilities';
 
-const { noteNamesSharp, noteNamesFlat, modeProperties } = Utilities;
+const { modeProperties } = Utilities;
 
 /**
  * A collection of successive pitches contained within an octave that start at a specific note
@@ -31,13 +31,12 @@ class Mode extends PitchCollection {
       return `${this.getAbstractModeCode()}//${this.getPitchCenter()}`;
     };
     this.getModeName = function () {
-      const key = this.getPitchCenter();
-      const code = this.getAbstractModeCode();
       const name = `${
-        Utilities.keyHasSharps(key, code)
-          ? noteNamesSharp[key]
-          : noteNamesFlat[key]
-      } ${modeProperties[code].modeName}`;
+        Utilities.getBaseNotes(
+          this.getPitchCenter(),
+          this.getAbsolutePitches()
+        )[0]
+      } ${modeProperties[this.getAbstractModeCode()].modeName}`;
 
       return Utilities.replaceSymbols(name);
     };

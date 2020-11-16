@@ -15,12 +15,8 @@ class VexScale {
       : vfNote;
   }
 
-  static getVexScale(pitchCenter, modeCode, absolutePitches, clef) {
-    const baseNotes = Utilities.getBaseNotes(
-      pitchCenter,
-      modeCode,
-      absolutePitches
-    );
+  static getVexScale(pitchCenter, absolutePitches, clef) {
+    const baseNotes = Utilities.getBaseNotes(pitchCenter, absolutePitches);
 
     const getTransposition = () => {
       switch (clef) {
@@ -42,13 +38,7 @@ class VexScale {
     });
   }
 
-  static generateStaff(
-    elementID,
-    pitchCenter,
-    modeCode,
-    absolutePitches,
-    clef
-  ) {
+  static generateStaff(elementID, pitchCenter, absolutePitches, clef) {
     const vf = Vex.Flow;
 
     let div = document.getElementById(elementID);
@@ -62,7 +52,7 @@ class VexScale {
 
     stave.addClef(clef);
 
-    let notes = this.getVexScale(pitchCenter, modeCode, absolutePitches, clef);
+    let notes = this.getVexScale(pitchCenter, absolutePitches, clef);
 
     let voice = new vf.Voice({
       num_beats: notes.length,

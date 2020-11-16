@@ -6,7 +6,6 @@ function VexStaff(props) {
     VexScale.generateStaff(
       props.modeName,
       props.pitchCenter,
-      props.modeCode,
       props.absolutePitches,
       props.clef
     );
