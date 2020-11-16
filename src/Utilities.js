@@ -85,7 +85,7 @@ class Utilities {
     // WHOLE TONE SCALES
     '02468a': {
       modeName: 'Whole-Tone',
-      modeNumber: 0,
+      modeNumber: 1,
       parentTonality: 'Whole-Tone',
     },
 
@@ -306,7 +306,7 @@ class Utilities {
     );
 
   static keyHasSharps = (note, modeCode) =>
-    this.notesInOctave / 2 <= this.getCompositeSharpness(note, modeCode);
+    this.notesInOctave / 2 - 1 <= this.getCompositeSharpness(note, modeCode);
 
   static octaveMod = (pitch) =>
     ((pitch % this.notesInOctave) + this.notesInOctave) % this.notesInOctave;
