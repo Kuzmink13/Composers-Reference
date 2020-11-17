@@ -30,10 +30,22 @@ class VexScale {
     };
 
     let octave = getTransposition();
+    let hasJumpedOctave = false;
 
     return baseNotes.map((el) => {
-      const note = this.getVFNote(el, octave, clef);
-      el[0] === 'B' && octave++;
+      const isB = el[0] === 'B';
+      let note;
+
+      if (isB && hasJumpedOctave) {
+        note = this.getVFNote(el, octave - 1, clef);
+      } else {
+        note = this.getVFNote(el, octave, clef);
+      }
+
+      if (isB && !hasJumpedOctave) {
+        hasJumpedOctave = true;
+        octave++;
+      }
       return note;
     });
   }
