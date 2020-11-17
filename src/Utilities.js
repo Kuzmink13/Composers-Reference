@@ -341,7 +341,7 @@ class Utilities {
 
   static getShortestScale(scaleSharp, scaleFlat) {
     console.log(scaleSharp, scaleFlat);
-    return scaleSharp.join().length < scaleFlat.join().length
+    return scaleSharp.join().length <= scaleFlat.join().length
       ? scaleSharp
       : scaleFlat;
   }
