@@ -174,21 +174,25 @@ class Music {
       .filter((el, i) => selectedTonalities[i])
       .forEach((el) => {
         output = output.concat(
-          this.generateModes(el, givenPitches, pitchCenter).sort((a, b) => {
-            const aRoot = a.getPitchCenter();
-            const bRoot = b.getPitchCenter();
+          this.generateModes(el.pitches, givenPitches, pitchCenter).sort(
+            (a, b) => {
+              const aRoot = a.getPitchCenter();
+              const bRoot = b.getPitchCenter();
 
-            if (givenPitches.includes(aRoot) !== givenPitches.includes(bRoot)) {
-              return givenPitches.includes(aRoot) ? -1 : 1;
-            } else if (aRoot !== bRoot) {
-              return aRoot - bRoot;
-            } else {
-              return (
-                modeProperties[a.getAbstractModeCode()].modeNumber -
-                modeProperties[b.getAbstractModeCode()].modeNumber
-              );
+              if (
+                givenPitches.includes(aRoot) !== givenPitches.includes(bRoot)
+              ) {
+                return givenPitches.includes(aRoot) ? -1 : 1;
+              } else if (aRoot !== bRoot) {
+                return aRoot - bRoot;
+              } else {
+                return (
+                  modeProperties[a.getAbstractModeCode()].modeNumber -
+                  modeProperties[b.getAbstractModeCode()].modeNumber
+                );
+              }
             }
-          })
+          )
         );
       });
 

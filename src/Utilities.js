@@ -98,23 +98,13 @@ class Utilities {
   ];
 
   static tonalities = [
-    [0, 2, 4, 6, 8, 10],
-    [0, 3, 4, 7, 8, 11],
-    [0, 2, 4, 5, 7, 9, 11],
-    [0, 2, 3, 5, 7, 9, 11],
-    [0, 2, 3, 5, 7, 8, 11],
-    [0, 2, 4, 5, 7, 8, 11],
-    [0, 1, 3, 4, 6, 7, 9, 10],
-  ];
-
-  static tonalityNames = [
-    'Whole-Tone',
-    'Augmented',
-    'Major',
-    'Melodic Minor',
-    'Harmonic Minor',
-    'Harmonic Major',
-    'Diminished',
+    { name: 'Whole-Tone', pitches: [0, 2, 4, 6, 8, 10] },
+    { name: 'Augmented', pitches: [0, 3, 4, 7, 8, 11] },
+    { name: 'Major', pitches: [0, 2, 4, 5, 7, 9, 11] },
+    { name: 'Melodic Minor', pitches: [0, 2, 3, 5, 7, 9, 11] },
+    { name: 'Harmonic Minor', pitches: [0, 2, 3, 5, 7, 8, 11] },
+    { name: 'Harmonic Major', pitches: [0, 2, 4, 5, 7, 8, 11] },
+    { name: 'Diminished', pitches: [0, 1, 3, 4, 6, 7, 9, 10] },
   ];
 
   static supportedClefs = ['treble', 'alto', 'bass'];

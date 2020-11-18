@@ -1,7 +1,7 @@
 import React from 'react';
 import Utilities from '../Utilities';
 
-const { tonalityNames, supportedClefs } = Utilities;
+const { tonalities, supportedClefs } = Utilities;
 
 function Options(props) {
   return (
@@ -50,9 +50,9 @@ function Options(props) {
 
       <div className="flex flex-col items-start py-1">
         Exclude Tonalities:
-        {tonalityNames.map((el, i) => (
+        {tonalities.map((tonality, i) => (
           <div
-            key={el}
+            key={tonality.name}
             onClick={() => props.handleSelectedTonalityChange(i)}
             className="cursor-pointer"
           >
@@ -61,7 +61,7 @@ function Options(props) {
               className="mx-2"
               checked={!props.selectedTonalities[i]}
             />
-            {el}
+            {tonality.name}
           </div>
         ))}
       </div>
