@@ -31,21 +31,28 @@ class VexScale {
 
     let octave = getTransposition();
     let hasJumpedOctave = false;
+    let prev = ' ';
 
     return baseNotes.map((el) => {
+      console.log(el, prev);
       const isB = el[0] === 'B';
+      const hasSkippedB = el[0] === 'C' && prev[0] === 'A';
+      const shouldJump = isB || hasSkippedB;
       let note;
 
       if (isB && hasJumpedOctave) {
         note = this.getVFNote(el, octave - 1, clef);
+      } else if (hasSkippedB) {
+        note = this.getVFNote(el, octave + 1, clef);
       } else {
         note = this.getVFNote(el, octave, clef);
       }
 
-      if (isB && !hasJumpedOctave) {
+      if (shouldJump && !hasJumpedOctave) {
         hasJumpedOctave = true;
         octave++;
       }
+      prev = el;
       return note;
     });
   }
