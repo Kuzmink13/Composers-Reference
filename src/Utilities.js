@@ -2,79 +2,91 @@
  * A class containing basic static methods and constants
  */
 class Utilities {
-  static isWhite = [
-    true,
-    false,
-    true,
-    false,
-    true,
-    true,
-    false,
-    true,
-    false,
-    true,
-    false,
-    true,
-  ];
-
-  static absoluteNoteNames = [
-    'C',
-    'C#/Db',
-    'D',
-    'D#/Eb',
-    'E',
-    'F',
-    'F#/Gb',
-    'G',
-    'G#/Ab',
-    'A',
-    'A#/Bb',
-    'B',
-  ];
-
-  static noteNamesSharp = [
-    'C',
-    'C#',
-    'D',
-    'D#',
-    'E',
-    'E#',
-    'F#',
-    'G',
-    'G#',
-    'A',
-    'A#',
-    'B',
-  ];
-
-  static noteNamesFlat = [
-    'C',
-    'Db',
-    'D',
-    'Eb',
-    'Fb',
-    'F',
-    'Gb',
-    'G',
-    'Ab',
-    'A',
-    'Bb',
-    'Cb',
-  ];
-
-  static enharmonics = [
-    { B: 'B#', C: 'C', D: 'Dbb' },
-    { B: 'B##', C: 'C#', D: 'Db' },
-    { C: 'C##', D: 'D', E: 'Ebb' },
-    { D: 'D#', E: 'Eb', F: 'Fbb' },
-    { D: 'D##', E: 'E', F: 'Fb' },
-    { E: 'E#', F: 'F', G: 'Gbb' },
-    { E: 'E##', F: 'F#', G: 'Gb' },
-    { F: 'F##', G: 'G', A: 'Abb' },
-    { G: 'G#', A: 'Ab' },
-    { G: 'G##', A: 'A', B: 'Bbb' },
-    { A: 'A#', B: 'Bb', C: 'Cbb' },
-    { A: 'A##', B: 'B', C: 'Cb' },
+  static keyNotes = [
+    {
+      absoluteName: 'C',
+      sharpName: 'C',
+      flatName: 'C',
+      enharmonics: { B: 'B#', C: 'C', D: 'Dbb' },
+      isWhite: true,
+    },
+    {
+      absoluteName: 'C#/Db',
+      sharpName: 'C#',
+      flatName: 'Db',
+      enharmonics: { B: 'B##', C: 'C#', D: 'Db' },
+      isWhite: false,
+    },
+    {
+      absoluteName: 'D',
+      sharpName: 'D',
+      flatName: 'D',
+      enharmonics: { C: 'C##', D: 'D', E: 'Ebb' },
+      isWhite: true,
+    },
+    {
+      absoluteName: 'D#/Eb',
+      sharpName: 'D#',
+      flatName: 'Eb',
+      enharmonics: { D: 'D#', E: 'Eb', F: 'Fbb' },
+      isWhite: false,
+    },
+    {
+      absoluteName: 'E',
+      sharpName: 'E',
+      flatName: 'Fb',
+      enharmonics: { D: 'D##', E: 'E', F: 'Fb' },
+      isWhite: true,
+    },
+    {
+      absoluteName: 'F',
+      sharpName: 'E#',
+      flatName: 'F',
+      enharmonics: { E: 'E#', F: 'F', G: 'Gbb' },
+      isWhite: true,
+    },
+    {
+      absoluteName: 'F#/Gb',
+      sharpName: 'F#',
+      flatName: 'Gb',
+      enharmonics: { E: 'E##', F: 'F#', G: 'Gb' },
+      isWhite: false,
+    },
+    {
+      absoluteName: 'G',
+      sharpName: 'G',
+      flatName: 'G',
+      enharmonics: { F: 'F##', G: 'G', A: 'Abb' },
+      isWhite: true,
+    },
+    {
+      absoluteName: 'G#/Ab',
+      sharpName: 'G#',
+      flatName: 'Ab',
+      enharmonics: { G: 'G#', A: 'Ab' },
+      isWhite: false,
+    },
+    {
+      absoluteName: 'A',
+      sharpName: 'A',
+      flatName: 'A',
+      enharmonics: { G: 'G##', A: 'A', B: 'Bbb' },
+      isWhite: true,
+    },
+    {
+      absoluteName: 'A#/Bb',
+      sharpName: 'A#',
+      flatName: 'Bb',
+      enharmonics: { A: 'A#', B: 'Bb', C: 'Cbb' },
+      isWhite: false,
+    },
+    {
+      absoluteName: 'B',
+      sharpName: 'B',
+      flatName: 'Cb',
+      enharmonics: { A: 'A##', B: 'B', C: 'Cb' },
+      isWhite: true,
+    },
   ];
 
   static oneLetterWholeSteps = {
@@ -349,8 +361,8 @@ class Utilities {
     const getScale = (keyHasSharps, absolutePitches) =>
       absolutePitches.map((el) =>
         keyHasSharps
-          ? this.noteNamesSharp[this.octaveMod(el)]
-          : this.noteNamesFlat[this.octaveMod(el)]
+          ? this.keyNotes[this.octaveMod(el)].sharpName
+          : this.keyNotes[this.octaveMod(el)].flatName
       );
 
     return this.getShortestScale(
@@ -362,15 +374,16 @@ class Utilities {
   static getBaseNotes7(absolutePitches, pitchCenter) {
     const getScale = (keyHasSharps, absolutePitches, pitchCenter) => {
       const firstNote = keyHasSharps
-        ? this.noteNamesSharp[pitchCenter]
-        : this.noteNamesFlat[pitchCenter];
+        ? this.keyNotes[pitchCenter].sharpName
+        : this.keyNotes[pitchCenter].flatName;
       const indexFirst = this.alphaLetters.indexOf(firstNote[0]);
       const alphaScale = this.alphaLetters
         .slice(indexFirst)
         .concat(this.alphaLetters.slice(0, indexFirst));
 
       return absolutePitches.map(
-        (el) => this.enharmonics[this.octaveMod(el)][alphaScale.shift()]
+        (el) =>
+          this.keyNotes[this.octaveMod(el)].enharmonics[alphaScale.shift()]
       );
     };
 
@@ -386,8 +399,8 @@ class Utilities {
         absolutePitches[i + 1] - absolutePitches[i] === 2;
 
       const firstNote = keyHasSharps
-        ? this.noteNamesSharp[pitchCenter]
-        : this.noteNamesFlat[pitchCenter];
+        ? this.keyNotes[pitchCenter].sharpName
+        : this.keyNotes[pitchCenter].flatName;
       const indexFirst = this.alphaLetters.indexOf(firstNote[0]);
       const alphaScale = this.alphaLetters
         .slice(indexFirst)
@@ -399,7 +412,9 @@ class Utilities {
 
       absolutePitches.forEach((el, i) => {
         if (!skipNext) {
-          let note = this.enharmonics[this.octaveMod(el)][alphaScale.shift()];
+          let note = this.keyNotes[this.octaveMod(el)].enharmonics[
+            alphaScale.shift()
+          ];
           if (note === undefined) note = 'undefined';
           scale.push(note);
           if (

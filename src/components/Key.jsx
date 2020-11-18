@@ -1,13 +1,13 @@
 import React from 'react';
 import Utilities from '../Utilities';
 
-const { isWhite, absoluteNoteNames } = Utilities;
+const { keyNotes } = Utilities;
 
 function Key(props) {
   const isNoteSelected = props.isNoteSelected[props.value];
   const isNoteRoot = props.root === props.value;
-  const noteName = absoluteNoteNames[props.value];
-  const color = isWhite[props.value] ? 'white' : 'black';
+  const noteName = keyNotes[props.value].absoluteName;
+  const color = keyNotes[props.value].isWhite ? 'white' : 'black';
   const selection = isNoteSelected
     ? isNoteRoot
       ? 'root'
@@ -20,7 +20,7 @@ function Key(props) {
       onDoubleClick={() => props.handleKeyPress(props.value, true)}
       className={`key key-${color} key-${color}-${selection}`}
     >
-      {props.areNoteNamesVisible && isWhite[props.value] && (
+      {props.areNoteNamesVisible && keyNotes[props.value].isWhite && (
         <div className="p-2 font-semibold text-md">{noteName}</div>
       )}
     </div>
