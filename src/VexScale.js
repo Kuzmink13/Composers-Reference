@@ -1,4 +1,4 @@
-import Utilities from './Utilities';
+import Scales from './Scales';
 import Vex from 'vexflow';
 
 class VexScale {
@@ -16,7 +16,7 @@ class VexScale {
   }
 
   static getVexScale(pitchCenter, absolutePitches, clef) {
-    const baseNotes = Utilities.getBaseNotes(pitchCenter, absolutePitches);
+    const baseNotes = Scales.getBaseNotes(pitchCenter, absolutePitches);
 
     const getTransposition = () => {
       switch (clef) {

@@ -89,16 +89,6 @@ class Utilities {
     },
   ];
 
-  static oneLetterWholeSteps = {
-    Cb: 'C#',
-    Db: 'D#',
-    Eb: 'E#',
-    Fb: 'F#',
-    Gb: 'G#',
-    Ab: 'A#',
-    Bb: 'B#',
-  };
-
   static jsMusicSymbols = [
     { '##': '\uD834\uDD2A' },
     { bb: '\uD834\uDD2B' },
@@ -120,8 +110,6 @@ class Utilities {
   ];
 
   static supportedClefs = ['treble', 'alto', 'bass'];
-
-  static supportedScaleLengths = [6, 7, 8];
 
   static modeProperties = {
     // WHOLE TONE SCALES
@@ -304,8 +292,6 @@ class Utilities {
     },
   };
 
-  static alphaLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
-
   static circleOfFifths = [6, 1, 8, 3, 10, 5, 0, 7, 2, 9, 4, 11];
 
   static notesInOctave = 12;
@@ -349,106 +335,6 @@ class Utilities {
       const key = Object.keys(el)[0];
       return acc.replace(key, el[key]);
     }, name);
-  }
-
-  static getShortestScale(scaleSharp, scaleFlat) {
-    return scaleSharp.join().length <= scaleFlat.join().length
-      ? scaleSharp
-      : scaleFlat;
-  }
-
-  static getBaseNotesDefault(absolutePitches) {
-    const getScale = (keyHasSharps, absolutePitches) =>
-      absolutePitches.map((el) =>
-        keyHasSharps
-          ? this.keyNotes[this.octaveMod(el)].sharpName
-          : this.keyNotes[this.octaveMod(el)].flatName
-      );
-
-    return this.getShortestScale(
-      getScale(true, absolutePitches),
-      getScale(false, absolutePitches)
-    );
-  }
-
-  static getBaseNotes7(absolutePitches, pitchCenter) {
-    const getScale = (keyHasSharps, absolutePitches, pitchCenter) => {
-      const firstNote = keyHasSharps
-        ? this.keyNotes[pitchCenter].sharpName
-        : this.keyNotes[pitchCenter].flatName;
-      const indexFirst = this.alphaLetters.indexOf(firstNote[0]);
-      const alphaScale = this.alphaLetters
-        .slice(indexFirst)
-        .concat(this.alphaLetters.slice(0, indexFirst));
-
-      return absolutePitches.map(
-        (el) =>
-          this.keyNotes[this.octaveMod(el)].enharmonics[alphaScale.shift()]
-      );
-    };
-
-    return this.getShortestScale(
-      getScale(true, absolutePitches, pitchCenter),
-      getScale(false, absolutePitches, pitchCenter)
-    );
-  }
-
-  static getBaseNotes8(absolutePitches, pitchCenter) {
-    const getScale = (keyHasSharps, absolutePitches, pitchCenter) => {
-      const isWholeStep = (i) =>
-        absolutePitches[i + 1] - absolutePitches[i] === 2;
-
-      const firstNote = keyHasSharps
-        ? this.keyNotes[pitchCenter].sharpName
-        : this.keyNotes[pitchCenter].flatName;
-      const indexFirst = this.alphaLetters.indexOf(firstNote[0]);
-      const alphaScale = this.alphaLetters
-        .slice(indexFirst)
-        .concat(this.alphaLetters.slice(0, indexFirst));
-
-      let scale = [];
-      let hasSameNoteLetter = false;
-      let skipNext = false;
-
-      absolutePitches.forEach((el, i) => {
-        if (!skipNext) {
-          let note = this.keyNotes[this.octaveMod(el)].enharmonics[
-            alphaScale.shift()
-          ];
-          if (note === undefined) note = 'undefined';
-          scale.push(note);
-          if (
-            isWholeStep(i) &&
-            !hasSameNoteLetter &&
-            this.oneLetterWholeSteps[note]
-          ) {
-            scale.push(this.oneLetterWholeSteps[note]);
-            hasSameNoteLetter = true;
-            skipNext = true;
-          }
-        } else {
-          skipNext = false;
-        }
-      });
-
-      return scale;
-    };
-
-    return this.getShortestScale(
-      getScale(true, absolutePitches, pitchCenter),
-      getScale(false, absolutePitches, pitchCenter)
-    );
-  }
-
-  static getBaseNotes(pitchCenter, absolutePitches) {
-    switch (absolutePitches.length) {
-      case 8:
-        return this.getBaseNotes8(absolutePitches, pitchCenter);
-      case 7:
-        return this.getBaseNotes7(absolutePitches, pitchCenter);
-      default:
-        return this.getBaseNotesDefault(absolutePitches);
-    }
   }
 }
 

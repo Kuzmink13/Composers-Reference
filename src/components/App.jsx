@@ -4,14 +4,10 @@ import Keys from './Keys';
 import ModeController from './ModeController';
 import Music from '../Music';
 import Utilities from '../Utilities';
+import Scales from '../Scales';
 
-const {
-  notesInOctave,
-  supportedScaleLengths,
-  tonalities,
-  supportedClefs,
-  keyMap,
-} = Utilities;
+const { notesInOctave, tonalities, supportedClefs, keyMap } = Utilities;
+const { supportedScaleLengths } = Scales;
 
 function App() {
   // NOTE/ROOT SELECTION

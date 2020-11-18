@@ -1,14 +1,10 @@
 import PitchCollection from './PitchCollection';
 import Mode from './Mode';
 import Utilities from './Utilities';
+import Scales from './Scales';
 
-const {
-  supportedScaleLengths,
-  notesInOctave,
-  tonalities,
-  modeProperties,
-  octaveMod,
-} = Utilities;
+const { notesInOctave, tonalities, modeProperties } = Utilities;
+const { supportedScaleLengths } = Scales;
 
 /**
  * A class containing static methods for working with PitchCollection and Mode Objects
@@ -29,7 +25,7 @@ class Music {
     let offset = basePitches[scaleDegree];
     let modePitchesWithOffset = mode
       .getAbstractPitches()
-      .map((el) => octaveMod(el + offset))
+      .map((el) => Utilities.octaveMod(el + offset))
       .sort((a, b) => a - b);
     let currentPitch = modePitchesWithOffset.shift();
 

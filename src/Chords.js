@@ -1,4 +1,5 @@
 import Utilities from './Utilities';
+import Scales from './Scales';
 
 class Chords {
   static intervals = {
@@ -263,7 +264,7 @@ class Chords {
   static chordGenerator(pitchCenter, abstractPitches, absolutePitches) {
     const tree = this.chordTree();
 
-    const baseNotes = Utilities.getBaseNotes(pitchCenter, absolutePitches);
+    const baseNotes = Scales.getBaseNotes(pitchCenter, absolutePitches);
 
     const pitches = [0];
     const scaleDegrees = ['1'];

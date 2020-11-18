@@ -1,5 +1,6 @@
 import PitchCollection from './PitchCollection';
 import Utilities from './Utilities';
+import Scales from './Scales';
 
 const { modeProperties } = Utilities;
 
@@ -32,10 +33,7 @@ class Mode extends PitchCollection {
     };
     this.getModeName = function () {
       const name = `${
-        Utilities.getBaseNotes(
-          this.getPitchCenter(),
-          this.getAbsolutePitches()
-        )[0]
+        Scales.getBaseNotes(this.getPitchCenter(), this.getAbsolutePitches())[0]
       } ${modeProperties[this.getAbstractModeCode()].modeName}`;
 
       return Utilities.replaceSymbols(name);
