@@ -37,6 +37,22 @@ class Scales {
     );
   }
 
+  static getBaseNotes6(absolutePitches) {
+    const scale = [];
+
+    absolutePitches.forEach((el, i) => {
+      const key = keyNotes[Utilities.octaveMod(el)];
+      const prev = scale[i - 1] || ' ';
+
+      key.sharpName.length <= key.flatName.length &&
+      prev[0] !== key.sharpName[0]
+        ? scale.push(key.sharpName)
+        : scale.push(key.flatName);
+    });
+
+    return scale;
+  }
+
   static getBaseNotes7(absolutePitches, pitchCenter) {
     const getScale = (keyHasSharps, absolutePitches, pitchCenter) => {
       const firstNote = keyHasSharps
@@ -111,6 +127,8 @@ class Scales {
         return this.getBaseNotes8(absolutePitches, pitchCenter);
       case 7:
         return this.getBaseNotes7(absolutePitches, pitchCenter);
+      case 6:
+        return this.getBaseNotes6(absolutePitches);
       default:
         return this.getBaseNotesDefault(absolutePitches);
     }
