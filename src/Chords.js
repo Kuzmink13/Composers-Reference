@@ -1,5 +1,5 @@
-import Utilities from './Utilities';
 import Scales from './Scales';
+import Utilities from './Utilities';
 
 class Chords {
   static intervals = {

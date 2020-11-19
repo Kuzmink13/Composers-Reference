@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
+
 import ModeBlock from './ModeBlock';
 
 function ModePanel(props) {

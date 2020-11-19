@@ -1,6 +1,6 @@
 import PitchCollection from './PitchCollection';
-import Utilities from './Utilities';
 import Scales from './Scales';
+import Utilities from './Utilities';
 
 const { modeProperties } = Utilities;
 

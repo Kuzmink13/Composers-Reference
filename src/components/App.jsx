@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
+
 import Navbar from './Navbar';
+import ModeCard from './ModeCard';
 import Keys from './Keys';
 import ModeController from './ModeController';
+
 import Music from '../Music';
-import Utilities from '../Utilities';
 import Scales from '../Scales';
-import ModeCard from './ModeCard';
+import Utilities from '../Utilities';
 
 const { notesInOctave, tonalities, supportedClefs, keyMap } = Utilities;
 const { supportedScaleLengths } = Scales;

@@ -1,5 +1,5 @@
-import Scales from './Scales';
 import Vex from 'vexflow';
+import Scales from './Scales';
 
 class VexScale {
   static getVFNote(note, octave, clef) {

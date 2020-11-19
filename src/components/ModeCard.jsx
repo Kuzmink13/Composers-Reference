@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
-import VexStaff from './VexStaff';
+
 import Chords from '../Chords';
+import VexStaff from './VexStaff';
 
 function ModeCard(props) {
   const chordRoot = props.modeName.split(' ')[0];

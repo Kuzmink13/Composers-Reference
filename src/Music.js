@@ -1,7 +1,7 @@
 import PitchCollection from './PitchCollection';
 import Mode from './Mode';
-import Utilities from './Utilities';
 import Scales from './Scales';
+import Utilities from './Utilities';
 
 const { notesInOctave, tonalities, modeProperties } = Utilities;
 const { supportedScaleLengths } = Scales;
