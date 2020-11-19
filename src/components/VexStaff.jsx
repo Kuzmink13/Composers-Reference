@@ -9,6 +9,9 @@ function VexStaff(props) {
       props.absolutePitches,
       props.clef
     );
+    return () => {
+      document.getElementById(props.modeName).innerHTML = '';
+    };
   });
 
   return <div id={props.modeName}></div>;
