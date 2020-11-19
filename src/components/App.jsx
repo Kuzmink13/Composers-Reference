@@ -5,6 +5,7 @@ import ModeController from './ModeController';
 import Music from '../Music';
 import Utilities from '../Utilities';
 import Scales from '../Scales';
+import ModeCard from './ModeCard';
 
 const { notesInOctave, tonalities, supportedClefs, keyMap } = Utilities;
 const { supportedScaleLengths } = Scales;
@@ -30,9 +31,11 @@ function App() {
   }
 
   function handleKeyBoardPress(event) {
-    const pressedNote = keyMap[event.key.toLowerCase()];
-    const isRootPress = event.shiftKey;
-    pressedNote !== undefined && handleKeyPress(pressedNote, isRootPress);
+    if (!isModeCardShown) {
+      const pressedNote = keyMap[event.key.toLowerCase()];
+      const isRootPress = event.shiftKey;
+      pressedNote !== undefined && handleKeyPress(pressedNote, isRootPress);
+    }
   }
 
   useEffect(() => {
@@ -49,13 +52,41 @@ function App() {
   }
 
   function handleDelete(event) {
-    (event.key === 'Del' || event.key === 'Delete') && clearAll();
+    if (event.key === 'Del' || event.key === 'Delete') {
+      closeCard();
+      clearAll();
+    }
   }
 
   useEffect(() => {
     document.addEventListener('keydown', handleDelete);
     return () => {
       document.removeEventListener('keydown', handleDelete);
+    };
+  });
+
+  // MODE CARD CONTROLLER
+  const [isModeCardShown, setIsModeCardShown] = useState(false);
+  const [modeProps, setModeProps] = useState(undefined);
+
+  function getCard(modeProps) {
+    setIsModeCardShown(true);
+    setModeProps(modeProps);
+  }
+
+  function closeCard() {
+    setIsModeCardShown(false);
+    setModeProps(undefined);
+  }
+
+  function handleEscape(event) {
+    (event.key === 'Esc' || event.key === 'Escape') && closeCard();
+  }
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
     };
   });
 
@@ -163,6 +194,7 @@ function App() {
     );
   }, [isNoteSelected, root, selectedTonalities, isFilteredBySelection]);
 
+  // RENDER
   return (
     <div className="flex flex-col h-screen bg-gray-100">
       <Navbar
@@ -178,6 +210,15 @@ function App() {
         handleRevertSettings={handleRevertSettings}
       />
 
+      {isModeCardShown && (
+        <div
+          className="fixed h-full w-full inset-0 z-30 flex bg-gray-400 bg-opacity-25"
+          onClick={closeCard}
+        >
+          <ModeCard {...modeProps} />
+        </div>
+      )}
+
       <div className="w-full overflow-y-hidden mx-auto flex flex-col lg:max-w-screen-lg">
         <Keys
           isNoteSelected={isNoteSelected}
@@ -186,7 +227,11 @@ function App() {
           screenSize={screenSize}
           handleKeyPress={handleKeyPress}
         />
-        <ModeController filteredLists={filteredLists} clef={clef} />
+        <ModeController
+          filteredLists={filteredLists}
+          clef={clef}
+          getCard={getCard}
+        />
       </div>
     </div>
   );
