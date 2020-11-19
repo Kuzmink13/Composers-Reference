@@ -83,10 +83,18 @@ function App() {
     (event.key === 'Esc' || event.key === 'Escape') && closeCard();
   }
 
+  function preventScroll(event) {
+    isModeCardShown &&
+      (event.key === ' ' || event.key === 'Spacebar') &&
+      event.preventDefault();
+  }
+
   useEffect(() => {
     document.addEventListener('keydown', handleEscape);
+    document.addEventListener('keydown', preventScroll);
     return () => {
       document.removeEventListener('keydown', handleEscape);
+      document.removeEventListener('keydown', preventScroll);
     };
   });
 
