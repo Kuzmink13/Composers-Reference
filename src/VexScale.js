@@ -34,7 +34,6 @@ class VexScale {
     let prev = ' ';
 
     return baseNotes.map((el) => {
-      console.log(el, prev);
       const isB = el[0] === 'B';
       const hasSkippedB = el[0] === 'C' && prev[0] === 'A';
       const shouldJump = isB || hasSkippedB;
