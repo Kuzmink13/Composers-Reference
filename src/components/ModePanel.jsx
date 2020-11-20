@@ -50,7 +50,7 @@ function ModePanel(props) {
   let scrollParentRef;
   return (
     <div
-      className="h-full overflow-y-auto scrolling-auto"
+      className="h-full overflow-y-auto pb-1 scrolling-auto"
       ref={(ref) => (scrollParentRef = ref)}
     >
       <InfiniteScroll

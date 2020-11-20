@@ -5,7 +5,7 @@ function ModeBlock(props) {
   return (
     <div
       onClick={() => props.getCard(props)}
-      className="m-2 p-2 bg-white border border-gray-400 rounded-lg text-center tracking-wide font-medium"
+      className="m-2 p-2 bg-white border border-gray-400 rounded-lg text-center tracking-wide font-medium transform hover:scale-105"
     >
       {props.modeName}
       <VexStaff {...props} />
