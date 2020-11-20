@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import Menu from './Menu';
 import Options from './Options';
 
+import Keyboard from '../Keyboard';
+
 function Navbar(props) {
   const [optionsIsOpen, setOptionsIsOpen] = useState(false);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
@@ -23,7 +25,7 @@ function Navbar(props) {
   }
 
   function handleEscape(event) {
-    (event.key === 'Esc' || event.key === 'Escape') && closeAll();
+    Keyboard.isEscape(event.key) && closeAll();
   }
 
   useEffect(() => {

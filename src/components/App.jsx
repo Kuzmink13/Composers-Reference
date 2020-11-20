@@ -7,10 +7,11 @@ import ModeController from './ModeController';
 
 import Music from '../Music';
 import Scales from '../Scales';
+import Keyboard from '../Keyboard';
 import Utilities from '../Utilities';
 
-const { notesInOctave, tonalities, supportedClefs, keyMap } = Utilities;
 const { supportedScaleLengths } = Scales;
+const { notesInOctave, tonalities, supportedClefs } = Utilities;
 
 function App() {
   // NOTE/ROOT SELECTION
@@ -34,7 +35,7 @@ function App() {
 
   function handleKeyBoardPress(event) {
     if (!isModeCardShown) {
-      const pressedNote = keyMap[event.key.toLowerCase()];
+      const pressedNote = Keyboard.getNote(event.code);
       const isRootPress = event.shiftKey;
       pressedNote !== undefined && handleKeyPress(pressedNote, isRootPress);
     }
@@ -54,7 +55,7 @@ function App() {
   }
 
   function handleDelete(event) {
-    if (event.key === 'Del' || event.key === 'Delete') {
+    if (Keyboard.isDelete(event.key)) {
       closeCard();
       clearAll();
     }
@@ -82,13 +83,11 @@ function App() {
   }
 
   function handleEscape(event) {
-    (event.key === 'Esc' || event.key === 'Escape') && closeCard();
+    Keyboard.isEscape(event.key) && closeCard();
   }
 
   function preventScroll(event) {
-    isModeCardShown &&
-      (event.key === ' ' || event.key === 'Spacebar') &&
-      event.preventDefault();
+    isModeCardShown && Keyboard.isSpace(event.key) && event.preventDefault();
   }
 
   useEffect(() => {
