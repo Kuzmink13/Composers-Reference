@@ -154,7 +154,13 @@ function App() {
   }
 
   function revertSelectedTonalities() {
-    setSelectedTonalities(selectedTonalitiesDefault());
+    const hasSelectionChanged = () =>
+      !selectedTonalitiesDefault().reduce(
+        (acc, el, i) => acc && el === selectedTonalities[i],
+        true
+      );
+
+    hasSelectionChanged() && setSelectedTonalities(selectedTonalitiesDefault());
   }
 
   // REVERT TO DEFAULT SETTINGS
