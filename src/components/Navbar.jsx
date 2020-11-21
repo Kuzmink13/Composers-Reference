@@ -43,30 +43,34 @@ function Navbar(props) {
             COMPOSER'S REFERENCE
           </h1>
           <nav className="flex text-gray-600">
-            <svg
+            <button
               onClick={props.clearAll}
-              className="fill-current h-5 w-5 mr-6 z-30 cursor-pointer"
-              viewBox="0 0 20 20"
+              className="p-2 mr-2"
               alt="reset note selection"
             >
-              <path d="M14.66 15.66A8 8 0 1 1 17 10h-2a6 6 0 1 0-1.76 4.24l1.42 1.42zM12 10h8l-4 4-4-4z" />
-            </svg>
-            <svg
-              onClick={optionsHandler}
-              className="fill-current h-5 w-5 mr-6 z-30 cursor-pointer"
-              viewBox="0 0 20 20"
-              alt="options"
-            >
-              <path d="M3.94 6.5L2.22 3.64l1.42-1.42L6.5 3.94c.52-.3 1.1-.54 1.7-.7L9 0h2l.8 3.24c.6.16 1.18.4 1.7.7l2.86-1.72 1.42 1.42-1.72 2.86c.3.52.54 1.1.7 1.7L20 9v2l-3.24.8c-.16.6-.4 1.18-.7 1.7l1.72 2.86-1.42 1.42-2.86-1.72c-.52.3-1.1.54-1.7.7L11 20H9l-.8-3.24c-.6-.16-1.18-.4-1.7-.7l-2.86 1.72-1.42-1.42 1.72-2.86c-.3-.52-.54-1.1-.7-1.7L0 11V9l3.24-.8c.16-.6.4-1.18.7-1.7zM10 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-            </svg>
-            <svg
-              onClick={menuHandler}
-              className="fill-current h-5 w-5 z-30 cursor-pointer"
-              viewBox="0 0 20 20"
-              alt="menu"
-            >
-              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-            </svg>
+              <svg
+                className="fill-current h-5 w-5 z-30 cursor-pointer"
+                viewBox="0 0 20 20"
+              >
+                <path d="M14.66 15.66A8 8 0 1 1 17 10h-2a6 6 0 1 0-1.76 4.24l1.42 1.42zM12 10h8l-4 4-4-4z" />
+              </svg>
+            </button>
+            <button onClick={optionsHandler} className="p-2 mr-2" alt="options">
+              <svg
+                className="fill-current h-5 w-5 z-30 cursor-pointer"
+                viewBox="0 0 20 20"
+              >
+                <path d="M3.94 6.5L2.22 3.64l1.42-1.42L6.5 3.94c.52-.3 1.1-.54 1.7-.7L9 0h2l.8 3.24c.6.16 1.18.4 1.7.7l2.86-1.72 1.42 1.42-1.72 2.86c.3.52.54 1.1.7 1.7L20 9v2l-3.24.8c-.16.6-.4 1.18-.7 1.7l1.72 2.86-1.42 1.42-2.86-1.72c-.52.3-1.1.54-1.7.7L11 20H9l-.8-3.24c-.6-.16-1.18-.4-1.7-.7l-2.86 1.72-1.42-1.42 1.72-2.86c-.3-.52-.54-1.1-.7-1.7L0 11V9l3.24-.8c.16-.6.4-1.18.7-1.7zM10 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+              </svg>
+            </button>
+            <button onClick={menuHandler} className="p-2" alt="menu">
+              <svg
+                className="fill-current h-5 w-5 z-30 cursor-pointer"
+                viewBox="0 0 20 20"
+              >
+                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+              </svg>
+            </button>
           </nav>
         </div>
         {(optionsIsOpen || menuIsOpen) && (
