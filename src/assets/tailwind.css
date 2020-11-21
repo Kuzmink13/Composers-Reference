@@ -72,31 +72,15 @@
     @apply bg-blue-500 border-blue-600;
   }
 
-  .icon {
-    @apply p-2 border-2 rounded-lg border-transparent;
+  .tab-selection {
+    @apply border-2 rounded-lg border-transparent;
   }
 
-  .icon:hover {
-    @apply text-blue-600;
-  }
-
-  .icon:focus {
+  .tab-selection:focus {
     @apply outline-none;
   }
 
-  .icon:focus-visible {
-    @apply border-blue-200 text-blue-600 shadow;
-  }
-
-  .mode-block {
-    @apply m-2 border-2 border-transparent rounded-lg;
-  }
-
-  .mode-block:focus {
-    @apply outline-none;
-  }
-
-  .mode-block:focus-visible {
-    @apply border-blue-200 shadow-md bg-blue-200;
+  .tab-selection:focus-visible {
+    @apply border-blue-200 shadow;
   }
 }

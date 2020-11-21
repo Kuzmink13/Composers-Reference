@@ -45,7 +45,7 @@ function Navbar(props) {
           <nav className="flex text-gray-600">
             <button
               onClick={props.clearAll}
-              className="icon sm:mr-2"
+              className="tab-selection p-2 hover:text-gray-800 sm:mr-2"
               alt="reset note selection"
             >
               <svg
@@ -57,7 +57,7 @@ function Navbar(props) {
             </button>
             <button
               onClick={optionsHandler}
-              className="icon sm:mr-2"
+              className="tab-selection p-2 hover:text-gray-800 sm:mr-2"
               alt="options"
             >
               <svg
@@ -67,7 +67,11 @@ function Navbar(props) {
                 <path d="M3.94 6.5L2.22 3.64l1.42-1.42L6.5 3.94c.52-.3 1.1-.54 1.7-.7L9 0h2l.8 3.24c.6.16 1.18.4 1.7.7l2.86-1.72 1.42 1.42-1.72 2.86c.3.52.54 1.1.7 1.7L20 9v2l-3.24.8c-.16.6-.4 1.18-.7 1.7l1.72 2.86-1.42 1.42-2.86-1.72c-.52.3-1.1.54-1.7.7L11 20H9l-.8-3.24c-.6-.16-1.18-.4-1.7-.7l-2.86 1.72-1.42-1.42 1.72-2.86c-.3-.52-.54-1.1-.7-1.7L0 11V9l3.24-.8c.16-.6.4-1.18.7-1.7zM10 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
               </svg>
             </button>
-            <button onClick={menuHandler} className="icon" alt="menu">
+            <button
+              onClick={menuHandler}
+              className="tab-selection p-2 hover:text-gray-800"
+              alt="menu"
+            >
               <svg
                 className="fill-current h-5 w-5 z-30 cursor-pointer"
                 viewBox="0 0 20 20"
