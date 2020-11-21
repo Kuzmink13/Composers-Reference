@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 
 import Navbar from './Navbar';
 import ModeCard from './ModeCard';
@@ -217,7 +217,7 @@ function App() {
 
   // RENDER
   return (
-    <div className="flex flex-col h-screen bg-gray-100">
+    <Fragment>
       <Navbar
         areNoteNamesVisible={areNoteNamesVisible}
         isFilteredBySelection={isFilteredBySelection}
@@ -240,7 +240,7 @@ function App() {
         </div>
       )}
 
-      <div className="w-full overflow-y-hidden mx-auto flex flex-col lg:max-w-screen-lg">
+      <main className="w-full overflow-y-hidden mx-auto flex flex-col lg:max-w-screen-lg">
         <Keys
           isNoteSelected={isNoteSelected}
           root={root}
@@ -253,8 +253,8 @@ function App() {
           clef={clef}
           getCard={getCard}
         />
-      </div>
-    </div>
+      </main>
+    </Fragment>
   );
 }
 
