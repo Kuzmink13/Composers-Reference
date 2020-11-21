@@ -24,10 +24,12 @@ function App() {
     const isKeyGettingPressed = (i) => i === pressedNote;
     const isRootPress = event.shiftKey;
     const isPressedNoteCurrentRoot = pressedNote === root;
-    const newNote = isRootPress ? true : !isNoteSelected[pressedNote];
+    const newNoteSelection = isRootPress ? true : !isNoteSelected[pressedNote];
 
     setIsNoteSelected(
-      isNoteSelected.map((key, i) => (isKeyGettingPressed(i) ? newNote : key))
+      isNoteSelected.map((noteSelection, i) =>
+        isKeyGettingPressed(i) ? newNoteSelection : noteSelection
+      )
     );
     setRoot(
       isPressedNoteCurrentRoot ? rootDefault : isRootPress ? pressedNote : root
