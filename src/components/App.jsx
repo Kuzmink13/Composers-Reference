@@ -20,8 +20,9 @@ function App() {
   const [isNoteSelected, setIsNoteSelected] = useState(isNoteSelectedDefault());
   const [root, setRoot] = useState(rootDefault);
 
-  function handleKeyPress(pressedNote, isRootPress) {
+  function handleKeyPress(event, pressedNote) {
     const isKeyGettingPressed = (i) => i === pressedNote;
+    const isRootPress = event.shiftKey;
     const isPressedNoteCurrentRoot = pressedNote === root;
     const newNote = isRootPress ? true : !isNoteSelected[pressedNote];
 
@@ -36,8 +37,7 @@ function App() {
   function handleKeyBoardPress(event) {
     if (!isModeCardShown) {
       const pressedNote = Keyboard.getNote(event.code);
-      const isRootPress = event.shiftKey;
-      pressedNote !== undefined && handleKeyPress(pressedNote, isRootPress);
+      pressedNote !== undefined && handleKeyPress(event, pressedNote);
     }
   }
 

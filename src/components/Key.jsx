@@ -16,8 +16,7 @@ function Key(props) {
 
   return (
     <div
-      onClick={() => props.handleKeyPress(props.value, false)}
-      onDoubleClick={() => props.handleKeyPress(props.value, true)}
+      onClick={(event) => props.handleKeyPress(event, props.value)}
       className={`key key-${color} key-${color}-${selection}`}
     >
       {props.areNoteNamesVisible && keyNotes[props.value].isWhite && (
