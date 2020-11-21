@@ -69,8 +69,12 @@ function App() {
   });
 
   // MODE CARD CONTROLLER
-  const [isModeCardShown, setIsModeCardShown] = useState(false);
-  const [modeProps, setModeProps] = useState(undefined);
+  const isModeCardShownDefault = false;
+  const modePropsDefault = undefined;
+  const [isModeCardShown, setIsModeCardShown] = useState(
+    isModeCardShownDefault
+  );
+  const [modeProps, setModeProps] = useState(modePropsDefault);
 
   function getCard(modeProps) {
     setIsModeCardShown(true);
@@ -78,8 +82,8 @@ function App() {
   }
 
   function closeCard() {
-    setIsModeCardShown(false);
-    setModeProps(undefined);
+    setIsModeCardShown(isModeCardShownDefault);
+    setModeProps(modePropsDefault);
   }
 
   function handleEscape(event) {
