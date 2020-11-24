@@ -29,7 +29,7 @@ function ModeController(props) {
           getCard={props.getCard}
         />
       ) : (
-        <div className="m-auto">no modes available</div>
+        <span className="m-auto">no modes available</span>
       )}
     </Fragment>
   );

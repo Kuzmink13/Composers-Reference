@@ -11,18 +11,18 @@ function ModeButton(props) {
     >
       <button
         onClick={() => props.handleSelectorChange(props.scaleList)}
-        className="tab-selection p-2 font-semibold tracking-wider cursor-pointer flex"
+        className="text-sm sm:text-base tab-selection p-2 font-semibold tracking-wider cursor-pointer"
       >
-        <div className={isSelected ? 'text-gray-800' : 'text-gray-500'}>
+        <span className={isSelected ? 'text-gray-800' : 'text-gray-500'}>
           {props.scaleListString}-NOTE
-        </div>
-        <div
+        </span>
+        <span
           className={`text-white text-xs ml-3 py-1 px-2 rounded-full shadow-md ${
             isSelected ? 'bg-gray-700' : 'bg-gray-400'
           }`}
         >
           {props.listSize}
-        </div>
+        </span>
       </button>
     </div>
   );

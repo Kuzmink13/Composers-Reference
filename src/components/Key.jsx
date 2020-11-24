@@ -20,7 +20,7 @@ function Key(props) {
       className={`key key-${color} key-${color}-${selection}`}
     >
       {props.areNoteNamesVisible && keyNotes[props.value].isWhite && (
-        <div className="p-2 font-semibold text-md">{noteName}</div>
+        <span className="p-2 font-semibold text-md">{noteName}</span>
       )}
     </div>
   );
