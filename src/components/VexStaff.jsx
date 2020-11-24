@@ -14,7 +14,7 @@ function VexStaff(props) {
     };
   });
 
-  return <div id={props.modeName}></div>;
+  return <figure id={props.modeName}></figure>;
 }
 
 export default VexStaff;
