@@ -19,7 +19,7 @@ function Options(props) {
           onChange={props.handleNoteNamesVisible}
           checked={props.areNoteNamesVisible}
         />
-        <label for="names-on-keys" className="cursor-pointer">
+        <label htmlFor="names-on-keys" className="cursor-pointer">
           Display note names on keys
         </label>
         <br />
@@ -31,7 +31,7 @@ function Options(props) {
           onChange={props.handleIsFilteredBySelection}
           checked={props.isFilteredBySelection}
         />
-        <label for="root-scale-display" className="cursor-pointer">
+        <label htmlFor="root-scale-display" className="cursor-pointer">
           Display scale only if its root is selected
         </label>
       </fieldset>
@@ -49,7 +49,7 @@ function Options(props) {
               onChange={() => props.handleClefChange(el)}
               checked={el === props.clef}
             />
-            <label for={el} className="cursor-pointer">
+            <label htmlFor={el} className="cursor-pointer">
               {el.charAt(0).toUpperCase() + el.slice(1)}
             </label>
             {isLineBreakNeeded(arr, i) && <br />}
@@ -69,7 +69,7 @@ function Options(props) {
               onChange={() => props.handleSelectedTonalityChange(i)}
               checked={!props.selectedTonalities[i]}
             />
-            <label for={tonality.name} className="cursor-pointer">
+            <label htmlFor={tonality.name} className="cursor-pointer">
               {tonality.name}
             </label>
             {isLineBreakNeeded(arr, i) && <br />}
