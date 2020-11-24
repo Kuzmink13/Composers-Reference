@@ -170,7 +170,8 @@ function App() {
   }
 
   // REVERT TO DEFAULT SETTINGS
-  function handleRevertSettings() {
+  function handleRevertSettings(event) {
+    event.preventDefault();
     revertNoteNamesVisible();
     revertIsFilteredBySelection();
     revertClef();
