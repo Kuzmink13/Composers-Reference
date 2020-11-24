@@ -1,13 +1,13 @@
 import React from 'react';
 
-function Menu(props) {
+function Menu() {
   return (
-    <div className="drop-down w-56 mr-6 py-2">
-      <div className="menu-item">About</div>
-      <div className="menu-item">Meet the Scales</div>
-      <div className="menu-item">FAQ</div>
-      <div className="menu-item">Contact</div>
-    </div>
+    <ul className="drop-down w-56 mr-6 py-2">
+      <li className="menu-item">About</li>
+      <li className="menu-item">Meet the Scales</li>
+      <li className="menu-item">FAQ</li>
+      <li className="menu-item">Contact</li>
+    </ul>
   );
 }
 
