@@ -9,10 +9,11 @@ function ModeBlock(props) {
     >
       <div
         className="p-2 bg-white border border-gray-400 rounded-lg
-                    text-center tracking-wider font-medium
                     hover:shadow-md"
       >
-        {props.modeName}
+        <h2 className="text-center tracking-wider font-medium">
+          {props.modeName}
+        </h2>
         <VexStaff {...props} />
       </div>
     </button>
