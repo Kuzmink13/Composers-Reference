@@ -7,7 +7,7 @@ function Options(props) {
   const isLineBreakNeeded = (arr, i) => i + 1 !== arr.length;
 
   return (
-    <form className="drop-down mr-16 px-4 py-2">
+    <form className="drop-down mt-10 mr-20 px-4 py-2">
       <h2 className="mx-auto py-1 font-bold tracking-widest">OPTIONS</h2>
 
       {/* GENERAL OPTIONS */}
@@ -79,10 +79,10 @@ function Options(props) {
 
       {/* RESET SETTINGS BUTTON */}
       <button
-        className="btn mt-4 mb-2 mx-auto cursor-pointer"
+        className="tab-selection p-1 mt-3 mb-1 mx-auto"
         onClick={(event) => props.handleRevertSettings(event)}
       >
-        REVERT TO DEFAULT
+        <div className="btn cursor-pointer">REVERT TO DEFAULT</div>
       </button>
     </form>
   );
