@@ -6,19 +6,33 @@ import Options from './Options';
 import Keyboard from '../Keyboard';
 
 function Navbar(props) {
-  const [optionsIsOpen, setOptionsIsOpen] = useState(false);
+  // DROP-DOWN MENU SELECTION
   const [menuIsOpen, setMenuIsOpen] = useState(false);
-
-  function menuHandler() {
-    setMenuIsOpen(!menuIsOpen);
-    optionsIsOpen && setOptionsIsOpen(false);
-  }
+  const [optionsIsOpen, setOptionsIsOpen] = useState(false);
 
   function optionsHandler() {
     setOptionsIsOpen(!optionsIsOpen);
     menuIsOpen && setMenuIsOpen(false);
   }
 
+  function menuHandler() {
+    setMenuIsOpen(!menuIsOpen);
+    optionsIsOpen && setOptionsIsOpen(false);
+  }
+
+  function handleNavShortcuts(event) {
+    event.code === 'KeyO' && optionsHandler();
+    event.code === 'KeyL' && menuHandler();
+  }
+
+  useEffect(() => {
+    document.addEventListener('keypress', handleNavShortcuts);
+    return () => {
+      document.removeEventListener('keypress', handleNavShortcuts);
+    };
+  });
+
+  // CLOSE DROP-DOWN MENUS
   function closeAll() {
     setMenuIsOpen(false);
     setOptionsIsOpen(false);
@@ -35,6 +49,7 @@ function Navbar(props) {
     };
   });
 
+  // RENDER
   return (
     <header className="py-1 px-auto bg-white border-b border-gray-400">
       <div className="relative flex justify-between items-center mx-auto px-8 lg:max-w-screen-lg text-gray-800">
