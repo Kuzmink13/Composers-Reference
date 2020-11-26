@@ -673,6 +673,7 @@ module.exports = {
       'in-out': 'cubic-bezier(0.4, 0, 0.2, 1)',
     },
     transitionDuration: {
+      50: '50ms',
       75: '75ms',
       100: '100ms',
       150: '150ms',
@@ -683,6 +684,7 @@ module.exports = {
       1000: '1000ms',
     },
     transitionDelay: {
+      25: '25ms',
       75: '75ms',
       100: '100ms',
       150: '150ms',

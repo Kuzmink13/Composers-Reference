@@ -12,10 +12,10 @@ function ModeCard(props) {
     const focusTrap = createFocusTrap('#mode-card', {
       allowOutsideClick: true,
       onActivate: function () {
-        container.className = 'trap is-active mode-card';
+        container.classList.add('trap', 'is-active');
       },
       onDeactivate: function () {
-        container.className = 'trap';
+        container.classList.remove('is-active');
       },
     });
 
@@ -31,6 +31,16 @@ function ModeCard(props) {
     event.stopPropagation();
   }
 
+  // ANIMATION
+  useEffect(() => {
+    document
+      .getElementById('mode-card')
+      .classList.remove('scale-95', 'opacity-0');
+    document
+      .getElementById('mode-card')
+      .classList.add('scale-100', 'opacity-100');
+  });
+
   // RENDER
   const chordRoot = props.modeName.split(' ')[0];
   const modeChords = Chords.chordGenerator(
@@ -43,7 +53,11 @@ function ModeCard(props) {
   const isThreeNoteChord = (names) => names.length === 3;
 
   return (
-    <div onClick={cancelClose} id="mode-card" className="mode-card">
+    <div
+      onClick={cancelClose}
+      id="mode-card"
+      className="mode-card transform scale-95 opacity-0 transition delay-25 duration-50"
+    >
       {/* Mode Card Heading */}
       <hgroup>
         <h2

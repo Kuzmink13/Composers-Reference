@@ -216,6 +216,18 @@ function App() {
     );
   }, [isNoteSelected, root, selectedTonalities, isFilteredBySelection]);
 
+  // MODE-CARD ANIMATION
+  useEffect(() => {
+    if (isModeCardShown) {
+      document
+        .getElementById('grayed-out-background')
+        .classList.remove('bg-opacity-0');
+      document
+        .getElementById('grayed-out-background')
+        .classList.add('bg-opacity-25');
+    }
+  });
+
   // RENDER
   return (
     <Fragment>
@@ -235,7 +247,8 @@ function App() {
 
       {isModeCardShown && (
         <div
-          className="fixed h-full w-full inset-0 z-30 flex bg-gray-400 bg-opacity-25"
+          id="grayed-out-background"
+          className="fixed h-full w-full inset-0 z-30 flex bg-gray-400 bg-opacity-0 transition delay-25 duration-50"
           onClick={closeCard}
         >
           <ModeCard {...modeProps} />
