@@ -223,6 +223,7 @@ function App() {
         areNoteNamesVisible={areNoteNamesVisible}
         isFilteredBySelection={isFilteredBySelection}
         selectedTonalities={selectedTonalities}
+        isModeCardShown={isModeCardShown}
         clef={clef}
         clearAll={clearAll}
         handleNoteNamesVisible={handleNoteNamesVisible}

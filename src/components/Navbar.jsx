@@ -11,12 +11,12 @@ function Navbar(props) {
   const [optionsIsOpen, setOptionsIsOpen] = useState(false);
 
   function optionsHandler() {
-    setOptionsIsOpen(!optionsIsOpen);
+    props.isModeCardShown || setOptionsIsOpen(!optionsIsOpen);
     menuIsOpen && setMenuIsOpen(false);
   }
 
   function menuHandler() {
-    setMenuIsOpen(!menuIsOpen);
+    props.isModeCardShown || setMenuIsOpen(!menuIsOpen);
     optionsIsOpen && setOptionsIsOpen(false);
   }
 
