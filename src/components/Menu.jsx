@@ -9,10 +9,10 @@ function Menu() {
     const focusTrap = createFocusTrap('#menu', {
       allowOutsideClick: true,
       onActivate: function () {
-        container.className = 'trap is-active drop-down w-56 mt-10 mr-10 py-2';
+        container.classList.add('trap', 'is-active');
       },
       onDeactivate: function () {
-        container.className = 'trap';
+        container.classList.remove('is-active');
       },
     });
 

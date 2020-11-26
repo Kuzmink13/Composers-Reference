@@ -219,12 +219,10 @@ function App() {
   // MODE-CARD ANIMATION
   useEffect(() => {
     if (isModeCardShown) {
-      document
-        .getElementById('grayed-out-background')
-        .classList.remove('bg-opacity-0');
-      document
-        .getElementById('grayed-out-background')
-        .classList.add('bg-opacity-25');
+      const container = document.getElementById('grayed-out-background');
+
+      container.classList.remove('bg-opacity-0');
+      container.classList.add('bg-opacity-25');
     }
   });
 

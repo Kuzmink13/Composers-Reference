@@ -33,12 +33,10 @@ function ModeCard(props) {
 
   // ANIMATION
   useEffect(() => {
-    document
-      .getElementById('mode-card')
-      .classList.remove('scale-95', 'opacity-0');
-    document
-      .getElementById('mode-card')
-      .classList.add('scale-100', 'opacity-100');
+    const container = document.getElementById('mode-card');
+
+    container.classList.remove('scale-95', 'opacity-0');
+    container.classList.add('scale-100', 'opacity-100');
   });
 
   // RENDER

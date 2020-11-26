@@ -13,10 +13,10 @@ function Options(props) {
     const focusTrap = createFocusTrap('#options', {
       allowOutsideClick: true,
       onActivate: function () {
-        container.className = 'trap is-active drop-down mt-10 mr-20 px-4 py-2';
+        container.classList.add('trap', 'is-active');
       },
       onDeactivate: function () {
-        container.className = 'trap';
+        container.classList.remove('is-active');
       },
     });
 
