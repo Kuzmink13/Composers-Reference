@@ -1,13 +1,36 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
+import { createFocusTrap } from 'focus-trap';
+
 import Utilities from '../Utilities';
 
 const { tonalities, supportedClefs } = Utilities;
 
 function Options(props) {
+  // FOCUS TRAP
+  useEffect(() => {
+    const container = document.getElementById('options');
+
+    const focusTrap = createFocusTrap('#options', {
+      onActivate: function () {
+        container.className = 'trap is-active drop-down mt-10 mr-20 px-4 py-2';
+      },
+      onDeactivate: function () {
+        container.className = 'trap';
+      },
+    });
+
+    focusTrap.activate();
+
+    return () => {
+      focusTrap.deactivate();
+    };
+  });
+
+  // RENDER
   const isLineBreakNeeded = (arr, i) => i + 1 !== arr.length;
 
   return (
-    <form className="drop-down mt-10 mr-20 px-4 py-2">
+    <form id="options" className="drop-down mt-10 mr-20 px-4 py-2">
       <h2 className="mx-auto py-1 font-bold tracking-widest">OPTIONS</h2>
 
       {/* GENERAL OPTIONS */}

@@ -1,9 +1,36 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
+import { createFocusTrap } from 'focus-trap';
 
 import Chords from '../Chords';
 import VexStaff from './VexStaff';
 
 function ModeCard(props) {
+  // FOCUS TRAP
+  useEffect(() => {
+    const container = document.getElementById('mode-card');
+
+    const focusTrap = createFocusTrap('#mode-card', {
+      onActivate: function () {
+        container.className = 'trap is-active mode-card';
+      },
+      onDeactivate: function () {
+        container.className = 'trap';
+      },
+    });
+
+    focusTrap.activate();
+
+    return () => {
+      focusTrap.deactivate();
+    };
+  });
+
+  // REMOVE CLOSE ON CLICK EFFECT
+  function cancelClose(event) {
+    event.stopPropagation();
+  }
+
+  // RENDER
   const chordRoot = props.modeName.split(' ')[0];
   const modeChords = Chords.chordGenerator(
     props.pitchCenter,
@@ -14,18 +41,14 @@ function ModeCard(props) {
   const isFirstChord = (chord) => chord === modeChords[0][0];
   const isThreeNoteChord = (names) => names.length === 3;
 
-  function cancelClose(event) {
-    event.stopPropagation();
-  }
-
   return (
-    <div
-      onClick={cancelClose}
-      className="text-gray-800 relative flex flex-col py-8 items-center w-full max-w-md m-auto border border-gray-400 bg-white rounded-lg shadow-xl"
-    >
+    <div onClick={cancelClose} id="mode-card" className="mode-card">
       {/* Mode Card Heading */}
       <hgroup>
-        <h2 className="text-lg font-bold uppercase tracking-widest text-center">
+        <h2
+          className="text-lg font-bold uppercase tracking-widest text-center focus:outline-none"
+          tabIndex="0"
+        >
           {props.modeName}
         </h2>
         <h3 className="italic tracking-wider lowercase mb-3">
