@@ -11,6 +11,7 @@ function Options(props) {
     const container = document.getElementById('options');
 
     const focusTrap = createFocusTrap('#options', {
+      allowOutsideClick: true,
       onActivate: function () {
         container.className = 'trap is-active drop-down mt-10 mr-20 px-4 py-2';
       },

@@ -10,6 +10,7 @@ function ModeCard(props) {
     const container = document.getElementById('mode-card');
 
     const focusTrap = createFocusTrap('#mode-card', {
+      allowOutsideClick: true,
       onActivate: function () {
         container.className = 'trap is-active mode-card';
       },

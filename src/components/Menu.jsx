@@ -7,6 +7,7 @@ function Menu() {
     const container = document.getElementById('menu');
 
     const focusTrap = createFocusTrap('#menu', {
+      allowOutsideClick: true,
       onActivate: function () {
         container.className = 'trap is-active drop-down w-56 mt-10 mr-10 py-2';
       },
