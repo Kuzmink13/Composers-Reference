@@ -78,6 +78,6 @@
   }
 
   .mode-card {
-    @apply text-gray-800 relative flex flex-col py-8 items-center w-full max-w-md m-auto border border-gray-400 bg-white rounded-lg shadow-xl;
+    @apply text-gray-800 relative flex flex-col py-6 items-center w-full max-w-md m-auto border border-gray-400 bg-white rounded-lg shadow-xl;
   }
 }
