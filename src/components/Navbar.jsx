@@ -21,14 +21,16 @@ function Navbar(props) {
   }
 
   function handleNavShortcuts(event) {
-    event.code === 'KeyO' && optionsHandler();
-    event.code === 'KeyL' && menuHandler();
+    if (!event.repeat) {
+      event.code === 'KeyO' && optionsHandler();
+      event.code === 'KeyL' && menuHandler();
+    }
   }
 
   useEffect(() => {
-    document.addEventListener('keypress', handleNavShortcuts);
+    document.addEventListener('keydown', handleNavShortcuts);
     return () => {
-      document.removeEventListener('keypress', handleNavShortcuts);
+      document.removeEventListener('keydown', handleNavShortcuts);
     };
   });
 

@@ -37,16 +37,16 @@ function App() {
   }
 
   function handleKeyBoardPress(event) {
-    if (!isModeCardShown) {
+    if (!isModeCardShown && !event.repeat) {
       const pressedNote = Keyboard.getNote(event.code);
       pressedNote !== undefined && handleKeyPress(event, pressedNote);
     }
   }
 
   useEffect(() => {
-    document.addEventListener('keypress', handleKeyBoardPress);
+    document.addEventListener('keydown', handleKeyBoardPress);
     return () => {
-      document.removeEventListener('keypress', handleKeyBoardPress);
+      document.removeEventListener('keydown', handleKeyBoardPress);
     };
   });
 
