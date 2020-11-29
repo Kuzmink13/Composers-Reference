@@ -29,7 +29,9 @@ function ModeController(props) {
           getCard={props.getCard}
         />
       ) : (
-        <span className="m-auto">no modes available</span>
+        <span className="text-gray-500 text-sm font-medium tracking-wider m-auto mt-12">
+          no results to display for the current selection
+        </span>
       )}
     </Fragment>
   );
