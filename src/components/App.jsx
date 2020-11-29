@@ -92,16 +92,10 @@ function App() {
     Keyboard.isEscape(event.key) && closeCard();
   }
 
-  function preventScroll(event) {
-    isModeCardShown && Keyboard.isSpace(event.key) && event.preventDefault();
-  }
-
   useEffect(() => {
     document.addEventListener('keydown', handleEscape);
-    document.addEventListener('keydown', preventScroll);
     return () => {
       document.removeEventListener('keydown', handleEscape);
-      document.removeEventListener('keydown', preventScroll);
     };
   });
 
@@ -249,7 +243,7 @@ function App() {
           className="fixed h-full w-full inset-0 z-30 flex bg-gray-400 bg-opacity-0 transition delay-25 duration-50"
           onClick={closeCard}
         >
-          <ModeCard {...modeProps} />
+          <ModeCard {...modeProps} closeCard={closeCard} />
         </div>
       )}
 

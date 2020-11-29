@@ -54,14 +54,11 @@ function ModeCard(props) {
     <div
       onClick={cancelClose}
       id="mode-card"
-      className="mode-card transform scale-95 opacity-0 transition delay-25 duration-50"
+      className="relative mode-card transform scale-95 opacity-0 transition delay-25 duration-50"
     >
-      {/* Mode Card Heading */}
+      {/* MODE CARD HEADING */}
       <hgroup>
-        <h2
-          className="text-lg font-bold uppercase tracking-widest text-center focus:outline-none"
-          tabIndex="0"
-        >
+        <h2 className="text-lg font-bold uppercase tracking-widest text-center focus:outline-none">
           {props.modeName}
         </h2>
         <h3 className="italic tracking-wider text-center lowercase mb-3">
@@ -71,12 +68,15 @@ function ModeCard(props) {
 
       <VexStaff {...props} />
 
-      {/* Chord table */}
-      <table className="mt-5 block max-h-card overflow-y-auto scrolling-auto">
+      {/* CHORD TABLE */}
+      <table
+        className="tab-selection p-2 mt-5 block max-h-card overflow-y-auto scrolling-auto"
+        tabIndex="0"
+      >
         <tbody>
           {Array.from(modeChords, ([chord, names, degrees]) => (
             <Fragment key={chord}>
-              {/* row-divider */}
+              {/* ROW-DIVIDER */}
               {isThreeNoteChord(names) && !isFirstChord(chord) && (
                 <tr>
                   <th colSpan="3" scope="row">
@@ -85,7 +85,7 @@ function ModeCard(props) {
                 </tr>
               )}
 
-              {/* table row */}
+              {/* TABLE ROW */}
               <tr key={chord}>
                 <th className="font-semibold text-center px-3 pt-1 border-r border-gray-400">
                   {`${chordRoot}${chord}`.trim()}
@@ -99,6 +99,20 @@ function ModeCard(props) {
           ))}
         </tbody>
       </table>
+
+      {/* CLOSE MODE-CARD BUTTON */}
+      <button
+        name="close mode-card"
+        className="absolute top-0 right-0 tab-selection p-2 m-1 text-gray-600 hover:text-gray-800"
+        onClick={props.closeCard}
+      >
+        <svg
+          className="h-5 w-5 fill-current cursor-pointer"
+          viewBox="0 0 20 20"
+        >
+          <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z" />
+        </svg>
+      </button>
     </div>
   );
 }
