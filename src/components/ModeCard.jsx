@@ -64,7 +64,7 @@ function ModeCard(props) {
         >
           {props.modeName}
         </h2>
-        <h3 className="italic tracking-wider lowercase mb-3">
+        <h3 className="italic tracking-wider text-center lowercase mb-3">
           {`from the ${props.parentTonality} scale family`}
         </h3>
       </hgroup>
