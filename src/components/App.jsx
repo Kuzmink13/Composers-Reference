@@ -8,6 +8,7 @@ import ModeController from './ModeController';
 import Music from '../Music';
 import Scales from '../Scales';
 import Keyboard from '../Keyboard';
+import AppStorage from '../AppStorage';
 import Utilities from '../Utilities';
 
 const { supportedScaleLengths } = Scales;
@@ -102,69 +103,79 @@ function App() {
   // KEYBOARD OVERLAY TOGGLE
   const isOverlayActiveDefault = false;
   const [isOverlayActive, setIsOverlayActive] = useState(
-    isOverlayActiveDefault
+    AppStorage.getBoolean('overlay') || isOverlayActiveDefault
   );
 
   function handleOverlayToggle() {
     setIsOverlayActive(!isOverlayActive);
+    AppStorage.setBoolean('overlay', !isOverlayActive);
   }
 
   function revertOverlayToggle() {
     setIsOverlayActive(isOverlayActiveDefault);
+    AppStorage.removeItem('overlay');
   }
 
   // NOTE NAME VISIBILITY TOGGLE
   const noteNameVisibilityDefault = false;
   const [areNoteNamesVisible, setAreNoteNamesVisible] = useState(
-    noteNameVisibilityDefault
+    AppStorage.getBoolean('noteNames') || noteNameVisibilityDefault
   );
 
   function handleNoteNamesVisible() {
     setAreNoteNamesVisible(!areNoteNamesVisible);
+    AppStorage.setBoolean('noteNames', !areNoteNamesVisible);
   }
 
   function revertNoteNamesVisible() {
     setAreNoteNamesVisible(noteNameVisibilityDefault);
+    AppStorage.removeItem('noteNames');
   }
 
   // FILTER RESULTS BY NOTE SELECTION TOGGLE
   const isFilteredBySelectionDefault = false;
   const [isFilteredBySelection, setIsFilteredBySelection] = useState(
-    isFilteredBySelectionDefault
+    AppStorage.getBoolean('selectionFilter') || isFilteredBySelectionDefault
   );
 
   function handleIsFilteredBySelection() {
     setIsFilteredBySelection(!isFilteredBySelection);
+    AppStorage.setBoolean('selectionFilter', !isFilteredBySelection);
   }
 
   function revertIsFilteredBySelection() {
     setIsFilteredBySelection(isFilteredBySelectionDefault);
+    AppStorage.removeItem('selectionFilter');
   }
 
   // CLEF SELECTION CONTROL
   const clefDefault = supportedClefs[0];
-  const [clef, setClef] = useState(clefDefault);
+  const [clef, setClef] = useState(AppStorage.getItem('clef') || clefDefault);
 
   function handleClefChange(newClef) {
     setClef(newClef);
+    AppStorage.setItem('clef', newClef);
   }
 
   function revertClef() {
     setClef(clefDefault);
+    AppStorage.removeItem('clef');
   }
 
   // SELECTED TONALITIES CONTROL
   const selectedTonalitiesDefault = () => Array.from(tonalities, () => true);
   const [selectedTonalities, setSelectedTonalities] = useState(
-    selectedTonalitiesDefault()
+    AppStorage.getBooleanArray('tonalities') || selectedTonalitiesDefault()
   );
 
   function handleSelectedTonalityChange(tonalityIndex) {
     const isUpdating = (i) => tonalityIndex === i;
-
-    setSelectedTonalities(
-      selectedTonalities.map((el, i) => (isUpdating(i) ? !el : el))
+    const newSelectedTonalities = selectedTonalities.map((el, i) =>
+      isUpdating(i) ? !el : el
     );
+
+    setSelectedTonalities(newSelectedTonalities);
+    AppStorage.setBooleanArray('tonalities', newSelectedTonalities);
   }
 
   function revertSelectedTonalities() {
@@ -174,7 +185,10 @@ function App() {
         true
       );
 
-    hasSelectionChanged() && setSelectedTonalities(selectedTonalitiesDefault());
+    if (hasSelectionChanged()) {
+      setSelectedTonalities(selectedTonalitiesDefault());
+      AppStorage.removeItem('tonalities');
+    }
   }
 
   // REVERT TO DEFAULT SETTINGS
