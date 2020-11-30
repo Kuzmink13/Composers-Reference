@@ -99,18 +99,32 @@ function App() {
     };
   });
 
+  // KEYBOARD OVERLAY TOGGLE
+  const isOverlayActiveDefault = false;
+  const [isOverlayActive, setIsOverlayActive] = useState(
+    isOverlayActiveDefault
+  );
+
+  function handleOverlayToggle() {
+    setIsOverlayActive(!isOverlayActive);
+  }
+
+  function revertOverlayToggle() {
+    setIsOverlayActive(isOverlayActiveDefault);
+  }
+
   // NOTE NAME VISIBILITY TOGGLE
   const noteNameVisibilityDefault = false;
-  const [areNoteNamesVisible, setareNoteNamesVisible] = useState(
+  const [areNoteNamesVisible, setAreNoteNamesVisible] = useState(
     noteNameVisibilityDefault
   );
 
   function handleNoteNamesVisible() {
-    setareNoteNamesVisible(!areNoteNamesVisible);
+    setAreNoteNamesVisible(!areNoteNamesVisible);
   }
 
   function revertNoteNamesVisible() {
-    setareNoteNamesVisible(noteNameVisibilityDefault);
+    setAreNoteNamesVisible(noteNameVisibilityDefault);
   }
 
   // FILTER RESULTS BY NOTE SELECTION TOGGLE
@@ -166,6 +180,7 @@ function App() {
   // REVERT TO DEFAULT SETTINGS
   function handleRevertSettings(event) {
     event.preventDefault();
+    revertOverlayToggle();
     revertNoteNamesVisible();
     revertIsFilteredBySelection();
     revertClef();
@@ -224,12 +239,14 @@ function App() {
   return (
     <Fragment>
       <Navbar
+        isOverlayActive={isOverlayActive}
         areNoteNamesVisible={areNoteNamesVisible}
         isFilteredBySelection={isFilteredBySelection}
         selectedTonalities={selectedTonalities}
         isModeCardShown={isModeCardShown}
         clef={clef}
         clearAll={clearAll}
+        handleOverlayToggle={handleOverlayToggle}
         handleNoteNamesVisible={handleNoteNamesVisible}
         handleIsFilteredBySelection={handleIsFilteredBySelection}
         handleSelectedTonalityChange={handleSelectedTonalityChange}
@@ -251,6 +268,7 @@ function App() {
         <Keys
           isNoteSelected={isNoteSelected}
           root={root}
+          isOverlayActive={isOverlayActive}
           areNoteNamesVisible={areNoteNamesVisible}
           screenSize={screenSize}
           handleKeyPress={handleKeyPress}

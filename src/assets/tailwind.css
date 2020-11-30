@@ -4,7 +4,7 @@
 
 @layer components {
   .key {
-    @apply border rounded-md shadow-md flex justify-center items-end;
+    @apply border rounded-md shadow-md flex flex-col justify-end items-center;
   }
 
   .key-white {
@@ -31,26 +31,26 @@
   }
 
   .key-black {
-    @apply h-40 w-6 -mx-3 z-10;
+    @apply h-40 w-6 -mx-3 z-10 text-sm;
   }
 
   .key-black-unselected {
-    @apply bg-gray-800 border-gray-900;
+    @apply bg-gray-800 border-gray-900 text-gray-200;
   }
   .key-black-unselected:hover {
-    @apply bg-purple-900 border-gray-900;
+    @apply bg-purple-900 border-gray-900 text-purple-200;
   }
   .key-black-selected {
-    @apply bg-orange-800 border-orange-900;
+    @apply bg-orange-800 border-orange-900 text-orange-200;
   }
   .key-black-selected:hover {
-    @apply bg-orange-700 border-orange-800;
+    @apply bg-orange-700 border-orange-800 text-orange-100;
   }
   .key-black-root {
-    @apply bg-blue-800 border-blue-900;
+    @apply bg-blue-800 border-blue-900 text-blue-200;
   }
   .key-black-root:hover {
-    @apply bg-blue-700 border-blue-800;
+    @apply bg-blue-700 border-blue-800 text-blue-100;
   }
 
   .drop-down {

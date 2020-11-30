@@ -2,12 +2,12 @@ import React from 'react';
 import Key from './Key';
 import Utilities from '../Utilities';
 
-const { notesInOctave, octaveMod } = Utilities;
+const { notesInOctave } = Utilities;
 
 function Keys(props) {
   function generateKeys() {
     return Array.from(Array(notesInOctave * props.screenSize), (el, i) => (
-      <Key key={i} value={octaveMod(i)} {...props} />
+      <Key key={i} value={Utilities.octaveMod(i)} index={i} {...props} />
     ));
   }
 

@@ -29,7 +29,39 @@ class Keyboard {
     Comma: 0,
   };
 
+  static reverseNoteMap = {
+    0: 'Q',
+    1: '2',
+    2: 'W',
+    3: '3',
+    4: 'E',
+    5: 'R',
+    6: '5',
+    7: 'T',
+    8: '6',
+    9: 'Y',
+    10: '7',
+    11: 'U',
+
+    12: 'Z',
+    13: 'S',
+    14: 'X',
+    15: 'D',
+    16: 'C',
+    17: 'V',
+    18: 'G',
+    19: 'B',
+    20: 'H',
+    21: 'N',
+    22: 'J',
+    23: 'M',
+
+    24: ',',
+  };
+
   static getNote = (code) => this.noteMap[code];
+
+  static getKey = (index) => this.reverseNoteMap[index];
 
   static isDelete = (key) => key === 'Del' || key === 'Delete';
 

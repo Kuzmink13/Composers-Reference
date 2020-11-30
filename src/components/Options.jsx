@@ -37,6 +37,18 @@ function Options(props) {
       {/* GENERAL OPTIONS */}
       <fieldset className="py-1">
         <input
+          id="keyboard-overlay"
+          type="checkbox"
+          className="mr-2 cursor-pointer"
+          onChange={props.handleOverlayToggle}
+          checked={props.isOverlayActive}
+        />
+        <label htmlFor="keyboard-overlay" className="cursor-pointer">
+          Display keyboard overlay
+        </label>
+        <br />
+
+        <input
           id="names-on-keys"
           type="checkbox"
           className="mr-2 cursor-pointer"

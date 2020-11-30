@@ -1,4 +1,5 @@
 import React from 'react';
+import Keyboard from '../Keyboard';
 import Utilities from '../Utilities';
 
 const { keyNotes } = Utilities;
@@ -17,10 +18,11 @@ function Key(props) {
   return (
     <div
       onMouseDown={(event) => props.handleKeyPress(event, props.value)}
-      className={`key key-${color} key-${color}-${selection}`}
+      className={`key key-${color} key-${color}-${selection} p-2 font-semibold break-words text-center`}
     >
-      {props.areNoteNamesVisible && keyNotes[props.value].isWhite && (
-        <span className="p-2 font-semibold text-md">{noteName}</span>
+      {props.isOverlayActive && <div>{Keyboard.getKey(props.index)}</div>}
+      {props.areNoteNamesVisible && (
+        <div className="mt-4">{noteName.replace('/', ' ')}</div>
       )}
     </div>
   );
