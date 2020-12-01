@@ -31,7 +31,10 @@ function Options(props) {
   const isLineBreakNeeded = (arr, i) => i + 1 !== arr.length;
 
   return (
-    <form id="options" className="drop-down mt-10 mr-20 px-4 py-2">
+    <form
+      id="options"
+      className="drop-down text-sm sm:text-base mt-10 mx-2 sm:mr-20 px-4 py-2"
+    >
       <h2 className="mx-auto py-1 font-bold tracking-widest">OPTIONS</h2>
 
       {/* GENERAL OPTIONS */}
