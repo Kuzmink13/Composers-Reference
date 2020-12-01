@@ -10,6 +10,9 @@
   .key-white {
     @apply h-64 w-10;
   }
+  .key-white-small {
+    @apply h-44 w-10;
+  }
 
   .key-white-unselected {
     @apply bg-white border-gray-400 text-gray-800;
@@ -32,6 +35,9 @@
 
   .key-black {
     @apply h-40 w-6 -mx-3 z-10 text-sm;
+  }
+  .key-black-small {
+    @apply h-28 w-6 -mx-3 z-10 text-sm;
   }
 
   .key-black-unselected {

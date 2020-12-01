@@ -18,11 +18,15 @@ function Key(props) {
   return (
     <div
       onMouseDown={(event) => props.handleKeyPress(event, props.value)}
-      className={`key key-${color} key-${color}-${selection} p-2 font-semibold break-words text-center`}
+      className={`key key-${color}${
+        props.isSmall ? '-small' : ''
+      } key-${color}-${selection} p-2 font-semibold break-words text-center`}
     >
       {props.isOverlayActive && <div>{Keyboard.getKey(props.index)}</div>}
       {props.areNoteNamesVisible && (
-        <div className="mt-4">{noteName.replace('/', ' ')}</div>
+        <div className={`${props.isSmall ? 'mt-1' : 'mt-4'}`}>
+          {noteName.replace('/', ' ')}
+        </div>
       )}
     </div>
   );
