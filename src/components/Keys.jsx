@@ -9,7 +9,7 @@ function Keys(props) {
   const [screenHeight, setScreenHeight] = useState(getScreenHeight());
 
   function getScreenHeight() {
-    return window.innerHeight < 720;
+    return window.innerHeight < 820;
   }
 
   useEffect(() => {
@@ -34,7 +34,11 @@ function Keys(props) {
   }
 
   return (
-    <div className="mx-8 py-8 flex flex-row justify-center border-b border-gray-400">
+    <div
+      className={`mx-8 ${
+        screenHeight ? 'py-4' : 'py-8'
+      } flex flex-row justify-center border-b border-gray-400`}
+    >
       {generateKeys()}
     </div>
   );
