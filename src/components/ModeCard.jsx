@@ -54,14 +54,14 @@ function ModeCard(props) {
     <div
       onClick={cancelClose}
       id="mode-card"
-      className="relative mode-card transform scale-95 opacity-0 transition delay-25 duration-50"
+      className="text-sm sm:text-base relative mode-card transform scale-95 opacity-0 transition delay-25 duration-50"
     >
       {/* MODE CARD HEADING */}
       <hgroup>
-        <h2 className="text-lg font-bold uppercase tracking-widest text-center focus:outline-none">
+        <h2 className="text-base sm:text-lg font-bold uppercase tracking-widest text-center focus:outline-none">
           {props.modeName}
         </h2>
-        <h3 className="italic tracking-wider text-center lowercase mb-3">
+        <h3 className="text-sm sm:text-base italic tracking-wider text-center lowercase mb-3">
           {`from the ${props.parentTonality} scale family`}
         </h3>
       </hgroup>
@@ -70,7 +70,7 @@ function ModeCard(props) {
 
       {/* CHORD TABLE */}
       <table
-        className="tab-selection p-2 mt-5 block max-h-card overflow-y-auto scrolling-auto"
+        className="tab-selection sm:p-2 mt-5 block max-h-card overflow-y-auto scrolling-auto"
         tabIndex="0"
       >
         <tbody>
@@ -87,13 +87,15 @@ function ModeCard(props) {
 
               {/* TABLE ROW */}
               <tr key={chord}>
-                <th className="font-semibold text-center px-3 pt-1 border-r border-gray-400">
+                <th className="font-semibold text-center px-2 sm:px-3 pt-1 border-r border-gray-400">
                   {`${chordRoot}${chord}`.trim()}
                 </th>
-                <td className="text-center px-3 pt-1 border-r border-gray-400">
+                <td className="text-center px-2 sm:px-3 pt-1 border-r border-gray-400">
                   {names.join('-')}
                 </td>
-                <td className="text-center px-3 pt-1">{degrees.join('-')}</td>
+                <td className="text-center px-2 sm:px-3 pt-1">
+                  {degrees.join('-')}
+                </td>
               </tr>
             </Fragment>
           ))}
