@@ -21,9 +21,8 @@ function App() {
   const [isNoteSelected, setIsNoteSelected] = useState(isNoteSelectedDefault());
   const [root, setRoot] = useState(rootDefault);
 
-  function handleKeyPress(event, pressedNote) {
+  function handleKeyPress(event, pressedNote, isRootPress = event.shiftKey) {
     const isKeyGettingPressed = (i) => i === pressedNote;
-    const isRootPress = event.shiftKey;
     const isPressedNoteCurrentRoot = pressedNote === root;
     const newNoteSelection = isRootPress ? true : !isNoteSelected[pressedNote];
 
