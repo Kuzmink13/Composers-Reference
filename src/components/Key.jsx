@@ -26,12 +26,12 @@ function Key(props) {
     <div
       {...longPressEvent}
       className={`key key-${color}${
-        props.isSmall ? '-small' : ''
+        props.isShort ? '-small' : ''
       } key-${color}-${selection} p-2 font-semibold break-words text-center`}
     >
       {props.isOverlayActive && <div>{Keyboard.getKey(props.index)}</div>}
       {props.areNoteNamesVisible && (
-        <div className={`${props.isSmall ? 'mt-1' : 'mt-4'}`}>
+        <div className={`${props.isShort ? 'mt-1' : 'mt-4'}`}>
           {noteName.replace('/', ' ')}
         </div>
       )}

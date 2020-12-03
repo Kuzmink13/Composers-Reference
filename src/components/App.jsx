@@ -201,21 +201,15 @@ function App() {
   }
 
   // SCREEN SIZE CONTROL
-  const [screenSize, setScreenSize] = useState(getScreenSize());
-
-  function getScreenSize() {
-    switch (true) {
-      case window.innerWidth < 640:
-        return 1;
-      case window.innerWidth < 1024:
-        return 2;
-      default:
-        return 3;
-    }
-  }
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [screenHeight, setScreenHeight] = useState(window.innerHeight);
 
   useEffect(() => {
-    const handleResize = () => setScreenSize(getScreenSize());
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+      setScreenHeight(window.innerHeight);
+    };
+
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
@@ -283,7 +277,8 @@ function App() {
           root={root}
           isOverlayActive={isOverlayActive}
           areNoteNamesVisible={areNoteNamesVisible}
-          screenSize={screenSize}
+          screenWidth={screenWidth}
+          screenHeight={screenHeight}
           handleKeyPress={handleKeyPress}
         />
         <ModeController
