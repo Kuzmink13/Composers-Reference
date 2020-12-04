@@ -155,6 +155,8 @@ module.exports = {
       48: '12rem',
       56: '14rem',
       64: '16rem',
+      'staff-height': '85px',
+      'staff-width': '280px',
     },
     backgroundColor: (theme) => theme('colors'),
     backgroundImage: {

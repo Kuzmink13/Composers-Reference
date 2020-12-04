@@ -14,7 +14,12 @@ function VexStaff(props) {
     };
   });
 
-  return <figure id={props.modeName}></figure>;
+  return (
+    <figure
+      id={props.modeName}
+      className="h-staff-height w-staff-width"
+    ></figure>
+  );
 }
 
 export default VexStaff;
