@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
+import useLongPress from '../hooks/useLongPress';
 import { createFocusTrap } from 'focus-trap';
 
 import Chords from '../Chords';
@@ -44,28 +45,43 @@ function ModeCard(props) {
   });
 
   // MODE-SHIFT CONTROL
-  function relShift(forwardShift) {
-    props.getCard(
-      Music.relativeShift(props.absolutePitches, forwardShift),
-      false
-    );
-  }
+  const shift = {
+    relative: (forwardShift) => {
+      props.getCard(
+        Music.relativeShift(props.absolutePitches, forwardShift),
+        false
+      );
+    },
+    parallel: (forwardShift) => {
+      props.getCard(
+        Music.parallelShift(props.modeCode, props.pitchCenter, forwardShift),
+        false
+      );
+    },
+    key: (forwardShift) => {
+      props.getCard(Music.keyShift(props.absolutePitches, forwardShift), false);
+    },
+  };
 
-  function paraShift(forwardShift) {
-    props.getCard(
-      Music.parallelShift(props.modeCode, props.pitchCenter, forwardShift),
-      false
-    );
-  }
+  const clicks = {
+    down: useLongPress(
+      () => shift.key(false),
+      () => shift.parallel(false)
+    ),
+    up: useLongPress(
+      () => shift.key(true),
+      () => shift.parallel(true)
+    ),
+  };
 
   function handleShift(event) {
     if (Keyboard.isLeftRightArrow(event.key)) {
       const forwardShift = Keyboard.isRightArrow(event.key);
-      relShift(forwardShift);
+      shift.relative(forwardShift);
     } else if (Keyboard.isUpDownArrow(event.key)) {
       event.preventDefault();
       const forwardShift = Keyboard.isUpArrow(event.key);
-      paraShift(forwardShift);
+      event.shiftKey ? shift.key(forwardShift) : shift.parallel(forwardShift);
     }
   }
 
@@ -115,9 +131,9 @@ function ModeCard(props) {
       {/* NEXT/PREVIOUS MODE BUTTONS */}
       <div className="flex">
         <button
-          name="previous mode-card"
+          name="ArrowLeft"
           className="tab-selection p-2 text-gray-600 hover:text-gray-800"
-          onClick={() => relShift(false)}
+          onClick={() => shift.relative(false)}
         >
           <svg
             className="h-5 w-5 fill-current cursor-pointer"
@@ -128,9 +144,9 @@ function ModeCard(props) {
         </button>
 
         <button
-          name="prev parallel mode-card"
+          name="ArrowDown"
           className="tab-selection p-2 text-gray-600 hover:text-gray-800"
-          onClick={() => paraShift(false)}
+          {...clicks.down}
         >
           <svg
             className="h-5 w-5 fill-current cursor-pointer"
@@ -141,9 +157,9 @@ function ModeCard(props) {
         </button>
 
         <button
-          name="next parallel mode-card"
+          name="ArrowUp"
           className="tab-selection p-2 text-gray-600 hover:text-gray-800"
-          onClick={() => paraShift(true)}
+          {...clicks.up}
         >
           <svg
             className="h-5 w-5 fill-current cursor-pointer"
@@ -154,9 +170,9 @@ function ModeCard(props) {
         </button>
 
         <button
-          name="next mode-card"
+          name="ArrowRight"
           className="tab-selection p-2 text-gray-600 hover:text-gray-800"
-          onClick={() => relShift(true)}
+          onClick={() => shift.relative(true)}
         >
           <svg
             className="h-5 w-5 fill-current cursor-pointer"

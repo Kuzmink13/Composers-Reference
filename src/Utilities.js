@@ -362,6 +362,8 @@ class Utilities {
 
   static notesInOctave = 12;
 
+  static notesInAPerfectFifth = 7;
+
   static octaveMod = (pitch) =>
     ((pitch % this.notesInOctave) + this.notesInOctave) % this.notesInOctave;
 

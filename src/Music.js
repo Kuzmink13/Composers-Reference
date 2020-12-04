@@ -3,7 +3,12 @@ import Mode from './Mode';
 import Scales from './Scales';
 import Utilities from './Utilities';
 
-const { notesInOctave, tonalities, modeProperties } = Utilities;
+const {
+  notesInOctave,
+  notesInAPerfectFifth,
+  tonalities,
+  modeProperties,
+} = Utilities;
 const { supportedScaleLengths } = Scales;
 
 /**
@@ -240,6 +245,18 @@ class Music {
       : Utilities.modeProperties[modeCode].previousMode;
 
     let mode = new Mode(this.fromCode(code), pitchCenter);
+
+    return mode.getModeProperties();
+  }
+
+  static keyShift(absolutePitches, forwardShift = true) {
+    let pitches = absolutePitches.slice();
+    let mode = new Mode(
+      pitches,
+      forwardShift
+        ? pitches[0] + notesInAPerfectFifth
+        : pitches[0] - notesInAPerfectFifth
+    );
 
     return mode.getModeProperties();
   }
