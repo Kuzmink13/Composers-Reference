@@ -48,10 +48,21 @@ function ModeCard(props) {
     props.getCard(Music.modeShift(props.absolutePitches, forwardShift), false);
   }
 
+  function paraShift(forwardShift) {
+    props.getCard(
+      Music.parallelShift(props.modeCode, props.pitchCenter, forwardShift),
+      false
+    );
+  }
+
   function handleShift(event) {
     if (Keyboard.isLeftRightArrow(event.key)) {
       const forwardShift = Keyboard.isRightArrow(event.key);
       shift(forwardShift);
+    } else if (Keyboard.isUpDownArrow(event.key)) {
+      event.preventDefault();
+      const forwardShift = Keyboard.isUpArrow(event.key);
+      paraShift(forwardShift);
     }
   }
 
@@ -99,10 +110,10 @@ function ModeCard(props) {
       <VexStaff {...props} />
 
       {/* NEXT/PREVIOUS MODE BUTTONS */}
-      <div className="mt-1 w-28 flex justify-between">
+      <div className="flex">
         <button
           name="previous mode-card"
-          className="tab-selection p-2 m-1 text-gray-600 hover:text-gray-800"
+          className="tab-selection p-2 text-gray-600 hover:text-gray-800"
           onClick={() => shift(false)}
         >
           <svg
@@ -114,8 +125,34 @@ function ModeCard(props) {
         </button>
 
         <button
+          name="prev parallel mode-card"
+          className="tab-selection p-2 text-gray-600 hover:text-gray-800"
+          onClick={() => paraShift(false)}
+        >
+          <svg
+            className="h-5 w-5 fill-current cursor-pointer"
+            viewBox="0 0 20 20"
+          >
+            <path d="M9 16.172l-6.071-6.071-1.414 1.414L10 20l.707-.707 7.778-7.778-1.414-1.414L11 16.172V0H9z" />
+          </svg>
+        </button>
+
+        <button
+          name="next parallel mode-card"
+          className="tab-selection p-2 text-gray-600 hover:text-gray-800"
+          onClick={() => paraShift(true)}
+        >
+          <svg
+            className="h-5 w-5 fill-current cursor-pointer"
+            viewBox="0 0 20 20"
+          >
+            <path d="M9 3.828L2.929 9.899 1.515 8.485 10 0l.707.707 7.778 7.778-1.414 1.414L11 3.828V20H9V3.828z" />
+          </svg>
+        </button>
+
+        <button
           name="next mode-card"
-          className="tab-selection p-2 m-1 text-gray-600 hover:text-gray-800"
+          className="tab-selection p-2 text-gray-600 hover:text-gray-800"
           onClick={() => shift(true)}
         >
           <svg

@@ -73,6 +73,10 @@ class Keyboard {
     key === 'ArrowLeft' || key === 'ArrowRight';
 
   static isRightArrow = (key) => key === 'ArrowRight';
+
+  static isUpDownArrow = (key) => key === 'ArrowUp' || key === 'ArrowDown';
+
+  static isUpArrow = (key) => key === 'ArrowUp';
 }
 
 export default Keyboard;

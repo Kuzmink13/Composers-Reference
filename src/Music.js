@@ -229,6 +229,20 @@ class Music {
 
     return mode.getModeProperties();
   }
+
+  static fromCode(modeCode) {
+    return modeCode.split('').map((el) => parseInt(Number(`0x${el}`), 10));
+  }
+
+  static parallelShift(modeCode, pitchCenter, forwardShift = true) {
+    let code = forwardShift
+      ? Utilities.modeProperties[modeCode].nextMode
+      : Utilities.modeProperties[modeCode].previousMode;
+
+    let mode = new Mode(this.fromCode(code), pitchCenter);
+
+    return mode.getModeProperties();
+  }
 }
 
 export default Music;
