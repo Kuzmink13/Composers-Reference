@@ -4,7 +4,7 @@ import VexStaff from './VexStaff';
 function ModeBlock(props) {
   return (
     <button
-      onClick={() => props.getCard(props)}
+      onClick={() => props.getCard(props.modeProps)}
       className="tab-selection m-1 p-1"
     >
       <div
@@ -14,7 +14,7 @@ function ModeBlock(props) {
         <h2 className="text-center tracking-wider font-medium">
           {props.modeName}
         </h2>
-        <VexStaff {...props} />
+        <VexStaff clef={props.clef} {...props.modeProps} />
       </div>
     </button>
   );

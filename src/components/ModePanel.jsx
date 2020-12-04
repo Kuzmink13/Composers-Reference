@@ -28,13 +28,7 @@ function ModePanel(props) {
     return (
       <ModeBlock
         getCard={props.getCard}
-        key={mode.getAbsoluteModeCode()}
-        pitchCenter={mode.getPitchCenter()}
-        absolutePitches={mode.getAbsolutePitches()}
-        abstractPitches={mode.getAbstractPitches()}
-        modeCode={mode.getAbstractModeCode()}
-        modeName={mode.getModeName()}
-        parentTonality={mode.getParentTonality()}
+        modeProps={mode.getModeProperties()}
         clef={props.clef}
       />
     );

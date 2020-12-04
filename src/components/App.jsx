@@ -76,10 +76,12 @@ function App() {
   const [isModeCardShown, setIsModeCardShown] = useState(
     isModeCardShownDefault
   );
+  const [showAnimation, setShowAnimation] = useState(true);
   const [modeProps, setModeProps] = useState(modePropsDefault);
 
-  function getCard(modeProps) {
+  function getCard(modeProps, showAnimation = true) {
     setIsModeCardShown(true);
+    setShowAnimation(showAnimation);
     setModeProps(modeProps);
   }
 
@@ -267,7 +269,13 @@ function App() {
           className="fixed h-full w-full inset-0 z-30 flex bg-gray-400 bg-opacity-0 transition delay-25 duration-50"
           onClick={closeCard}
         >
-          <ModeCard {...modeProps} closeCard={closeCard} />
+          <ModeCard
+            {...modeProps}
+            clef={clef}
+            showAnimation={showAnimation}
+            getCard={getCard}
+            closeCard={closeCard}
+          />
         </div>
       )}
 

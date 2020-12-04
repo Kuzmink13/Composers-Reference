@@ -41,6 +41,17 @@ class Mode extends PitchCollection {
     this.getParentTonality = function () {
       return modeProperties[this.getAbstractModeCode()].parentTonality;
     };
+    this.getModeProperties = function () {
+      return {
+        key: this.getAbsoluteModeCode(),
+        pitchCenter: this.getPitchCenter(),
+        absolutePitches: this.getAbsolutePitches(),
+        abstractPitches: this.getAbstractPitches(),
+        modeCode: this.getAbstractModeCode(),
+        modeName: this.getModeName(),
+        parentTonality: this.getParentTonality(),
+      };
+    };
   }
 }
 

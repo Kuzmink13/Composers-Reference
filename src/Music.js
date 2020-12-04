@@ -217,6 +217,18 @@ class Music {
 
     return supportedScaleLengths.map((quantity) => filterByQuantity(quantity));
   }
+
+  static modeShift(absolutePitches, forwardShift = true) {
+    let pitches = absolutePitches.slice();
+
+    forwardShift
+      ? pitches.push(pitches.shift() + notesInOctave)
+      : pitches.unshift(pitches.pop() - notesInOctave);
+
+    let mode = new Mode(pitches, pitches[0]);
+
+    return mode.getModeProperties();
+  }
 }
 
 export default Music;

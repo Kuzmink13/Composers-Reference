@@ -4,6 +4,8 @@ import { createFocusTrap } from 'focus-trap';
 import Chords from '../Chords';
 import VexStaff from './VexStaff';
 
+import Music from '../Music';
+
 function ModeCard(props) {
   // FOCUS TRAP
   useEffect(() => {
@@ -33,10 +35,11 @@ function ModeCard(props) {
 
   // ANIMATION
   useEffect(() => {
-    const container = document.getElementById('mode-card');
-
-    container.classList.remove('scale-95', 'opacity-0');
-    container.classList.add('scale-100', 'opacity-100');
+    if (props.showAnimation) {
+      const container = document.getElementById('mode-card');
+      container.classList.remove('scale-95', 'opacity-0');
+      container.classList.add('scale-100', 'opacity-100');
+    }
   });
 
   // RENDER
@@ -54,11 +57,18 @@ function ModeCard(props) {
     <div
       onClick={cancelClose}
       id="mode-card"
-      className="text-sm sm:text-base relative mode-card transform scale-95 opacity-0 transition delay-25 duration-50"
+      className={`text-sm sm:text-base relative mode-card
+      ${
+        props.showAnimation &&
+        'transform scale-95 opacity-0 transition delay-25 duration-50'
+      }`}
     >
       {/* MODE CARD HEADING */}
       <hgroup>
-        <h2 className="text-base sm:text-lg font-bold uppercase tracking-widest text-center focus:outline-none">
+        <h2
+          tabIndex="0"
+          className="text-base sm:text-lg font-bold uppercase tracking-widest text-center focus:outline-none"
+        >
           {props.modeName}
         </h2>
         <h3 className="text-sm sm:text-base italic tracking-wider text-center lowercase mb-3">
@@ -68,9 +78,42 @@ function ModeCard(props) {
 
       <VexStaff {...props} />
 
+      {/* NEXT/PREVIOUS MODE BUTTONS */}
+      <div className="mt-1 w-28 flex justify-between">
+        <button
+          name="previous mode-card"
+          className="tab-selection p-2 m-1 text-gray-600 hover:text-gray-800"
+          onClick={() =>
+            props.getCard(Music.modeShift(props.absolutePitches, false), false)
+          }
+        >
+          <svg
+            className="h-5 w-5 fill-current cursor-pointer"
+            viewBox="0 0 20 20"
+          >
+            <path d="M3.828 9l6.071-6.071-1.414-1.414L0 10l.707.707 7.778 7.778 1.414-1.414L3.828 11H20V9H3.828z" />
+          </svg>
+        </button>
+
+        <button
+          name="next mode-card"
+          className="tab-selection p-2 m-1 text-gray-600 hover:text-gray-800"
+          onClick={() =>
+            props.getCard(Music.modeShift(props.absolutePitches), false)
+          }
+        >
+          <svg
+            className="h-5 w-5 fill-current cursor-pointer"
+            viewBox="0 0 20 20"
+          >
+            <path d="M16.172 9l-6.071-6.071 1.414-1.414L20 10l-.707.707-7.778 7.778-1.414-1.414L16.172 11H0V9z" />
+          </svg>
+        </button>
+      </div>
+
       {/* CHORD TABLE */}
       <table
-        className="tab-selection sm:p-2 mt-5 block max-h-card overflow-y-auto scrolling-auto"
+        className="tab-selection sm:p-2 block max-h-card overflow-y-auto scrolling-auto"
         tabIndex="0"
       >
         <tbody>
