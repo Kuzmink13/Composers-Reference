@@ -218,7 +218,7 @@ class Music {
     return supportedScaleLengths.map((quantity) => filterByQuantity(quantity));
   }
 
-  static modeShift(absolutePitches, forwardShift = true) {
+  static relativeShift(absolutePitches, forwardShift = true) {
     let pitches = absolutePitches.slice();
 
     forwardShift

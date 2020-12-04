@@ -44,8 +44,11 @@ function ModeCard(props) {
   });
 
   // MODE-SHIFT CONTROL
-  function shift(forwardShift) {
-    props.getCard(Music.modeShift(props.absolutePitches, forwardShift), false);
+  function relShift(forwardShift) {
+    props.getCard(
+      Music.relativeShift(props.absolutePitches, forwardShift),
+      false
+    );
   }
 
   function paraShift(forwardShift) {
@@ -58,7 +61,7 @@ function ModeCard(props) {
   function handleShift(event) {
     if (Keyboard.isLeftRightArrow(event.key)) {
       const forwardShift = Keyboard.isRightArrow(event.key);
-      shift(forwardShift);
+      relShift(forwardShift);
     } else if (Keyboard.isUpDownArrow(event.key)) {
       event.preventDefault();
       const forwardShift = Keyboard.isUpArrow(event.key);
@@ -114,7 +117,7 @@ function ModeCard(props) {
         <button
           name="previous mode-card"
           className="tab-selection p-2 text-gray-600 hover:text-gray-800"
-          onClick={() => shift(false)}
+          onClick={() => relShift(false)}
         >
           <svg
             className="h-5 w-5 fill-current cursor-pointer"
@@ -153,7 +156,7 @@ function ModeCard(props) {
         <button
           name="next mode-card"
           className="tab-selection p-2 text-gray-600 hover:text-gray-800"
-          onClick={() => shift(true)}
+          onClick={() => relShift(true)}
         >
           <svg
             className="h-5 w-5 fill-current cursor-pointer"
