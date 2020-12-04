@@ -5,6 +5,7 @@ import Chords from '../Chords';
 import VexStaff from './VexStaff';
 
 import Music from '../Music';
+import Keyboard from '../Keyboard';
 
 function ModeCard(props) {
   // FOCUS TRAP
@@ -40,6 +41,25 @@ function ModeCard(props) {
       container.classList.remove('scale-95', 'opacity-0');
       container.classList.add('scale-100', 'opacity-100');
     }
+  });
+
+  // MODE-SHIFT CONTROL
+  function shift(forwardShift) {
+    props.getCard(Music.modeShift(props.absolutePitches, forwardShift), false);
+  }
+
+  function handleShift(event) {
+    if (Keyboard.isLeftRightArrow(event.key)) {
+      const forwardShift = Keyboard.isRightArrow(event.key);
+      shift(forwardShift);
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleShift);
+    return () => {
+      document.removeEventListener('keydown', handleShift);
+    };
   });
 
   // RENDER
@@ -83,9 +103,7 @@ function ModeCard(props) {
         <button
           name="previous mode-card"
           className="tab-selection p-2 m-1 text-gray-600 hover:text-gray-800"
-          onClick={() =>
-            props.getCard(Music.modeShift(props.absolutePitches, false), false)
-          }
+          onClick={() => shift(false)}
         >
           <svg
             className="h-5 w-5 fill-current cursor-pointer"
@@ -98,9 +116,7 @@ function ModeCard(props) {
         <button
           name="next mode-card"
           className="tab-selection p-2 m-1 text-gray-600 hover:text-gray-800"
-          onClick={() =>
-            props.getCard(Music.modeShift(props.absolutePitches), false)
-          }
+          onClick={() => shift(true)}
         >
           <svg
             className="h-5 w-5 fill-current cursor-pointer"

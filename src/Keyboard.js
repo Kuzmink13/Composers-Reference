@@ -68,6 +68,11 @@ class Keyboard {
   static isEscape = (key) => key === 'Esc' || key === 'Escape';
 
   static isSpace = (key) => key === ' ' || key === 'Spacebar';
+
+  static isLeftRightArrow = (key) =>
+    key === 'ArrowLeft' || key === 'ArrowRight';
+
+  static isRightArrow = (key) => key === 'ArrowRight';
 }
 
 export default Keyboard;
