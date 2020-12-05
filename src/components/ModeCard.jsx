@@ -149,7 +149,7 @@ function ModeCard(props) {
         </h3>
       </hgroup>
 
-      <VexStaff {...props} />
+      <VexStaff key={props.absoluteMC} {...props} />
 
       {/* NEXT/PREVIOUS MODE BUTTONS */}
       <div className="flex">

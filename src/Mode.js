@@ -43,7 +43,7 @@ class Mode extends PitchCollection {
     };
     this.getModeProperties = function () {
       return {
-        key: this.getAbsoluteModeCode(),
+        absoluteMC: this.getAbsoluteModeCode(),
         pitchCenter: this.getPitchCenter(),
         absolutePitches: this.getAbsolutePitches(),
         abstractPitches: this.getAbstractPitches(),
