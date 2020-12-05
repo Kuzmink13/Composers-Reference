@@ -260,6 +260,16 @@ class Music {
 
     return mode.getModeProperties();
   }
+
+  static relativeBrightnessShift(
+    modeCode,
+    pitchCenter,
+    getAbstractPitches,
+    forwardShift
+  ) {
+    pitchCenter += forwardShift ? getAbstractPitches[3] : getAbstractPitches[4];
+    return this.parallelShift(modeCode, pitchCenter, forwardShift);
+  }
 }
 
 export default Music;

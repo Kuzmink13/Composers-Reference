@@ -44,7 +44,7 @@ function ModeCard(props) {
     }
   });
 
-  // MODE-SHIFT CONTROL
+  // MODE-SHIFT FUNCTIONS
   const shift = {
     relative: (forwardShift) => {
       props.getCard(
@@ -61,8 +61,20 @@ function ModeCard(props) {
     key: (forwardShift) => {
       props.getCard(Music.keyShift(props.absolutePitches, forwardShift), false);
     },
+    relativeBrightness: (forwardShift) => {
+      props.getCard(
+        Music.relativeBrightnessShift(
+          props.modeCode,
+          props.pitchCenter,
+          props.abstractPitches,
+          forwardShift
+        ),
+        false
+      );
+    },
   };
 
+  // MODE-SHIFT MOUSE EVENTS
   const clicks = {
     down: useLongPress(
       () => shift.key(false),
@@ -72,12 +84,23 @@ function ModeCard(props) {
       () => shift.key(true),
       () => shift.parallel(true)
     ),
+    left: useLongPress(
+      () => shift.relativeBrightness(false),
+      () => shift.relative(false)
+    ),
+    right: useLongPress(
+      () => shift.relativeBrightness(true),
+      () => shift.relative(true)
+    ),
   };
 
+  // MODE-SHIFT KEYBOARD EVENTS
   function handleShift(event) {
     if (Keyboard.isLeftRightArrow(event.key)) {
       const forwardShift = Keyboard.isRightArrow(event.key);
-      shift.relative(forwardShift);
+      event.shiftKey
+        ? shift.relativeBrightness(forwardShift)
+        : shift.relative(forwardShift);
     } else if (Keyboard.isUpDownArrow(event.key)) {
       event.preventDefault();
       const forwardShift = Keyboard.isUpArrow(event.key);
@@ -133,7 +156,7 @@ function ModeCard(props) {
         <button
           name="ArrowLeft"
           className="tab-selection p-2 text-gray-600 hover:text-gray-800"
-          onClick={() => shift.relative(false)}
+          {...clicks.left}
         >
           <svg
             className="h-5 w-5 fill-current cursor-pointer"
@@ -172,7 +195,7 @@ function ModeCard(props) {
         <button
           name="ArrowRight"
           className="tab-selection p-2 text-gray-600 hover:text-gray-800"
-          onClick={() => shift.relative(true)}
+          {...clicks.right}
         >
           <svg
             className="h-5 w-5 fill-current cursor-pointer"
