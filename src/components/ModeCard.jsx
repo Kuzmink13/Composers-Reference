@@ -1,9 +1,9 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import useLongPress from '../hooks/useLongPress';
 import { createFocusTrap } from 'focus-trap';
 
-import Chords from '../Chords';
 import VexStaff from './VexStaff';
+import ChordTable from './ChordTable';
 
 import Music from '../Music';
 import Keyboard from '../Keyboard';
@@ -136,25 +136,18 @@ function ModeCard(props) {
   ];
 
   // RENDER
-  const chordRoot = props.modeName.split(' ')[0];
-  const modeChords = Chords.chordGenerator(
-    props.pitchCenter,
-    props.abstractPitches,
-    props.absolutePitches
-  );
-
-  const isFirstChord = (chord) => chord === modeChords[0][0];
-  const isThreeNoteChord = (names) => names.length === 3;
-
   return (
     <div
       onClick={cancelClose}
       id="mode-card"
-      className={`text-sm sm:text-base relative mode-card
-      ${
-        props.showAnimation &&
-        'transform scale-95 opacity-0 transition delay-25 duration-50'
-      }`}
+      className={`flex flex-col items-center relative
+                  py-6 w-full max-w-sm sm:max-w-md m-auto
+                  border rounded-lg border-gray-400 bg-white shadow-xl
+                text-gray-800 text-sm sm:text-base tracking-tighter sm:tracking-normal
+              ${
+                props.showAnimation &&
+                'transform scale-95 opacity-0 transition delay-25 duration-50'
+              }`}
     >
       {/* MODE CARD HEADING */}
       <hgroup>
@@ -169,6 +162,7 @@ function ModeCard(props) {
         </h3>
       </hgroup>
 
+      {/* SCALE FIGURE*/}
       <VexStaff key={props.absoluteMC} {...props} />
 
       {/* MODE-SHIFT BUTTON PANEL */}
@@ -191,38 +185,7 @@ function ModeCard(props) {
       </div>
 
       {/* CHORD TABLE */}
-      <table
-        className="tab-selection sm:p-2 block max-h-card overflow-y-auto scrolling-auto"
-        tabIndex="0"
-      >
-        <tbody>
-          {Array.from(modeChords, ([chord, names, degrees]) => (
-            <Fragment key={chord}>
-              {/* ROW-DIVIDER */}
-              {isThreeNoteChord(names) && !isFirstChord(chord) && (
-                <tr>
-                  <th colSpan="3" scope="row">
-                    <hr className="border-t border-gray-400 mt-2 mb-1" />
-                  </th>
-                </tr>
-              )}
-
-              {/* TABLE ROW */}
-              <tr key={chord}>
-                <th className="font-semibold text-center px-2 sm:px-3 pt-1 border-r border-gray-400">
-                  {`${chordRoot}${chord}`.trim()}
-                </th>
-                <td className="text-center px-2 sm:px-3 pt-1 border-r border-gray-400">
-                  {names.join('-')}
-                </td>
-                <td className="text-center px-2 sm:px-3 pt-1">
-                  {degrees.join('-')}
-                </td>
-              </tr>
-            </Fragment>
-          ))}
-        </tbody>
-      </table>
+      <ChordTable {...props} />
 
       {/* CLOSE MODE-CARD BUTTON */}
       <button

@@ -262,7 +262,7 @@ function App() {
       {isModeCardShown && (
         <div
           id="grayed-out-background"
-          className="fixed h-full w-full inset-0 z-30 flex bg-gray-400 bg-opacity-0 transition delay-25 duration-50"
+          className="fixed h-full w-full inset-0 z-30 flex bg-gray-400 bg-opacity-0 transition delay-25 duration-50 p-2"
           onClick={closeCard}
         >
           <ModeCard
