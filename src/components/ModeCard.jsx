@@ -74,26 +74,6 @@ function ModeCard(props) {
     },
   };
 
-  // MODE-SHIFT MOUSE EVENTS
-  const clicks = {
-    down: useLongPress(
-      () => shift.key(false),
-      () => shift.parallel(false)
-    ),
-    up: useLongPress(
-      () => shift.key(true),
-      () => shift.parallel(true)
-    ),
-    left: useLongPress(
-      () => shift.relativeBrightness(false),
-      () => shift.relative(false)
-    ),
-    right: useLongPress(
-      () => shift.relativeBrightness(true),
-      () => shift.relative(true)
-    ),
-  };
-
   // MODE-SHIFT KEYBOARD EVENTS
   function handleShift(event) {
     if (Keyboard.isLeftRightArrow(event.key)) {
@@ -114,6 +94,46 @@ function ModeCard(props) {
       document.removeEventListener('keydown', handleShift);
     };
   });
+
+  // MODE-SHIFT BUTTON PROPERTIES
+  const buttons = [
+    {
+      name: 'ArrowLeft',
+      clicks: useLongPress(
+        () => shift.relativeBrightness(false),
+        () => shift.relative(false)
+      ),
+      path:
+        'M3.828 9l6.071-6.071-1.414-1.414L0 10l.707.707 7.778 7.778 1.414-1.414L3.828 11H20V9H3.828z',
+    },
+    {
+      name: 'ArrowDown',
+      clicks: useLongPress(
+        () => shift.key(false),
+        () => shift.parallel(false)
+      ),
+      path:
+        'M9 16.172l-6.071-6.071-1.414 1.414L10 20l.707-.707 7.778-7.778-1.414-1.414L11 16.172V0H9z',
+    },
+    {
+      name: 'ArrowUp',
+      clicks: useLongPress(
+        () => shift.key(true),
+        () => shift.parallel(true)
+      ),
+      path:
+        'M9 3.828L2.929 9.899 1.515 8.485 10 0l.707.707 7.778 7.778-1.414 1.414L11 3.828V20H9V3.828z',
+    },
+    {
+      name: 'ArrowRight',
+      clicks: useLongPress(
+        () => shift.relativeBrightness(true),
+        () => shift.relative(true)
+      ),
+      path:
+        'M16.172 9l-6.071-6.071 1.414-1.414L20 10l-.707.707-7.778 7.778-1.414-1.414L16.172 11H0V9z',
+    },
+  ];
 
   // RENDER
   const chordRoot = props.modeName.split(' ')[0];
@@ -151,59 +171,23 @@ function ModeCard(props) {
 
       <VexStaff key={props.absoluteMC} {...props} />
 
-      {/* NEXT/PREVIOUS MODE BUTTONS */}
+      {/* MODE-SHIFT BUTTON PANEL */}
       <div className="flex">
-        <button
-          name="ArrowLeft"
-          className="tab-selection p-2 text-gray-600 hover:text-gray-800"
-          {...clicks.left}
-        >
-          <svg
-            className="h-5 w-5 fill-current cursor-pointer"
-            viewBox="0 0 20 20"
+        {buttons.map((button) => (
+          <button
+            name={button.name}
+            key={button.name}
+            className="tab-selection p-2 text-gray-600 hover:text-gray-800"
+            {...button.clicks}
           >
-            <path d="M3.828 9l6.071-6.071-1.414-1.414L0 10l.707.707 7.778 7.778 1.414-1.414L3.828 11H20V9H3.828z" />
-          </svg>
-        </button>
-
-        <button
-          name="ArrowDown"
-          className="tab-selection p-2 text-gray-600 hover:text-gray-800"
-          {...clicks.down}
-        >
-          <svg
-            className="h-5 w-5 fill-current cursor-pointer"
-            viewBox="0 0 20 20"
-          >
-            <path d="M9 16.172l-6.071-6.071-1.414 1.414L10 20l.707-.707 7.778-7.778-1.414-1.414L11 16.172V0H9z" />
-          </svg>
-        </button>
-
-        <button
-          name="ArrowUp"
-          className="tab-selection p-2 text-gray-600 hover:text-gray-800"
-          {...clicks.up}
-        >
-          <svg
-            className="h-5 w-5 fill-current cursor-pointer"
-            viewBox="0 0 20 20"
-          >
-            <path d="M9 3.828L2.929 9.899 1.515 8.485 10 0l.707.707 7.778 7.778-1.414 1.414L11 3.828V20H9V3.828z" />
-          </svg>
-        </button>
-
-        <button
-          name="ArrowRight"
-          className="tab-selection p-2 text-gray-600 hover:text-gray-800"
-          {...clicks.right}
-        >
-          <svg
-            className="h-5 w-5 fill-current cursor-pointer"
-            viewBox="0 0 20 20"
-          >
-            <path d="M16.172 9l-6.071-6.071 1.414-1.414L20 10l-.707.707-7.778 7.778-1.414-1.414L16.172 11H0V9z" />
-          </svg>
-        </button>
+            <svg
+              className="h-5 w-5 fill-current cursor-pointer"
+              viewBox="0 0 20 20"
+            >
+              <path d={button.path} />
+            </svg>
+          </button>
+        ))}
       </div>
 
       {/* CHORD TABLE */}
