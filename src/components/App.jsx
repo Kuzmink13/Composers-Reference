@@ -51,7 +51,7 @@ function App() {
   });
 
   // CLEAR NOTE/ROOT SELECTION
-  function clearAll() {
+  function clearSelection() {
     setIsNoteSelected(isNoteSelectedDefault());
     setRoot(rootDefault);
   }
@@ -59,7 +59,7 @@ function App() {
   function handleDelete(event) {
     if (Keyboard.isDelete(event.key)) {
       closeCard();
-      clearAll();
+      clearSelection();
     }
   }
 
@@ -241,23 +241,45 @@ function App() {
   });
 
   // RENDER
+  const navbarProps = {
+    isOverlayActive,
+    areNoteNamesVisible,
+    isFilteredBySelection,
+    selectedTonalities,
+    isModeCardShown,
+    clef,
+    clearSelection,
+    handleOverlayToggle,
+    handleNoteNamesVisible,
+    handleIsFilteredBySelection,
+    handleSelectedTonalityChange,
+    handleClefChange,
+    handleRevertSettings,
+  };
+
+  const modeCardProps = {
+    ...modeProps,
+    clef,
+    showAnimation,
+    getCard,
+    closeCard,
+  };
+
+  const keysProps = {
+    isNoteSelected,
+    root,
+    isOverlayActive,
+    areNoteNamesVisible,
+    screenWidth,
+    screenHeight,
+    handleKeyPress,
+  };
+
+  const modeControllerProps = { filteredLists, clef, getCard };
+
   return (
     <Fragment>
-      <Navbar
-        isOverlayActive={isOverlayActive}
-        areNoteNamesVisible={areNoteNamesVisible}
-        isFilteredBySelection={isFilteredBySelection}
-        selectedTonalities={selectedTonalities}
-        isModeCardShown={isModeCardShown}
-        clef={clef}
-        clearAll={clearAll}
-        handleOverlayToggle={handleOverlayToggle}
-        handleNoteNamesVisible={handleNoteNamesVisible}
-        handleIsFilteredBySelection={handleIsFilteredBySelection}
-        handleSelectedTonalityChange={handleSelectedTonalityChange}
-        handleClefChange={handleClefChange}
-        handleRevertSettings={handleRevertSettings}
-      />
+      <Navbar {...navbarProps} />
 
       {isModeCardShown && (
         <div
@@ -265,31 +287,13 @@ function App() {
           className="fixed h-full w-full inset-0 z-30 flex bg-gray-400 bg-opacity-0 transition delay-25 duration-50 p-2"
           onClick={closeCard}
         >
-          <ModeCard
-            {...modeProps}
-            clef={clef}
-            showAnimation={showAnimation}
-            getCard={getCard}
-            closeCard={closeCard}
-          />
+          <ModeCard {...modeCardProps} />
         </div>
       )}
 
       <main className="w-full overflow-y-hidden mx-auto flex flex-col lg:max-w-screen-lg">
-        <Keys
-          isNoteSelected={isNoteSelected}
-          root={root}
-          isOverlayActive={isOverlayActive}
-          areNoteNamesVisible={areNoteNamesVisible}
-          screenWidth={screenWidth}
-          screenHeight={screenHeight}
-          handleKeyPress={handleKeyPress}
-        />
-        <ModeController
-          filteredLists={filteredLists}
-          clef={clef}
-          getCard={getCard}
-        />
+        <Keys {...keysProps} />
+        <ModeController {...modeControllerProps} />
       </main>
     </Fragment>
   );

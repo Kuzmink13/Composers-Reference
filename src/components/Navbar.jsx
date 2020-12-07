@@ -74,7 +74,7 @@ function Navbar(props) {
           <button
             name="reset note selection"
             className="tab-selection p-2 text-gray-600 hover:text-gray-800 sm:mr-2"
-            onClick={props.clearAll}
+            onClick={props.clearSelection}
           >
             <svg
               className="fill-current h-5 w-5 z-30 cursor-pointer"
