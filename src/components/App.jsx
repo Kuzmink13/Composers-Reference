@@ -242,19 +242,21 @@ function App() {
 
   // RENDER
   const navbarProps = {
-    isOverlayActive,
-    areNoteNamesVisible,
-    isFilteredBySelection,
-    selectedTonalities,
     isModeCardShown,
-    clef,
     clearSelection,
-    handleOverlayToggle,
-    handleNoteNamesVisible,
-    handleIsFilteredBySelection,
-    handleSelectedTonalityChange,
-    handleClefChange,
-    handleRevertSettings,
+    optionsProps: {
+      isOverlayActive,
+      areNoteNamesVisible,
+      isFilteredBySelection,
+      clef,
+      selectedTonalities,
+      handleOverlayToggle,
+      handleNoteNamesVisible,
+      handleIsFilteredBySelection,
+      handleClefChange,
+      handleSelectedTonalityChange,
+      handleRevertSettings,
+    },
   };
 
   const modeCardProps = {
@@ -266,16 +268,26 @@ function App() {
   };
 
   const keysProps = {
-    isNoteSelected,
-    root,
-    isOverlayActive,
-    areNoteNamesVisible,
     screenWidth,
     screenHeight,
-    handleKeyPress,
+    keyProps: {
+      isNoteSelected,
+      root,
+      isOverlayActive,
+      areNoteNamesVisible,
+      handleKeyPress,
+    },
   };
 
-  const modeControllerProps = { filteredLists, clef, getCard };
+  const modeControllerProps = {
+    filteredLists,
+    modePanelProps: {
+      modeBlockProps: {
+        clef,
+        getCard,
+      },
+    },
+  };
 
   return (
     <Fragment>

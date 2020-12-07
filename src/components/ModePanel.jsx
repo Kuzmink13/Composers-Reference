@@ -4,7 +4,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 import ModeBlock from './ModeBlock';
 
 function ModePanel(props) {
-  // LOAD AND GENERATE MODE CARDS
+  // LOAD AND GENERATE MODE BLOCKS
   const [items, setItems] = useState([]);
   const [hasMore, setHasMore] = useState(true);
 
@@ -27,10 +27,9 @@ function ModePanel(props) {
   function generateModeBlock(mode) {
     return (
       <ModeBlock
-        getCard={props.getCard}
         key={mode.getAbsoluteModeCode()}
         modeProps={mode.getModeProperties()}
-        clef={props.clef}
+        {...props.modeBlockProps}
       />
     );
   }

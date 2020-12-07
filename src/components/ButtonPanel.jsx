@@ -11,9 +11,8 @@ function ButtonPanel(props) {
           key={i}
           scaleList={i}
           scaleListString={scaleListString}
-          selectedListIndex={props.selectedListIndex}
           listSize={props.filteredLists[i].length}
-          handleSelectorChange={props.handleSelectorChange}
+          {...props.modeButtonProps}
         />
       ))}
     </div>

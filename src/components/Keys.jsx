@@ -31,7 +31,7 @@ function Keys(props) {
         value={Utilities.octaveMod(i)}
         index={i}
         isShort={isShort()}
-        {...props}
+        {...props.keyProps}
       />
     ));
   }

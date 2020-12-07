@@ -98,7 +98,7 @@ function Navbar(props) {
             </svg>
           </button>
 
-          {optionsIsOpen && <Options {...props} />}
+          {optionsIsOpen && <Options {...props.optionsProps} />}
 
           {/* MENU BUTTON AND DROP-DOWN */}
           <button
