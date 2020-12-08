@@ -11,7 +11,7 @@ function ModeBlock(props) {
         className="p-2 bg-white border border-gray-400 rounded-lg
                     hover:shadow-md"
       >
-        <h2 className="text-center tracking-wider font-medium">
+        <h2 className="text-center tracking-wider font-semibold">
           {props.modeProps.modeName}
         </h2>
         <VexStaff clef={props.clef} {...props.modeProps} />
