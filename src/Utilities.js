@@ -90,12 +90,12 @@ class Utilities {
   ];
 
   static jsMusicSymbols = [
-    { '##': '\uD834\uDD2A' },
-    { bb: '\uD834\uDD2B' },
-    { '#': '\u266F' },
-    { b: '\u266D' },
-    { nat: '\u266E' },
-    { dim: '\uD834\uDDC8' },
+    { regex: /##/g, replacement: '\uD834\uDD2A' },
+    { regex: /bb/g, replacement: '\uD834\uDD2B' },
+    { regex: /#/g, replacement: '\u266F' },
+    { regex: /b/g, replacement: '\u266D' },
+    { regex: /nat/g, replacement: '\u266E' },
+    { regex: /dim/g, replacement: '\uD834\uDDC8' },
   ];
 
   static tonalities = [
@@ -366,11 +366,11 @@ class Utilities {
   static octaveMod = (pitch) =>
     ((pitch % this.notesInOctave) + this.notesInOctave) % this.notesInOctave;
 
-  static replaceSymbols(name) {
-    return this.jsMusicSymbols.reduce((acc, el) => {
-      const key = Object.keys(el)[0];
-      return acc.replace(key, el[key]);
-    }, name);
+  static replaceSymbols(str) {
+    return this.jsMusicSymbols.reduce(
+      (acc, symbol) => acc.replace(symbol.regex, symbol.replacement),
+      str
+    );
   }
 }
 
