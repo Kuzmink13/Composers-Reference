@@ -72,20 +72,20 @@ class Chords {
         '',
         {
           diminishedFifth: [
-            'diminished',
+            'dim',
             {
               diminishedSeventh: [
-                'diminished7',
+                'dim7',
                 {
-                  minorNinth: ['diminished7 (b9)', {}],
-                  majorNinth: ['diminished9', {}],
+                  minorNinth: ['dim7 (b9)', {}],
+                  majorNinth: ['dim9', {}],
                 },
               ],
               minorSeventh: [
-                'half-diminished7',
+                'm7 (b5)',
                 {
-                  minorNinth: ['half-diminished7 (b9)', {}],
-                  majorNinth: ['half-diminished9', {}],
+                  minorNinth: ['m7 (b5) (b9)', {}],
+                  majorNinth: ['m9 (b5)', {}],
                 },
               ],
               majorSeventh: [
