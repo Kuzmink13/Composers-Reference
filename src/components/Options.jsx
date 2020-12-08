@@ -43,7 +43,7 @@ function Options(props) {
     },
     {
       id: 'root-scale-display',
-      text: 'Display scale only if its root is selected',
+      text: 'Display scale only if its tonic is selected',
       onChange: props.handleIsFilteredBySelection,
       checked: props.isFilteredBySelection,
     },
@@ -53,7 +53,7 @@ function Options(props) {
   return (
     <form
       id="options"
-      className="drop-down text-sm sm:text-base mt-10 mx-2 sm:mr-20 p-4 leading-none"
+      className="drop-down text-sm sm:text-base mt-10 ml-2 mr-16 p-4 leading-none"
     >
       <h2 className="mx-auto pb-3 font-bold tracking-widest">OPTIONS</h2>
 
@@ -119,7 +119,9 @@ function Options(props) {
         className="tab-selection p-1 mx-auto"
         onClick={(event) => props.handleRevertSettings(event)}
       >
-        <div className="btn cursor-pointer">REVERT TO DEFAULT</div>
+        <div className="btn cursor-pointer leading-normal">
+          REVERT TO DEFAULT
+        </div>
       </button>
     </form>
   );

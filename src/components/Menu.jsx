@@ -32,10 +32,7 @@ function Menu() {
   ];
 
   return (
-    <ul
-      id="menu"
-      className="drop-down text-sm sm:text-base w-56 mt-10 mr-10 py-2"
-    >
+    <ul id="menu" className="drop-down text-sm sm:text-base mt-10 mr-6 py-2">
       {links.map((el) => (
         <li key={el.title} className="px-4 py-2">
           <span
