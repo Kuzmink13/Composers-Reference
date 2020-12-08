@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { createFocusTrap } from 'focus-trap';
 
 import Utilities from '../Utilities';
@@ -27,59 +27,59 @@ function Options(props) {
     };
   });
 
-  // RENDER
-  const isLineBreakNeeded = (arr, i) => i + 1 !== arr.length;
+  // GENERAL OPTIONS
+  const generalOptions = [
+    {
+      id: 'keyboard-overlay',
+      text: 'Display keyboard overlay',
+      onChange: props.handleOverlayToggle,
+      checked: props.isOverlayActive,
+    },
+    {
+      id: 'names-on-keys',
+      text: 'Display note names on keys',
+      onChange: props.handleNoteNamesVisible,
+      checked: props.areNoteNamesVisible,
+    },
+    {
+      id: 'root-scale-display',
+      text: 'Display scale only if its root is selected',
+      onChange: props.handleIsFilteredBySelection,
+      checked: props.isFilteredBySelection,
+    },
+  ];
 
+  // RENDER
   return (
     <form
       id="options"
-      className="drop-down text-sm sm:text-base mt-10 mx-2 sm:mr-20 px-4 py-2"
+      className="drop-down text-sm sm:text-base mt-10 mx-2 sm:mr-20 p-4 leading-none"
     >
-      <h2 className="mx-auto py-1 font-bold tracking-widest">OPTIONS</h2>
+      <h2 className="mx-auto pb-3 font-bold tracking-widest">OPTIONS</h2>
 
       {/* GENERAL OPTIONS */}
-      <fieldset className="py-1">
-        <input
-          id="keyboard-overlay"
-          type="checkbox"
-          className="mr-2 cursor-pointer"
-          onChange={props.handleOverlayToggle}
-          checked={props.isOverlayActive}
-        />
-        <label htmlFor="keyboard-overlay" className="cursor-pointer">
-          Display keyboard overlay
-        </label>
-        <br />
-
-        <input
-          id="names-on-keys"
-          type="checkbox"
-          className="mr-2 cursor-pointer"
-          onChange={props.handleNoteNamesVisible}
-          checked={props.areNoteNamesVisible}
-        />
-        <label htmlFor="names-on-keys" className="cursor-pointer">
-          Display note names on keys
-        </label>
-        <br />
-
-        <input
-          id="root-scale-display"
-          type="checkbox"
-          className="mr-2 cursor-pointer"
-          onChange={props.handleIsFilteredBySelection}
-          checked={props.isFilteredBySelection}
-        />
-        <label htmlFor="root-scale-display" className="cursor-pointer">
-          Display scale only if its root is selected
-        </label>
+      <fieldset className="pb-2">
+        {generalOptions.map((el) => (
+          <div key={el.id} className="flex items-center pb-1">
+            <input
+              id={el.id}
+              type="checkbox"
+              className="mr-2 cursor-pointer"
+              onChange={el.onChange}
+              checked={el.checked}
+            />
+            <label htmlFor={el.id} className="cursor-pointer">
+              {el.text}
+            </label>
+          </div>
+        ))}
       </fieldset>
 
       {/* CLEF SELECTION */}
-      <fieldset className="py-1">
-        <legend>Clef Selection:</legend>
-        {supportedClefs.map((el, i, arr) => (
-          <Fragment key={el}>
+      <fieldset className="pb-2">
+        <legend className="pb-2">Clef Selection:</legend>
+        {supportedClefs.map((el) => (
+          <div key={el} className="flex items-center pb-1">
             <input
               id={el}
               type="radio"
@@ -91,16 +91,15 @@ function Options(props) {
             <label htmlFor={el} className="cursor-pointer">
               {el.charAt(0).toUpperCase() + el.slice(1)}
             </label>
-            {isLineBreakNeeded(arr, i) && <br />}
-          </Fragment>
+          </div>
         ))}
       </fieldset>
 
       {/* TONALITY SELECTION */}
-      <fieldset className="py-1">
-        <legend>Exclude Tonalities:</legend>
-        {tonalities.map((tonality, i, arr) => (
-          <Fragment key={tonality.name}>
+      <fieldset className="pb-2">
+        <legend className="pb-2">Exclude Tonalities:</legend>
+        {tonalities.map((tonality, i) => (
+          <div key={tonality.name} className="flex items-center pb-1">
             <input
               id={tonality.name}
               type="checkbox"
@@ -111,14 +110,13 @@ function Options(props) {
             <label htmlFor={tonality.name} className="cursor-pointer">
               {tonality.name}
             </label>
-            {isLineBreakNeeded(arr, i) && <br />}
-          </Fragment>
+          </div>
         ))}
       </fieldset>
 
       {/* RESET SETTINGS BUTTON */}
       <button
-        className="tab-selection p-1 mt-3 mb-1 mx-auto"
+        className="tab-selection p-1 mx-auto"
         onClick={(event) => props.handleRevertSettings(event)}
       >
         <div className="btn cursor-pointer">REVERT TO DEFAULT</div>
