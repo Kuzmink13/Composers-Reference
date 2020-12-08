@@ -31,7 +31,7 @@ function ModeController(props) {
       {selectedList.length ? (
         <ModePanel selectedList={selectedList} {...props.modePanelProps} />
       ) : (
-        <span className="text-gray-500 text-sm font-semibold tracking-wider m-auto mt-12">
+        <span className="text-gray-500 text-sm font-semibold tracking-wider m-auto mt-12 px-4 text-center">
           no results to display for the current selection
         </span>
       )}
