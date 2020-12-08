@@ -95,8 +95,7 @@ class Utilities {
     { '#': '\u266F' },
     { b: '\u266D' },
     { nat: '\u266E' },
-    { 'm7 (\u266D5)': '\uD834\uDDA97' },
-    { dim: '\u00B0' },
+    { dim: '\uD834\uDDC8' },
   ];
 
   static tonalities = [
