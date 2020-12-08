@@ -143,7 +143,7 @@ function ModeCard(props) {
       className={`flex flex-col items-center relative
                   py-6 w-full max-w-sm sm:max-w-md m-auto
                   border rounded-lg border-gray-400 bg-white shadow-xl
-                text-gray-800 text-sm sm:text-base tracking-tighter sm:tracking-normal
+                text-gray-800 text-sm sm:text-base tracking-tight
               ${
                 props.showAnimation &&
                 'transform scale-95 opacity-0 transition delay-25 duration-50'

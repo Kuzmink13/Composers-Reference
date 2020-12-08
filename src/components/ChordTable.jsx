@@ -14,7 +14,7 @@ function ChordTable(props) {
 
   return (
     <div
-      className="tab-selection p-4 max-h-card overflow-y-auto scrolling-auto"
+      className="tab-selection p-6 max-h-card overflow-y-auto scrolling-auto"
       tabIndex="0"
     >
       <table className="m-auto">
