@@ -29,11 +29,15 @@ const useLongPress = (
   const clear = useCallback(
     (event, shouldTriggerClick = true) => {
       timeout.current && clearTimeout(timeout.current);
-      shouldTriggerClick && !longPressTriggered && onClick(event);
+      shouldTriggerClick &&
+        !longPressTriggered &&
+        target.current === event.target &&
+        onClick(event);
       setLongPressTriggered(false);
       if (shouldPreventDefault && target.current) {
         target.current.removeEventListener('touchend', preventDefault);
       }
+      target.current = undefined;
     },
     [shouldPreventDefault, onClick, longPressTriggered]
   );
