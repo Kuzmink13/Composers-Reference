@@ -282,10 +282,8 @@ function App() {
   const modeControllerProps = {
     filteredLists,
     modePanelProps: {
-      modeBlockProps: {
-        clef,
-        getCard,
-      },
+      clef,
+      getCard,
     },
   };
 

@@ -29,7 +29,8 @@ function ModePanel(props) {
       <ModeBlock
         key={mode.getAbsoluteModeCode()}
         modeProps={mode.getModeProperties()}
-        {...props.modeBlockProps}
+        getCard={props.getCard}
+        clef={props.clef}
       />
     );
   }
