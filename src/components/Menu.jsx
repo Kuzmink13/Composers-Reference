@@ -32,7 +32,13 @@ function Menu() {
   ];
 
   return (
-    <ul id="menu" className="drop-down text-sm sm:text-base mt-10 mr-6 py-2">
+    <ul
+      id="menu"
+      className="box pop-out drop-down
+      flex flex-col
+      mt-10 mr-6 py-2
+      font-semibold text-sm sm:text-base"
+    >
       {links.map((el) => (
         <li key={el.title} className="px-4 py-2">
           <span

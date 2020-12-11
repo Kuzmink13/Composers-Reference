@@ -53,7 +53,10 @@ function Options(props) {
   return (
     <form
       id="options"
-      className="drop-down text-sm sm:text-base mt-10 ml-2 mr-16 p-4 leading-none"
+      className="box pop-out drop-down 
+      flex flex-col
+      mt-10 ml-2 mr-16 p-4
+      font-semibold text-sm sm:text-base leading-none"
     >
       <h2 className="mx-auto pb-3 font-bold tracking-widest">OPTIONS</h2>
 

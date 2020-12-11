@@ -7,10 +7,7 @@ function ModeBlock(props) {
       onClick={() => props.getCard(props.modeProps)}
       className="tab-selection m-1 p-1"
     >
-      <div
-        className="p-2 bg-white border border-gray-400 rounded-lg
-                    hover:shadow-md"
-      >
+      <div className="box p-2 hover:shadow-md">
         <h2 className="text-center tracking-wider font-semibold">
           {props.modeProps.modeName}
         </h2>
