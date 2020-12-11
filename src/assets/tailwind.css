@@ -103,10 +103,18 @@
 
   /* BUTTONS */
   .btn {
-    @apply px-4 py-1 border rounded-2xl text-sm font-bold text-white tracking-widest bg-blue-600 border-blue-700;
+    @apply bg-blue-700 border border-blue-800 rounded-lg;
+  }
+
+  .btn-text {
+    @apply text-gray-100 text-sm font-bold tracking-widest;
+  }
+
+  .btn-p {
+    @apply px-4 py-1;
   }
 
   .btn:hover {
-    @apply bg-blue-500 border-blue-600;
+    @apply bg-blue-600 border-blue-700;
   }
 }
