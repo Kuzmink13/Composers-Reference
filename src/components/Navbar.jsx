@@ -114,7 +114,7 @@ function Navbar(props) {
             </svg>
           </button>
 
-          {menuIsOpen && <Menu />}
+          {menuIsOpen && <Menu toggleShowGuide={props.toggleShowGuide} />}
         </nav>
       </div>
     </header>

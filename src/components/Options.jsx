@@ -32,20 +32,26 @@ function Options(props) {
     {
       id: 'keyboard-overlay',
       text: 'Display keyboard overlay',
-      onChange: props.handleOverlayToggle,
       checked: props.isOverlayActive,
+      onChange: props.handleOverlayToggle,
     },
     {
       id: 'names-on-keys',
       text: 'Display note names on keys',
-      onChange: props.handleNoteNamesVisible,
       checked: props.areNoteNamesVisible,
+      onChange: props.handleNoteNamesVisible,
     },
     {
       id: 'root-scale-display',
       text: 'Display scale only if its tonic is selected',
-      onChange: props.handleIsFilteredBySelection,
       checked: props.isFilteredBySelection,
+      onChange: props.handleIsFilteredBySelection,
+    },
+    {
+      id: 'quick guide display',
+      text: "Don't show Quick Start Guide on start",
+      checked: props.isGuideDismissed,
+      onChange: () => props.handleDismissGuide(!props.isGuideDismissed),
     },
   ];
 

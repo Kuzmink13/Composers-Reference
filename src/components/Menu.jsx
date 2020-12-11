@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { createFocusTrap } from 'focus-trap';
 
-function Menu() {
+function Menu(props) {
   // FOCUS TRAP
   useEffect(() => {
     const container = document.getElementById('menu');
@@ -26,6 +26,7 @@ function Menu() {
   // RENDER
   const links = [
     { title: 'About' },
+    { title: 'Quick Start Guide', click: props.toggleShowGuide },
     { title: 'Meet the Scales' },
     { title: 'FAQ' },
     { title: 'Contact' },
@@ -44,6 +45,7 @@ function Menu() {
           <span
             className="tab-selection px-2 py-1 cursor-pointer hover:underline"
             tabIndex="0"
+            onClick={el.click}
           >
             {el.title}
           </span>

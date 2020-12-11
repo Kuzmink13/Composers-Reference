@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 
 import Navbar from './Navbar';
+import QuickGuide from './QuickGuide';
 import ModeCard from './ModeCard';
 import Keys from './Keys';
 import ModeController from './ModeController';
@@ -188,6 +189,28 @@ function App() {
     }
   }
 
+  // QUICK START GUIDE DISMISSAL
+  const [isGuideDismissed, setIsGuideDismissed] = useState(
+    AppStorage.getBoolean('isGuideDismissed') || false
+  );
+
+  function handleDismissGuide(setting) {
+    setIsGuideDismissed(setting);
+    AppStorage.setBoolean('isGuideDismissed', setting);
+  }
+
+  function revertIsGuideDismissed() {
+    setIsGuideDismissed(false);
+    AppStorage.removeItem('isGuideDismissed');
+  }
+
+  // QUICK START GUIDE DISPLAY
+  const [isGuideShown, setIsGuideShown] = useState(!isGuideDismissed);
+
+  function toggleShowGuide() {
+    setIsGuideShown(!isGuideShown);
+  }
+
   // REVERT TO DEFAULT SETTINGS
   function handleRevertSettings(event) {
     event.preventDefault();
@@ -196,6 +219,7 @@ function App() {
     revertIsFilteredBySelection();
     revertClef();
     revertSelectedTonalities();
+    revertIsGuideDismissed();
   }
 
   // SCREEN SIZE CONTROL
@@ -243,6 +267,7 @@ function App() {
   // RENDER
   const navbarProps = {
     isModeCardShown,
+    toggleShowGuide,
     clearSelection,
     optionsProps: {
       isOverlayActive,
@@ -250,12 +275,14 @@ function App() {
       isFilteredBySelection,
       clef,
       selectedTonalities,
+      isGuideDismissed,
       handleOverlayToggle,
       handleNoteNamesVisible,
       handleIsFilteredBySelection,
       handleClefChange,
       handleSelectedTonalityChange,
       handleRevertSettings,
+      handleDismissGuide,
     },
   };
 
@@ -265,6 +292,12 @@ function App() {
     showAnimation,
     getCard,
     closeCard,
+  };
+
+  const quickGuideProps = {
+    isGuideDismissed,
+    toggleShowGuide,
+    handleDismissGuide,
   };
 
   const keysProps = {
@@ -298,6 +331,15 @@ function App() {
           onClick={closeCard}
         >
           <ModeCard {...modeCardProps} />
+        </div>
+      )}
+
+      {isGuideShown && (
+        <div
+          className="fixed h-full w-full inset-0 z-30 flex bg-gray-400 bg-opacity-25 p-2"
+          onClick={toggleShowGuide}
+        >
+          <QuickGuide {...quickGuideProps} />
         </div>
       )}
 
