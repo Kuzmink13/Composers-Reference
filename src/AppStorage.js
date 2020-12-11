@@ -21,7 +21,6 @@ class AppStorage {
   }
 
   static setBooleanArray(key, arr) {
-    console.log(arr);
     this.setItem(
       key,
       arr.map((el) => Number(el))
