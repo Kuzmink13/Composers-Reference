@@ -1,5 +1,5 @@
-import Scales from './Scales';
-import Utilities from './Utilities';
+import Scales from '../logic/Scales';
+import Utilities from '../logic/Utilities';
 
 class Chords {
   static intervals = {

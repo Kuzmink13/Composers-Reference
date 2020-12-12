@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import VexScale from '../VexScale';
+import VexScale from '../logic/VexScale';
 
 function VexStaff(props) {
   useEffect(() => {

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { createFocusTrap } from 'focus-trap';
 
-import Utilities from '../Utilities';
+import Utilities from '../logic/Utilities';
 
 const { tonalities, supportedClefs } = Utilities;
 

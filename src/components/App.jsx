@@ -6,11 +6,11 @@ import ModeCard from './ModeCard';
 import Keys from './Keys';
 import ModeController from './ModeController';
 
-import Music from '../Music';
-import Scales from '../Scales';
-import Keyboard from '../Keyboard';
-import AppStorage from '../AppStorage';
-import Utilities from '../Utilities';
+import Music from '../logic/Music';
+import Scales from '../logic/Scales';
+import Keyboard from '../logic/Keyboard';
+import AppStorage from '../logic/AppStorage';
+import Utilities from '../logic/Utilities';
 
 const { supportedScaleLengths } = Scales;
 const { notesInOctave, tonalities, supportedClefs } = Utilities;

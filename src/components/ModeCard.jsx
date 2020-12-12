@@ -5,8 +5,8 @@ import { createFocusTrap } from 'focus-trap';
 import VexStaff from './VexStaff';
 import ChordTable from './ChordTable';
 
-import Music from '../Music';
-import Keyboard from '../Keyboard';
+import Music from '../logic/Music';
+import Keyboard from '../logic/Keyboard';
 
 function ModeCard(props) {
   // FOCUS TRAP

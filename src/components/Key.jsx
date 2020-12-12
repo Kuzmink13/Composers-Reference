@@ -1,8 +1,8 @@
 import React from 'react';
 import useLongPress from '../hooks/useLongPress';
 
-import Keyboard from '../Keyboard';
-import Utilities from '../Utilities';
+import Keyboard from '../logic/Keyboard';
+import Utilities from '../logic/Utilities';
 
 const { keyNotes } = Utilities;
 

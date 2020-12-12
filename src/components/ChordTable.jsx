@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import Chords from '../Chords';
+import Chords from '../logic/Chords';
 
 function ChordTable(props) {
   const chordRoot = props.modeName.split(' ')[0];

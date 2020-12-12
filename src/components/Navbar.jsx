@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Menu from './Menu';
 import Options from './Options';
 
-import Keyboard from '../Keyboard';
+import Keyboard from '../logic/Keyboard';
 
 function Navbar(props) {
   // DROP-DOWN MENU SELECTION

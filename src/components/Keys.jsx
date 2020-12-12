@@ -1,6 +1,6 @@
 import React from 'react';
 import Key from './Key';
-import Utilities from '../Utilities';
+import Utilities from '../logic/Utilities';
 
 const { notesInOctave } = Utilities;
 
