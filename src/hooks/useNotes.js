@@ -10,10 +10,10 @@ const initialState = {
   root: undefined,
 };
 
-const ACTIONS = {
-  SELECT: 'select',
-  ROOT_SELECT: 'root_select',
-  RESET: 'reset',
+const actions = {
+  select: 'select',
+  rootSelect: 'root_select',
+  reset: 'reset',
 };
 
 function reducer(state, action) {
@@ -22,19 +22,19 @@ function reducer(state, action) {
   };
 
   switch (action.type) {
-    case ACTIONS.SELECT:
+    case actions.select:
       return {
         notes: state.notes.map((el, i) => (isSelection(i) ? !el : el)),
         root: action.payload.isRoot ? initialState.root : state.root,
       };
 
-    case ACTIONS.ROOT_SELECT:
+    case actions.rootSelect:
       return {
         notes: state.notes.map((el, i) => (isSelection(i) ? true : el)),
         root: action.payload.isRoot ? initialState.root : action.payload.note,
       };
 
-    case ACTIONS.RESET:
+    case actions.reset:
       return initialState;
 
     default:
@@ -48,7 +48,7 @@ function useNotes() {
   const handleNoteSelection = useCallback(
     (event, note, isRootSelect = event.shiftKey) => {
       dispatch({
-        type: isRootSelect ? ACTIONS.ROOT_SELECT : ACTIONS.SELECT,
+        type: isRootSelect ? actions.rootSelect : actions.select,
         payload: { note, isRoot: state.root === note },
       });
     },
@@ -56,7 +56,7 @@ function useNotes() {
   );
 
   const resetNotes = () => {
-    dispatch({ type: ACTIONS.RESET });
+    dispatch({ type: actions.reset });
   };
 
   const KeyBoardPress = useCallback(
