@@ -1,4 +1,4 @@
-import { useReducer, useEffect } from 'react';
+import { useReducer, useCallback, useEffect } from 'react';
 
 import Keyboard from '../logic/Keyboard';
 import Utilities from '../logic/Utilities';
@@ -17,23 +17,26 @@ const ACTIONS = {
 };
 
 function reducer(state, action) {
+  const isSelection = (i) => {
+    return i === action.payload.note;
+  };
+
   switch (action.type) {
     case ACTIONS.SELECT:
       return {
-        notes: state.notes.map((el, i) =>
-          i === action.payload.note ? !el : el
-        ),
+        notes: state.notes.map((el, i) => (isSelection(i) ? !el : el)),
         root: action.payload.isRoot ? initialState.root : state.root,
       };
+
     case ACTIONS.ROOT_SELECT:
       return {
-        notes: state.notes.map((el, i) =>
-          i === action.payload.note ? true : el
-        ),
+        notes: state.notes.map((el, i) => (isSelection(i) ? true : el)),
         root: action.payload.isRoot ? initialState.root : action.payload.note,
       };
+
     case ACTIONS.RESET:
       return initialState;
+
     default:
       return state;
   }
@@ -42,32 +45,37 @@ function reducer(state, action) {
 function useNotes() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  function handleNoteSelection(event, note, isRootPress = event.shiftKey) {
-    console.log(note);
-    dispatch({
-      type: isRootPress ? ACTIONS.ROOT_SELECT : ACTIONS.SELECT,
-      payload: { note, isRoot: state.root === note },
-    });
-  }
+  const handleNoteSelection = useCallback(
+    (event, note, isRootSelect = event.shiftKey) => {
+      dispatch({
+        type: isRootSelect ? ACTIONS.ROOT_SELECT : ACTIONS.SELECT,
+        payload: { note, isRoot: state.root === note },
+      });
+    },
+    [state.root]
+  );
 
-  function resetNotes() {
+  const resetNotes = () => {
     dispatch({ type: ACTIONS.RESET });
-  }
+  };
 
-  function KeyBoardPress(event) {
-    if (!event.repeat) {
-      const pressedNote = Keyboard.getNote(event.code);
-      pressedNote !== undefined && handleNoteSelection(event, pressedNote);
-      Keyboard.isDelete(event.key) && resetNotes();
-    }
-  }
+  const KeyBoardPress = useCallback(
+    (event) => {
+      if (!event.repeat) {
+        const pressedNote = Keyboard.getNote(event.code);
+        pressedNote !== undefined && handleNoteSelection(event, pressedNote);
+        Keyboard.isDelete(event.key) && resetNotes();
+      }
+    },
+    [handleNoteSelection]
+  );
 
   useEffect(() => {
     document.addEventListener('keydown', KeyBoardPress);
     return () => {
       document.removeEventListener('keydown', KeyBoardPress);
     };
-  });
+  }, [KeyBoardPress]);
 
   return [state, handleNoteSelection, resetNotes];
 }
