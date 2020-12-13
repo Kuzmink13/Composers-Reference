@@ -47,22 +47,25 @@ function ModeCard(props) {
   // MODE-SHIFT FUNCTIONS
   const shift = {
     relative: (forwardShift) => {
-      props.getCard(
+      props.openModeCard(
         Music.relativeShift(props.absolutePitches, forwardShift),
         false
       );
     },
     parallel: (forwardShift) => {
-      props.getCard(
+      props.openModeCard(
         Music.parallelShift(props.modeCode, props.pitchCenter, forwardShift),
         false
       );
     },
     key: (forwardShift) => {
-      props.getCard(Music.keyShift(props.absolutePitches, forwardShift), false);
+      props.openModeCard(
+        Music.keyShift(props.absolutePitches, forwardShift),
+        false
+      );
     },
     relativeBrightness: (forwardShift) => {
-      props.getCard(
+      props.openModeCard(
         Music.relativeBrightnessShift(
           props.modeCode,
           props.pitchCenter,
@@ -191,7 +194,7 @@ function ModeCard(props) {
       <button
         name="close mode-card"
         className="absolute top-0 right-0 tab-selection p-2 m-1 text-gray-600 hover:text-gray-800"
-        onClick={props.closeCard}
+        onClick={props.closeModeCard}
       >
         <svg
           className="h-4 w-4 fill-current cursor-pointer"

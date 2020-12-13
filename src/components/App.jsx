@@ -7,10 +7,10 @@ import Keys from './Keys';
 import ModeController from './ModeController';
 
 import useNotes from '../hooks/useNotes';
+import useModeCard from '../hooks/useModeCard';
 
 import Music from '../logic/Music';
 import Scales from '../logic/Scales';
-import Keyboard from '../logic/Keyboard';
 import AppStorage from '../logic/AppStorage';
 import Utilities from '../logic/Utilities';
 
@@ -19,33 +19,11 @@ const { tonalities, supportedClefs } = Utilities;
 
 function App() {
   const [{ notes, root }, handleNoteSelection, resetNotes] = useNotes();
-
-  // MODE CARD CONTROLLER
-  const [isModeCardShown, setIsModeCardShown] = useState(false);
-  const [showAnimation, setShowAnimation] = useState(true);
-  const [modeProps, setModeProps] = useState(undefined);
-
-  function getCard(modeProps, showAnimation = true) {
-    setIsModeCardShown(true);
-    setShowAnimation(showAnimation);
-    setModeProps(modeProps);
-  }
-
-  function closeCard() {
-    setIsModeCardShown(false);
-    setModeProps(undefined);
-  }
-
-  function handleEscape(event) {
-    Keyboard.isEscape(event.key) && closeCard();
-  }
-
-  useEffect(() => {
-    document.addEventListener('keydown', handleEscape);
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-    };
-  });
+  const [
+    { isModeCardShown, showAnimation, modeProps },
+    openModeCard,
+    closeModeCard,
+  ] = useModeCard();
 
   // KEYBOARD OVERLAY TOGGLE
   const isOverlayActiveDefault = false;
@@ -239,8 +217,8 @@ function App() {
     ...modeProps,
     clef,
     showAnimation,
-    getCard,
-    closeCard,
+    openModeCard,
+    closeModeCard,
   };
 
   const quickGuideProps = {
@@ -265,7 +243,7 @@ function App() {
     filteredLists,
     modePanelProps: {
       clef,
-      getCard,
+      openModeCard,
     },
   };
 
@@ -277,7 +255,7 @@ function App() {
         <div
           id="grayed-out-background"
           className="fixed h-full w-full inset-0 z-30 flex bg-gray-400 bg-opacity-0 transition delay-25 duration-50 p-2"
-          onClick={closeCard}
+          onClick={closeModeCard}
         >
           <ModeCard {...modeCardProps} />
         </div>

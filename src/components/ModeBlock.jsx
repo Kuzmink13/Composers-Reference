@@ -4,7 +4,7 @@ import VexStaff from './VexStaff';
 function ModeBlock(props) {
   return (
     <button
-      onClick={() => props.getCard(props.modeProps)}
+      onClick={() => props.openModeCard(props.modeProps)}
       className="tab-selection m-1 p-1"
     >
       <div className="box p-2 hover:shadow-md">
