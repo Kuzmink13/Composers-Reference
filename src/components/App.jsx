@@ -10,6 +10,7 @@ import useNotes from '../hooks/useNotes';
 import useModeCard from '../hooks/useModeCard';
 import useOverlay from '../hooks/useOverlay';
 import useSelectionFilter from '../hooks/useSelectionFilter';
+import useQuickGuide from '../hooks/useQuickGuide';
 
 import Music from '../logic/Music';
 import Scales from '../logic/Scales';
@@ -37,6 +38,12 @@ function App() {
     toggleSelectionFilter,
     resetSelectionFilter,
   ] = useSelectionFilter();
+  const [
+    { isGuideDismissed, isGuideShown },
+    handleDismissGuide,
+    toggleShowGuide,
+    resetGuide,
+  ] = useQuickGuide();
 
   // CLEF SELECTION CONTROL
   const clefDefault = supportedClefs[0];
@@ -81,36 +88,14 @@ function App() {
     }
   }
 
-  // QUICK START GUIDE DISMISSAL
-  const [isGuideDismissed, setIsGuideDismissed] = useState(
-    AppStorage.getBoolean('isGuideDismissed') || false
-  );
-
-  function handleDismissGuide(setting) {
-    setIsGuideDismissed(setting);
-    AppStorage.setBoolean('isGuideDismissed', setting);
-  }
-
-  function revertIsGuideDismissed() {
-    setIsGuideDismissed(false);
-    AppStorage.removeItem('isGuideDismissed');
-  }
-
-  // QUICK START GUIDE DISPLAY
-  const [isGuideShown, setIsGuideShown] = useState(!isGuideDismissed);
-
-  function toggleShowGuide() {
-    setIsGuideShown(!isGuideShown);
-  }
-
   // REVERT TO DEFAULT SETTINGS
   function handleRevertSettings(event) {
     event.preventDefault();
     resetOverlay();
     resetSelectionFilter();
+    resetGuide();
     revertClef();
     revertSelectedTonalities();
-    revertIsGuideDismissed();
   }
 
   // SCREEN SIZE CONTROL
