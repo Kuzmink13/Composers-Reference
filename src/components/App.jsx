@@ -9,6 +9,7 @@ import ModeController from './ModeController';
 import useNotes from '../hooks/useNotes';
 import useModeCard from '../hooks/useModeCard';
 import useOverlay from '../hooks/useOverlay';
+import useSelectionFilter from '../hooks/useSelectionFilter';
 
 import Music from '../logic/Music';
 import Scales from '../logic/Scales';
@@ -31,22 +32,11 @@ function App() {
     toggleNoteNames,
     resetOverlay,
   ] = useOverlay();
-
-  // FILTER RESULTS BY NOTE SELECTION TOGGLE
-  const isFilteredBySelectionDefault = false;
-  const [isFilteredBySelection, setIsFilteredBySelection] = useState(
-    AppStorage.getBoolean('selectionFilter') || isFilteredBySelectionDefault
-  );
-
-  function handleIsFilteredBySelection() {
-    setIsFilteredBySelection(!isFilteredBySelection);
-    AppStorage.setBoolean('selectionFilter', !isFilteredBySelection);
-  }
-
-  function revertIsFilteredBySelection() {
-    setIsFilteredBySelection(isFilteredBySelectionDefault);
-    AppStorage.removeItem('selectionFilter');
-  }
+  const [
+    isSelectionFiltered,
+    toggleSelectionFilter,
+    resetSelectionFilter,
+  ] = useSelectionFilter();
 
   // CLEF SELECTION CONTROL
   const clefDefault = supportedClefs[0];
@@ -117,7 +107,7 @@ function App() {
   function handleRevertSettings(event) {
     event.preventDefault();
     resetOverlay();
-    revertIsFilteredBySelection();
+    resetSelectionFilter();
     revertClef();
     revertSelectedTonalities();
     revertIsGuideDismissed();
@@ -150,10 +140,10 @@ function App() {
         notes,
         root,
         selectedTonalities,
-        isFilteredBySelection
+        isSelectionFiltered
       )
     );
-  }, [notes, root, selectedTonalities, isFilteredBySelection]);
+  }, [notes, root, selectedTonalities, isSelectionFiltered]);
 
   // MODE-CARD ANIMATION
   useEffect(() => {
@@ -173,13 +163,13 @@ function App() {
     optionsProps: {
       areKeysShown,
       areNoteNamesShown,
-      isFilteredBySelection,
+      isSelectionFiltered,
       clef,
       selectedTonalities,
       isGuideDismissed,
       toggleKeys,
       toggleNoteNames,
-      handleIsFilteredBySelection,
+      toggleSelectionFilter,
       handleClefChange,
       handleSelectedTonalityChange,
       handleRevertSettings,

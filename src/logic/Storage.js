@@ -1,5 +1,6 @@
 export const keys = {
   overlay: { keys: 'keys', noteNames: 'noteNames' },
+  selectionFilter: 'selectionFilter',
 };
 
 export function getItem(key) {

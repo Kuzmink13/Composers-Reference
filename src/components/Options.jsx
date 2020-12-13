@@ -44,8 +44,8 @@ function Options(props) {
     {
       id: 'root-scale-display',
       text: 'Display scale only if its tonic is selected',
-      checked: props.isFilteredBySelection,
-      onChange: props.handleIsFilteredBySelection,
+      checked: props.isSelectionFiltered,
+      onChange: props.toggleSelectionFilter,
     },
     {
       id: 'quick guide display',
