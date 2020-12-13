@@ -6,6 +6,8 @@ import ModeCard from './ModeCard';
 import Keys from './Keys';
 import ModeController from './ModeController';
 
+import useNotes from '../hooks/useNotes';
+
 import Music from '../logic/Music';
 import Scales from '../logic/Scales';
 import Keyboard from '../logic/Keyboard';
@@ -13,63 +15,10 @@ import AppStorage from '../logic/AppStorage';
 import Utilities from '../logic/Utilities';
 
 const { supportedScaleLengths } = Scales;
-const { notesInOctave, tonalities, supportedClefs } = Utilities;
+const { tonalities, supportedClefs } = Utilities;
 
 function App() {
-  // NOTE/ROOT SELECTION
-  const isNoteSelectedDefault = () => Array(notesInOctave).fill(false);
-  const rootDefault = undefined;
-  const [isNoteSelected, setIsNoteSelected] = useState(isNoteSelectedDefault());
-  const [root, setRoot] = useState(rootDefault);
-
-  function handleKeyPress(event, pressedNote, isRootPress = event.shiftKey) {
-    const isKeyGettingPressed = (i) => i === pressedNote;
-    const isPressedNoteCurrentRoot = pressedNote === root;
-    const newNoteSelection = isRootPress ? true : !isNoteSelected[pressedNote];
-
-    setIsNoteSelected(
-      isNoteSelected.map((noteSelection, i) =>
-        isKeyGettingPressed(i) ? newNoteSelection : noteSelection
-      )
-    );
-    setRoot(
-      isPressedNoteCurrentRoot ? rootDefault : isRootPress ? pressedNote : root
-    );
-  }
-
-  function handleKeyBoardPress(event) {
-    if (!isModeCardShown && !event.repeat) {
-      const pressedNote = Keyboard.getNote(event.code);
-      pressedNote !== undefined && handleKeyPress(event, pressedNote);
-    }
-  }
-
-  useEffect(() => {
-    document.addEventListener('keydown', handleKeyBoardPress);
-    return () => {
-      document.removeEventListener('keydown', handleKeyBoardPress);
-    };
-  });
-
-  // CLEAR NOTE/ROOT SELECTION
-  function clearSelection() {
-    setIsNoteSelected(isNoteSelectedDefault());
-    setRoot(rootDefault);
-  }
-
-  function handleDelete(event) {
-    if (Keyboard.isDelete(event.key)) {
-      closeCard();
-      clearSelection();
-    }
-  }
-
-  useEffect(() => {
-    document.addEventListener('keydown', handleDelete);
-    return () => {
-      document.removeEventListener('keydown', handleDelete);
-    };
-  });
+  const [{ notes, root }, handleNoteSelection, resetNotes] = useNotes();
 
   // MODE CARD CONTROLLER
   const [isModeCardShown, setIsModeCardShown] = useState(false);
@@ -246,13 +195,13 @@ function App() {
   useEffect(() => {
     setFilteredLists(
       Music.getFilterdLists(
-        isNoteSelected,
+        notes,
         root,
         selectedTonalities,
         isFilteredBySelection
       )
     );
-  }, [isNoteSelected, root, selectedTonalities, isFilteredBySelection]);
+  }, [notes, root, selectedTonalities, isFilteredBySelection]);
 
   // MODE-CARD ANIMATION
   useEffect(() => {
@@ -268,7 +217,7 @@ function App() {
   const navbarProps = {
     isModeCardShown,
     toggleShowGuide,
-    clearSelection,
+    resetNotes,
     optionsProps: {
       isOverlayActive,
       areNoteNamesVisible,
@@ -304,11 +253,11 @@ function App() {
     screenWidth,
     screenHeight,
     keyProps: {
-      isNoteSelected,
+      notes,
       root,
       isOverlayActive,
       areNoteNamesVisible,
-      handleKeyPress,
+      handleNoteSelection,
     },
   };
 

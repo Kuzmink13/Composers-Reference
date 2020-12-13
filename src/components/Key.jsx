@@ -8,11 +8,11 @@ const { keyNotes } = Utilities;
 
 function Key(props) {
   const longPressEvent = useLongPress(
-    (event) => props.handleKeyPress(event, props.value, true),
-    (event) => props.handleKeyPress(event, props.value)
+    (event) => props.handleNoteSelection(event, props.value, true),
+    (event) => props.handleNoteSelection(event, props.value)
   );
 
-  const isNoteSelected = props.isNoteSelected[props.value];
+  const isNoteSelected = props.notes[props.value];
   const isNoteRoot = props.root === props.value;
   const noteName = keyNotes[props.value].absoluteName;
   const color = keyNotes[props.value].isWhite ? 'white' : 'black';
