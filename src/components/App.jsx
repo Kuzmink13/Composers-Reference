@@ -8,6 +8,7 @@ import ModeController from './ModeController';
 
 import useNotes from '../hooks/useNotes';
 import useModeCard from '../hooks/useModeCard';
+import useOverlay from '../hooks/useOverlay';
 
 import Music from '../logic/Music';
 import Scales from '../logic/Scales';
@@ -24,38 +25,12 @@ function App() {
     openModeCard,
     closeModeCard,
   ] = useModeCard();
-
-  // KEYBOARD OVERLAY TOGGLE
-  const isOverlayActiveDefault = false;
-  const [isOverlayActive, setIsOverlayActive] = useState(
-    AppStorage.getBoolean('overlay') || isOverlayActiveDefault
-  );
-
-  function handleOverlayToggle() {
-    setIsOverlayActive(!isOverlayActive);
-    AppStorage.setBoolean('overlay', !isOverlayActive);
-  }
-
-  function revertOverlayToggle() {
-    setIsOverlayActive(isOverlayActiveDefault);
-    AppStorage.removeItem('overlay');
-  }
-
-  // NOTE NAME VISIBILITY TOGGLE
-  const noteNameVisibilityDefault = false;
-  const [areNoteNamesVisible, setAreNoteNamesVisible] = useState(
-    AppStorage.getBoolean('noteNames') || noteNameVisibilityDefault
-  );
-
-  function handleNoteNamesVisible() {
-    setAreNoteNamesVisible(!areNoteNamesVisible);
-    AppStorage.setBoolean('noteNames', !areNoteNamesVisible);
-  }
-
-  function revertNoteNamesVisible() {
-    setAreNoteNamesVisible(noteNameVisibilityDefault);
-    AppStorage.removeItem('noteNames');
-  }
+  const [
+    { areKeysShown, areNoteNamesShown },
+    toggleKeys,
+    toggleNoteNames,
+    resetOverlay,
+  ] = useOverlay();
 
   // FILTER RESULTS BY NOTE SELECTION TOGGLE
   const isFilteredBySelectionDefault = false;
@@ -141,8 +116,7 @@ function App() {
   // REVERT TO DEFAULT SETTINGS
   function handleRevertSettings(event) {
     event.preventDefault();
-    revertOverlayToggle();
-    revertNoteNamesVisible();
+    resetOverlay();
     revertIsFilteredBySelection();
     revertClef();
     revertSelectedTonalities();
@@ -197,14 +171,14 @@ function App() {
     toggleShowGuide,
     resetNotes,
     optionsProps: {
-      isOverlayActive,
-      areNoteNamesVisible,
+      areKeysShown,
+      areNoteNamesShown,
       isFilteredBySelection,
       clef,
       selectedTonalities,
       isGuideDismissed,
-      handleOverlayToggle,
-      handleNoteNamesVisible,
+      toggleKeys,
+      toggleNoteNames,
       handleIsFilteredBySelection,
       handleClefChange,
       handleSelectedTonalityChange,
@@ -233,8 +207,8 @@ function App() {
     keyProps: {
       notes,
       root,
-      isOverlayActive,
-      areNoteNamesVisible,
+      areKeysShown,
+      areNoteNamesShown,
       handleNoteSelection,
     },
   };

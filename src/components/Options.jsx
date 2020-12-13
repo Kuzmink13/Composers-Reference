@@ -32,14 +32,14 @@ function Options(props) {
     {
       id: 'keyboard-overlay',
       text: 'Display keyboard overlay',
-      checked: props.isOverlayActive,
-      onChange: props.handleOverlayToggle,
+      checked: props.areKeysShown,
+      onChange: props.toggleKeys,
     },
     {
       id: 'names-on-keys',
       text: 'Display note names on keys',
-      checked: props.areNoteNamesVisible,
-      onChange: props.handleNoteNamesVisible,
+      checked: props.areNoteNamesShown,
+      onChange: props.toggleNoteNames,
     },
     {
       id: 'root-scale-display',

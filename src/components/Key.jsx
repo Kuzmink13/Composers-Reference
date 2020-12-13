@@ -29,8 +29,8 @@ function Key(props) {
         props.isShort ? '-small' : ''
       } key-${color}-${selection} p-2 font-semibold break-words text-center`}
     >
-      {props.isOverlayActive && <div>{Keyboard.getKey(props.index)}</div>}
-      {props.areNoteNamesVisible && (
+      {props.areKeysShown && <div>{Keyboard.getKey(props.index)}</div>}
+      {props.areNoteNamesShown && (
         <div className={`${props.isShort ? 'mt-1' : 'mt-4'}`}>
           {noteName.replace('/', ' ')}
         </div>
