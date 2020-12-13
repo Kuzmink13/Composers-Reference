@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import { createFocusTrap } from 'focus-trap';
 
+import { supportedClefs } from '../hooks/useClef';
+
 import Utilities from '../logic/Utilities';
 
-const { tonalities, supportedClefs } = Utilities;
+const { tonalities } = Utilities;
 
 function Options(props) {
   // FOCUS TRAP
@@ -87,7 +89,7 @@ function Options(props) {
       {/* CLEF SELECTION */}
       <fieldset className="pb-2">
         <legend className="pb-2">Clef Selection:</legend>
-        {supportedClefs.map((el) => (
+        {Object.values(supportedClefs).map((el) => (
           <div key={el} className="flex items-center pb-1">
             <input
               id={el}

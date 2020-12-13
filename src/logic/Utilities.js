@@ -108,8 +108,6 @@ class Utilities {
     { name: 'Diminished', pitches: [0, 1, 3, 4, 6, 7, 9, 10] },
   ];
 
-  static supportedClefs = ['treble', 'alto', 'bass'];
-
   static modeProperties = {
     // WHOLE TONE SCALES
     '02468a': {

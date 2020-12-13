@@ -11,6 +11,7 @@ import useModeCard from '../hooks/useModeCard';
 import useOverlay from '../hooks/useOverlay';
 import useSelectionFilter from '../hooks/useSelectionFilter';
 import useQuickGuide from '../hooks/useQuickGuide';
+import useClef from '../hooks/useClef';
 
 import Music from '../logic/Music';
 import Scales from '../logic/Scales';
@@ -18,7 +19,7 @@ import AppStorage from '../logic/AppStorage';
 import Utilities from '../logic/Utilities';
 
 const { supportedScaleLengths } = Scales;
-const { tonalities, supportedClefs } = Utilities;
+const { tonalities } = Utilities;
 
 function App() {
   const [{ notes, root }, handleNoteSelection, resetNotes] = useNotes();
@@ -44,20 +45,7 @@ function App() {
     toggleShowGuide,
     resetGuide,
   ] = useQuickGuide();
-
-  // CLEF SELECTION CONTROL
-  const clefDefault = supportedClefs[0];
-  const [clef, setClef] = useState(AppStorage.getItem('clef') || clefDefault);
-
-  function handleClefChange(newClef) {
-    setClef(newClef);
-    AppStorage.setItem('clef', newClef);
-  }
-
-  function revertClef() {
-    setClef(clefDefault);
-    AppStorage.removeItem('clef');
-  }
+  const [clef, handleClefChange, resetClef] = useClef();
 
   // SELECTED TONALITIES CONTROL
   const selectedTonalitiesDefault = () => Array.from(tonalities, () => true);
@@ -94,7 +82,7 @@ function App() {
     resetOverlay();
     resetSelectionFilter();
     resetGuide();
-    revertClef();
+    resetClef();
     revertSelectedTonalities();
   }
 
