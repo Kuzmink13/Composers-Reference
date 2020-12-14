@@ -1,29 +1,13 @@
-import { useState } from 'react';
-
-import { keys, getItem, setItem, removeItem } from '../logic/Storage';
+import useToggle from './useToggle';
 
 const initialState = {
   isSelectionFiltered: false,
 };
 
-const storagekey = keys.selectionFilter;
+const storagekey = 'selectionFilter';
 
 function useSelectionFilter() {
-  const [isSelectionFiltered, setIsSelectionFiltered] = useState(
-    getItem(storagekey) || initialState.isSelectionFiltered
-  );
-
-  function toggleSelectionFilter() {
-    setIsSelectionFiltered(!isSelectionFiltered);
-    setItem(storagekey, !isSelectionFiltered);
-  }
-
-  function resetSelectionFilter() {
-    setIsSelectionFiltered(initialState.isSelectionFiltered);
-    removeItem(storagekey);
-  }
-
-  return [isSelectionFiltered, toggleSelectionFilter, resetSelectionFilter];
+  return useToggle(initialState.isSelectionFiltered, storagekey);
 }
 
 export default useSelectionFilter;

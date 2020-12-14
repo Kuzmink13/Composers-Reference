@@ -41,7 +41,7 @@ function App() {
   ] = useSelectionFilter();
   const [
     { isGuideDismissed, isGuideShown },
-    handleDismissGuide,
+    toggleDismissGuide,
     toggleShowGuide,
     resetGuide,
   ] = useQuickGuide();
@@ -143,10 +143,10 @@ function App() {
       toggleKeys,
       toggleNoteNames,
       toggleSelectionFilter,
+      toggleDismissGuide,
       handleClefChange,
       handleSelectedTonalityChange,
       handleRevertSettings,
-      handleDismissGuide,
     },
   };
 
@@ -161,7 +161,7 @@ function App() {
   const quickGuideProps = {
     isGuideDismissed,
     toggleShowGuide,
-    handleDismissGuide,
+    toggleDismissGuide,
   };
 
   const keysProps = {
@@ -201,7 +201,7 @@ function App() {
       {isGuideShown && (
         <div
           className="fixed h-full w-full inset-0 z-30 flex bg-gray-400 bg-opacity-25 p-2"
-          onClick={toggleShowGuide}
+          onClick={() => toggleShowGuide()}
         >
           <QuickGuide {...quickGuideProps} />
         </div>

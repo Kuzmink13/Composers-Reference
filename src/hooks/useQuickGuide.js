@@ -1,36 +1,22 @@
-import { useState } from 'react';
-
-import { keys, getItem, setItem, removeItem } from '../logic/Storage';
+import useToggle from './useToggle';
 
 const initialState = {
   isGuideDismissed: false,
 };
 
-const storagekey = keys.quickGuide.isGuideDismissed;
+const storagekey = 'isGuideDismissed';
 
 function useQuickGuide() {
-  const [isGuideDismissed, setIsGuideDismissed] = useState(
-    getItem(storagekey) || initialState.isGuideDismissed
+  const [isGuideDismissed, toggleDismissGuide, resetGuide] = useToggle(
+    initialState.isGuideDismissed,
+    storagekey
   );
-  const [isGuideShown, setIsGuideShown] = useState(!isGuideDismissed);
 
-  function handleDismissGuide(setting = !isGuideDismissed) {
-    setIsGuideDismissed(setting);
-    setItem(storagekey, setting);
-  }
-
-  function toggleShowGuide() {
-    setIsGuideShown(!isGuideShown);
-  }
-
-  function resetGuide() {
-    setIsGuideDismissed(false);
-    removeItem(storagekey);
-  }
+  const [isGuideShown, toggleShowGuide] = useToggle(!isGuideDismissed);
 
   return [
     { isGuideDismissed, isGuideShown },
-    handleDismissGuide,
+    toggleDismissGuide,
     toggleShowGuide,
     resetGuide,
   ];

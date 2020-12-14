@@ -10,7 +10,7 @@ function QuickGuide(props) {
   const [isChecked, setIsChecked] = useState(props.isGuideDismissed);
 
   function skipGuide() {
-    props.handleDismissGuide(isChecked);
+    props.toggleDismissGuide(isChecked);
     props.toggleShowGuide();
   }
 
@@ -65,7 +65,7 @@ function QuickGuide(props) {
       <button
         name="close mode-card"
         className="absolute top-0 right-0 tab-selection p-2 m-1 text-gray-600 hover:text-gray-800"
-        onClick={props.toggleShowGuide}
+        onClick={() => props.toggleShowGuide()}
       >
         <svg
           className="h-4 w-4 fill-current cursor-pointer"

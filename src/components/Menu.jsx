@@ -45,7 +45,7 @@ function Menu(props) {
           <span
             className="tab-selection px-2 py-1 cursor-pointer hover:underline"
             tabIndex="0"
-            onClick={el.click}
+            onClick={() => el.click()}
           >
             {el.title}
           </span>

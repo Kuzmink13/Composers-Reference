@@ -53,7 +53,7 @@ function Options(props) {
       id: 'quick guide display',
       text: "Don't show Quick Start Guide on start",
       checked: props.isGuideDismissed,
-      onChange: () => props.handleDismissGuide(!props.isGuideDismissed),
+      onChange: props.toggleDismissGuide,
     },
   ];
 
@@ -76,7 +76,7 @@ function Options(props) {
               id={el.id}
               type="checkbox"
               className="mr-2 cursor-pointer"
-              onChange={el.onChange}
+              onChange={() => el.onChange()}
               checked={el.checked}
             />
             <label htmlFor={el.id} className="cursor-pointer">

@@ -1,6 +1,4 @@
-import { useState } from 'react';
-
-import { keys, getItem, setItem, removeItem } from '../logic/Storage';
+import useToggle from '../hooks/useToggle';
 
 const initialState = {
   areKeysShown: false,
@@ -8,32 +6,24 @@ const initialState = {
 };
 
 const storageKeys = {
-  ...keys.overlay,
+  keys: 'keys',
+  noteNames: 'noteNames',
 };
 
 function useOverlay() {
-  const [areKeysShown, setAreKeysShown] = useState(
-    getItem(storageKeys.keys) || initialState.areKeysShown
-  );
-  const [areNoteNamesShown, setAreNoteNamesShown] = useState(
-    getItem(storageKeys.noteNames) || initialState.areNoteNamesShown
+  const [areKeysShown, toggleKeys, resetKeys] = useToggle(
+    initialState.areKeysShown,
+    storageKeys.keys
   );
 
-  const toggleKeys = () => {
-    setAreKeysShown(!areKeysShown);
-    setItem(storageKeys.keys, !areKeysShown);
-  };
-
-  const toggleNoteNames = () => {
-    setAreNoteNamesShown(!areNoteNamesShown);
-    setItem(storageKeys.noteNames, !areNoteNamesShown);
-  };
+  const [areNoteNamesShown, toggleNoteNames, resetNoteNames] = useToggle(
+    initialState.areNoteNamesShown,
+    storageKeys.noteNames
+  );
 
   const resetOverlay = () => {
-    setAreKeysShown(initialState.areKeysShown);
-    setAreNoteNamesShown(initialState.areNoteNamesShown);
-    removeItem(storageKeys.keys);
-    removeItem(storageKeys.noteNames);
+    resetKeys();
+    resetNoteNames();
   };
 
   return [
