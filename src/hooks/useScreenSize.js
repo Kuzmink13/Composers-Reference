@@ -10,7 +10,6 @@ const breakpoints = {
 };
 
 export function octavesToDisplay(screenWidth) {
-  console.log('calculating octaves');
   switch (true) {
     case screenWidth < breakpoints.sm:
       return 1;
@@ -22,7 +21,6 @@ export function octavesToDisplay(screenWidth) {
 }
 
 export function isShortModeActive(screenHeight) {
-  console.log('calculating mode');
   return screenHeight < breakpoints.ht;
 }
 
@@ -31,7 +29,6 @@ function useScreenSize() {
   const [screenHeight, setScreenHeight] = useState(window.innerHeight);
 
   const handleResize = useCallback(() => {
-    console.log('ee');
     setScreenWidth(window.innerWidth);
     setScreenHeight(window.innerHeight);
   }, []);
