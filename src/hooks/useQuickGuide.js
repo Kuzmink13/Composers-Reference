@@ -4,12 +4,12 @@ const initialState = {
   isGuideDismissed: false,
 };
 
-const storagekey = 'isGuideDismissed';
+const storageKey = 'isGuideDismissed';
 
 function useQuickGuide() {
   const [isGuideDismissed, toggleDismissGuide, resetGuide] = useToggle(
     initialState.isGuideDismissed,
-    storagekey
+    storageKey
   );
 
   const [isGuideShown, toggleShowGuide] = useToggle(!isGuideDismissed);

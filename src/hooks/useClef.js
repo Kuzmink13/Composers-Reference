@@ -8,10 +8,10 @@ const initialState = {
   clef: supportedClefs.treble,
 };
 
-const storagekey = 'clef';
+const storageKey = 'clef';
 
 function useClef() {
-  const [clef, setClef] = useState(getItem(storagekey) || initialState.clef);
+  const [clef, setClef] = useState(getItem(storageKey) || initialState.clef);
 
   function handleClefChange(newClef) {
     setClef(newClef);
@@ -22,7 +22,7 @@ function useClef() {
   }
 
   useEffect(() => {
-    setItem(storagekey, `"${clef}"`);
+    setItem(storageKey, `"${clef}"`);
   }, [clef]);
 
   return [clef, handleClefChange, resetClef];

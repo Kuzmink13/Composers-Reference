@@ -4,10 +4,10 @@ const initialState = {
   isSelectionFiltered: false,
 };
 
-const storagekey = 'selectionFilter';
+const storageKey = 'selectionFilter';
 
 function useSelectionFilter() {
-  return useToggle(initialState.isSelectionFiltered, storagekey);
+  return useToggle(initialState.isSelectionFiltered, storageKey);
 }
 
 export default useSelectionFilter;
