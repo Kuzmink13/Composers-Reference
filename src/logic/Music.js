@@ -1,14 +1,11 @@
+import { supportedTonalities } from '../hooks/useTonalities';
+
 import PitchCollection from './PitchCollection';
 import Mode from './Mode';
 import Scales from './Scales';
 import Utilities from './Utilities';
 
-const {
-  notesInOctave,
-  notesInAPerfectFifth,
-  tonalities,
-  modeProperties,
-} = Utilities;
+const { notesInOctave, notesInAPerfectFifth, modeProperties } = Utilities;
 const { supportedScaleLengths } = Scales;
 
 /**
@@ -171,7 +168,7 @@ class Music {
    */
   static generateAllModes(givenPitches, pitchCenter, selectedTonalities) {
     let output = [];
-    tonalities
+    supportedTonalities
       .filter((el, i) => selectedTonalities[i])
       .forEach((el) => {
         output = output.concat(

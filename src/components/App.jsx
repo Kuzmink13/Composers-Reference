@@ -12,14 +12,12 @@ import useOverlay from '../hooks/useOverlay';
 import useSelectionFilter from '../hooks/useSelectionFilter';
 import useQuickGuide from '../hooks/useQuickGuide';
 import useClef from '../hooks/useClef';
+import useTonalities from '../hooks/useTonalities';
 
 import Music from '../logic/Music';
 import Scales from '../logic/Scales';
-import AppStorage from '../logic/AppStorage';
-import Utilities from '../logic/Utilities';
 
 const { supportedScaleLengths } = Scales;
-const { tonalities } = Utilities;
 
 function App() {
   const [{ notes, root }, handleNoteSelection, resetNotes] = useNotes();
@@ -46,35 +44,7 @@ function App() {
     resetGuide,
   ] = useQuickGuide();
   const [clef, handleClefChange, resetClef] = useClef();
-
-  // SELECTED TONALITIES CONTROL
-  const selectedTonalitiesDefault = () => Array.from(tonalities, () => true);
-  const [selectedTonalities, setSelectedTonalities] = useState(
-    AppStorage.getBooleanArray('tonalities') || selectedTonalitiesDefault()
-  );
-
-  function handleSelectedTonalityChange(tonalityIndex) {
-    const isUpdating = (i) => tonalityIndex === i;
-    const newSelectedTonalities = selectedTonalities.map((el, i) =>
-      isUpdating(i) ? !el : el
-    );
-
-    setSelectedTonalities(newSelectedTonalities);
-    AppStorage.setBooleanArray('tonalities', newSelectedTonalities);
-  }
-
-  function revertSelectedTonalities() {
-    const hasSelectionChanged = () =>
-      !selectedTonalitiesDefault().reduce(
-        (acc, el, i) => acc && el === selectedTonalities[i],
-        true
-      );
-
-    if (hasSelectionChanged()) {
-      setSelectedTonalities(selectedTonalitiesDefault());
-      AppStorage.removeItem('tonalities');
-    }
-  }
+  const [tonalities, toggleTonality, resetTonalities] = useTonalities();
 
   // REVERT TO DEFAULT SETTINGS
   function handleRevertSettings(event) {
@@ -83,7 +53,7 @@ function App() {
     resetSelectionFilter();
     resetGuide();
     resetClef();
-    revertSelectedTonalities();
+    resetTonalities();
   }
 
   // SCREEN SIZE CONTROL
@@ -109,14 +79,9 @@ function App() {
 
   useEffect(() => {
     setFilteredLists(
-      Music.getFilterdLists(
-        notes,
-        root,
-        selectedTonalities,
-        isSelectionFiltered
-      )
+      Music.getFilterdLists(notes, root, tonalities, isSelectionFiltered)
     );
-  }, [notes, root, selectedTonalities, isSelectionFiltered]);
+  }, [notes, root, tonalities, isSelectionFiltered]);
 
   // MODE-CARD ANIMATION
   useEffect(() => {
@@ -138,14 +103,14 @@ function App() {
       areNoteNamesShown,
       isSelectionFiltered,
       clef,
-      selectedTonalities,
+      tonalities,
       isGuideDismissed,
       toggleKeys,
       toggleNoteNames,
       toggleSelectionFilter,
       toggleDismissGuide,
       handleClefChange,
-      handleSelectedTonalityChange,
+      toggleTonality,
       handleRevertSettings,
     },
   };

@@ -2,10 +2,7 @@ import React, { useEffect } from 'react';
 import { createFocusTrap } from 'focus-trap';
 
 import { supportedClefs } from '../hooks/useClef';
-
-import Utilities from '../logic/Utilities';
-
-const { tonalities } = Utilities;
+import { supportedTonalities } from '../hooks/useTonalities';
 
 function Options(props) {
   // FOCUS TRAP
@@ -109,14 +106,14 @@ function Options(props) {
       {/* TONALITY SELECTION */}
       <fieldset className="pb-2">
         <legend className="pb-2">Exclude Tonalities:</legend>
-        {tonalities.map((tonality, i) => (
+        {supportedTonalities.map((tonality, i) => (
           <div key={tonality.name} className="flex items-center pb-1">
             <input
               id={tonality.name}
               type="checkbox"
               className="mx-2 cursor-pointer"
-              onChange={() => props.handleSelectedTonalityChange(i)}
-              checked={!props.selectedTonalities[i]}
+              onChange={() => props.toggleTonality(i)}
+              checked={!props.tonalities[i]}
             />
             <label htmlFor={tonality.name} className="cursor-pointer">
               {tonality.name}

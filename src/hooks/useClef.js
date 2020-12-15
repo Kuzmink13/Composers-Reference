@@ -22,7 +22,7 @@ function useClef() {
   }
 
   useEffect(() => {
-    setItem(storageKey, `"${clef}"`);
+    setItem(storageKey, clef);
   }, [clef]);
 
   return [clef, handleClefChange, resetClef];
