@@ -13,6 +13,7 @@ import useSelectionFilter from '../hooks/useSelectionFilter';
 import useQuickGuide from '../hooks/useQuickGuide';
 import useClef from '../hooks/useClef';
 import useTonalities from '../hooks/useTonalities';
+import useScreenSize from '../hooks/useScreenSize';
 
 import Music from '../logic/Music';
 import Scales from '../logic/Scales';
@@ -45,6 +46,7 @@ function App() {
   ] = useQuickGuide();
   const [clef, handleClefChange, resetClef] = useClef();
   const [tonalities, toggleTonality, resetTonalities] = useTonalities();
+  const [screenHeight, screenWidth] = useScreenSize();
 
   // REVERT TO DEFAULT SETTINGS
   function handleRevertSettings(event) {
@@ -55,22 +57,6 @@ function App() {
     resetClef();
     resetTonalities();
   }
-
-  // SCREEN SIZE CONTROL
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  const [screenHeight, setScreenHeight] = useState(window.innerHeight);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenWidth(window.innerWidth);
-      setScreenHeight(window.innerHeight);
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  });
 
   // FILTERED LIST GENERATION
   const [filteredLists, setFilteredLists] = useState(
