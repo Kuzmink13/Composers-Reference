@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import Menu from './Menu';
 import Options from './Options';
 
-import Keyboard from '../logic/Keyboard';
+import useKeyboardFn, { keyArrays } from '../hooks/useKeyboardFn';
 
 function Navbar(props) {
   // DROP-DOWN MENU SELECTION
@@ -21,18 +21,11 @@ function Navbar(props) {
   }
 
   function handleNavShortcuts(event) {
-    if (!event.repeat) {
-      event.code === 'KeyO' && optionsHandler();
-      event.code === 'KeyL' && menuHandler();
-    }
+    event.code === 'KeyO' && optionsHandler();
+    event.code === 'KeyL' && menuHandler();
   }
 
-  useEffect(() => {
-    document.addEventListener('keydown', handleNavShortcuts);
-    return () => {
-      document.removeEventListener('keydown', handleNavShortcuts);
-    };
-  });
+  useKeyboardFn(handleNavShortcuts);
 
   // CLOSE DROP-DOWN MENUS
   function closeAll() {
@@ -40,16 +33,7 @@ function Navbar(props) {
     setOptionsIsOpen(false);
   }
 
-  function handleEscape(event) {
-    Keyboard.isEscape(event.key) && closeAll();
-  }
-
-  useEffect(() => {
-    document.addEventListener('keydown', handleEscape);
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-    };
-  });
+  useKeyboardFn(closeAll, keyArrays.escape);
 
   // RENDER
   return (

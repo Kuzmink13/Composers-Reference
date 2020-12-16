@@ -1,4 +1,5 @@
 import useToggle from './useToggle';
+import useKeyboardFn, { keyArrays } from './useKeyboardFn';
 
 const initialState = {
   isGuideDismissed: false,
@@ -13,6 +14,11 @@ function useQuickGuide() {
   );
 
   const [isGuideShown, toggleShowGuide] = useToggle(!isGuideDismissed);
+
+  useKeyboardFn(
+    () => toggleShowGuide(initialState.isGuideDismissed),
+    keyArrays.escape
+  );
 
   return [
     { isGuideDismissed, isGuideShown },

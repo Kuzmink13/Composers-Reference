@@ -1,6 +1,6 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState } from 'react';
 
-import Keyboard from '../logic/Keyboard';
+import useKeyboardFn, { keyArrays } from './useKeyboardFn';
 
 const initialState = {
   isModeCardShown: false,
@@ -29,16 +29,7 @@ function useModeCard() {
     setModeProps(initialState.modeProps);
   };
 
-  const handleEscape = useCallback((event) => {
-    Keyboard.isEscape(event.key) && closeModeCard();
-  }, []);
-
-  useEffect(() => {
-    document.addEventListener('keydown', handleEscape);
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-    };
-  }, [handleEscape]);
+  useKeyboardFn(closeModeCard, keyArrays.escape);
 
   return [
     { isModeCardShown, showAnimation, modeProps },

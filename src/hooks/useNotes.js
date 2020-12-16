@@ -1,4 +1,6 @@
-import { useReducer, useCallback, useEffect } from 'react';
+import { useReducer, useCallback } from 'react';
+
+import useKeyboardFn, { keyArrays } from './useKeyboardFn';
 
 import Keyboard from '../logic/Keyboard';
 import Utilities from '../logic/Utilities';
@@ -61,21 +63,14 @@ function useNotes() {
 
   const KeyBoardPress = useCallback(
     (event) => {
-      if (!event.repeat) {
-        const pressedNote = Keyboard.getNote(event.code);
-        pressedNote !== undefined && handleNoteSelection(event, pressedNote);
-        Keyboard.isDelete(event.key) && resetNotes();
-      }
+      const pressedNote = Keyboard.getNote(event.code);
+      pressedNote !== undefined && handleNoteSelection(event, pressedNote);
     },
     [handleNoteSelection]
   );
 
-  useEffect(() => {
-    document.addEventListener('keydown', KeyBoardPress);
-    return () => {
-      document.removeEventListener('keydown', KeyBoardPress);
-    };
-  }, [KeyBoardPress]);
+  useKeyboardFn(KeyBoardPress);
+  useKeyboardFn(resetNotes, keyArrays.delete);
 
   return [state, handleNoteSelection, resetNotes];
 }
