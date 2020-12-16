@@ -143,9 +143,7 @@ function ModeCard(props) {
     <div
       onClick={cancelClose}
       id="mode-card"
-      className={`box pop-out 
-                  flex flex-col items-center relative
-                  w-full max-w-sm sm:max-w-md m-auto py-6
+      className={`flex flex-col items-center relative py-6
                 text-gray-800 text-sm sm:text-base tracking-tight
               ${
                 props.showAnimation &&

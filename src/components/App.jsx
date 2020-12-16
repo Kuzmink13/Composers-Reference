@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 
 import Navbar from './Navbar';
+import PopOver from './PopOver';
 import QuickGuide from './QuickGuide';
 import ModeCard from './ModeCard';
 import Keys from './Keys';
@@ -69,16 +70,6 @@ function App() {
     );
   }, [notes, root, tonalities, isSelectionFiltered]);
 
-  // MODE-CARD ANIMATION
-  useEffect(() => {
-    if (isModeCardShown) {
-      const container = document.getElementById('grayed-out-background');
-
-      container.classList.remove('bg-opacity-0');
-      container.classList.add('bg-opacity-25');
-    }
-  });
-
   // RENDER
   const navbarProps = {
     isModeCardShown,
@@ -140,22 +131,19 @@ function App() {
       <Navbar {...navbarProps} />
 
       {isModeCardShown && (
-        <div
-          id="grayed-out-background"
-          className="fixed h-full w-full inset-0 z-30 flex bg-gray-400 bg-opacity-0 transition delay-25 duration-50 p-2"
-          onClick={closeModeCard}
-        >
+        <PopOver closeFn={closeModeCard}>
           <ModeCard {...modeCardProps} />
-        </div>
+        </PopOver>
       )}
 
       {isGuideShown && (
-        <div
-          className="fixed h-full w-full inset-0 z-30 flex bg-gray-400 bg-opacity-25 p-2"
-          onClick={() => toggleShowGuide()}
+        <PopOver
+          closeFn={() => toggleShowGuide()}
+          isAnimated={false}
+          isWide={true}
         >
           <QuickGuide {...quickGuideProps} />
-        </div>
+        </PopOver>
       )}
 
       <main className="w-full overflow-y-hidden mx-auto flex flex-col lg:max-w-screen-lg">

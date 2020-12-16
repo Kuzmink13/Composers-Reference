@@ -17,9 +17,7 @@ function QuickGuide(props) {
   // RENDER
   return (
     <div
-      className="box pop-out
-      flex flex-col relative items-center
-      w-full max-w-3xl m-auto p-4"
+      className="flex flex-col items-center relative p-4"
       onClick={cancelClose}
     >
       <h2 className="text-lg font-bold text-gray-800 tracking-wider mb-64">
