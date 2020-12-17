@@ -1,11 +1,16 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useCallback, useEffect, useState } from 'react';
 
 import Navbar from './Navbar';
+import Options from './Options';
+import Menu from './Menu';
 import PopOver from './PopOver';
 import QuickGuide from './QuickGuide';
 import ModeCard from './ModeCard';
 import Keys from './Keys';
 import ModeController from './ModeController';
+
+import { KeyProvider } from '../contexts/KeyContext';
+import { ModeProvider } from '../contexts/ModeContext';
 
 import useNotes from '../hooks/useNotes';
 import useModeCard from '../hooks/useModeCard';
@@ -23,41 +28,49 @@ const { supportedScaleLengths } = Scales;
 
 function App() {
   const [{ notes, root }, handleNoteSelection, resetNotes] = useNotes();
+
   const [
     { isModeCardShown, showAnimation, modeProps },
     openModeCard,
     closeModeCard,
   ] = useModeCard();
+
   const [
     { areKeysShown, areNoteNamesShown },
     toggleKeys,
     toggleNoteNames,
     resetOverlay,
   ] = useOverlay();
+
   const [
     isSelectionFiltered,
     toggleSelectionFilter,
     resetSelectionFilter,
   ] = useSelectionFilter();
+
   const [
     { isGuideDismissed, isGuideShown },
     toggleDismissGuide,
     toggleShowGuide,
     resetGuide,
   ] = useQuickGuide();
+
   const [clef, handleClefChange, resetClef] = useClef();
   const [tonalities, toggleTonality, resetTonalities] = useTonalities();
   const [screenHeight, screenWidth] = useScreenSize();
 
   // REVERT TO DEFAULT SETTINGS
-  function handleRevertSettings(event) {
-    event.preventDefault();
-    resetOverlay();
-    resetSelectionFilter();
-    resetGuide();
-    resetClef();
-    resetTonalities();
-  }
+  const resetSettings = useCallback(
+    (event) => {
+      event.preventDefault();
+      resetOverlay();
+      resetSelectionFilter();
+      resetGuide();
+      resetClef();
+      resetTonalities();
+    },
+    [resetOverlay, resetSelectionFilter, resetGuide, resetClef, resetTonalities]
+  );
 
   // FILTERED LIST GENERATION
   const [filteredLists, setFilteredLists] = useState(
@@ -71,68 +84,43 @@ function App() {
   }, [notes, root, tonalities, isSelectionFiltered]);
 
   // RENDER
-  const navbarProps = {
-    isModeCardShown,
-    toggleShowGuide,
-    resetNotes,
-    optionsProps: {
-      areKeysShown,
-      areNoteNamesShown,
-      isSelectionFiltered,
-      clef,
-      tonalities,
-      isGuideDismissed,
-      toggleKeys,
-      toggleNoteNames,
-      toggleSelectionFilter,
-      toggleDismissGuide,
-      handleClefChange,
-      toggleTonality,
-      handleRevertSettings,
-    },
-  };
-
-  const modeCardProps = {
-    ...modeProps,
-    clef,
-    showAnimation,
-    openModeCard,
-    closeModeCard,
-  };
-
-  const quickGuideProps = {
-    isGuideDismissed,
-    toggleShowGuide,
-    toggleDismissGuide,
-  };
-
-  const keysProps = {
-    screenWidth,
-    screenHeight,
-    keyProps: {
-      notes,
-      root,
-      areKeysShown,
-      areNoteNamesShown,
-      handleNoteSelection,
-    },
-  };
-
-  const modeControllerProps = {
-    filteredLists,
-    modePanelProps: {
-      clef,
-      openModeCard,
-    },
-  };
-
   return (
     <Fragment>
-      <Navbar {...navbarProps} />
+      <Navbar
+        {...{ isModeCardShown, resetNotes }}
+        options={
+          <Options
+            {...{
+              areKeysShown,
+              areNoteNamesShown,
+              isSelectionFiltered,
+              clef,
+              tonalities,
+              isGuideDismissed,
+              toggleKeys,
+              toggleNoteNames,
+              toggleSelectionFilter,
+              toggleDismissGuide,
+              handleClefChange,
+              toggleTonality,
+              resetSettings,
+            }}
+          />
+        }
+        menu={<Menu {...{ toggleShowGuide }} />}
+      />
 
       {isModeCardShown && (
         <PopOver closeFn={closeModeCard}>
-          <ModeCard {...modeCardProps} />
+          <ModeCard
+            {...{
+              ...modeProps,
+              clef,
+              showAnimation,
+              openModeCard,
+              closeModeCard,
+            }}
+          />
         </PopOver>
       )}
 
@@ -142,13 +130,28 @@ function App() {
           isAnimated={false}
           isWide={true}
         >
-          <QuickGuide {...quickGuideProps} />
+          <QuickGuide
+            {...{ isGuideDismissed, toggleShowGuide, toggleDismissGuide }}
+          />
         </PopOver>
       )}
 
       <main className="w-full overflow-y-hidden mx-auto flex flex-col lg:max-w-screen-lg">
-        <Keys {...keysProps} />
-        <ModeController {...modeControllerProps} />
+        <KeyProvider
+          keyProps={{
+            notes,
+            root,
+            areKeysShown,
+            areNoteNamesShown,
+            handleNoteSelection,
+          }}
+        >
+          <Keys {...{ screenWidth, screenHeight }} />
+        </KeyProvider>
+
+        <ModeProvider modeProps={{ clef, openModeCard }}>
+          <ModeController {...{ filteredLists }} />
+        </ModeProvider>
       </main>
     </Fragment>
   );

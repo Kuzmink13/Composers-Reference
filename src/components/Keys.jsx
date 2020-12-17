@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Key from './Key';
 
 import { octavesToDisplay, isShortModeActive } from '../hooks/useScreenSize';
@@ -9,7 +9,8 @@ const { notesInOctave } = Utilities;
 
 function Keys(props) {
   const isShort = isShortModeActive(props.screenHeight);
-  function generateKeys() {
+
+  const keys = useMemo(() => {
     return Array.from(
       Array(notesInOctave * octavesToDisplay(props.screenWidth)),
       (el, i) => (
@@ -18,11 +19,10 @@ function Keys(props) {
           value={Utilities.octaveMod(i)}
           index={i}
           isShort={isShort}
-          {...props.keyProps}
         />
       )
     );
-  }
+  }, [isShort, props.screenWidth]);
 
   return (
     <div
@@ -30,7 +30,7 @@ function Keys(props) {
         isShort ? 'py-4' : 'py-8'
       } flex flex-row justify-center border-b border-gray-400`}
     >
-      {generateKeys()}
+      {keys}
     </div>
   );
 }

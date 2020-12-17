@@ -125,7 +125,7 @@ function Options(props) {
       {/* RESET SETTINGS BUTTON */}
       <button
         className="tab-selection p-1 mx-auto"
-        onClick={(event) => props.handleRevertSettings(event)}
+        onClick={(event) => props.resetSettings(event)}
       >
         <div className="btn btn-text btn-p cursor-pointer leading-normal">
           REVERT TO DEFAULT

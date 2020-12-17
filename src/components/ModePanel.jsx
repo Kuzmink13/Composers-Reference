@@ -3,7 +3,11 @@ import InfiniteScroll from 'react-infinite-scroller';
 
 import ModeBlock from './ModeBlock';
 
+import { useModeContext } from '../contexts/ModeContext';
+
 function ModePanel(props) {
+  const { clef } = useModeContext();
+
   // LOAD AND GENERATE MODE BLOCKS
   const [items, setItems] = useState([]);
   const [hasMore, setHasMore] = useState(true);
@@ -29,8 +33,6 @@ function ModePanel(props) {
       <ModeBlock
         key={mode.getAbsoluteModeCode()}
         modeProps={mode.getModeProperties()}
-        openModeCard={props.openModeCard}
-        clef={props.clef}
       />
     );
   }
@@ -39,7 +41,7 @@ function ModePanel(props) {
   useEffect(() => {
     setItems([]);
     setHasMore(true);
-  }, [props.selectedList, props.clef]);
+  }, [props.selectedList, clef]);
 
   // RENDER
   let scrollParentRef;

@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 
-import Menu from './Menu';
-import Options from './Options';
-
 import useKeyboardFn, { keyArrays } from '../hooks/useKeyboardFn';
 
 function Navbar(props) {
@@ -82,7 +79,7 @@ function Navbar(props) {
             </svg>
           </button>
 
-          {optionsIsOpen && <Options {...props.optionsProps} />}
+          {optionsIsOpen && props.options}
 
           {/* MENU BUTTON AND DROP-DOWN */}
           <button
@@ -98,7 +95,7 @@ function Navbar(props) {
             </svg>
           </button>
 
-          {menuIsOpen && <Menu toggleShowGuide={props.toggleShowGuide} />}
+          {menuIsOpen && props.menu}
         </nav>
       </div>
     </header>

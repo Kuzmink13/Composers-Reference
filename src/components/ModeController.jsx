@@ -29,7 +29,7 @@ function ModeController(props) {
     <Fragment>
       <ButtonPanel {...buttonPanelProps} />
       {selectedList.length ? (
-        <ModePanel selectedList={selectedList} {...props.modePanelProps} />
+        <ModePanel selectedList={selectedList} />
       ) : (
         <span className="text-gray-500 text-sm font-semibold tracking-wider m-auto mt-12 px-4 text-center">
           no results to display for the current selection
