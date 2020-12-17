@@ -1,10 +1,9 @@
 import React from 'react';
 
-function Menu(props) {
-  // RENDER
+function Menu({ toggleShowGuide }) {
   const links = [
     { title: 'About' },
-    { title: 'Quick Start Guide', click: props.toggleShowGuide },
+    { title: 'Quick Start Guide', click: toggleShowGuide },
     { title: 'Meet the Scales' },
     { title: 'FAQ' },
     { title: 'Contact' },
