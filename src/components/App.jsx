@@ -27,7 +27,7 @@ function App() {
   const [{ notes, root }, handleNoteSelection, resetNotes] = useNotes();
 
   const [
-    { isModeCardShown, showAnimation, modeProps },
+    { isModeCardShown, modeProps },
     openModeCard,
     closeModeCard,
   ] = useModeCard();
@@ -98,7 +98,6 @@ function App() {
             {...{
               ...modeProps,
               clef,
-              showAnimation,
               openModeCard,
               closeModeCard,
             }}

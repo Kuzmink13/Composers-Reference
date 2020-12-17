@@ -1,49 +1,14 @@
-import React, { useEffect } from 'react';
-import useLongPress from '../hooks/useLongPress';
-import { createFocusTrap } from 'focus-trap';
+import React from 'react';
 
 import VexStaff from './VexStaff';
 import ChordTable from './ChordTable';
 
+import useKeyboardFn from '../hooks/useKeyboardFn';
+import useLongPress from '../hooks/useLongPress';
+
 import Music from '../logic/Music';
-import Keyboard from '../logic/Keyboard';
 
 function ModeCard(props) {
-  // FOCUS TRAP
-  useEffect(() => {
-    const container = document.getElementById('mode-card');
-
-    const focusTrap = createFocusTrap('#mode-card', {
-      allowOutsideClick: true,
-      onActivate: function () {
-        container.classList.add('trap', 'is-active');
-      },
-      onDeactivate: function () {
-        container.classList.remove('is-active');
-      },
-    });
-
-    focusTrap.activate();
-
-    return () => {
-      focusTrap.deactivate();
-    };
-  });
-
-  // REMOVE CLOSE ON CLICK EFFECT
-  function cancelClose(event) {
-    event.stopPropagation();
-  }
-
-  // ANIMATION
-  useEffect(() => {
-    if (props.showAnimation) {
-      const container = document.getElementById('mode-card');
-      container.classList.remove('scale-95', 'opacity-0');
-      container.classList.add('scale-100', 'opacity-100');
-    }
-  });
-
   // MODE-SHIFT FUNCTIONS
   const shift = {
     relative: (forwardShift) => {
@@ -78,25 +43,38 @@ function ModeCard(props) {
   };
 
   // MODE-SHIFT KEYBOARD EVENTS
-  function handleShift(event) {
-    if (Keyboard.isLeftRightArrow(event.key)) {
-      const forwardShift = Keyboard.isRightArrow(event.key);
-      event.shiftKey
-        ? shift.relativeBrightness(forwardShift)
-        : shift.relative(forwardShift);
-    } else if (Keyboard.isUpDownArrow(event.key)) {
-      event.preventDefault();
-      const forwardShift = Keyboard.isUpArrow(event.key);
-      event.shiftKey ? shift.key(forwardShift) : shift.parallel(forwardShift);
+  const handleShift = (event) => {
+    switch (event.key) {
+      case 'ArrowLeft':
+        shiftLR(event, false);
+        return;
+      case 'ArrowRight':
+        shiftLR(event, true);
+        return;
+      case 'ArrowDown':
+        shiftUD(event, false);
+        return;
+      case 'ArrowUp':
+        shiftUD(event, true);
+        return;
+      default:
+        return;
     }
-  }
+  };
 
-  useEffect(() => {
-    document.addEventListener('keydown', handleShift);
-    return () => {
-      document.removeEventListener('keydown', handleShift);
-    };
-  });
+  const shiftLR = (event, isFwShift) => {
+    event.preventDefault();
+    event.shiftKey
+      ? shift.relativeBrightness(isFwShift)
+      : shift.relative(isFwShift);
+  };
+
+  const shiftUD = (event, isFwShift) => {
+    event.preventDefault();
+    event.shiftKey ? shift.key(isFwShift) : shift.parallel(isFwShift);
+  };
+
+  useKeyboardFn(handleShift);
 
   // MODE-SHIFT BUTTON PROPERTIES
   const buttons = [
@@ -141,14 +119,8 @@ function ModeCard(props) {
   // RENDER
   return (
     <div
-      onClick={cancelClose}
-      id="mode-card"
-      className={`flex flex-col items-center relative py-6
-                text-gray-800 text-sm sm:text-base tracking-tight
-              ${
-                props.showAnimation &&
-                'transform scale-95 opacity-0 transition delay-25 duration-50'
-              }`}
+      className="flex flex-col items-center relative py-6
+                text-gray-800 text-sm sm:text-base tracking-tight"
     >
       {/* MODE CARD HEADING */}
       <hgroup>
