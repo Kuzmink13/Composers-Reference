@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useEffect, useState } from 'react';
+import React, { Fragment, useCallback, useMemo } from 'react';
 
 import Navbar from './Navbar';
 import Options from './Options';
@@ -22,9 +22,6 @@ import useTonalities from '../hooks/useTonalities';
 import useScreenSize from '../hooks/useScreenSize';
 
 import Music from '../logic/Music';
-import Scales from '../logic/Scales';
-
-const { supportedScaleLengths } = Scales;
 
 function App() {
   const [{ notes, root }, handleNoteSelection, resetNotes] = useNotes();
@@ -72,15 +69,9 @@ function App() {
     [resetOverlay, resetSelectionFilter, resetGuide, resetClef, resetTonalities]
   );
 
-  // FILTERED LIST GENERATION
-  const [filteredLists, setFilteredLists] = useState(
-    Array(supportedScaleLengths.length).fill([])
-  );
-
-  useEffect(() => {
-    setFilteredLists(
-      Music.getFilterdLists(notes, root, tonalities, isSelectionFiltered)
-    );
+  // SCALE LIST GENERATION
+  const scaleLists = useMemo(() => {
+    return Music.getFilterdLists(notes, root, tonalities, isSelectionFiltered);
   }, [notes, root, tonalities, isSelectionFiltered]);
 
   // RENDER
@@ -150,7 +141,7 @@ function App() {
         </KeyProvider>
 
         <ModeProvider modeProps={{ clef, openModeCard }}>
-          <ModeController {...{ filteredLists }} />
+          <ModeController {...{ scaleLists }} />
         </ModeProvider>
       </main>
     </Fragment>

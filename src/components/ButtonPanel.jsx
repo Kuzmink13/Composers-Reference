@@ -1,18 +1,18 @@
 import React from 'react';
+
 import ModeButton from './ModeButton';
 
-function ButtonPanel(props) {
-  const buttons = ['SIX', 'SEVEN', 'EIGHT'];
+const buttonLabels = ['SIX', 'SEVEN', 'EIGHT'];
 
+function ButtonPanel({ scaleLists }) {
   return (
     <div className="flex flex-row justify-center">
-      {buttons.map((scaleListString, i) => (
+      {buttonLabels.map((buttonLabel, i) => (
         <ModeButton
           key={i}
-          scaleList={i}
-          scaleListString={scaleListString}
-          listSize={props.filteredLists[i].length}
-          {...props.modeButtonProps}
+          listIndex={i}
+          buttonLabel={buttonLabel}
+          listSize={scaleLists[i].length}
         />
       ))}
     </div>

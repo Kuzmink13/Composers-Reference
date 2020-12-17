@@ -3,7 +3,9 @@ import React, { useState, Fragment, useEffect } from 'react';
 import ButtonPanel from './ButtonPanel';
 import ModePanel from './ModePanel';
 
-function ModeController(props) {
+import { ModeButtonProvider } from '../contexts/ModeButtonContext';
+
+function ModeController({ scaleLists }) {
   // SELECTED MODE LIST CONTROL
   const [selectedListIndex, setSelectedListIndex] = useState(1);
   const [selectedList, setSelectedList] = useState([]);
@@ -13,21 +15,21 @@ function ModeController(props) {
   }
 
   useEffect(() => {
-    setSelectedList(props.filteredLists[selectedListIndex]);
-  }, [props.filteredLists, selectedListIndex]);
+    setSelectedList(scaleLists[selectedListIndex]);
+  }, [scaleLists, selectedListIndex]);
 
   // RENDER
-  const buttonPanelProps = {
-    filteredLists: props.filteredLists,
-    modeButtonProps: {
-      selectedListIndex,
-      handleSelectorChange,
-    },
-  };
-
   return (
     <Fragment>
-      <ButtonPanel {...buttonPanelProps} />
+      <ModeButtonProvider
+        modeButtonProps={{
+          selectedListIndex,
+          handleSelectorChange,
+        }}
+      >
+        <ButtonPanel {...{ scaleLists }} />
+      </ModeButtonProvider>
+
       {selectedList.length ? (
         <ModePanel selectedList={selectedList} />
       ) : (
