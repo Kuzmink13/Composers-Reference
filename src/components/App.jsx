@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useMemo } from 'react';
+import React, { Fragment, useMemo } from 'react';
 
 import Navbar from './Navbar';
 import Options from './Options';
@@ -57,17 +57,14 @@ function App() {
   const [screenHeight, screenWidth] = useScreenSize();
 
   // REVERT TO DEFAULT SETTINGS
-  const resetSettings = useCallback(
-    (event) => {
-      event.preventDefault();
-      resetOverlay();
-      resetSelectionFilter();
-      resetGuide();
-      resetClef();
-      resetTonalities();
-    },
-    [resetOverlay, resetSelectionFilter, resetGuide, resetClef, resetTonalities]
-  );
+  const resetSettings = (event) => {
+    event.preventDefault();
+    resetOverlay();
+    resetSelectionFilter();
+    resetGuide();
+    resetClef();
+    resetTonalities();
+  };
 
   // SCALE LIST GENERATION
   const scaleLists = useMemo(() => {
