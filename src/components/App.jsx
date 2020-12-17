@@ -78,22 +78,16 @@ function App() {
   return (
     <Fragment>
       <Navbar
-        {...{ isModeCardShown, resetNotes }}
+        {...{ resetNotes }}
         options={
           <Options
             {...{
-              areKeysShown,
-              areNoteNamesShown,
-              isSelectionFiltered,
-              clef,
-              tonalities,
-              isGuideDismissed,
-              toggleKeys,
-              toggleNoteNames,
-              toggleSelectionFilter,
-              toggleDismissGuide,
-              handleClefChange,
-              toggleTonality,
+              ...{ areKeysShown, toggleKeys },
+              ...{ areNoteNamesShown, toggleNoteNames },
+              ...{ isSelectionFiltered, toggleSelectionFilter },
+              ...{ clef, handleClefChange },
+              ...{ tonalities, toggleTonality },
+              ...{ isGuideDismissed, toggleDismissGuide },
               resetSettings,
             }}
           />
@@ -130,11 +124,9 @@ function App() {
       <main className="w-full overflow-y-hidden mx-auto flex flex-col lg:max-w-screen-lg">
         <KeyProvider
           keyProps={{
-            notes,
-            root,
+            ...{ notes, root, handleNoteSelection },
             areKeysShown,
             areNoteNamesShown,
-            handleNoteSelection,
           }}
         >
           <Keys {...{ screenWidth, screenHeight }} />
