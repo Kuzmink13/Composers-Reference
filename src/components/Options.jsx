@@ -4,7 +4,6 @@ import { supportedClefs } from '../hooks/useClef';
 import { supportedTonalities } from '../hooks/useTonalities';
 
 function Options(props) {
-  // GENERAL OPTIONS
   const generalOptions = [
     {
       id: 'keyboard-overlay',
@@ -32,7 +31,6 @@ function Options(props) {
     },
   ];
 
-  // RENDER
   return (
     <form
       className="box pop-out drop-down 
