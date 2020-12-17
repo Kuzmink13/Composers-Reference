@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { createFocusTrap } from 'focus-trap';
 
 function PopOver({
@@ -7,12 +7,14 @@ function PopOver({
   isAnimated = true,
   isGray = true,
   isWide = false,
+  overridePositioning = false,
+  overrideStyles = false,
 }) {
   // FOCUS-TRAP
   useEffect(() => {
-    const container = document.getElementById('clickable-bg');
+    const container = document.getElementById('pop-over-wrapper');
 
-    const focusTrap = createFocusTrap('#clickable-bg', {
+    const focusTrap = createFocusTrap('#pop-over-wrapper', {
       allowOutsideClick: true,
       onActivate: function () {
         container.classList.add('trap', 'is-active');
@@ -43,26 +45,35 @@ function PopOver({
   }, [isAnimated]);
 
   // RENDER
-  return (
+  const popOverWrapper = (
     <div
-      id="clickable-bg"
-      className={`fixed inset-0 z-30 flex justify-center items-center p-2
-      ${isGray && 'bg-gray-400'}
-      ${isAnimated ? 'bg-opacity-0' : 'bg-opacity-25'} 
+      id="pop-over-wrapper"
+      className={`${
+        !overrideStyles &&
+        `box pop-out transform w-full ${isWide ? 'max-w-3xl' : 'max-w-md'}`
+      }
+      ${isAnimated ? 'scale-95 opacity-0' : 'scale-100 opacity-100'}
       transition delay-25 duration-50`}
-      onClick={closeFn}
+      onClick={(e) => e.stopPropagation()}
     >
-      <div
-        id="pop-over-wrapper"
-        className={`box pop-out transform
-        w-full ${isWide ? 'max-w-3xl' : 'max-w-md'}
-        ${isAnimated ? 'scale-95 opacity-0' : 'scale-100 opacity-100'}
-        transition delay-25 duration-50`}
-        onClick={(e) => e.stopPropagation()}
-      >
-        {children}
-      </div>
+      {children}
     </div>
+  );
+
+  return (
+    <Fragment>
+      <div
+        id="clickable-bg"
+        className={`fixed inset-0 z-30 flex justify-center items-center p-2
+        ${isGray && 'bg-gray-400'}
+        ${isAnimated ? 'bg-opacity-0' : 'bg-opacity-25'} 
+        transition delay-25 duration-50`}
+        onClick={closeFn}
+      >
+        {!overridePositioning && popOverWrapper}
+      </div>
+      {overridePositioning && popOverWrapper}
+    </Fragment>
   );
 }
 

@@ -1,31 +1,9 @@
-import React, { useEffect } from 'react';
-import { createFocusTrap } from 'focus-trap';
+import React from 'react';
 
 import { supportedClefs } from '../hooks/useClef';
 import { supportedTonalities } from '../hooks/useTonalities';
 
 function Options(props) {
-  // FOCUS TRAP
-  useEffect(() => {
-    const container = document.getElementById('options');
-
-    const focusTrap = createFocusTrap('#options', {
-      allowOutsideClick: true,
-      onActivate: function () {
-        container.classList.add('trap', 'is-active');
-      },
-      onDeactivate: function () {
-        container.classList.remove('is-active');
-      },
-    });
-
-    focusTrap.activate();
-
-    return () => {
-      focusTrap.deactivate();
-    };
-  });
-
   // GENERAL OPTIONS
   const generalOptions = [
     {
@@ -57,7 +35,6 @@ function Options(props) {
   // RENDER
   return (
     <form
-      id="options"
       className="box pop-out drop-down 
       flex flex-col
       mt-10 ml-2 mr-16 p-4

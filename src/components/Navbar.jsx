@@ -1,38 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import useKeyboardFn, { keyArrays } from '../hooks/useKeyboardFn';
+import PopOver from './PopOver';
+
+import useNavbar from '../hooks/useNavbar';
 
 function Navbar(props) {
-  // DROP-DOWN MENU SELECTION
-  const [menuIsOpen, setMenuIsOpen] = useState(false);
-  const [optionsIsOpen, setOptionsIsOpen] = useState(false);
+  const [
+    { optionsIsOpen, menuIsOpen },
+    toggleOptions,
+    toggleMenu,
+  ] = useNavbar();
 
-  function optionsHandler() {
-    props.isModeCardShown || setOptionsIsOpen(!optionsIsOpen);
-    menuIsOpen && setMenuIsOpen(false);
-  }
-
-  function menuHandler() {
-    props.isModeCardShown || setMenuIsOpen(!menuIsOpen);
-    optionsIsOpen && setOptionsIsOpen(false);
-  }
-
-  function handleNavShortcuts(event) {
-    event.code === 'KeyO' && optionsHandler();
-    event.code === 'KeyL' && menuHandler();
-  }
-
-  useKeyboardFn(handleNavShortcuts);
-
-  // CLOSE DROP-DOWN MENUS
-  function closeAll() {
-    setMenuIsOpen(false);
-    setOptionsIsOpen(false);
-  }
-
-  useKeyboardFn(closeAll, keyArrays.escape);
-
-  // RENDER
   return (
     <header className="py-1 px-auto bg-white border-b border-gray-400">
       <div className="relative flex justify-between items-center mx-auto px-4 lg:max-w-screen-lg text-gray-800">
@@ -40,14 +18,6 @@ function Navbar(props) {
         <h1 className="sm:text-2xl font-bold tracking-widest">
           COMPOSER'S REFERENCE
         </h1>
-
-        {/* SCREEN-LOCK */}
-        {(optionsIsOpen || menuIsOpen) && (
-          <div
-            className="fixed h-full w-full inset-0 z-20"
-            onClick={closeAll}
-          />
-        )}
 
         {/* NAVIGATION BUTTONS */}
         <nav className="flex">
@@ -69,7 +39,7 @@ function Navbar(props) {
           <button
             name="options"
             className="tab-selection p-2 text-gray-600 hover:text-gray-800 sm:mr-2"
-            onClick={optionsHandler}
+            onClick={toggleOptions}
           >
             <svg
               className="fill-current h-5 w-5 z-30 cursor-pointer"
@@ -79,13 +49,23 @@ function Navbar(props) {
             </svg>
           </button>
 
-          {optionsIsOpen && props.options}
+          {optionsIsOpen && (
+            <PopOver
+              closeFn={() => toggleOptions()}
+              isAnimated={false}
+              isGray={false}
+              overridePositioning={true}
+              overrideStyles={true}
+            >
+              {props.options}
+            </PopOver>
+          )}
 
           {/* MENU BUTTON AND DROP-DOWN */}
           <button
             name="menu"
             className="tab-selection p-2 text-gray-600 hover:text-gray-800"
-            onClick={menuHandler}
+            onClick={toggleMenu}
           >
             <svg
               className="fill-current h-5 w-5 z-30 cursor-pointer"
@@ -95,7 +75,17 @@ function Navbar(props) {
             </svg>
           </button>
 
-          {menuIsOpen && props.menu}
+          {menuIsOpen && (
+            <PopOver
+              closeFn={() => toggleMenu()}
+              isAnimated={false}
+              isGray={false}
+              overridePositioning={true}
+              overrideStyles={true}
+            >
+              {props.menu}
+            </PopOver>
+          )}
         </nav>
       </div>
     </header>

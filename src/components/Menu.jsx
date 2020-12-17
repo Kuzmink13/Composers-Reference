@@ -1,28 +1,6 @@
-import React, { useEffect } from 'react';
-import { createFocusTrap } from 'focus-trap';
+import React from 'react';
 
 function Menu(props) {
-  // FOCUS TRAP
-  useEffect(() => {
-    const container = document.getElementById('menu');
-
-    const focusTrap = createFocusTrap('#menu', {
-      allowOutsideClick: true,
-      onActivate: function () {
-        container.classList.add('trap', 'is-active');
-      },
-      onDeactivate: function () {
-        container.classList.remove('is-active');
-      },
-    });
-
-    focusTrap.activate();
-
-    return () => {
-      focusTrap.deactivate();
-    };
-  });
-
   // RENDER
   const links = [
     { title: 'About' },
@@ -34,7 +12,6 @@ function Menu(props) {
 
   return (
     <ul
-      id="menu"
       className="box pop-out drop-down
       flex flex-col
       mt-10 mr-6 py-2
