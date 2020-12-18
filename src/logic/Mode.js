@@ -18,39 +18,44 @@ class Mode extends PitchCollection {
    */
   constructor(pitches, pitchCenter) {
     super(pitches);
-    let absolutePitches = this.getAbstractPitches().map(
-      (el) => Utilities.octaveMod(pitchCenter) + el
+    this.pitchCenter = Utilities.octaveMod(pitchCenter);
+  }
+
+  getAbsolutePitches() {
+    return this.getAbstractPitches().map(
+      (el) => Utilities.octaveMod(this.pitchCenter) + el
     );
+  }
 
-    this.getAbsolutePitches = function () {
-      return absolutePitches.slice();
-    };
-    this.getPitchCenter = function () {
-      return absolutePitches[0];
-    };
-    this.getAbsoluteModeCode = function () {
-      return `${this.getAbstractModeCode()}//${this.getPitchCenter()}`;
-    };
-    this.getModeName = function () {
-      const name = `${
-        Scales.getBaseNotes(this.getPitchCenter(), this.getAbsolutePitches())[0]
-      } ${modeProperties[this.getAbstractModeCode()].modeName}`;
+  getPitchCenter() {
+    return this.pitchCenter;
+  }
 
-      return Utilities.replaceSymbols(name);
-    };
-    this.getParentTonality = function () {
-      return modeProperties[this.getAbstractModeCode()].parentTonality;
-    };
-    this.getModeProperties = function () {
-      return {
-        absoluteMC: this.getAbsoluteModeCode(),
-        pitchCenter: this.getPitchCenter(),
-        absolutePitches: this.getAbsolutePitches(),
-        abstractPitches: this.getAbstractPitches(),
-        modeCode: this.getAbstractModeCode(),
-        modeName: this.getModeName(),
-        parentTonality: this.getParentTonality(),
-      };
+  getAbsoluteModeCode() {
+    return `${this.getAbstractModeCode()}//${this.getPitchCenter()}`;
+  }
+
+  getModeName() {
+    const name = `${
+      Scales.getBaseNotes(this.getPitchCenter(), this.getAbsolutePitches())[0]
+    } ${modeProperties[this.getAbstractModeCode()].modeName}`;
+
+    return Utilities.replaceSymbols(name);
+  }
+
+  getParentTonality() {
+    return modeProperties[this.getAbstractModeCode()].parentTonality;
+  }
+
+  getModeProperties() {
+    return {
+      absoluteMC: this.getAbsoluteModeCode(),
+      pitchCenter: this.getPitchCenter(),
+      absolutePitches: this.getAbsolutePitches(),
+      abstractPitches: this.getAbstractPitches(),
+      modeCode: this.getAbstractModeCode(),
+      modeName: this.getModeName(),
+      parentTonality: this.getParentTonality(),
     };
   }
 }
