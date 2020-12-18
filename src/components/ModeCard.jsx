@@ -8,36 +8,36 @@ import useLongPress from '../hooks/useLongPress';
 
 import Music from '../logic/Music';
 
-function ModeCard(props) {
+function ModeCard({ mode, clef, openModeCard, closeModeCard }) {
+  const modeProps = mode.getModeProperties();
+
   // MODE-SHIFT FUNCTIONS
   const shift = {
     relative: (forwardShift) => {
-      props.openModeCard(
-        Music.relativeShift(props.absolutePitches, forwardShift),
-        false
+      openModeCard(
+        Music.relativeShift(modeProps.absolutePitches, forwardShift)
       );
     },
     parallel: (forwardShift) => {
-      props.openModeCard(
-        Music.parallelShift(props.modeCode, props.pitchCenter, forwardShift),
-        false
+      openModeCard(
+        Music.parallelShift(
+          modeProps.modeCode,
+          modeProps.pitchCenter,
+          forwardShift
+        )
       );
     },
     key: (forwardShift) => {
-      props.openModeCard(
-        Music.keyShift(props.absolutePitches, forwardShift),
-        false
-      );
+      openModeCard(Music.keyShift(modeProps.absolutePitches, forwardShift));
     },
     relativeBrightness: (forwardShift) => {
-      props.openModeCard(
+      openModeCard(
         Music.relativeBrightnessShift(
-          props.modeCode,
-          props.pitchCenter,
-          props.abstractPitches,
+          modeProps.modeCode,
+          modeProps.pitchCenter,
+          modeProps.abstractPitches,
           forwardShift
-        ),
-        false
+        )
       );
     },
   };
@@ -128,15 +128,15 @@ function ModeCard(props) {
           tabIndex="0"
           className="text-base sm:text-lg font-bold uppercase tracking-widest text-center focus:outline-none"
         >
-          {props.modeName}
+          {modeProps.modeName}
         </h2>
         <h3 className="text-sm sm:text-base italic tracking-wider text-center lowercase mb-3">
-          {`from the ${props.parentTonality} scale family`}
+          {`from the ${modeProps.parentTonality} scale family`}
         </h3>
       </hgroup>
 
       {/* SCALE FIGURE*/}
-      <VexStaff key={props.absoluteMC} {...props} />
+      <VexStaff key={modeProps.absoluteMC} clef={clef} {...modeProps} />
 
       {/* MODE-SHIFT BUTTON PANEL */}
       <div className="flex">
@@ -158,13 +158,13 @@ function ModeCard(props) {
       </div>
 
       {/* CHORD TABLE */}
-      <ChordTable {...props} />
+      <ChordTable {...modeProps} />
 
       {/* CLOSE MODE-CARD BUTTON */}
       <button
         name="close mode-card"
         className="absolute top-0 right-0 tab-selection p-2 m-1 text-gray-600 hover:text-gray-800"
-        onClick={props.closeModeCard}
+        onClick={closeModeCard}
       >
         <svg
           className="h-4 w-4 fill-current cursor-pointer"

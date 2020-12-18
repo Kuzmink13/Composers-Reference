@@ -3,19 +3,20 @@ import VexStaff from './VexStaff';
 
 import { useModeContext } from '../contexts/ModeContext';
 
-function ModeBlock(props) {
+function ModeBlock({ mode }) {
   const { clef, openModeCard } = useModeContext();
+  const modeProps = mode.getModeProperties();
 
   return (
     <button
-      onClick={() => openModeCard(props.modeProps)}
+      onClick={() => openModeCard(mode)}
       className="tab-selection m-1 p-1"
     >
       <div className="box p-2 hover:shadow-md">
         <h2 className="text-center tracking-wider font-semibold">
-          {props.modeProps.modeName}
+          {modeProps.modeName}
         </h2>
-        <VexStaff clef={clef} {...props.modeProps} />
+        <VexStaff clef={clef} {...modeProps} />
       </div>
     </button>
   );

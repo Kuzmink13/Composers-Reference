@@ -4,28 +4,28 @@ import useKeyboardFn, { keyArrays } from './useKeyboardFn';
 
 const initialState = {
   isModeCardShown: false,
-  modeProps: undefined,
+  mode: undefined,
 };
 
 function useModeCard() {
   const [isModeCardShown, setIsModeCardShown] = useState(
     initialState.isModeCardShown
   );
-  const [modeProps, setModeProps] = useState(initialState.modeProps);
+  const [mode, setMode] = useState(initialState.mode);
 
-  const openModeCard = (modeProps, showAnimation = true) => {
+  const openModeCard = (mode) => {
     setIsModeCardShown(true);
-    setModeProps(modeProps);
+    setMode(mode);
   };
 
   const closeModeCard = () => {
     setIsModeCardShown(initialState.isModeCardShown);
-    setModeProps(initialState.modeProps);
+    setMode(initialState.mode);
   };
 
   useKeyboardFn(closeModeCard, keyArrays.escape);
 
-  return [{ isModeCardShown, modeProps }, openModeCard, closeModeCard];
+  return [{ isModeCardShown, mode }, openModeCard, closeModeCard];
 }
 
 export default useModeCard;

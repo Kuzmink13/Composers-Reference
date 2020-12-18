@@ -27,7 +27,7 @@ function App() {
   const [{ notes, root }, handleNoteSelection, resetNotes] = useNotes();
 
   const [
-    { isModeCardShown, modeProps },
+    { isModeCardShown, mode },
     openModeCard,
     closeModeCard,
   ] = useModeCard();
@@ -67,7 +67,7 @@ function App() {
   };
 
   // SCALE LIST GENERATION
-  const scaleLists = useMemo(() => {
+  const modeLists = useMemo(() => {
     return Music.getFilterdLists(notes, root, tonalities, isSelectionFiltered);
   }, [notes, root, tonalities, isSelectionFiltered]);
 
@@ -96,7 +96,7 @@ function App() {
         <PopOver closeFn={closeModeCard}>
           <ModeCard
             {...{
-              ...modeProps,
+              mode,
               clef,
               openModeCard,
               closeModeCard,
@@ -129,7 +129,7 @@ function App() {
         </KeyProvider>
 
         <ModeProvider modeProps={{ clef, openModeCard }}>
-          <ModeController {...{ scaleLists }} />
+          <ModeController {...{ modeLists }} />
         </ModeProvider>
       </main>
     </Fragment>

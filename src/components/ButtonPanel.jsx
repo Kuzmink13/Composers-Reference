@@ -4,7 +4,7 @@ import ModeButton from './ModeButton';
 
 const buttonLabels = ['SIX', 'SEVEN', 'EIGHT'];
 
-function ButtonPanel({ scaleLists }) {
+function ButtonPanel({ modeLists }) {
   return (
     <div className="flex flex-row justify-center">
       {buttonLabels.map((buttonLabel, i) => (
@@ -12,7 +12,7 @@ function ButtonPanel({ scaleLists }) {
           key={i}
           listIndex={i}
           buttonLabel={buttonLabel}
-          listSize={scaleLists[i].length}
+          listSize={modeLists[i].length}
         />
       ))}
     </div>

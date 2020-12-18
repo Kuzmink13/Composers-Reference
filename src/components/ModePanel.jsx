@@ -5,7 +5,7 @@ import ModeBlock from './ModeBlock';
 
 import { useModeContext } from '../contexts/ModeContext';
 
-function ModePanel(props) {
+function ModePanel({ selectedList }) {
   const { clef } = useModeContext();
 
   // LOAD AND GENERATE MODE BLOCKS
@@ -15,12 +15,12 @@ function ModePanel(props) {
   function loadMore() {
     const cardsToLoad = 6;
     const numLoaded = items.length;
-    const listLen = props.selectedList.length;
+    const listLen = selectedList.length;
     const nextIncrement = Math.min(listLen, numLoaded + cardsToLoad);
 
     setItems(
       items.concat(
-        props.selectedList
+        selectedList
           .slice(numLoaded, nextIncrement)
           .map((mode) => generateModeBlock(mode))
       )
@@ -29,19 +29,14 @@ function ModePanel(props) {
   }
 
   function generateModeBlock(mode) {
-    return (
-      <ModeBlock
-        key={mode.getAbsoluteModeCode()}
-        modeProps={mode.getModeProperties()}
-      />
-    );
+    return <ModeBlock key={mode.getAbsoluteModeCode()} mode={mode} />;
   }
 
   // RESET PANEL ON SETTINGS CHANGE
   useEffect(() => {
     setItems([]);
     setHasMore(true);
-  }, [props.selectedList, clef]);
+  }, [selectedList, clef]);
 
   // RENDER
   let scrollParentRef;

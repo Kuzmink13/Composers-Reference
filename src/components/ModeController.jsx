@@ -5,7 +5,7 @@ import ModePanel from './ModePanel';
 
 import { ModeButtonProvider } from '../contexts/ModeButtonContext';
 
-function ModeController({ scaleLists }) {
+function ModeController({ modeLists }) {
   // SELECTED MODE LIST CONTROL
   const [selectedListIndex, setSelectedListIndex] = useState(1);
   const [selectedList, setSelectedList] = useState([]);
@@ -15,8 +15,8 @@ function ModeController({ scaleLists }) {
   }
 
   useEffect(() => {
-    setSelectedList(scaleLists[selectedListIndex]);
-  }, [scaleLists, selectedListIndex]);
+    setSelectedList(modeLists[selectedListIndex]);
+  }, [modeLists, selectedListIndex]);
 
   // RENDER
   return (
@@ -27,7 +27,7 @@ function ModeController({ scaleLists }) {
           handleSelectorChange,
         }}
       >
-        <ButtonPanel {...{ scaleLists }} />
+        <ButtonPanel {...{ modeLists }} />
       </ModeButtonProvider>
 
       {selectedList.length ? (

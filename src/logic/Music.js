@@ -229,7 +229,7 @@ class Music {
 
     let mode = new Mode(pitches, pitches[0]);
 
-    return mode.getModeProperties();
+    return mode;
   }
 
   static fromCode(modeCode) {
@@ -243,7 +243,7 @@ class Music {
 
     let mode = new Mode(this.fromCode(code), pitchCenter);
 
-    return mode.getModeProperties();
+    return mode;
   }
 
   static keyShift(absolutePitches, forwardShift = true) {
@@ -255,7 +255,7 @@ class Music {
         : pitches[0] - notesInAPerfectFifth
     );
 
-    return mode.getModeProperties();
+    return mode;
   }
 
   static relativeBrightnessShift(
