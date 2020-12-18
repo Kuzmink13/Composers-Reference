@@ -5,7 +5,7 @@ import Mode from './Mode';
 import Scales from './Scales';
 import Utilities from './Utilities';
 
-const { notesInOctave, notesInAPerfectFifth, modeProperties } = Utilities;
+const { notesInOctave, modeProperties } = Utilities;
 const { supportedScaleLengths } = Scales;
 
 /**
@@ -218,54 +218,6 @@ class Music {
     isFilteredBySelection && filterBySelected();
 
     return supportedScaleLengths.map((quantity) => filterByQuantity(quantity));
-  }
-
-  static relativeShift(absolutePitches, forwardShift = true) {
-    let pitches = absolutePitches.slice();
-
-    forwardShift
-      ? pitches.push(pitches.shift() + notesInOctave)
-      : pitches.unshift(pitches.pop() - notesInOctave);
-
-    let mode = new Mode(pitches, pitches[0]);
-
-    return mode;
-  }
-
-  static fromCode(modeCode) {
-    return modeCode.split('').map((el) => parseInt(Number(`0x${el}`), 10));
-  }
-
-  static parallelShift(modeCode, pitchCenter, forwardShift = true) {
-    let code = forwardShift
-      ? Utilities.modeProperties[modeCode].nextMode
-      : Utilities.modeProperties[modeCode].previousMode;
-
-    let mode = new Mode(this.fromCode(code), pitchCenter);
-
-    return mode;
-  }
-
-  static keyShift(absolutePitches, forwardShift = true) {
-    let pitches = absolutePitches.slice();
-    let mode = new Mode(
-      pitches,
-      forwardShift
-        ? pitches[0] + notesInAPerfectFifth
-        : pitches[0] - notesInAPerfectFifth
-    );
-
-    return mode;
-  }
-
-  static relativeBrightnessShift(
-    modeCode,
-    pitchCenter,
-    getAbstractPitches,
-    forwardShift
-  ) {
-    pitchCenter += forwardShift ? getAbstractPitches[3] : getAbstractPitches[4];
-    return this.parallelShift(modeCode, pitchCenter, forwardShift);
   }
 }
 

@@ -6,39 +6,22 @@ import ChordTable from './ChordTable';
 import useKeyboardFn from '../hooks/useKeyboardFn';
 import useLongPress from '../hooks/useLongPress';
 
-import Music from '../logic/Music';
-
 function ModeCard({ mode, clef, openModeCard, closeModeCard }) {
   const modeProps = mode.getModeProperties();
 
   // MODE-SHIFT FUNCTIONS
   const shift = {
-    relative: (forwardShift) => {
-      openModeCard(
-        Music.relativeShift(modeProps.absolutePitches, forwardShift)
-      );
+    relative: (isFwShift) => {
+      openModeCard(mode.relativeShift(isFwShift));
     },
-    parallel: (forwardShift) => {
-      openModeCard(
-        Music.parallelShift(
-          modeProps.modeCode,
-          modeProps.pitchCenter,
-          forwardShift
-        )
-      );
+    parallel: (isFwShift) => {
+      openModeCard(mode.parallelShift(isFwShift));
     },
-    key: (forwardShift) => {
-      openModeCard(Music.keyShift(modeProps.absolutePitches, forwardShift));
+    key: (isFwShift) => {
+      openModeCard(mode.keyShift(isFwShift));
     },
-    relativeBrightness: (forwardShift) => {
-      openModeCard(
-        Music.relativeBrightnessShift(
-          modeProps.modeCode,
-          modeProps.pitchCenter,
-          modeProps.abstractPitches,
-          forwardShift
-        )
-      );
+    relativeBrightness: (isFwShift) => {
+      openModeCard(mode.relativeBrightnessShift(isFwShift));
     },
   };
 

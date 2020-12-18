@@ -2,7 +2,7 @@ import PitchCollection from './PitchCollection';
 import Scales from './Scales';
 import Utilities from './Utilities';
 
-const { modeProperties } = Utilities;
+const { modeProperties, notesInOctave, notesInAPerfectFifth } = Utilities;
 
 /**
  * A collection of successive pitches contained within an octave that start at a specific note
@@ -19,6 +19,13 @@ class Mode extends PitchCollection {
   constructor(pitches, pitchCenter) {
     super(pitches);
     this.pitchCenter = Utilities.octaveMod(pitchCenter);
+  }
+
+  fromCode(modeCode, pitchCenter) {
+    return new Mode(
+      modeCode.split('').map((el) => parseInt(Number(`0x${el}`), 10)),
+      pitchCenter
+    );
   }
 
   getAbsolutePitches() {
@@ -57,6 +64,45 @@ class Mode extends PitchCollection {
       modeName: this.getModeName(),
       parentTonality: this.getParentTonality(),
     };
+  }
+
+  relativeShift(isFwShift) {
+    let pitches = this.getAbsolutePitches();
+
+    isFwShift
+      ? pitches.push(pitches.shift() + notesInOctave)
+      : pitches.unshift(pitches.pop() - notesInOctave);
+
+    return new Mode(pitches, pitches[0]);
+  }
+
+  parallelShift(isFwShift, pitchCenter = this.getPitchCenter()) {
+    const modeCode = this.getAbstractModeCode();
+
+    const code = isFwShift
+      ? Utilities.modeProperties[modeCode].nextMode
+      : Utilities.modeProperties[modeCode].previousMode;
+
+    return this.fromCode(code, pitchCenter);
+  }
+
+  keyShift(isFwShift) {
+    const pitches = this.getAbsolutePitches();
+    const pitchCenter = this.getPitchCenter();
+
+    return new Mode(
+      pitches,
+      isFwShift
+        ? pitchCenter + notesInAPerfectFifth
+        : pitchCenter - notesInAPerfectFifth
+    );
+  }
+
+  relativeBrightnessShift(isFwShift) {
+    const pitches = this.getAbsolutePitches();
+    const newPitchCenter = isFwShift ? pitches[3] : pitches[4];
+
+    return this.parallelShift(isFwShift, newPitchCenter);
   }
 }
 
