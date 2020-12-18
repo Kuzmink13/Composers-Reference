@@ -12,22 +12,26 @@ class PitchCollection {
    * @throws {Error} if the range of the pitch collection exceeds an octave
    */
   constructor(pitches) {
-    let abstractPitches = pitches.map((el, i, arr) => el - arr[0]);
+    const minimizedPitches = pitches.map((el, i, arr) => el - arr[0]);
 
-    if (abstractPitches.slice(-1) >= Utilities.notesInOctave)
+    if (minimizedPitches.slice(-1) >= Utilities.notesInOctave)
       throw new Error('Range of PitchCollection exceeds an octave!');
 
-    this.getAbstractPitches = function () {
-      return abstractPitches.slice();
-    };
-    this.getAbstractModeCode = function () {
-      return this.getAbstractPitches()
-        .map((el) => el.toString(Utilities.notesInOctave))
-        .join('');
-    };
-    this.getNoteQuantity = function () {
-      return abstractPitches.length;
-    };
+    this.pitches = JSON.stringify(minimizedPitches);
+  }
+
+  getAbstractPitches() {
+    return JSON.parse(this.pitches);
+  }
+
+  getAbstractModeCode() {
+    return this.getAbstractPitches()
+      .map((el) => el.toString(Utilities.notesInOctave))
+      .join('');
+  }
+
+  getNoteQuantity() {
+    return this.getAbstractPitches().length;
   }
 }
 
