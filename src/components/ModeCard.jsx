@@ -1,4 +1,5 @@
 import React from 'react';
+import * as svg from '../assets/svg.json';
 
 import VexStaff from './VexStaff';
 import ChordTable from './ChordTable';
@@ -33,8 +34,7 @@ function ModeCard({ mode, clef, openModeCard, closeModeCard }) {
         () => shift.relativeBrightness(false),
         () => shift.relative(false)
       ),
-      path:
-        'M3.828 9l6.071-6.071-1.414-1.414L0 10l.707.707 7.778 7.778 1.414-1.414L3.828 11H20V9H3.828z',
+      path: svg.left,
     },
     {
       name: 'ArrowDown',
@@ -42,8 +42,7 @@ function ModeCard({ mode, clef, openModeCard, closeModeCard }) {
         () => shift.key(false),
         () => shift.parallel(false)
       ),
-      path:
-        'M9 16.172l-6.071-6.071-1.414 1.414L10 20l.707-.707 7.778-7.778-1.414-1.414L11 16.172V0H9z',
+      path: svg.down,
     },
     {
       name: 'ArrowUp',
@@ -51,8 +50,7 @@ function ModeCard({ mode, clef, openModeCard, closeModeCard }) {
         () => shift.key(true),
         () => shift.parallel(true)
       ),
-      path:
-        'M9 3.828L2.929 9.899 1.515 8.485 10 0l.707.707 7.778 7.778-1.414 1.414L11 3.828V20H9V3.828z',
+      path: svg.up,
     },
     {
       name: 'ArrowRight',
@@ -60,8 +58,7 @@ function ModeCard({ mode, clef, openModeCard, closeModeCard }) {
         () => shift.relativeBrightness(true),
         () => shift.relative(true)
       ),
-      path:
-        'M16.172 9l-6.071-6.071 1.414-1.414L20 10l-.707.707-7.778 7.778-1.414-1.414L16.172 11H0V9z',
+      path: svg.right,
     },
   ];
 
@@ -118,7 +115,7 @@ function ModeCard({ mode, clef, openModeCard, closeModeCard }) {
           className="h-4 w-4 fill-current cursor-pointer"
           viewBox="0 0 20 20"
         >
-          <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z" />
+          <path d={svg.close} />
         </svg>
       </button>
     </div>
