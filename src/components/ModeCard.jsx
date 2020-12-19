@@ -3,13 +3,12 @@ import React from 'react';
 import VexStaff from './VexStaff';
 import ChordTable from './ChordTable';
 
-import useKeyboardFn from '../hooks/useKeyboardFn';
+import useKeyboardShift from '../hooks/useKeyboardShift';
 import useLongPress from '../hooks/useLongPress';
 
 function ModeCard({ mode, clef, openModeCard, closeModeCard }) {
   const modeProps = mode.getModeProperties();
 
-  // MODE-SHIFT FUNCTIONS
   const shift = {
     relative: (isFwShift) => {
       openModeCard(mode.relativeShift(isFwShift));
@@ -25,41 +24,8 @@ function ModeCard({ mode, clef, openModeCard, closeModeCard }) {
     },
   };
 
-  // MODE-SHIFT KEYBOARD EVENTS
-  const handleShift = (event) => {
-    switch (event.key) {
-      case 'ArrowLeft':
-        shiftLR(event, false);
-        return;
-      case 'ArrowRight':
-        shiftLR(event, true);
-        return;
-      case 'ArrowDown':
-        shiftUD(event, false);
-        return;
-      case 'ArrowUp':
-        shiftUD(event, true);
-        return;
-      default:
-        return;
-    }
-  };
+  useKeyboardShift(shift);
 
-  const shiftLR = (event, isFwShift) => {
-    event.preventDefault();
-    event.shiftKey
-      ? shift.relativeBrightness(isFwShift)
-      : shift.relative(isFwShift);
-  };
-
-  const shiftUD = (event, isFwShift) => {
-    event.preventDefault();
-    event.shiftKey ? shift.key(isFwShift) : shift.parallel(isFwShift);
-  };
-
-  useKeyboardFn(handleShift);
-
-  // MODE-SHIFT BUTTON PROPERTIES
   const buttons = [
     {
       name: 'ArrowLeft',
@@ -99,7 +65,6 @@ function ModeCard({ mode, clef, openModeCard, closeModeCard }) {
     },
   ];
 
-  // RENDER
   return (
     <div
       className="flex flex-col items-center relative py-6
@@ -119,7 +84,7 @@ function ModeCard({ mode, clef, openModeCard, closeModeCard }) {
       </hgroup>
 
       {/* SCALE FIGURE*/}
-      <VexStaff key={modeProps.absoluteMC} clef={clef} {...modeProps} />
+      <VexStaff key={modeProps.absoluteMC} {...{ clef }} {...modeProps} />
 
       {/* MODE-SHIFT BUTTON PANEL */}
       <div className="flex">
