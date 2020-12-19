@@ -3,7 +3,7 @@ import React from 'react';
 function Menu({ toggleShowGuide }) {
   const links = [
     { title: 'About' },
-    { title: 'Quick Start Guide', click: toggleShowGuide },
+    { title: 'Quick Start Guide', click: () => toggleShowGuide() },
     { title: 'Meet the Scales' },
     { title: 'FAQ' },
     { title: 'Contact' },
@@ -21,7 +21,7 @@ function Menu({ toggleShowGuide }) {
           <span
             className="tab-selection px-2 py-1 cursor-pointer hover:underline"
             tabIndex="0"
-            onClick={() => el.click()}
+            onClick={el.click}
           >
             {el.title}
           </span>
