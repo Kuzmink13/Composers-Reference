@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
 
 function QuickGuide(props) {
-  // REMOVE CLOSE ON CLICK EFFECT
-  function cancelClose(event) {
-    event.stopPropagation();
-  }
-
-  // DISMISS QUICK GUIDE
   const [isChecked, setIsChecked] = useState(props.isGuideDismissed);
 
   function skipGuide() {
@@ -14,12 +8,8 @@ function QuickGuide(props) {
     props.toggleShowGuide();
   }
 
-  // RENDER
   return (
-    <div
-      className="flex flex-col items-center relative p-4"
-      onClick={cancelClose}
-    >
+    <div className="flex flex-col items-center relative p-4">
       <h2 className="text-lg font-bold text-gray-800 tracking-wider mb-64">
         QUICK START GUIDE
       </h2>
