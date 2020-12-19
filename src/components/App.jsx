@@ -93,13 +93,12 @@ function App() {
       />
 
       {isModeCardShown && (
-        <PopOver closeFn={closeModeCard}>
+        <PopOver closeFn={closeModeCard} showCloseButton={true}>
           <ModeCard
             {...{
               mode,
               clef,
               openModeCard,
-              closeModeCard,
             }}
           />
         </PopOver>
@@ -110,6 +109,7 @@ function App() {
           closeFn={() => toggleShowGuide()}
           isAnimated={false}
           isWide={true}
+          showCloseButton={true}
         >
           <QuickGuide
             {...{ isGuideDismissed, toggleShowGuide, toggleDismissGuide }}

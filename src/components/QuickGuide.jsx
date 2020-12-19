@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import * as svg from '../assets/svg.json';
 
 function QuickGuide(props) {
   // REMOVE CLOSE ON CLICK EFFECT
@@ -59,20 +58,6 @@ function QuickGuide(props) {
           </button>
         </div>
       </div>
-
-      {/* CLOSE BUTTON */}
-      <button
-        name="close mode-card"
-        className="absolute top-0 right-0 tab-selection p-2 m-1 text-gray-600 hover:text-gray-800"
-        onClick={() => props.toggleShowGuide()}
-      >
-        <svg
-          className="h-4 w-4 fill-current cursor-pointer"
-          viewBox="0 0 20 20"
-        >
-          <path d={svg.close} />
-        </svg>
-      </button>
     </div>
   );
 }

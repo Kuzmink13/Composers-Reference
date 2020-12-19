@@ -1,5 +1,6 @@
 import React, { useEffect, Fragment } from 'react';
 import { createFocusTrap } from 'focus-trap';
+import * as svg from '../assets/svg.json';
 
 function PopOver({
   children,
@@ -9,6 +10,7 @@ function PopOver({
   isWide = false,
   overridePositioning = false,
   overrideStyles = false,
+  showCloseButton = false,
 }) {
   // FOCUS-TRAP
   useEffect(() => {
@@ -57,6 +59,20 @@ function PopOver({
       onClick={(e) => e.stopPropagation()}
     >
       {children}
+      {showCloseButton && (
+        <button
+          name="close mode-card"
+          className="absolute top-0 right-0 tab-selection p-2 m-1 text-gray-600 hover:text-gray-800"
+          onClick={closeFn}
+        >
+          <svg
+            className="h-4 w-4 fill-current cursor-pointer"
+            viewBox="0 0 20 20"
+          >
+            <path d={svg.close} />
+          </svg>
+        </button>
+      )}
     </div>
   );
 
