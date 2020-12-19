@@ -9,7 +9,7 @@ import Utilities from '../logic/Utilities';
 
 const { keyNotes } = Utilities;
 
-function Key(props) {
+function Key({ value, index, isShort }) {
   const {
     notes,
     root,
@@ -19,16 +19,16 @@ function Key(props) {
   } = useKeyContext();
 
   const longPressEvent = useLongPress(
-    (event) => handleNoteSelection(event, props.value, true),
-    (event) => handleNoteSelection(event, props.value)
+    (event) => handleNoteSelection(event, value, true),
+    (event) => handleNoteSelection(event, value)
   );
 
-  const isNoteSelected = notes[props.value];
-  const isNoteRoot = root === props.value;
-  const noteName = keyNotes[props.value].absoluteName;
-  const color = keyNotes[props.value].isWhite ? 'white' : 'black';
-  const selection = isNoteSelected
-    ? isNoteRoot
+  const isKeySelected = notes[value];
+  const isKeyRoot = root === value;
+  const keyNoteName = keyNotes[value].absoluteName;
+  const keyColor = keyNotes[value].isWhite ? 'white' : 'black';
+  const selectionType = isKeySelected
+    ? isKeyRoot
       ? 'root'
       : 'selected'
     : 'unselected';
@@ -36,14 +36,14 @@ function Key(props) {
   return (
     <div
       {...longPressEvent}
-      className={`key key-${color}${
-        props.isShort ? '-small' : ''
-      } key-${color}-${selection} p-2 font-semibold break-words text-center`}
+      className={`key key-${keyColor}${
+        isShort ? '-small' : ''
+      } key-${keyColor}-${selectionType} p-2 font-semibold break-words text-center`}
     >
-      {areKeysShown && <div>{Keyboard.getKey(props.index)}</div>}
+      {areKeysShown && <div>{Keyboard.getKey(index)}</div>}
       {areNoteNamesShown && (
-        <div className={`${props.isShort ? 'mt-1' : 'mt-4'}`}>
-          {noteName.replace('/', ' ')}
+        <div className={`${isShort ? 'mt-1' : 'mt-4'}`}>
+          {keyNoteName.replace('/', ' ')}
         </div>
       )}
     </div>

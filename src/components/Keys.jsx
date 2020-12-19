@@ -7,12 +7,12 @@ import Utilities from '../logic/Utilities';
 
 const { notesInOctave } = Utilities;
 
-function Keys(props) {
-  const isShort = isShortModeActive(props.screenHeight);
+function Keys({ screenHeight, screenWidth }) {
+  const isShort = isShortModeActive(screenHeight);
 
   const keys = useMemo(() => {
     return Array.from(
-      Array(notesInOctave * octavesToDisplay(props.screenWidth)),
+      Array(notesInOctave * octavesToDisplay(screenWidth)),
       (el, i) => (
         <Key
           key={i}
@@ -22,7 +22,7 @@ function Keys(props) {
         />
       )
     );
-  }, [isShort, props.screenWidth]);
+  }, [isShort, screenWidth]);
 
   return (
     <div
