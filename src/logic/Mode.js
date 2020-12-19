@@ -42,10 +42,17 @@ class Mode extends PitchCollection {
     return `${this.getAbstractModeCode()}//${this.getPitchCenter()}`;
   }
 
+  getModeRoot() {
+    return Scales.getBaseNotes(
+      this.getPitchCenter(),
+      this.getAbsolutePitches()
+    )[0];
+  }
+
   getModeName() {
-    const name = `${
-      Scales.getBaseNotes(this.getPitchCenter(), this.getAbsolutePitches())[0]
-    } ${modeProperties[this.getAbstractModeCode()].modeName}`;
+    const name = `${this.getModeRoot()} ${
+      modeProperties[this.getAbstractModeCode()].modeName
+    }`;
 
     return Utilities.replaceSymbols(name);
   }
@@ -61,6 +68,7 @@ class Mode extends PitchCollection {
       absolutePitches: this.getAbsolutePitches(),
       abstractPitches: this.getAbstractPitches(),
       modeCode: this.getAbstractModeCode(),
+      modeRoot: this.getModeRoot(),
       modeName: this.getModeName(),
       parentTonality: this.getParentTonality(),
     };

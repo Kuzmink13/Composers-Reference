@@ -1,12 +1,18 @@
 import React, { Fragment } from 'react';
 import Chords from '../logic/Chords';
 
-function ChordTable(props) {
-  const chordRoot = props.modeName.split(' ')[0];
+function ChordTable({ mode }) {
+  const {
+    pitchCenter,
+    abstractPitches,
+    absolutePitches,
+    modeRoot,
+  } = mode.getModeProperties();
+
   const modeChords = Chords.chordGenerator(
-    props.pitchCenter,
-    props.abstractPitches,
-    props.absolutePitches
+    pitchCenter,
+    abstractPitches,
+    absolutePitches
   );
 
   const isFirstChord = (chord) => chord === modeChords[0][0];
@@ -33,7 +39,7 @@ function ChordTable(props) {
               {/* TABLE ROW */}
               <tr key={chord}>
                 <th className="whitespace-no-wrap font-semibold text-center pr-2 sm:pr-3 pt-1 border-r border-gray-400">
-                  {`${chordRoot}${chord}`.trim()}
+                  {`${modeRoot}${chord}`.trim()}
                 </th>
                 <td className="whitespace-no-wrap text-center px-2 sm:px-3 pt-1 border-r border-gray-400">
                   {names.join('-')}

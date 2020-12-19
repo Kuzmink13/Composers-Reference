@@ -5,7 +5,7 @@ import { useModeContext } from '../contexts/ModeContext';
 
 function ModeBlock({ mode }) {
   const { clef, openModeCard } = useModeContext();
-  const modeProps = mode.getModeProperties();
+  const { modeName } = mode.getModeProperties();
 
   return (
     <button
@@ -13,10 +13,8 @@ function ModeBlock({ mode }) {
       className="tab-selection m-1 p-1"
     >
       <div className="box p-2 hover:shadow-md">
-        <h2 className="text-center tracking-wider font-semibold">
-          {modeProps.modeName}
-        </h2>
-        <VexStaff clef={clef} {...modeProps} />
+        <h2 className="text-center tracking-wider font-semibold">{modeName}</h2>
+        <VexStaff {...{ mode, clef }} />
       </div>
     </button>
   );
