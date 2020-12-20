@@ -1,42 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 
-import ModeBlock from './ModeBlock';
+import useModePanel from '../hooks/useModePanel';
 
 import { useModeContext } from '../contexts/ModeContext';
 
 function ModePanel({ selectedList }) {
   const { clef } = useModeContext();
 
-  // LOAD AND GENERATE MODE BLOCKS
-  const [items, setItems] = useState([]);
-  const [hasMore, setHasMore] = useState(true);
-
-  function loadMore() {
-    const cardsToLoad = 6;
-    const numLoaded = items.length;
-    const listLen = selectedList.length;
-    const nextIncrement = Math.min(listLen, numLoaded + cardsToLoad);
-
-    setItems(
-      items.concat(
-        selectedList
-          .slice(numLoaded, nextIncrement)
-          .map((mode) => generateModeBlock(mode))
-      )
-    );
-    setHasMore(listLen > numLoaded);
-  }
-
-  function generateModeBlock(mode) {
-    return <ModeBlock key={mode.getAbsoluteModeCode()} mode={mode} />;
-  }
-
-  // RESET PANEL ON SETTINGS CHANGE
-  useEffect(() => {
-    setItems([]);
-    setHasMore(true);
-  }, [selectedList, clef]);
+  const [{ items, hasMore }, loadMore] = useModePanel(selectedList, clef);
 
   // RENDER
   let scrollParentRef;

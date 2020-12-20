@@ -1,24 +1,18 @@
-import React, { useState, Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 
 import ButtonPanel from './ButtonPanel';
 import ModePanel from './ModePanel';
 
+import useModeSelector from '../hooks/useModeSelector';
+
 import { ModeButtonProvider } from '../contexts/ModeButtonContext';
 
 function ModeController({ modeLists }) {
-  // SELECTED MODE LIST CONTROL
-  const [selectedListIndex, setSelectedListIndex] = useState(1);
-  const [selectedList, setSelectedList] = useState([]);
+  const [
+    { selectedListIndex, selectedList },
+    handleSelectorChange,
+  ] = useModeSelector(modeLists);
 
-  function handleSelectorChange(newSelector) {
-    setSelectedListIndex(newSelector);
-  }
-
-  useEffect(() => {
-    setSelectedList(modeLists[selectedListIndex]);
-  }, [modeLists, selectedListIndex]);
-
-  // RENDER
   return (
     <Fragment>
       <ModeButtonProvider
