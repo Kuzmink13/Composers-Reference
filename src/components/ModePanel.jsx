@@ -10,7 +10,6 @@ function ModePanel({ selectedList }) {
 
   const [{ items, hasMore }, loadMore] = useModePanel(selectedList, clef);
 
-  // RENDER
   let scrollParentRef;
   return (
     <div
