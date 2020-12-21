@@ -21,7 +21,7 @@ import useClef from '../hooks/useClef';
 import useTonalities from '../hooks/useTonalities';
 import useScreenSize from '../hooks/useScreenSize';
 
-import Music from '../logic/Music';
+import getModeLists from '../logic/getModeLists';
 
 function App() {
   const [{ notes, root }, handleNoteSelection, resetNotes] = useNotes();
@@ -68,7 +68,7 @@ function App() {
 
   // SCALE LIST GENERATION
   const modeLists = useMemo(() => {
-    return Music.getFilterdLists(notes, root, tonalities, isSelectionFiltered);
+    return getModeLists(notes, root, tonalities, isSelectionFiltered);
   }, [notes, root, tonalities, isSelectionFiltered]);
 
   // RENDER

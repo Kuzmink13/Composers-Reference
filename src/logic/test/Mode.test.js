@@ -2,7 +2,7 @@ import Mode from '../Mode';
 
 describe('Testing getAbsolutePitches', () => {
   test('returns the correct zeroed array when pitchCenter is 0', () => {
-    let testCase = new Mode([0, 1, 3, 5], 0);
+    let testCase = new Mode([0, 1, 3, 5]);
     let expectedOutput = [0, 1, 3, 5];
     expect(testCase.getAbsolutePitches()).toStrictEqual(expectedOutput);
   });
@@ -21,7 +21,7 @@ describe('Testing getAbsolutePitches', () => {
 
   test('returns an array that is safe from rep exposure', () => {
     let inputArray = [0, 1, 3, 5];
-    let testCase = new Mode(inputArray, 0);
+    let testCase = new Mode(inputArray);
     let expectedOutput = [0, 1, 3, 5];
     inputArray.push(7);
     testCase.getAbsolutePitches().push(9);

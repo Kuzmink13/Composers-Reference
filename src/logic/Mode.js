@@ -16,7 +16,7 @@ class Mode extends PitchCollection {
    * @param {Number} pitchCenter - a number representing a pitch class where 0 is c, 1 is c-sharp/d-flat, ... , 11 is b
    * @throws {Error} if the range of the pitch collection exceeds an octave
    */
-  constructor(pitches, pitchCenter) {
+  constructor(pitches, pitchCenter = pitches[0]) {
     super(pitches);
     this.pitchCenter = Utilities.octaveMod(pitchCenter);
   }
@@ -81,7 +81,7 @@ class Mode extends PitchCollection {
       ? pitches.push(pitches.shift() + notesInOctave)
       : pitches.unshift(pitches.pop() - notesInOctave);
 
-    return new Mode(pitches, pitches[0]);
+    return new Mode(pitches);
   }
 
   parallelShift(isFwShift, pitchCenter = this.getPitchCenter()) {
