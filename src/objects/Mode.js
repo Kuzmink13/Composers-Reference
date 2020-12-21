@@ -43,11 +43,15 @@ class Mode extends PitchCollection {
     return `${this.getAbstractModeCode()}//${this.getPitchCenter()}`;
   }
 
-  getModeRoot() {
+  getBaseNotes() {
     return Scales.getBaseNotes(
       this.getPitchCenter(),
       this.getAbsolutePitches()
-    )[0];
+    );
+  }
+
+  getModeRoot() {
+    return this.getBaseNotes()[0];
   }
 
   getModeName() {

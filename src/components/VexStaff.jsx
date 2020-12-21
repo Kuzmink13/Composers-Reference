@@ -1,18 +1,14 @@
-import React, { useEffect } from 'react';
-import VexScale from '../logic/VexScale';
+import React from 'react';
+import useVexScale from '../hooks/useVexScale';
 
 function VexStaff({ mode, clef }) {
-  const { pitchCenter, absolutePitches, modeName } = mode.getModeProperties();
-
-  useEffect(() => {
-    VexScale.generateStaff(modeName, pitchCenter, absolutePitches, clef);
-    return () => {
-      document.getElementById(modeName).innerHTML = '';
-    };
-  });
+  useVexScale(mode, clef);
 
   return (
-    <figure id={modeName} className="h-staff-height w-staff-width"></figure>
+    <figure
+      id={mode.getModeName()}
+      className="h-staff-height w-staff-width"
+    ></figure>
   );
 }
 
