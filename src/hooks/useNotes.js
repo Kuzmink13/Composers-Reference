@@ -1,8 +1,8 @@
 import { useReducer, useCallback } from 'react';
+import * as keyMap from '../assets/keyMap.json';
 
 import useKeyboardFn, { keyArrays } from './useKeyboardFn';
 
-import Keyboard from '../logic/Keyboard';
 import Utilities from '../logic/Utilities';
 
 const { notesInOctave } = Utilities;
@@ -63,7 +63,7 @@ function useNotes() {
 
   const KeyBoardPress = useCallback(
     (event) => {
-      const pressedNote = Keyboard.getNote(event.code);
+      const pressedNote = keyMap.keyToNote[event.code];
       pressedNote !== undefined && handleNoteSelection(event, pressedNote);
     },
     [handleNoteSelection]

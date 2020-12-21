@@ -1,10 +1,10 @@
 import React from 'react';
+import * as keyMap from '../assets/keyMap.json';
 
 import { useKeyContext } from '../contexts/KeyContext';
 
 import useLongPress from '../hooks/useLongPress';
 
-import Keyboard from '../logic/Keyboard';
 import Utilities from '../logic/Utilities';
 
 const { keyNotes } = Utilities;
@@ -40,7 +40,7 @@ function Key({ value, index, isShort }) {
         isShort ? '-small' : ''
       } key-${keyColor}-${selectionType} p-2 font-semibold break-words text-center`}
     >
-      {areKeysShown && <div>{Keyboard.getKey(index)}</div>}
+      {areKeysShown && <div>{keyMap.noteToKey[index]}</div>}
       {areNoteNamesShown && (
         <div className={`${isShort ? 'mt-1' : 'mt-4'}`}>
           {keyNoteName.replace('/', ' ')}
