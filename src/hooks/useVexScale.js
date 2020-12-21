@@ -1,61 +1,44 @@
 import { useEffect } from 'react';
-import Vex from 'vexflow';
 
-const vf = Vex.Flow;
-const formatter = new vf.Formatter();
-const format = {
-  canvasWidth: 280,
-  canvasHeight: 85,
-  xPosition: 0,
-  yPosition: -15,
-  reducedWidth: 260,
-};
+import * as vs from '../logic/VexScale';
 
-function getContext(elementID) {
-  return new vf.Renderer(
-    document.getElementById(elementID),
-    vf.Renderer.Backends.SVG
-  )
-    .resize(format.canvasWidth, format.canvasHeight)
-    .getContext();
+const formattedWidth = 260;
+
+function getOctave(clef, firstNote) {
+  const baseOctaves = {
+    treble: 4,
+    alto: 3,
+    bass: 2,
+  };
+
+  const clefAdjustment = {
+    treble: false,
+    alto: firstNote[0] === 'C',
+    bass: firstNote[0] === 'C' || firstNote[0] === 'D',
+  };
+
+  const isCflat = firstNote === 'Cb';
+
+  return baseOctaves[clef] + clefAdjustment[clef] - isCflat;
 }
 
-function getStave() {
-  return new vf.Stave(format.xPosition, format.yPosition, format.canvasWidth);
-}
+function toVexScale(mode, octave, clef) {
+  const pitches = mode.getAbsolutePitches();
+  const noteAdjustment = (note, i) =>
+    (pitches[i] >= 12 && note !== 'B#') || note === 'Cb';
 
-function getVoice(length) {
-  return new vf.Voice({
-    num_beats: length,
-    beat_value: 1,
-  });
-}
-
-function getVFNote(note, octave, clef) {
-  const accidentalValue = note.slice(1);
-  const vfNote = new vf.StaveNote({
-    clef: clef,
-    keys: [`${note}/${octave}`],
-    duration: 'w',
-  });
-
-  accidentalValue &&
-    vfNote.addAccidental(0, new vf.Accidental(accidentalValue));
-
-  return vfNote;
-}
-
-function toVexScale(clef) {
-  return (note) => getVFNote(note, 4, clef);
+  return (note, i) =>
+    vs.getVFNote(note, octave + noteAdjustment(note, i), clef);
 }
 
 function generateStaff(mode, clef) {
-  const context = getContext(mode.getModeName());
-  const stave = getStave().addClef(clef);
-  const notes = mode.getBaseNotes().map(toVexScale(clef));
-  const voice = getVoice(notes.length).addTickables(notes);
+  const context = vs.getContext(mode.getModeName());
+  const stave = vs.getStave().addClef(clef);
+  const octave = getOctave(clef, mode.getModeRoot());
+  const notes = mode.getBaseNotes().map(toVexScale(mode, octave, clef));
+  const voice = vs.getVoice(notes.length).addTickables(notes);
 
-  formatter.format([voice], format.reducedWidth);
+  vs.formatter.format([voice], formattedWidth);
   stave.setContext(context).draw();
   voice.draw(context, stave);
 }
