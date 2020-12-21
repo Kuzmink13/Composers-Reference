@@ -1,7 +1,8 @@
 import getMatchedModes from './getMatchedModes';
-import PitchCollection from './PitchCollection';
-import Mode from './Mode';
 import Utilities from './Utilities';
+
+import PitchCollection from '../objects/PitchCollection';
+import Mode from '../objects/Mode';
 
 const { notesInOctave } = Utilities;
 

@@ -1,4 +1,4 @@
-import Utilities from './Utilities';
+import Utilities from '../logic/Utilities';
 
 /**
  * A collection of successive pitches contained within an octave

@@ -1,6 +1,7 @@
+import Scales from '../logic/Scales';
+import Utilities from '../logic/Utilities';
+
 import PitchCollection from './PitchCollection';
-import Scales from './Scales';
-import Utilities from './Utilities';
 
 const { modeProperties, notesInOctave, notesInAPerfectFifth } = Utilities;
 

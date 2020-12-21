@@ -1,6 +1,7 @@
 import getMatchedModes from '../getMatchedModes';
-import PitchCollection from '../PitchCollection';
-import Mode from '../Mode';
+
+import PitchCollection from '../../objects/PitchCollection';
+import Mode from '../../objects/Mode';
 
 describe('Testing getMatchedModes', () => {
   test('returns an empty array if there are no possible mathces', () => {

@@ -1,5 +1,6 @@
-import Mode from './Mode';
 import Utilities from './Utilities';
+
+import Mode from '../objects/Mode';
 
 function getOffsetPitches(mode, degreeOffset) {
   return mode
