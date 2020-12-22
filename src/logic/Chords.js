@@ -1,4 +1,3 @@
-import Scales from '../logic/Scales';
 import Utilities from '../logic/Utilities';
 
 class Chords {
@@ -263,10 +262,8 @@ class Chords {
 
   static chordGenerator(mode) {
     const tree = this.chordTree();
-    const pitchCenter = mode.getPitchCenter();
     const abstractPitches = mode.getAbstractPitches();
-    const absolutePitches = mode.getAbsolutePitches();
-    const baseNotes = Scales.getBaseNotes(pitchCenter, absolutePitches);
+    const baseNotes = mode.getBaseNotes();
 
     const pitches = [0];
     const scaleDegrees = ['1'];

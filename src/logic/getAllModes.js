@@ -1,9 +1,6 @@
 import { supportedTonalities } from '../hooks/useTonalities';
 
 import getModesFromTonality from './getModesfromTonality';
-import Utilities from './Utilities';
-
-const { modeProperties } = Utilities;
 
 function tonalityFilter(tonalities) {
   return (el, i) => tonalities[i];
@@ -25,11 +22,7 @@ function modeCompare(pitchArray) {
     }
     // BY MODE PRIORITY
     else {
-      return (
-        modeProperties[a.getAbstractModeCode()].modeNumber -
-        modeProperties[b.getAbstractModeCode()].modeNumber
-        // TODO mode properties should only be accessed thru mode object
-      );
+      return a.getModeNumber() - b.getModeNumber();
     }
   };
 }

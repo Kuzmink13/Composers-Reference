@@ -1,9 +1,11 @@
+import * as modeProps from '../assets/modeProperties.json';
+
 import Scales from '../logic/Scales';
 import Utilities from '../logic/Utilities';
 
 import PitchCollection from './PitchCollection';
 
-const { modeProperties, notesInOctave, notesInAPerfectFifth } = Utilities;
+const { notesInOctave, notesInAPerfectFifth } = Utilities;
 
 /**
  * A collection of successive pitches contained within an octave that start at a specific note
@@ -44,10 +46,13 @@ class Mode extends PitchCollection {
   }
 
   getBaseNotes() {
-    return Scales.getBaseNotes(
-      this.getPitchCenter(),
-      this.getAbsolutePitches()
-    );
+    if (!this.baseNotes) {
+      this.baseNotes = JSON.stringify(
+        Scales.getBaseNotes(this.getPitchCenter(), this.getAbsolutePitches())
+      );
+    }
+
+    return JSON.parse(this.baseNotes);
   }
 
   getModeRoot() {
@@ -56,14 +61,18 @@ class Mode extends PitchCollection {
 
   getModeName() {
     const name = `${this.getModeRoot()} ${
-      modeProperties[this.getAbstractModeCode()].modeName
+      modeProps.default[this.getAbstractModeCode()].modeName
     }`;
 
     return Utilities.replaceSymbols(name);
   }
 
   getParentTonality() {
-    return modeProperties[this.getAbstractModeCode()].parentTonality;
+    return modeProps.default[this.getAbstractModeCode()].parentTonality;
+  }
+
+  getModeNumber() {
+    return modeProps.default[this.getAbstractModeCode()].modeNumber;
   }
 
   relativeShift(isFwShift) {
@@ -80,8 +89,8 @@ class Mode extends PitchCollection {
     const modeCode = this.getAbstractModeCode();
 
     const code = isFwShift
-      ? Utilities.modeProperties[modeCode].nextMode
-      : Utilities.modeProperties[modeCode].previousMode;
+      ? modeProps.default[modeCode].nextMode
+      : modeProps.default[modeCode].previousMode;
 
     return this.fromCode(code, pitchCenter);
   }
