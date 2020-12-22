@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { getItem, setItem } from '../logic/Storage';
+import { getItem, setItem } from '../logic/storage';
 
 export const supportedTonalities = [
   { name: 'Whole-Tone', pitches: [0, 2, 4, 6, 8, 10] },

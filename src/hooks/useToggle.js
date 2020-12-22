@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { getItem, setItem } from '../logic/Storage';
+import { getItem, setItem } from '../logic/storage';
 
 function useToggle(initialState = false, storageKey = undefined) {
   const [state, setState] = useState(getItem(storageKey) || initialState);

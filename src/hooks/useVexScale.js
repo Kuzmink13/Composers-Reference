@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import * as vs from '../logic/VexScale';
+import * as vs from '../logic/vexScale';
 import Utilities from '../logic/Utilities';
 
 const { notesInOctave } = Utilities;

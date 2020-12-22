@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { getItem, setItem } from '../logic/Storage';
+import { getItem, setItem } from '../logic/storage';
 
 export const supportedClefs = { treble: 'treble', alto: 'alto', bass: 'bass' };
 
