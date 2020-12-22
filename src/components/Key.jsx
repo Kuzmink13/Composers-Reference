@@ -1,13 +1,10 @@
 import React from 'react';
 import * as keyMap from '../assets/keyMap.json';
+import * as keyNotes from '../assets/notes.json';
 
 import { useKeyContext } from '../contexts/KeyContext';
 
 import useLongPress from '../hooks/useLongPress';
-
-import Utilities from '../logic/Utilities';
-
-const { keyNotes } = Utilities;
 
 function Key({ value, index, isShort }) {
   const {
@@ -25,8 +22,8 @@ function Key({ value, index, isShort }) {
 
   const isKeySelected = notes[value];
   const isKeyRoot = root === value;
-  const keyNoteName = keyNotes[value].absoluteName;
-  const keyColor = keyNotes[value].isWhite ? 'white' : 'black';
+  const keyNoteName = keyNotes.default[value].absoluteName;
+  const keyColor = keyNotes.default[value].isWhite ? 'white' : 'black';
   const selectionType = isKeySelected
     ? isKeyRoot
       ? 'root'

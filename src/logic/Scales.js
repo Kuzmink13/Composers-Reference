@@ -1,6 +1,6 @@
-import Utilities from './Utilities';
+import * as notes from '../assets/notes.json';
 
-const { keyNotes } = Utilities;
+import Utilities from './Utilities';
 
 class Scales {
   static alphaLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
@@ -27,8 +27,8 @@ class Scales {
     const getScale = (keyHasSharps, absolutePitches) =>
       absolutePitches.map((el) =>
         keyHasSharps
-          ? keyNotes[Utilities.octaveMod(el)].sharpName
-          : keyNotes[Utilities.octaveMod(el)].flatName
+          ? notes.default[Utilities.octaveMod(el)].sharpName
+          : notes.default[Utilities.octaveMod(el)].flatName
       );
 
     return this.getShortestScale(
@@ -41,7 +41,7 @@ class Scales {
     const scale = [];
 
     absolutePitches.forEach((el, i) => {
-      const key = keyNotes[Utilities.octaveMod(el)];
+      const key = notes.default[Utilities.octaveMod(el)];
       const prev = scale[i - 1] || ' ';
 
       key.sharpName.length <= key.flatName.length &&
@@ -56,8 +56,8 @@ class Scales {
   static getBaseNotes7(absolutePitches, pitchCenter) {
     const getScale = (keyHasSharps, absolutePitches, pitchCenter) => {
       const firstNote = keyHasSharps
-        ? keyNotes[pitchCenter].sharpName
-        : keyNotes[pitchCenter].flatName;
+        ? notes.default[pitchCenter].sharpName
+        : notes.default[pitchCenter].flatName;
       const indexFirst = this.alphaLetters.indexOf(firstNote[0]);
       const alphaScale = this.alphaLetters
         .slice(indexFirst)
@@ -65,7 +65,7 @@ class Scales {
 
       return absolutePitches.map(
         (el) =>
-          keyNotes[Utilities.octaveMod(el)].enharmonics[alphaScale.shift()]
+          notes.default[Utilities.octaveMod(el)].enharmonics[alphaScale.shift()]
       );
     };
 
@@ -81,8 +81,8 @@ class Scales {
         absolutePitches[i + 1] - absolutePitches[i] === 2;
 
       const firstNote = keyHasSharps
-        ? keyNotes[pitchCenter].sharpName
-        : keyNotes[pitchCenter].flatName;
+        ? notes.default[pitchCenter].sharpName
+        : notes.default[pitchCenter].flatName;
       const indexFirst = this.alphaLetters.indexOf(firstNote[0]);
       const alphaScale = this.alphaLetters
         .slice(indexFirst)
@@ -95,7 +95,9 @@ class Scales {
       absolutePitches.forEach((el, i) => {
         if (!skipNext) {
           let note =
-            keyNotes[Utilities.octaveMod(el)].enharmonics[alphaScale.shift()];
+            notes.default[Utilities.octaveMod(el)].enharmonics[
+              alphaScale.shift()
+            ];
           if (note === undefined) note = 'undefined';
           scale.push(note);
           if (
