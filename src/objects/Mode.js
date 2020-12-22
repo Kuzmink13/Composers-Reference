@@ -66,19 +66,6 @@ class Mode extends PitchCollection {
     return modeProperties[this.getAbstractModeCode()].parentTonality;
   }
 
-  getModeProperties() {
-    return {
-      absoluteMC: this.getAbsoluteModeCode(),
-      pitchCenter: this.getPitchCenter(),
-      absolutePitches: this.getAbsolutePitches(),
-      abstractPitches: this.getAbstractPitches(),
-      modeCode: this.getAbstractModeCode(),
-      modeRoot: this.getModeRoot(),
-      modeName: this.getModeName(),
-      parentTonality: this.getParentTonality(),
-    };
-  }
-
   relativeShift(isFwShift) {
     let pitches = this.getAbsolutePitches();
 

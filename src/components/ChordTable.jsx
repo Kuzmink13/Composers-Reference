@@ -2,18 +2,8 @@ import React, { Fragment } from 'react';
 import Chords from '../logic/Chords';
 
 function ChordTable({ mode }) {
-  const {
-    pitchCenter,
-    abstractPitches,
-    absolutePitches,
-    modeRoot,
-  } = mode.getModeProperties();
-
-  const modeChords = Chords.chordGenerator(
-    pitchCenter,
-    abstractPitches,
-    absolutePitches
-  );
+  const modeRoot = mode.getModeRoot();
+  const modeChords = Chords.chordGenerator(mode);
 
   const isFirstChord = (chord) => chord === modeChords[0][0];
   const isThreeNoteChord = (names) => names.length === 3;

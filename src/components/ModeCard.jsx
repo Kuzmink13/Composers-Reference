@@ -8,7 +8,7 @@ import useKeyboardShift from '../hooks/useKeyboardShift';
 import useLongPress from '../hooks/useLongPress';
 
 function ModeCard({ mode, clef, openModeCard }) {
-  const { absoluteMC, modeName, parentTonality } = mode.getModeProperties();
+  const modeName = mode.getModeName();
 
   const shift = {
     relative: (isFwShift) => {
@@ -76,12 +76,12 @@ function ModeCard({ mode, clef, openModeCard }) {
           {modeName}
         </h2>
         <h3 className="text-sm sm:text-base italic tracking-wider text-center lowercase mb-3">
-          {`from the ${parentTonality} scale family`}
+          {`from the ${mode.getParentTonality()} scale family`}
         </h3>
       </hgroup>
 
       {/* SCALE FIGURE*/}
-      <VexStaff key={absoluteMC} {...{ mode, clef }} />
+      <VexStaff key={modeName} {...{ mode, clef }} />
 
       {/* MODE-SHIFT BUTTON PANEL */}
       <div className="flex">
