@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 
 import * as vs from '../logic/VexScale';
+import Utilities from '../logic/Utilities';
+
+const { notesInOctave } = Utilities;
 
 const formattedWidth = 260;
 
@@ -25,7 +28,7 @@ function getOctave(clef, firstNote) {
 function toVexScale(mode, octave, clef) {
   const pitches = mode.getAbsolutePitches();
   const noteAdjustment = (note, i) =>
-    (pitches[i] >= 12 && note !== 'B#') || note === 'Cb';
+    (pitches[i] >= notesInOctave && note !== 'B#') || note === 'Cb';
 
   return (note, i) =>
     vs.getVFNote(note, octave + noteAdjustment(note, i), clef);
