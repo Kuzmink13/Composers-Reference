@@ -263,7 +263,7 @@ class Chords {
   static chordGenerator(mode) {
     const tree = this.chordTree();
     const abstractPitches = mode.getAbstractPitches();
-    const baseNotes = mode.getBaseNotes();
+    const baseNotes = mode.getScaleNotes();
 
     const pitches = [0];
     const scaleDegrees = ['1'];

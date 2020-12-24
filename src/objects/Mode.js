@@ -1,6 +1,6 @@
 import * as modeProps from '../assets/modeProperties.json';
 
-import Scales from '../logic/Scales';
+import getScaleNotes from '../logic/getScaleNotes';
 import Utilities from '../logic/Utilities';
 
 import PitchCollection from './PitchCollection';
@@ -45,18 +45,16 @@ class Mode extends PitchCollection {
     return `${this.getAbstractModeCode()}//${this.getPitchCenter()}`;
   }
 
-  getBaseNotes() {
-    if (!this.baseNotes) {
-      this.baseNotes = JSON.stringify(
-        Scales.getBaseNotes(this.getPitchCenter(), this.getAbsolutePitches())
-      );
+  getScaleNotes() {
+    if (!this.scaleNotes) {
+      this.scaleNotes = JSON.stringify(getScaleNotes(this));
     }
 
-    return JSON.parse(this.baseNotes);
+    return JSON.parse(this.scaleNotes);
   }
 
   getModeRoot() {
-    return this.getBaseNotes()[0];
+    return this.getScaleNotes()[0];
   }
 
   getModeName() {

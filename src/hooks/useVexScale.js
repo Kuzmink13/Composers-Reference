@@ -38,7 +38,7 @@ function generateStaff(mode, clef) {
   const context = vs.getContext(mode.getModeName());
   const stave = vs.getStave().addClef(clef);
   const octave = getOctave(clef, mode.getModeRoot());
-  const notes = mode.getBaseNotes().map(toVexScale(mode, octave, clef));
+  const notes = mode.getScaleNotes().map(toVexScale(mode, octave, clef));
   const voice = vs.getVoice(notes.length).addTickables(notes);
 
   vs.formatter.format([voice], formattedWidth);

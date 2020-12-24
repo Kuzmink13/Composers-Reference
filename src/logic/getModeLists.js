@@ -1,7 +1,5 @@
 import getAllModes from './getAllModes';
-import Scales from './Scales';
-
-const { supportedScaleLengths } = Scales;
+import { supportedScaleLengths } from './scaleUtilities';
 
 function convertToPitchArray(notes) {
   return notes
