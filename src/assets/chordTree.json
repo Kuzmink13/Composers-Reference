@@ -1,0 +1,208 @@
+{
+  "minorSecond": [
+    "",
+    {
+      "diminishedFifth": ["susb2 (b5)", {}],
+      "perfectFifth": ["susb2", {}],
+      "augmentedFifth": ["susb2 (#5)", {}]
+    }
+  ],
+  "majorSecond": [
+    "",
+    {
+      "diminishedFifth": ["sus2 (b5)", {}],
+      "perfectFifth": ["sus2", {}],
+      "augmentedFifth": ["sus2 (#5)", {}]
+    }
+  ],
+  "minorThird": [
+    "",
+    {
+      "diminishedFifth": [
+        "dim",
+        {
+          "diminishedSeventh": [
+            "dim7",
+            {
+              "minorNinth": ["dim7 (b9)", {}],
+              "majorNinth": ["dim9", {}]
+            }
+          ],
+          "minorSeventh": [
+            "m7 (b5)",
+            {
+              "minorNinth": ["m7 (b5) (b9)", {}],
+              "majorNinth": ["m9 (b5)", {}]
+            }
+          ],
+          "majorSeventh": [
+            "m-maj7 (b5)",
+            {
+              "minorNinth": ["m-maj7 (b5) (b9)", {}],
+              "majorNinth": ["m-maj9 (b5)", {}]
+            }
+          ]
+        }
+      ],
+      "perfectFifth": [
+        "m",
+        {
+          "majorSixth": [
+            "m6",
+            {
+              "minorNinth": ["m6 (b9)", {}],
+              "majorNinth": ["m6/9", {}]
+            }
+          ],
+          "minorSeventh": [
+            "m7",
+            {
+              "minorNinth": ["m7 (b9)", {}],
+              "majorNinth": ["m9", {}]
+            }
+          ],
+          "majorSeventh": [
+            "m-maj7",
+            {
+              "minorNinth": ["m-maj7 (b9)", {}],
+              "majorNinth": ["m-maj9", {}]
+            }
+          ]
+        }
+      ],
+      "augmentedFifth": [
+        "m (#5)",
+        {
+          "majorSixth": [
+            "m6 (#5)",
+            {
+              "minorNinth": ["m6 (#5) (b9)", {}],
+              "majorNinth": ["m6/9 (#5)", {}]
+            }
+          ],
+          "minorSeventh": [
+            "m7 (#5)",
+            {
+              "minorNinth": ["m7 (#5) (b9)", {}],
+              "majorNinth": ["m9 (#5)", {}]
+            }
+          ],
+          "majorSeventh": [
+            "m-maj7 (#5)",
+            {
+              "minorNinth": ["m-maj7 (#5) (b9)", {}],
+              "majorNinth": ["m-maj9 (#5)", {}]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "majorThird": [
+    "",
+    {
+      "diminishedFifth": [
+        "maj (b5)",
+        {
+          "majorSixth": [
+            "6 (b5)",
+            {
+              "minorNinth": ["6 (b5) (b9)", {}],
+              "majorNinth": ["6/9 (b5)", {}],
+              "augmentedNinth": ["6 (b5) (#9)", {}]
+            }
+          ],
+          "minorSeventh": [
+            "7 (b5)",
+            {
+              "minorNinth": ["7 (b5) (b9)", {}],
+              "majorNinth": ["9 (b5)", {}],
+              "augmentedNinth": ["7 (b5) (#9)", {}]
+            }
+          ],
+          "majorSeventh": [
+            "maj7 (b5)",
+            {
+              "minorNinth": ["maj7 (b5) (b9)", {}],
+              "majorNinth": ["maj9 (b5)", {}],
+              "augmentedNinth": ["maj7 (b5) (#9)", {}]
+            }
+          ]
+        }
+      ],
+      "perfectFifth": [
+        " ",
+        {
+          "majorSixth": [
+            "6",
+            {
+              "minorNinth": ["6 (b9)", {}],
+              "majorNinth": ["6/9", {}],
+              "augmentedNinth": ["6 (#9)", {}]
+            }
+          ],
+          "minorSeventh": [
+            "7",
+            {
+              "minorNinth": ["7 (b9)", {}],
+              "majorNinth": ["9", {}],
+              "augmentedNinth": ["7 (#9)", {}]
+            }
+          ],
+          "majorSeventh": [
+            "maj7",
+            {
+              "minorNinth": ["maj7 (b9)", {}],
+              "majorNinth": ["maj9", {}],
+              "augmentedNinth": ["maj7 (#9)", {}]
+            }
+          ]
+        }
+      ],
+      "augmentedFifth": [
+        "+",
+        {
+          "majorSixth": [
+            "+6",
+            {
+              "minorNinth": ["+6 (b9)", {}],
+              "majorNinth": ["+6/9", {}],
+              "augmentedNinth": ["+6 (#9)", {}]
+            }
+          ],
+          "minorSeventh": [
+            "+7",
+            {
+              "minorNinth": ["+7 (b9)", {}],
+              "majorNinth": ["+9", {}],
+              "augmentedNinth": ["+7 (#9)", {}]
+            }
+          ],
+          "majorSeventh": [
+            "+maj7",
+            {
+              "minorNinth": ["+maj7 (b9)", {}],
+              "majorNinth": ["+maj9", {}],
+              "augmentedNinth": ["+maj7 (#9)", {}]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "perfectFourth": [
+    "",
+    {
+      "diminishedFifth": ["sus4 (b5)", {}],
+      "perfectFifth": ["sus4", {}],
+      "augmentedFifth": ["+sus4", {}]
+    }
+  ],
+  "augmentedFourth": [
+    "",
+    {
+      "perfectFifth": ["sus#4", {}],
+      "augmentedFifth": ["+sus#4", {}]
+    }
+  ]
+}

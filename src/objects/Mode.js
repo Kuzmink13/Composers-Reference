@@ -1,6 +1,7 @@
 import * as modeProps from '../assets/modeProperties.json';
 
 import getScaleNotes from '../logic/getScaleNotes';
+import getChordList from '../logic/getChordList';
 import Utilities from '../logic/Utilities';
 
 import PitchCollection from './PitchCollection';
@@ -71,6 +72,10 @@ class Mode extends PitchCollection {
 
   getModeNumber() {
     return modeProps.default[this.getAbstractModeCode()].modeNumber;
+  }
+
+  getChordList() {
+    return getChordList(this);
   }
 
   relativeShift(isFwShift) {

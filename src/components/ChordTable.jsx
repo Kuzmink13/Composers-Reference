@@ -1,12 +1,11 @@
 import React, { Fragment } from 'react';
-import Chords from '../logic/Chords';
 
 function ChordTable({ mode }) {
   const modeRoot = mode.getModeRoot();
-  const modeChords = Chords.chordGenerator(mode);
+  const chordList = mode.getChordList();
 
-  const isFirstChord = (chord) => chord === modeChords[0][0];
-  const isThreeNoteChord = (names) => names.length === 3;
+  const isFirstChord = (chordName) => chordName === chordList[0].chordName;
+  const isThreeNoteChord = (noteNames) => noteNames.length === 3;
 
   return (
     <div
@@ -15,10 +14,10 @@ function ChordTable({ mode }) {
     >
       <table className="m-auto">
         <tbody>
-          {Array.from(modeChords, ([chord, names, degrees]) => (
-            <Fragment key={chord}>
+          {Array.from(chordList, ({ chordName, noteNames, scaleDegrees }) => (
+            <Fragment key={chordName}>
               {/* ROW-DIVIDER */}
-              {isThreeNoteChord(names) && !isFirstChord(chord) && (
+              {isThreeNoteChord(noteNames) && !isFirstChord(chordName) && (
                 <tr>
                   <th colSpan="3" scope="row">
                     <hr className="border-t border-gray-400 mt-2 mb-1" />
@@ -27,15 +26,15 @@ function ChordTable({ mode }) {
               )}
 
               {/* TABLE ROW */}
-              <tr key={chord}>
+              <tr key={chordName}>
                 <th className="whitespace-no-wrap font-semibold text-center pr-2 sm:pr-3 pt-1 border-r border-gray-400">
-                  {`${modeRoot}${chord}`.trim()}
+                  {`${modeRoot}${chordName}`.trim()}
                 </th>
                 <td className="whitespace-no-wrap text-center px-2 sm:px-3 pt-1 border-r border-gray-400">
-                  {names.join('-')}
+                  {noteNames.join('-')}
                 </td>
                 <td className="whitespace-no-wrap text-center pl-2 sm:pl-3 pt-1">
-                  {degrees.join('-')}
+                  {scaleDegrees.join('-')}
                 </td>
               </tr>
             </Fragment>
