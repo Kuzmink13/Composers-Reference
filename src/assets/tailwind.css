@@ -85,7 +85,7 @@
   }
 
   .drop-down {
-    @apply absolute right-0 top-0 z-40;
+    @apply absolute right-0 top-0 z-30;
   }
 
   /* TAB-SELECTION */
