@@ -6,6 +6,7 @@ function PopOver({
   children,
   closeFn = () => {},
   freezeFn = () => {},
+  ID = 'pop-over-wrapper',
   isAnimated = true,
   isGray = true,
   isWide = false,
@@ -15,9 +16,9 @@ function PopOver({
 }) {
   // FOCUS-TRAP
   useEffect(() => {
-    const container = document.getElementById('pop-over-wrapper');
+    const container = document.getElementById(ID);
 
-    const focusTrap = createFocusTrap('#pop-over-wrapper', {
+    const focusTrap = createFocusTrap(`#${ID}`, {
       allowOutsideClick: true,
       onActivate: function () {
         container.classList.add('trap', 'is-active');
@@ -32,7 +33,7 @@ function PopOver({
     return () => {
       focusTrap.deactivate();
     };
-  }, []);
+  }, [ID]);
 
   // ANIMATE COMPONENT
   useEffect(() => {
@@ -41,11 +42,11 @@ function PopOver({
       clickableBG.classList.remove('bg-opacity-0');
       clickableBG.classList.add('bg-opacity-25');
 
-      const popOverWrapper = document.getElementById('pop-over-wrapper');
+      const popOverWrapper = document.getElementById(ID);
       popOverWrapper.classList.remove('scale-95', 'opacity-0');
       popOverWrapper.classList.add('scale-100', 'opacity-100');
     }
-  }, [isAnimated]);
+  }, [ID, isAnimated]);
 
   // FREEZE KEY LISTENERS
   useEffect(() => {
@@ -56,7 +57,7 @@ function PopOver({
   // RENDER
   const popOverWrapper = (
     <div
-      id="pop-over-wrapper"
+      id={ID}
       className={`${
         !overrideStyles &&
         `box pop-out transform w-full ${isWide ? 'max-w-3xl' : 'max-w-md'}`

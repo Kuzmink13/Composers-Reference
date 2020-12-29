@@ -101,6 +101,7 @@ function App() {
         <PopOver
           closeFn={closeModeCard}
           freezeFn={toggleFreezeKeys}
+          ID="mode-card-pop-over"
           showCloseButton={true}
         >
           <ModeCard
@@ -117,6 +118,7 @@ function App() {
         <PopOver
           closeFn={() => toggleShowGuide()}
           freezeFn={toggleFreezeKeys}
+          ID="guide-pop-over"
           isAnimated={false}
           isWide={true}
           showCloseButton={true}
