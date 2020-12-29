@@ -1,10 +1,8 @@
 import getMatchedModes from './getMatchedModes';
-import Utilities from './Utilities';
+import { notesInOctave } from './utilities';
 
 import PitchCollection from '../objects/PitchCollection';
 import Mode from '../objects/Mode';
-
-const { notesInOctave } = Utilities;
 
 function getRelativeModes(mode) {
   const offsets = mode.getAbsolutePitches();

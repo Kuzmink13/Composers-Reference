@@ -2,11 +2,14 @@ import * as modeProps from '../assets/modeProperties.json';
 
 import getScaleNotes from '../logic/getScaleNotes';
 import getChordList from '../logic/getChordList';
-import Utilities from '../logic/Utilities';
+import {
+  octaveMod,
+  replaceSymbols,
+  notesInOctave,
+  notesInPerfectFifth,
+} from '../logic/utilities';
 
 import PitchCollection from './PitchCollection';
-
-const { notesInOctave, notesInAPerfectFifth } = Utilities;
 
 /**
  * A collection of successive pitches contained within an octave that start at a specific note
@@ -22,7 +25,7 @@ class Mode extends PitchCollection {
    */
   constructor(pitches, pitchCenter = pitches[0]) {
     super(pitches);
-    this.pitchCenter = Utilities.octaveMod(pitchCenter);
+    this.pitchCenter = octaveMod(pitchCenter);
   }
 
   fromCode(modeCode, pitchCenter) {
@@ -34,7 +37,7 @@ class Mode extends PitchCollection {
 
   getAbsolutePitches() {
     return this.getAbstractPitches().map(
-      (el) => Utilities.octaveMod(this.pitchCenter) + el
+      (el) => octaveMod(this.pitchCenter) + el
     );
   }
 
@@ -63,7 +66,7 @@ class Mode extends PitchCollection {
       modeProps.default[this.getAbstractModeCode()].modeName
     }`;
 
-    return Utilities.replaceSymbols(name);
+    return replaceSymbols(name);
   }
 
   getParentTonality() {
@@ -105,8 +108,8 @@ class Mode extends PitchCollection {
     return new Mode(
       pitches,
       isFwShift
-        ? pitchCenter + notesInAPerfectFifth
-        : pitchCenter - notesInAPerfectFifth
+        ? pitchCenter + notesInPerfectFifth
+        : pitchCenter - notesInPerfectFifth
     );
   }
 

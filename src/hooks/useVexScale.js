@@ -1,9 +1,7 @@
 import { useEffect } from 'react';
 
 import * as vs from '../logic/vexScale';
-import Utilities from '../logic/Utilities';
-
-const { notesInOctave } = Utilities;
+import { notesInOctave } from '../logic/utilities';
 
 const formattedWidth = 260;
 

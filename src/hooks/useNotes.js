@@ -3,9 +3,7 @@ import * as keyMap from '../assets/keyMap.json';
 
 import useKeyboardFn, { keyArrays } from './useKeyboardFn';
 
-import Utilities from '../logic/Utilities';
-
-const { notesInOctave } = Utilities;
+import { notesInOctave } from '../logic/utilities';
 
 const initialState = {
   notes: Array(notesInOctave).fill(false),

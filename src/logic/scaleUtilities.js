@@ -1,5 +1,5 @@
 import * as notes from '../assets/notes.json';
-import Utilities from './Utilities';
+import { octaveMod } from './utilities';
 
 export const letterNames = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
 
@@ -21,11 +21,11 @@ export const oneLetterWholeSteps = {
 };
 
 export function getKey(pitch) {
-  return notes.default[Utilities.octaveMod(pitch)];
+  return notes.default[octaveMod(pitch)];
 }
 
 export function getEnharmonics(pitch) {
-  return notes.default[Utilities.octaveMod(pitch)].enharmonics;
+  return notes.default[octaveMod(pitch)].enharmonics;
 }
 
 export function getShortestOrDefault(pitch, isSharp) {

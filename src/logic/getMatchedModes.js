@@ -1,11 +1,11 @@
-import Utilities from './Utilities';
+import { octaveMod } from './utilities';
 
 import Mode from '../objects/Mode';
 
 function getOffsetPitches(mode, degreeOffset) {
   return mode
     .getAbstractPitches()
-    .map((el) => Utilities.octaveMod(el + degreeOffset))
+    .map((el) => octaveMod(el + degreeOffset))
     .sort((a, b) => a - b);
 }
 

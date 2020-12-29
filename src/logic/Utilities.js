@@ -1,31 +1,23 @@
-/**
- * A class containing basic static methods and constants
- */
-class Utilities {
-  static jsMusicSymbols = [
-    { regex: /##/g, replacement: '\uD834\uDD2A' },
-    { regex: /bb/g, replacement: '\uD834\uDD2B' },
-    { regex: /#/g, replacement: '\u266F' },
-    { regex: /b/g, replacement: '\u266D' },
-    { regex: /nat/g, replacement: '\u266E' },
-    { regex: /dim/g, replacement: '\uD834\uDDC8' },
-  ];
+const jsMusicSymbols = [
+  { regex: /##/g, replacement: '\uD834\uDD2A' },
+  { regex: /bb/g, replacement: '\uD834\uDD2B' },
+  { regex: /#/g, replacement: '\u266F' },
+  { regex: /b/g, replacement: '\u266D' },
+  { regex: /nat/g, replacement: '\u266E' },
+  { regex: /dim/g, replacement: '\uD834\uDDC8' },
+];
 
-  static circleOfFifths = [6, 1, 8, 3, 10, 5, 0, 7, 2, 9, 4, 11];
+export const notesInOctave = 12;
 
-  static notesInOctave = 12;
+export const notesInPerfectFifth = 7;
 
-  static notesInAPerfectFifth = 7;
-
-  static octaveMod = (pitch) =>
-    ((pitch % this.notesInOctave) + this.notesInOctave) % this.notesInOctave;
-
-  static replaceSymbols(str) {
-    return this.jsMusicSymbols.reduce(
-      (acc, symbol) => acc.replace(symbol.regex, symbol.replacement),
-      str
-    );
-  }
+export function octaveMod(pitch) {
+  return ((pitch % notesInOctave) + notesInOctave) % notesInOctave;
 }
 
-export default Utilities;
+export function replaceSymbols(str) {
+  return jsMusicSymbols.reduce(
+    (acc, symbol) => acc.replace(symbol.regex, symbol.replacement),
+    str
+  );
+}

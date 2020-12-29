@@ -1,4 +1,4 @@
-import Utilities from './Utilities';
+import { replaceSymbols } from './utilities';
 import * as c from './chordUtilities';
 
 function updateChordProps(mode, chordProps, interval) {
@@ -57,9 +57,9 @@ function chordListSorter(a, b) {
 
 function chordListFormatter({ chordName, noteNames, scaleDegrees }) {
   return {
-    chordName: Utilities.replaceSymbols(chordName),
-    noteNames: noteNames.map((el) => Utilities.replaceSymbols(el)),
-    scaleDegrees: scaleDegrees.map((el) => Utilities.replaceSymbols(el)),
+    chordName: replaceSymbols(chordName),
+    noteNames: noteNames.map((el) => replaceSymbols(el)),
+    scaleDegrees: scaleDegrees.map((el) => replaceSymbols(el)),
   };
 }
 

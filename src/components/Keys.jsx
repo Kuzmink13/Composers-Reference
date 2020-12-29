@@ -3,9 +3,7 @@ import Key from './Key';
 
 import { octavesToDisplay, isShortModeActive } from '../hooks/useScreenSize';
 
-import Utilities from '../logic/Utilities';
-
-const { notesInOctave } = Utilities;
+import { notesInOctave, octaveMod } from '../logic/utilities';
 
 function Keys({ screenHeight, screenWidth }) {
   const isShort = isShortModeActive(screenHeight);
@@ -14,12 +12,7 @@ function Keys({ screenHeight, screenWidth }) {
     return Array.from(
       Array(notesInOctave * octavesToDisplay(screenWidth)),
       (el, i) => (
-        <Key
-          key={i}
-          value={Utilities.octaveMod(i)}
-          index={i}
-          isShort={isShort}
-        />
+        <Key key={i} value={octaveMod(i)} index={i} isShort={isShort} />
       )
     );
   }, [isShort, screenWidth]);
