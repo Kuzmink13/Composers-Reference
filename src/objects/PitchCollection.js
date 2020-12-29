@@ -1,4 +1,4 @@
-import Utilities from '../logic/Utilities';
+import { notesInOctave } from '../logic/utilities';
 
 /**
  * A collection of successive pitches contained within an octave
@@ -14,7 +14,7 @@ class PitchCollection {
   constructor(pitches) {
     const minimizedPitches = pitches.map((el, i, arr) => el - arr[0]);
 
-    if (minimizedPitches.slice(-1) >= Utilities.notesInOctave)
+    if (minimizedPitches.slice(-1) >= notesInOctave)
       throw new Error('Range of PitchCollection exceeds an octave!');
 
     this.pitches = JSON.stringify(minimizedPitches);
@@ -26,7 +26,7 @@ class PitchCollection {
 
   getAbstractModeCode() {
     return this.getAbstractPitches()
-      .map((el) => el.toString(Utilities.notesInOctave))
+      .map((el) => el.toString(notesInOctave))
       .join('');
   }
 
