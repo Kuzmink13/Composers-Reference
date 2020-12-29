@@ -5,12 +5,10 @@ import PopOver from './PopOver';
 
 import useNavbar from '../hooks/useNavbar';
 
-function Navbar({ resetNotes, options, menu }) {
-  const [
-    { optionsIsOpen, menuIsOpen },
-    toggleOptions,
-    toggleMenu,
-  ] = useNavbar();
+function Navbar({ isModeCardShown, isGuideShown, resetNotes, options, menu }) {
+  const [{ optionsIsOpen, menuIsOpen }, toggleOptions, toggleMenu] = useNavbar(
+    isModeCardShown || isGuideShown
+  );
 
   const buttons = [
     {

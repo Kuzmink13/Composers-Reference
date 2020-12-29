@@ -6,7 +6,7 @@ const initialState = {
   menuIsOpen: false,
 };
 
-function useNavbar() {
+function useNavbar(areKeysFrozen = false) {
   const [optionsIsOpen, toggleOptions, resetOptions] = useToggle(
     initialState.optionsIsOpen
   );
@@ -14,7 +14,8 @@ function useNavbar() {
     initialState.menuIsOpen
   );
 
-  function handleNavShortcuts(event) {
+  const handleNavShortcuts = (event) => {
+    if (areKeysFrozen) return;
     switch (event.code) {
       case 'KeyO':
         toggleOptions();
@@ -27,9 +28,10 @@ function useNavbar() {
       default:
         return;
     }
-  }
+  };
 
   function closeAll() {
+    if (areKeysFrozen) return;
     resetOptions();
     resetMenu();
   }

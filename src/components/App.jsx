@@ -80,7 +80,7 @@ function App() {
   return (
     <Fragment>
       <Navbar
-        {...{ resetNotes }}
+        {...{ isModeCardShown, isGuideShown, resetNotes }}
         options={
           <Options
             {...{
