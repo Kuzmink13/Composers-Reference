@@ -4,7 +4,8 @@ import * as svg from '../assets/svg.json';
 
 function PopOver({
   children,
-  closeFn,
+  closeFn = () => {},
+  freezeFn = () => {},
   isAnimated = true,
   isGray = true,
   isWide = false,
@@ -45,6 +46,12 @@ function PopOver({
       popOverWrapper.classList.add('scale-100', 'opacity-100');
     }
   }, [isAnimated]);
+
+  // FREEZE KEY LISTENERS
+  useEffect(() => {
+    freezeFn(true);
+    return () => freezeFn(false);
+  }, [freezeFn]);
 
   // RENDER
   const popOverWrapper = (

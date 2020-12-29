@@ -24,7 +24,12 @@ import useScreenSize from '../hooks/useScreenSize';
 import getModeLists from '../logic/getModeLists';
 
 function App() {
-  const [{ notes, root }, handleNoteSelection, resetNotes] = useNotes();
+  const [
+    { notes, root },
+    handleNoteSelection,
+    resetNotes,
+    toggleFreezeKeys,
+  ] = useNotes();
 
   const [
     { isModeCardShown, mode },
@@ -93,7 +98,11 @@ function App() {
       />
 
       {isModeCardShown && (
-        <PopOver closeFn={closeModeCard} showCloseButton={true}>
+        <PopOver
+          closeFn={closeModeCard}
+          freezeFn={toggleFreezeKeys}
+          showCloseButton={true}
+        >
           <ModeCard
             {...{
               mode,
@@ -107,6 +116,7 @@ function App() {
       {isGuideShown && (
         <PopOver
           closeFn={() => toggleShowGuide()}
+          freezeFn={toggleFreezeKeys}
           isAnimated={false}
           isWide={true}
           showCloseButton={true}

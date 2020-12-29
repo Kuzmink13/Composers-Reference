@@ -67,10 +67,15 @@ function useNotes() {
     [handleNoteSelection]
   );
 
-  useKeyboardFn(KeyBoardPress);
-  useKeyboardFn(resetNotes, keyArrays.delete);
+  const [toggleFreezeKeys] = useKeyboardFn(KeyBoardPress);
+  const [toggleFreezeDel] = useKeyboardFn(resetNotes, keyArrays.delete);
 
-  return [state, handleNoteSelection, resetNotes];
+  const toggleFreeze = (isFrozen) => {
+    toggleFreezeKeys(isFrozen);
+    toggleFreezeDel(isFrozen);
+  };
+
+  return [state, handleNoteSelection, resetNotes, toggleFreeze];
 }
 
 export default useNotes;
