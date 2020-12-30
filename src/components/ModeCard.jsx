@@ -4,59 +4,43 @@ import * as svg from '../assets/svg.json';
 import VexStaff from './VexStaff';
 import ChordTable from './ChordTable';
 
-import useKeyboardShift from '../hooks/useKeyboardShift';
+import useShift from '../hooks/useShift';
 import useLongPress from '../hooks/useLongPress';
 
 function ModeCard({ mode, clef, openModeCard }) {
   const modeName = mode.getModeName();
-
-  const shift = {
-    relative: (isFwShift) => {
-      openModeCard(mode.relativeShift(isFwShift));
-    },
-    parallel: (isFwShift) => {
-      openModeCard(mode.parallelShift(isFwShift));
-    },
-    key: (isFwShift) => {
-      openModeCard(mode.keyShift(isFwShift));
-    },
-    relativeBrightness: (isFwShift) => {
-      openModeCard(mode.relativeBrightnessShift(isFwShift));
-    },
-  };
-
-  useKeyboardShift(shift);
+  const [shift] = useShift(mode, openModeCard);
 
   const buttons = [
     {
       name: 'ArrowLeft',
       clicks: useLongPress(
-        () => shift.relativeBrightness(false),
-        () => shift.relative(false)
+        (e) => shift.LR(e, false, true),
+        (e) => shift.LR(e, false)
       ),
       path: svg.left,
     },
     {
       name: 'ArrowDown',
       clicks: useLongPress(
-        () => shift.key(false),
-        () => shift.parallel(false)
+        (e) => shift.UD(e, false, true),
+        (e) => shift.UD(e, false)
       ),
       path: svg.down,
     },
     {
       name: 'ArrowUp',
       clicks: useLongPress(
-        () => shift.key(true),
-        () => shift.parallel(true)
+        (e) => shift.UD(e, true, true),
+        (e) => shift.UD(e, true)
       ),
       path: svg.up,
     },
     {
       name: 'ArrowRight',
       clicks: useLongPress(
-        () => shift.relativeBrightness(true),
-        () => shift.relative(true)
+        (e) => shift.LR(e, true, true),
+        (e) => shift.LR(e, true)
       ),
       path: svg.right,
     },
