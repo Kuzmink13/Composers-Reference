@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Menu({ toggleShowGuide }) {
   const links = [
     { title: 'About' },
     { title: 'Quick Start Guide', click: () => toggleShowGuide() },
-    { title: 'Meet the Scales' },
+    { title: 'Meet the Scales', link: '/Scales' },
     { title: 'FAQ' },
     { title: 'Contact' },
   ];
@@ -18,13 +19,14 @@ function Menu({ toggleShowGuide }) {
     >
       {links.map((el) => (
         <li key={el.title} className="px-4 py-2">
-          <span
+          <Link
             className="tab-selection px-2 py-1 cursor-pointer hover:underline"
             tabIndex="0"
             onClick={el.click}
+            to={el.link}
           >
             {el.title}
-          </span>
+          </Link>
         </li>
       ))}
     </ul>
