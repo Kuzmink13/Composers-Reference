@@ -6,7 +6,7 @@ const initialState = {
   menuIsOpen: false,
 };
 
-function useNavbar(areKeysFrozen = false) {
+function useNavButtons(areKeysFrozen = false) {
   const [optionsIsOpen, toggleOptions, resetOptions] = useToggle(
     initialState.optionsIsOpen
   );
@@ -42,4 +42,4 @@ function useNavbar(areKeysFrozen = false) {
   return [{ optionsIsOpen, menuIsOpen }, toggleOptions, toggleMenu];
 }
 
-export default useNavbar;
+export default useNavButtons;

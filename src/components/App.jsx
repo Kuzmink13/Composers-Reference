@@ -1,6 +1,7 @@
 import React, { Fragment, useMemo } from 'react';
 
 import Navbar from './Navbar';
+import NavButtons from './NavButtons';
 import Options from './Options';
 import Menu from './Menu';
 import PopOver from './PopOver';
@@ -79,23 +80,25 @@ function App() {
   // RENDER
   return (
     <Fragment>
-      <Navbar
-        {...{ isModeCardShown, isGuideShown, resetNotes }}
-        options={
-          <Options
-            {...{
-              ...{ areKeysShown, toggleKeys },
-              ...{ areNoteNamesShown, toggleNoteNames },
-              ...{ isSelectionFiltered, toggleSelectionFilter },
-              ...{ clef, handleClefChange },
-              ...{ tonalities, toggleTonality },
-              ...{ isGuideDismissed, toggleDismissGuide },
-              resetSettings,
-            }}
-          />
-        }
-        menu={<Menu {...{ toggleShowGuide }} />}
-      />
+      <Navbar>
+        <NavButtons
+          {...{ isModeCardShown, isGuideShown, resetNotes }}
+          options={
+            <Options
+              {...{
+                ...{ areKeysShown, toggleKeys },
+                ...{ areNoteNamesShown, toggleNoteNames },
+                ...{ isSelectionFiltered, toggleSelectionFilter },
+                ...{ clef, handleClefChange },
+                ...{ tonalities, toggleTonality },
+                ...{ isGuideDismissed, toggleDismissGuide },
+                resetSettings,
+              }}
+            />
+          }
+          menu={<Menu {...{ toggleShowGuide }} />}
+        />
+      </Navbar>
 
       {isModeCardShown && (
         <PopOver
