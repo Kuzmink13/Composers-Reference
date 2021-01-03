@@ -56,6 +56,13 @@ function getSixNoteScale(mode, { isSharp }) {
   return scale;
 }
 
+function getDefaultScale(mode, { isSharp }) {
+  const pitches = mode.getAbsolutePitches();
+  const scale = pitches.map((pitch) => s.getShortestOrDefault(pitch, isSharp));
+
+  return scale;
+}
+
 function scaleLengthReducer() {
   return (a, b) => {
     // BY SHORTEST ACCIDENTAL QUANTITY
@@ -72,7 +79,7 @@ function scaleLengthReducer() {
 }
 
 function getScales(mode) {
-  const getScale = scaleFn[mode.getNoteQuantity()];
+  const getScale = scaleFn[mode.getNoteQuantity()] || getDefaultScale;
   return [
     getScale(mode, { isSharp: true }),
     getScale(mode, { isSharp: false }),
