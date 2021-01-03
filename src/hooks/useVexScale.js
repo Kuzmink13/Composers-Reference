@@ -33,7 +33,7 @@ function toVexScale(mode, octave, clef) {
 }
 
 function generateStaff(mode, clef) {
-  const context = vs.getContext(mode.getModeName());
+  const context = vs.getContext(mode.getAbsoluteModeCode());
   const stave = vs.getStave().addClef(clef);
   const octave = getOctave(clef, mode.getModeRoot());
   const notes = mode.getScaleNotes().map(toVexScale(mode, octave, clef));
@@ -48,7 +48,7 @@ function useVexScale(mode, clef) {
   useEffect(() => {
     generateStaff(mode, clef);
     return () => {
-      document.getElementById(mode.getModeName()).innerHTML = '';
+      document.getElementById(mode.getAbsoluteModeCode()).innerHTML = '';
     };
   });
 }
