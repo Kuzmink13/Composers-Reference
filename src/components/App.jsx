@@ -13,7 +13,6 @@ import ModeController from './ModeController';
 import { KeyProvider } from '../contexts/KeyContext';
 import { ModeProvider } from '../contexts/ModeContext';
 
-import useNotes from '../hooks/useNotes';
 import useModeCard from '../hooks/useModeCard';
 import useOverlay from '../hooks/useOverlay';
 import useSelectionFilter from '../hooks/useSelectionFilter';
@@ -24,13 +23,13 @@ import useScreenSize from '../hooks/useScreenSize';
 
 import getModeLists from '../logic/getModeLists';
 
-function App() {
+function App({ noteProps }) {
   const [
     { notes, root },
     handleNoteSelection,
     resetNotes,
     toggleFreezeKeys,
-  ] = useNotes();
+  ] = noteProps;
 
   const [
     { isModeCardShown, mode },

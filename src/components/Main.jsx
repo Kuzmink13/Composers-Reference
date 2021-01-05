@@ -1,17 +1,20 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Scales from './Scales';
 import App from './App';
 
+import useNotes from '../hooks/useNotes';
+
 function Main() {
+  const noteProps = useNotes();
   return (
-    <Router>
+    <BrowserRouter>
       <Switch>
-        <Route path="/" exact component={App} />
+        <Route path="/" exact render={() => <App {...{ noteProps }} />} />
         <Route path="/Scales" component={Scales} />
       </Switch>
-    </Router>
+    </BrowserRouter>
   );
 }
 
