@@ -100,7 +100,6 @@ function Scales() {
               caption="C Aeolian Dominant"
             />
           </div>
-
           <h3 className="font-bold py-6 text-2xl text-gray-900">
             Finding an Upper-Bound
           </h3>
@@ -131,7 +130,6 @@ function Scales() {
             also now know that, with our assumptions, there are no unique scales
             that contain more than eight notes!
           </p>
-
           <h3 className="font-bold py-6 text-2xl text-gray-900">
             Finding a Lower-Bound
           </h3>
@@ -182,7 +180,6 @@ function Scales() {
               caption="C Augmented Inverse"
             />
           </div>
-
           <h3 className="font-bold py-6 text-2xl text-gray-900">
             Finding the Rest
           </h3>
@@ -216,7 +213,6 @@ function Scales() {
             while leaning on a mental model that has a much more digestible set
             of base components!
           </p>
-
           <div className="box mb-6 py-2">
             <table className="text-base text-center">
               <thead>
@@ -315,14 +311,12 @@ function Scales() {
               </tbody>
             </table>
           </div>
-
           <p className="pb-6">
             If this still has you overwhelmed, my advice would be to start by
             analyzing the modes of the Major scale family and internalizing how
             each of them relates to the major scale (Ionian). This will make it
             easier to grasp the alterations found in more exotic scales.
           </p>
-
           <h3 className="font-bold py-6 text-2xl text-gray-900">
             But What About the Pentatonic Scales?
           </h3>
@@ -384,6 +378,127 @@ function Scales() {
             subsets of the main results. It might just take a little bit of ear,
             a little bit of taste, and a little bit of creativity to unlock
             their full potential.
+          </p>
+          <h3 className="font-bold py-6 text-2xl text-gray-900">
+            A Note on Modal Organization
+          </h3>
+          <p className="pb-6">
+            Traditionally, modes are ordered by the scale degree that parent
+            scale the mode is based on. For example, G Dorian is the second mode
+            of the F Major scale, A Phrygian is the third, etc.
+          </p>
+          <div className="flex flex-col sm:flex-row flex-wrap justify-evenly">
+            <VexFigure
+              pitches={[0, 2, 4, 5, 7, 9, 11]}
+              pitchCenter={5}
+              caption="F Major"
+            />
+            <VexFigure
+              pitches={[0, 2, 3, 5, 7, 9, 10]}
+              pitchCenter={7}
+              caption="G Dorian"
+            />
+            <VexFigure
+              pitches={[0, 1, 3, 5, 7, 8, 10]}
+              pitchCenter={9}
+              caption="A Phrigian"
+            />
+          </div>
+          <p className="pb-6">
+            This approach, however, leaves much to be desired.
+          </p>
+          <p className="pb-6">
+            A common misconception relating to the understanding of modes comes
+            from the choice of working with relative modes instead of parallel
+            modes. Musicians learning about modes for the first time are often
+            disappointed to find out that playing something in G Dorian can
+            sound frustratingly similar to playing something in F Major since
+            both use the exact same notes. In the end, the ear wants to fall
+            back on the framework that it’s used to hearing, which is the major
+            scale, but that’s just because we’re missing a step. To get the most
+            out of modes, one should transpose them back into their original
+            key. G Dorian becomes F Dorian, A Phrygian becomes F Phrygian, etc.
+            This has the transformative effect of adding a huge amount of color
+            to our musical toolbox since each mode has its own unique
+            characteristics and moods.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-evenly">
+            <VexFigure
+              pitches={[0, 2, 3, 5, 7, 9, 10]}
+              pitchCenter={5}
+              caption="F Dorian"
+            />
+            <VexFigure
+              pitches={[0, 1, 3, 5, 7, 8, 10]}
+              pitchCenter={5}
+              caption="F Phrigian"
+            />
+          </div>
+          <p className="pb-6">
+            Further, there is a much more intuitive way to organize the modes of
+            a particular scale than by the order they naturally appear: by order
+            of brightness (or degree for sharpness). We can arrange the scales
+            in order of the number of sharps (or flats) they have relative to
+            the original key. F Lydian has one less flat than F major, so it is
+            one degree brighter. F Mixolydian, in contrast, has one more flat
+            than F Major making it one degree darker.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-evenly">
+            <VexFigure
+              pitches={[0, 2, 4, 6, 7, 9, 11]}
+              pitchCenter={5}
+              caption="F Lydian"
+            />
+            <VexFigure
+              pitches={[0, 2, 4, 5, 7, 9, 10]}
+              pitchCenter={5}
+              caption="F Mixolydian"
+            />
+          </div>
+          <p className="pb-6">
+            Following this pattern, we arrive at the following order for the
+            modes of the major scale: Lydian, Ionian, Mixolydian, Dorian,
+            Aeolian, Phrygian, Locrian.
+          </p>
+          <p className="pb-6">
+            This ordering gives us the benefit of being able to judge the
+            qualities of the individual modes against each other. Want to bring
+            the mood down? Just dial back the degree of brightness of your
+            scale.
+          </p>
+          <p className="pb-6">
+            For scale families that are not the major scale, the exact same
+            approach can’t be used because the brightness of the scales can’t be
+            gauged by the number of sharps or flats alone. Instead, the scales
+            are arranged by brightness of the implied chord first, and by number
+            of sharps or flats second. F Aeolian Dominant has one more flat than
+            F Melodic Minor so it should be darker, but because it implies an F
+            Dominant Chord while F Melodic Minor implies an F Minor chord, F
+            Aeolian Dominant is considered brighter. F Lydian Dominant is
+            brighter still because it implies a dominant chord and has two fewer
+            flats than F Aeolian Dominant.
+          </p>
+          <div className="flex flex-col sm:flex-row flex-wrap justify-evenly">
+            <VexFigure
+              pitches={[0, 2, 3, 5, 7, 9, 11]}
+              pitchCenter={5}
+              caption="F Melodic Minor"
+            />
+            <VexFigure
+              pitches={[0, 2, 4, 5, 7, 8, 10]}
+              pitchCenter={5}
+              caption="F Aeolian Dominant"
+            />
+            <VexFigure
+              pitches={[0, 2, 4, 6, 7, 9, 10]}
+              pitchCenter={5}
+              caption="F Lydian Dominant"
+            />
+          </div>
+          <p className="pb-6">
+            The chords from darkest to brightest are as follows: Augmented,
+            Major 7th, Dominant 7th, Minor-Major 7th, Minor 7th, half-dim 7th,
+            fully-dim 7th
           </p>
         </div>
       </div>
