@@ -143,7 +143,7 @@ function Scales() {
           </p>
           <VexFigure
             pitches={[0, 3, 6, 9]}
-            caption="C Diminished seventh"
+            caption="C Diminished Seventh"
             autoMargins={true}
           />
           <p className="pb-6">
@@ -217,8 +217,8 @@ function Scales() {
             of base components!
           </p>
 
-          <div className="pb-6">
-            <table className="text-base">
+          <div className="box mb-6 py-2">
+            <table className="text-base text-center">
               <thead>
                 <tr>
                   <th id="whole-tone">Whole-Tone</th>
@@ -321,6 +321,69 @@ function Scales() {
             analyzing the modes of the Major scale family and internalizing how
             each of them relates to the major scale (Ionian). This will make it
             easier to grasp the alterations found in more exotic scales.
+          </p>
+
+          <h3 className="font-bold py-6 text-2xl text-gray-900">
+            But What About the Pentatonic Scales?
+          </h3>
+          <p className="pb-6">
+            A notable omission from Composer’s Reference are the standard
+            pentatonic scales which are particularly common in jazz and guitar
+            music. These scales are derived from the modes of the major scale
+            and are often thought to be constructed by removing notes that don’t
+            fit as nicely with the harmonic implications of a particular scale.
+          </p>
+          <p className="pb-6">
+            As an example, the G Major Pentatonic scale omits the notes C and{' '}
+            {replaceSymbols('F#')} because their half-step intervals create
+            tension against neighboring notes.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-evenly">
+            <VexFigure
+              pitches={[0, 2, 4, 5, 7, 9, 11]}
+              pitchCenter={7}
+              caption="G Major"
+            />
+            <VexFigure
+              pitches={[0, 2, 4, 7, 9]}
+              pitchCenter={7}
+              caption="G Major Pentatonic"
+            />
+          </div>
+          <p className="pb-6">
+            Since the omission of C and {replaceSymbols('F#')} ambiguates the
+            parent mode of the G Major Pentatonic scale, it can be thought of as
+            a subset to not just G Major, but of G Lydian and G Mixolydian as
+            well.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-evenly">
+            <VexFigure
+              pitches={[0, 2, 4, 6, 7, 9, 11]}
+              pitchCenter={7}
+              caption="G Lydian"
+            />
+            <VexFigure
+              pitches={[0, 2, 4, 5, 7, 9, 10]}
+              pitchCenter={7}
+              caption="G Mixolydian"
+            />
+          </div>
+          <p className="pb-6">
+            So why aren’t these scales (and others like them) included? While
+            they do have their own unique character that’s inarguably different
+            than their parent scales, you can replicate the effect by using any
+            of the parent scales and simply not using all of the notes.
+          </p>
+          <p className="pb-6">
+            Composer’s Reference puts a lot of emphasis on not repeating itself.
+            It’s how we’re able to be complete and concise at the same time. An
+            unfortunate consequence of this is that some familiar structures
+            have to be left out for the sake of consistency, but we believe
+            that’s not a reason to worry. Whether you’re aware of these
+            constructs or not, they’re always available to be used as implied
+            subsets of the main results. It might just take a little bit of ear,
+            a little bit of taste, and a little bit of creativity to unlock
+            their full potential.
           </p>
         </div>
       </div>
