@@ -46,11 +46,15 @@ function getSixNoteScale(mode, { isSharp }) {
 
   mode.getAbsolutePitches().forEach((pitch, i) => {
     const shortestNote = s.getShortestOrDefault(pitch, isSharp);
+    const altNote = s.getKey(pitch).flatName;
     const prevNote = scale[i - 1] || ' ';
 
+    //prettier-ignore
     prevNote[0] !== shortestNote[0]
       ? scale.push(shortestNote)
-      : scale.push(s.getKey(pitch).flatName);
+      : prevNote[0] !== altNote[0]
+        ? scale.push(altNote)
+        : scale.push(undefined);
   });
 
   return scale;
