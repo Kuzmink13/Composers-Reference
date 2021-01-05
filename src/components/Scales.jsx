@@ -213,100 +213,162 @@ function Scales() {
             while leaning on a mental model that has a much more digestible set
             of base components!
           </p>
-          <div className="box mb-6 py-2">
+          <div className="box mb-6 p-2 overflow-x-auto scrolling-auto">
             <table className="text-base text-center">
               <thead>
                 <tr>
-                  <th id="whole-tone">Whole-Tone</th>
-                  <th id="augmented">Augmented</th>
-                  <th id="major">Major</th>
-                  <th id="melodic-minor">Melodic Minor</th>
-                  <th id="harmonic-minor">Harmonic Minor</th>
-                  <th id="harmonic-major">Harmonic Major</th>
-                  <th id="diminished">Diminished</th>
+                  <th className="te" id="whole-tone">
+                    Whole Tone
+                  </th>
+                  <th className="te" id="augmented">
+                    Augmented
+                  </th>
+                  <th className="te" id="major">
+                    Major
+                  </th>
+                  <th className="te" id="melodic-minor">
+                    Melodic Minor
+                  </th>
+                  <th className="te" id="harmonic-minor">
+                    Harmonic Minor
+                  </th>
+                  <th className="te" id="harmonic-major">
+                    Harmonic Major
+                  </th>
+                  <th className="te-b" id="diminished">
+                    Diminished
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td headers="whole-tone">Whole-Tone</td>
-                  <td headers="augmented">Augmented</td>
-                  <td headers="major">Lydian</td>
-                  <td headers="melodic-minor">Lydian Augmented</td>
-                  <td headers="harmonic-minor">Major Augmented</td>
-                  <td headers="harmonic-major">
+                  <td className="te" headers="whole-tone">
+                    Whole Tone
+                  </td>
+                  <td className="te" headers="augmented">
+                    Augmented
+                  </td>
+                  <td className="te" headers="major">
+                    Lydian
+                  </td>
+                  <td className="te" headers="melodic-minor">
+                    Lydian Augmented
+                  </td>
+                  <td className="te" headers="harmonic-minor">
+                    Major Augmented
+                  </td>
+                  <td className="te" headers="harmonic-major">
                     {replaceSymbols('Lydian Augmented #2')}
                   </td>
-                  <td headers="diminished">Whole-Half Diminished</td>
+                  <td className="te-b" headers="diminished">
+                    Whole-Half Diminished
+                  </td>
                 </tr>
                 <tr>
-                  <td />
-                  <td headers="augmented">Augmented Inverse</td>
-                  <td headers="major">Ionian</td>
-                  <td headers="melodic-minor">Lydian Dominant</td>
-                  <td headers="harmonic-minor">
+                  <td className="te" />
+                  <td className="te" headers="augmented">
+                    Augmented Inverse
+                  </td>
+                  <td className="te" headers="major">
+                    Ionian
+                  </td>
+                  <td className="te" headers="melodic-minor">
+                    Lydian Dominant
+                  </td>
+                  <td className="te" headers="harmonic-minor">
                     {replaceSymbols('Lydian #2')}
                   </td>
-                  <td headers="harmonic-major">Harmonic Major</td>
-                  <td headers="diminished">Half-Whole Diminished</td>
+                  <td className="te" headers="harmonic-major">
+                    Harmonic Major
+                  </td>
+                  <td className="te-b" headers="diminished">
+                    Half-Whole Diminished
+                  </td>
                 </tr>
                 <tr>
-                  <td />
-                  <td />
-                  <td headers="major">Mixolydian</td>
-                  <td headers="melodic-minor">Aeolian Dominant</td>
-                  <td headers="harmonic-minor">Phrygian Dominant</td>
-                  <td headers="harmonic-major">
+                  <td className="te" />
+                  <td className="te" />
+                  <td className="te" headers="major">
+                    Mixolydian
+                  </td>
+                  <td className="te" headers="melodic-minor">
+                    Aeolian Dominant
+                  </td>
+                  <td className="te" headers="harmonic-minor">
+                    Phrygian Dominant
+                  </td>
+                  <td className="te" headers="harmonic-major">
                     {replaceSymbols('Mixolydian b2')}
                   </td>
-                  <td />
+                  <td className="te-b" />
                 </tr>
                 <tr>
-                  <td />
-                  <td />
-                  <td headers="major">Dorian</td>
-                  <td headers="melodic-minor">Melodic Minor</td>
-                  <td headers="harmonic-minor">Harmonic Minor</td>
-                  <td headers="harmonic-major">
+                  <td className="te" />
+                  <td className="te" />
+                  <td className="te" headers="major">
+                    Dorian
+                  </td>
+                  <td className="te" headers="melodic-minor">
+                    Melodic Minor
+                  </td>
+                  <td className="te" headers="harmonic-minor">
+                    Harmonic Minor
+                  </td>
+                  <td className="te" headers="harmonic-major">
                     {replaceSymbols('Melodic Minor #4')}
                   </td>
-                  <td />
+                  <td className="te-b" />
                 </tr>
                 <tr>
-                  <td />
-                  <td />
-                  <td headers="major">Aeolian</td>
-                  <td headers="melodic-minor">{replaceSymbols('Dorian b2')}</td>
-                  <td headers="harmonic-minor">Lydian Minor</td>
-                  <td headers="harmonic-major">
+                  <td className="te" />
+                  <td className="te" />
+                  <td className="te" headers="major">
+                    Aeolian
+                  </td>
+                  <td className="te" headers="melodic-minor">
+                    {replaceSymbols('Dorian b2')}
+                  </td>
+                  <td className="te" headers="harmonic-minor">
+                    Lydian Minor
+                  </td>
+                  <td className="te" headers="harmonic-major">
                     {replaceSymbols('Altered nat5')}
                   </td>
-                  <td />
+                  <td className="te-b" />
                 </tr>
                 <tr>
-                  <td />
-                  <td />
-                  <td headers="major">Phrygian</td>
-                  <td headers="melodic-minor">
+                  <td className="te" />
+                  <td className="te" />
+                  <td className="te" headers="major">
+                    Phrygian
+                  </td>
+                  <td className="te" headers="melodic-minor">
                     {replaceSymbols('Locrian nat2')}
                   </td>
-                  <td headers="harmonic-minor">
+                  <td className="te" headers="harmonic-minor">
                     {replaceSymbols('Locrian nat6')}
                   </td>
-                  <td headers="harmonic-major">
+                  <td className="te" headers="harmonic-major">
                     {replaceSymbols('Dorian b5')}
                   </td>
-                  <td />
+                  <td className="te-b" />
                 </tr>
                 <tr>
-                  <td />
-                  <td />
-                  <td headers="major">Locrian</td>
-                  <td headers="melodic-minor">Altered</td>
-                  <td headers="harmonic-minor">Altered Diminished</td>
-                  <td headers="harmonic-major">
+                  <td className="te-r" />
+                  <td className="te-r" />
+                  <td className="te-r" headers="major">
+                    Locrian
+                  </td>
+                  <td className="te-r" headers="melodic-minor">
+                    Altered
+                  </td>
+                  <td className="te-r" headers="harmonic-minor">
+                    Altered Diminished
+                  </td>
+                  <td className="te-r" headers="harmonic-major">
                     {replaceSymbols('Locrian bb7')}
                   </td>
-                  <td />
+                  <td className="px-1" />
                 </tr>
               </tbody>
             </table>

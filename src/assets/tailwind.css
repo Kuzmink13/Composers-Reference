@@ -117,4 +117,17 @@
   .btn:hover {
     @apply bg-blue-600 border-blue-700;
   }
+
+  /* TABLE ELEMENTS */
+  .te {
+    @apply px-1 border-b border-r border-gray-400;
+  }
+
+  .te-r {
+    @apply px-1 border-r border-gray-400;
+  }
+
+  .te-b {
+    @apply px-1 border-b border-gray-400;
+  }
 }
