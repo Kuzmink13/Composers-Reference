@@ -12,13 +12,15 @@ function Scales() {
       <Navbar>
         <Link
           to="/"
-          className="my-2 mr-5 text-gray-600 font-medium hover:underline hover:text-gray-800"
+          className="my-2 pl-5 sm:mr-5 whitespace-no-wrap
+          text-sm sm:text-base font-medium hover:underline
+          text-gray-600 hover:text-gray-800"
         >
           return to app
         </Link>
       </Navbar>
       <div className="w-full h-full overflow-y-auto scrolling-auto">
-        <div className="mx-auto px-4 pt-12 pb-24 flex flex-col md:max-w-screen-md text-xl">
+        <div className="flex flex-col mx-auto px-4 pt-12 pb-24 md:max-w-screen-md text-lg lg:text-xl">
           <h2 className="font-bold pb-6 text-3xl text-gray-900">
             Meet the Scales
           </h2>
@@ -672,7 +674,7 @@ function Scales() {
             This type of structure becomes a little more subjective when dealing
             with non-diatonic scale-families because there is often more than a
             single note difference between neighboring modes. Since, not all
-            scale degrees are created equal, not all scale degrees alterations
+            scale degrees are created equal, not all scale degree alterations
             have the same effect on a scale's perceived brightness. That being
             said, Composer's Reference defines brightness as an objective
             measure based on the composite sharpness of a scale, not as a
