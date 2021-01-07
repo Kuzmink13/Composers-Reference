@@ -73,8 +73,8 @@ class Mode extends PitchCollection {
     return modeProps.default[this.getAbstractModeCode()].parentTonality;
   }
 
-  getModeNumber() {
-    return modeProps.default[this.getAbstractModeCode()].modeNumber;
+  getSharpness() {
+    return this.getAbstractPitches().reduce((acc, pitch) => acc + pitch);
   }
 
   getChordList() {
@@ -98,7 +98,7 @@ class Mode extends PitchCollection {
       ? modeProps.default[modeCode].nextMode
       : modeProps.default[modeCode].previousMode;
 
-    return this.fromCode(code, pitchCenter);
+    return code ? this.fromCode(code, pitchCenter) : this;
   }
 
   keyShift(isFwShift) {

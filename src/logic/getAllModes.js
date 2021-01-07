@@ -22,7 +22,7 @@ function modeCompare(pitchArray) {
     }
     // BY MODE PRIORITY
     else {
-      return a.getModeNumber() - b.getModeNumber();
+      return b.getSharpness() - a.getSharpness();
     }
   };
 }
