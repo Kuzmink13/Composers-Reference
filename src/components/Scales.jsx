@@ -298,13 +298,13 @@ function Scales() {
                     Lydian Augmented
                   </td>
                   <td className="te" headers="harmonic-minor">
-                    Major Augmented
+                    {replaceSymbols('Lydian #2')}
                   </td>
                   <td className="te" headers="harmonic-major">
                     {replaceSymbols('Lydian Augmented #2')}
                   </td>
                   <td className="te-b" headers="diminished">
-                    Whole-Half Diminished
+                    Diminished
                   </td>
                 </tr>
                 <tr>
@@ -319,13 +319,13 @@ function Scales() {
                     Lydian Dominant
                   </td>
                   <td className="te" headers="harmonic-minor">
-                    {replaceSymbols('Lydian #2')}
+                    Major Augmented
                   </td>
                   <td className="te" headers="harmonic-major">
-                    Harmonic Major
+                    {replaceSymbols('Melodic Minor #4')}
                   </td>
                   <td className="te-b" headers="diminished">
-                    Half-Whole Diminished
+                    Diminished Inverse
                   </td>
                 </tr>
                 <tr>
@@ -335,13 +335,13 @@ function Scales() {
                     Mixolydian
                   </td>
                   <td className="te" headers="melodic-minor">
-                    Aeolian Dominant
+                    Melodic Minor
                   </td>
                   <td className="te" headers="harmonic-minor">
-                    Phrygian Dominant
+                    Lydian Minor
                   </td>
                   <td className="te" headers="harmonic-major">
-                    {replaceSymbols('Mixolydian b2')}
+                    Harmonic Major
                   </td>
                   <td className="te-b" />
                 </tr>
@@ -352,13 +352,13 @@ function Scales() {
                     Dorian
                   </td>
                   <td className="te" headers="melodic-minor">
-                    Melodic Minor
+                    Aeolian Dominant
                   </td>
                   <td className="te" headers="harmonic-minor">
                     Harmonic Minor
                   </td>
                   <td className="te" headers="harmonic-major">
-                    {replaceSymbols('Melodic Minor #4')}
+                    {replaceSymbols('Mixolydian b2')}
                   </td>
                   <td className="te-b" />
                 </tr>
@@ -372,10 +372,10 @@ function Scales() {
                     {replaceSymbols('Dorian b2')}
                   </td>
                   <td className="te" headers="harmonic-minor">
-                    Lydian Minor
+                    Phrygian Dominant
                   </td>
                   <td className="te" headers="harmonic-major">
-                    {replaceSymbols('Altered nat5')}
+                    {replaceSymbols('Dorian b5')}
                   </td>
                   <td className="te-b" />
                 </tr>
@@ -392,7 +392,7 @@ function Scales() {
                     {replaceSymbols('Locrian nat6')}
                   </td>
                   <td className="te" headers="harmonic-major">
-                    {replaceSymbols('Dorian b5')}
+                    {replaceSymbols('Altered nat5')}
                   </td>
                   <td className="te-b" />
                 </tr>
@@ -599,9 +599,9 @@ function Scales() {
           </p>
           <p className="pb-6">
             We can arrange the scales in order by the number of sharps (or
-            flats) they have relative to the original key. F Lydian has one
-            fewer flat than F major, so it is one degree brighter. F Mixolydian,
-            in contrast, has one more flat than F Major making it one degree
+            flats) they have relative to the original key. F Lydian has one less
+            flat than F major, so it is one degree brighter. F Mixolydian, in
+            contrast, has one more flat than F Major making it one degree
             darker.
           </p>
           <div className="flex flex-col sm:flex-row justify-evenly">
@@ -616,6 +616,11 @@ function Scales() {
               caption="F Mixolydian"
             />
           </div>
+          <p className="pb-6">
+            Note: this kind of comparison requires scales to have the same
+            tonic. It is nonsensical to suggest that G Ionian is one degree
+            brighter than C Ionian because it has one more sharp.
+          </p>
           <p className="pb-6">
             Following this pattern, we arrive at the following order for the
             modes of the Major scale-family (from brightest to darkest): Lydian,
@@ -649,9 +654,9 @@ function Scales() {
             Note: this only applies to diatonic scales (the Major scale-family).
           </p>
           <p className="pb-6">
-            For scales that contain both sharps and flats, take the number of
-            sharps (+1) and flats (-1) to get the composite sharpness of the
-            scale.
+            For non-diatonic scales which frequently contain both sharps and
+            flats, add the number of sharps (+1) and flats (-1) to get the
+            composite sharpness of the scale.
           </p>
           <p className="pb-6">
             For example, G Harmonic Minor has one sharp and two flats, giving it
