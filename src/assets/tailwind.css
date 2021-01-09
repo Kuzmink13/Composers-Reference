@@ -92,11 +92,9 @@
   .tab-selection {
     @apply border-2 rounded-lg border-transparent;
   }
-
   .tab-selection:focus {
     @apply outline-none;
   }
-
   .tab-selection:focus-visible {
     @apply border-blue-200 shadow;
   }
@@ -105,29 +103,35 @@
   .btn {
     @apply bg-blue-700 border border-blue-800 rounded-lg;
   }
-
-  .btn-text {
-    @apply text-gray-100 text-sm font-bold tracking-widest;
+  .btn:hover {
+    @apply bg-blue-600 border-blue-700;
   }
-
   .btn-p {
     @apply px-4 py-1;
   }
-
-  .btn:hover {
-    @apply bg-blue-600 border-blue-700;
+  .btn-text {
+    @apply text-gray-100 text-sm font-bold tracking-widest;
   }
 
   /* TABLE ELEMENTS */
   .te {
     @apply px-1 border-b border-r border-gray-400;
   }
-
   .te-r {
     @apply px-1 border-r border-gray-400;
   }
-
   .te-b {
     @apply px-1 border-b border-gray-400;
+  }
+
+  /* OTHER */
+  .external-link {
+    @apply text-blue-600;
+  }
+  .external-link:visited {
+    @apply text-purple-600;
+  }
+  .external-link:hover {
+    @apply underline;
   }
 }

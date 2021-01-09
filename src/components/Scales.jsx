@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
 import Navbar from './Navbar';
+import SmartLink from './SmartLink';
 import VexFigure from './VexFigure';
 
 import { replaceSymbols } from '../logic/utilities';
@@ -26,18 +27,15 @@ function Scales() {
           </h2>
           <p className="pb-6">
             Many of the core ideas behind Composer's Reference come from an
-            effort to reduce the 49,000+ unique scales available in{' '}
-            <a
-              href="https://en.wikipedia.org/wiki/Equal_temperament"
-              target="_"
-              className="text-blue-600 hover:underline"
-            >
-              {'12-tone equal temperament'}
-            </a>{' '}
-            to a more manageable yet still complete subset. There are 4,096
-            scales available in each of the twelve keys, so 4,096 becomes the
-            starting point for a root-agnostic parent set of scales. Still, we
-            can do better...
+            effort to reduce the 24,000+ unique scales available in{' '}
+            <SmartLink>twelve-tone equal temperament</SmartLink> to a more
+            manageable yet still complete subset. There are 2,048 scales
+            available in each of the twelve keys, so 2,048 becomes the starting
+            point for a{' '}
+            <SmartLink term="transpositional equivalence">
+              transpositionally equivalent
+            </SmartLink>{' '}
+            parent set of scales. Still, we can do better...
           </p>
           <p className="pb-6">
             A key assumption Composer's Reference makes about scales is that
@@ -47,7 +45,8 @@ function Scales() {
             result.
           </p>
           <p className="pb-6">
-            For example, let's say you have a C Major scale that is missing its{' '}
+            For example, let's say you have a C{' '}
+            <SmartLink>Major Scale</SmartLink> that is missing its{' '}
             {replaceSymbols('Anat')}. This is a six-note scale that has a major
             third between G and B:
           </p>
@@ -57,13 +56,14 @@ function Scales() {
             autoMargins={true}
           />
           <p className="pb-6">
-            Instead of displaying it as a unique scale, as we have done above,
-            Composer's Reference will consider <i>C without A</i> to be a subset
-            of C Major and omit it from the results. Not only that, but it will
-            recognize that C Harmonic Major is another possible superset of this
-            collection and add that to the results as well. Note that C Harmonic
-            Major has an {replaceSymbols('Ab')} instead of an{' '}
-            {replaceSymbols('Anat')} as the sixth scale degree:
+            Instead of displaying it as its own independent scale, as we have
+            done above, Composer's Reference will consider <i>C without A</i> to
+            be a subset of C Major and omit it from the results. Not only that,
+            but it will recognize that the C{' '}
+            <SmartLink>Harmonic Major Scale</SmartLink> is another possible
+            superset of this collection and add that to the results as well.
+            Note that C Harmonic Major has an {replaceSymbols('Ab')} instead of
+            an {replaceSymbols('Anat')} as the sixth scale degree:
           </p>
           <div className="flex flex-col sm:flex-row justify-evenly">
             <VexFigure pitches={[0, 2, 4, 5, 7, 9, 11]} caption="C Major" />
@@ -75,8 +75,8 @@ function Scales() {
           <p className="pb-6">
             Both of these scales work because <i>C without A</i> doesn't specify
             what kind of A needs to fit in the empty space between G and B, we
-            just know we need <i>something</i> there so we don't violate our
-            first assumption.
+            just know we need <i>something</i> there to not violate our first
+            assumption.
           </p>
           <p className="pb-6">
             But what about {replaceSymbols('A#')}? Why isn’t there a third
@@ -106,7 +106,8 @@ function Scales() {
           <p className="pb-6">
             If we agree that the {replaceSymbols('Bnat')} is a passing note and
             remove it from the collection we are left with two possible results:
-            C Mixolydian and C Aeolian Dominant where in both the{' '}
+            C <SmartLink>Mixolydian</SmartLink> and C{' '}
+            <SmartLink>Aeolian Dominant</SmartLink> where in both the{' '}
             {replaceSymbols('A#')} becomes an enharmonic {replaceSymbols('Bb')}{' '}
             and an {replaceSymbols('Anat')} or an {replaceSymbols('Ab')} is
             added back in respectively.
@@ -127,18 +128,19 @@ function Scales() {
           <p className="pb-6">
             Using these assumptions, we can narrow-in the boundaries of our
             reduced subset of scales. Without any constraints the most notes a
-            scale can have is twelve (the chromatic scale), but since we can’t
-            use scales with consecutive half-steps, we know the actual number
-            must be less.
+            scale can have is twelve (the <SmartLink>chromatic scale</SmartLink>
+            ), but since we can’t use scales with consecutive half-steps, we
+            know the actual number must be less.
           </p>
           <p className="pb-6">
             To find the true upper-bound we need a method for cramming in as
             many notes into a scale as possible without violating our
             assumptions. The solution is to alternate building a scale with
             whole-steps and half-steps until the range of the notes equals an
-            octave. What we get is an eight-note scale called Diminished. It has
-            another mode called Diminished Inverse which uses the same pattern
-            but reverses the order of the intervals.
+            octave. What we get is the eight-note{' '}
+            <SmartLink>Diminished Scale</SmartLink>. It has another mode called
+            Diminished Inverse which uses the same pattern but reverses the
+            order of the intervals.
           </p>
           <div className="flex flex-col sm:flex-row justify-evenly">
             <VexFigure
@@ -175,10 +177,17 @@ function Scales() {
           <p className="pb-6">
             Though something isn’t quite right. This four-note collection
             doesn't really feel like a scale at all. It would be more accurate
-            to call it a fully-diminished seventh arpeggio instead. Clearly
-            there is need for one more rule: A scale cannot contain fewer notes
-            than could fit within an octave without violating the first two
-            rules. If a note <i>can</i> be added, a note <i>must</i> be added.
+            to call it a{' '}
+            <SmartLink
+              term="diminished seventh chord"
+              willReplaceSymbols={false}
+            >
+              fully-diminished seventh
+            </SmartLink>{' '}
+            arpeggio instead. Clearly there is need for one more rule: a scale
+            cannot contain fewer notes than could fit within an octave without
+            violating the first two rules. If a note <i>can</i> be added, a note{' '}
+            <i>must</i> be added.
           </p>
           <p className="pb-6">
             Under this new assumption, the C Diminished Seventh Arpeggio is no
@@ -186,8 +195,8 @@ function Scales() {
             could be included without violating the first two rules. Don’t worry
             though, smaller collections like this aren’t going anywhere. They
             are always there to be found, hiding as subsets of the main scales.
-            An example of a scale that contains this collection is C Lydian{' '}
-            {replaceSymbols('#2')}:
+            An example of a scale that contains this collection is C{' '}
+            <SmartLink>Lydian #2</SmartLink>:
           </p>
           <VexFigure
             pitches={[0, 3, 4, 6, 7, 9, 11]}
@@ -200,8 +209,9 @@ function Scales() {
             is to continuously raise each successive note by whole-step until
             the collection meets the octave. From there, adding any additional
             notes would violate the consecutive half-step rule. What we end up
-            with is our second scale-family: Whole Tone, a perfectly symmetrical
-            six-note family with only one mode.
+            with is our second scale-family:{' '}
+            <SmartLink term="whole tone scale">Whole Tone</SmartLink>, a
+            perfectly symmetrical six-note family with only one mode.
           </p>
           <VexFigure
             pitches={[0, 2, 4, 6, 8, 10]}
@@ -213,8 +223,9 @@ function Scales() {
             upper-bound scale, is to stack alternating augmented and minor
             seconds. Like the Whole Tone scale, this collection ends up with six
             notes at the point you can't add any more. The resulting
-            scale-family, our third, is called Augmented. It has two modes:
-            Augmented and Augmented Inverse.
+            scale-family, our third, is called{' '}
+            <SmartLink term="augmented scale">Augmented</SmartLink>. It has two
+            modes: Augmented and Augmented Inverse.
           </p>
           <div className="flex flex-col sm:flex-row justify-evenly">
             <VexFigure pitches={[0, 3, 4, 7, 8, 11]} caption="C Augmented" />
@@ -231,7 +242,8 @@ function Scales() {
             out which seven-note scales satisfy our assumptions. I’ll just jump
             straight to the punchline and tell you that there are four more
             scale families that have seven modes each. They are based off of the
-            Major, Melodic Minor, Harmonic Minor and Harmonic Major scales.
+            Major, <SmartLink>Melodic Minor</SmartLink>,{' '}
+            <SmartLink>Harmonic Minor</SmartLink> and Harmonic Major scales.
             We’ve already seen two of these parent scales in an earlier example.
             Here are the other two:
           </p>
@@ -249,7 +261,7 @@ function Scales() {
             And finally, to wrap it all up, here is a table that includes every
             mode from each of the seven scale families supported by Composer’s
             Reference. We’ve reduced the number of possibilities for each root
-            note from 4,096 to just 33, all without limiting the scope of
+            note from 1,048 to just 33, all without limiting the scope of
             musical expression. Smaller ideas can still be reached by taking
             notes away, larger ideas can still be reached by adding notes back
             in, but these 33 scales serve as a concrete starting point. The full
@@ -338,7 +350,7 @@ function Scales() {
                     Melodic Minor
                   </td>
                   <td className="te" headers="harmonic-minor">
-                    Lydian Minor
+                    Dorian #4
                   </td>
                   <td className="te" headers="harmonic-major">
                     Harmonic Major
@@ -406,7 +418,7 @@ function Scales() {
                     Altered
                   </td>
                   <td className="te-r" headers="harmonic-minor">
-                    Altered Diminished
+                    {replaceSymbols('Altered bb7')}
                   </td>
                   <td className="te-r" headers="harmonic-major">
                     {replaceSymbols('Locrian bb7')}
@@ -419,13 +431,14 @@ function Scales() {
           <p className="pb-6">
             If this is still overwhelming, my advice would be to start by
             analyzing the modes of the Major scale-family and internalizing how
-            each of them relates to the Major Scale (Ionian). This will make it
-            easier to grasp the alterations found in more exotic scales like
-            Lydian Augmented {replaceSymbols('#2')}.
+            each of them relates to the Major Scale (
+            <SmartLink>Ionian</SmartLink>). This will make it easier to grasp
+            the alterations found in more exotic scales like{' '}
+            <SmartLink>Lydian Augmented #2</SmartLink>.
           </p>
           <p className="pb-6">
-            In this example, Lydian is the base scale, which is just Major with
-            a raised 4th:
+            In this example, <SmartLink>Lydian</SmartLink> is the base scale,
+            which is just Ionian with a raised 4th:
           </p>
           <VexFigure
             pitches={[0, 2, 4, 6, 7, 9, 11]}
@@ -437,9 +450,10 @@ function Scales() {
             <i>{replaceSymbols('#2')}</i>.
           </p>
           <p className="pb-6">
-            Augmented means that the scale must imply an augmented triad; it has
-            to contain a natural 3rd and an raised 5th. Lydian already has the
-            3rd, so we just raise the 5th:
+            Augmented means that the scale must imply an{' '}
+            <SmartLink>augmented triad</SmartLink>; it has to contain a natural
+            3rd and an raised 5th. Lydian already has the 3rd, so we just raise
+            the 5th:
           </p>
           <VexFigure
             pitches={[0, 2, 4, 6, 8, 9, 11]}
@@ -457,8 +471,9 @@ function Scales() {
           />
           <p className="pb-6">
             Note: neighboring scale degrees may be used in place if
-            enharmonically equivalent. An example of this is the Altered Scale
-            where the lowered 4th may substitute for a natural 3rd for chordal
+            enharmonically equivalent. An example of this is the{' '}
+            <SmartLink term="altered">Altered Scale</SmartLink> where the
+            lowered 4th may substitute for a natural 3rd for chordal
             implications
           </p>
           <VexFigure
@@ -470,17 +485,17 @@ function Scales() {
             But What About the Pentatonic Scales?
           </h3>
           <p className="pb-6">
-            A notable omission from Composer’s Reference are the standard
-            pentatonic scales which are common across many musical traditions.
-            One way to think about these scales is as subsets of the Major
-            scale-family. In this framework, each scale is constructed by
-            removing notes that don’t fit well with the harmonic implications of
-            its parent scale.
+            A notable omission from Composer’s Reference are the{' '}
+            <SmartLink>standard pentatonic scales</SmartLink> which are common
+            across many musical traditions. One way to think about these scales
+            is as subsets of the Major scale-family. In this framework, each
+            scale is constructed by removing notes that don’t fit well with the
+            harmonic implications of its parent scale.
           </p>
           <p className="pb-6">
-            As an example, the G Major Pentatonic scale omits the notes C and{' '}
-            {replaceSymbols('F#')} because their half-step proximity create
-            tension against neighboring notes.
+            As an example, the G <SmartLink>Major Pentatonic Scale</SmartLink>{' '}
+            omits the notes C and {replaceSymbols('F#')} because their half-step
+            proximity create tension against neighboring notes.
           </p>
           <div className="flex flex-col sm:flex-row justify-evenly">
             <VexFigure
@@ -498,8 +513,8 @@ function Scales() {
             Since the omission of C and {replaceSymbols('F#')} ambiguates the
             parent mode of the G Major Pentatonic scale, it can be thought of as
             a subset of not just G Major, but of G Lydian and G Mixolydian as
-            well. (G Lydian Dominant fits here as well, but that comes from a
-            different scale-family)
+            well. (G <SmartLink>Lydian Dominant</SmartLink> fits here as well,
+            but that comes from a different scale-family)
           </p>
           <div className="flex flex-col sm:flex-row justify-evenly">
             <VexFigure
@@ -540,8 +555,9 @@ function Scales() {
           </h3>
           <p className="pb-6">
             Traditionally, modes are organized by scale degree relative to their
-            parent scale. For example, G Dorian is the second mode of the F
-            Major scale, A Phrygian is the third, etc.
+            parent scale. For example, G <SmartLink>Dorian</SmartLink> is the
+            second mode of the F Major scale, A <SmartLink>Phrygian</SmartLink>{' '}
+            is the third, etc.
           </p>
           <div className="flex flex-col sm:flex-row flex-wrap justify-evenly">
             <VexFigure
@@ -564,13 +580,14 @@ function Scales() {
             This approach, however, leaves much to be desired.
           </p>
           <p className="pb-6">
-            A common misconception about modes comes from the choice of using
-            relative instead of parallel modes. Musicians learning about modes
-            for the first time are often disappointed to find that playing
-            something in G Dorian can sound frustratingly similar to playing
-            something in F Ionian since both use the exact same notes. In the
-            end, the ear wants to fall back on the framework that it’s used to
-            hearing, which is the major scale.
+            A common misconception about modes comes from the choice of using{' '}
+            <SmartLink term="relative key">relative</SmartLink> modes instead of{' '}
+            <SmartLink term="parallel key">parallel</SmartLink> modes. Musicians
+            learning about modes for the first time are often disappointed to
+            find that playing something in G Dorian can sound frustratingly
+            similar to playing something in F Ionian since both use the exact
+            same notes. In the end, the ear wants to fall back on the framework
+            that it’s used to hearing, which is the major scale.
           </p>
           <p className="pb-6">
             To get the most out of modes, one should transpose them back into
@@ -617,8 +634,8 @@ function Scales() {
             />
           </div>
           <p className="pb-6">
-            Note: this kind of comparison requires scales to have the same
-            tonic. It is nonsensical to suggest that G Ionian is one degree
+            Note: this kind of comparison requires scales to have the same root
+            note. It is nonsensical to suggest that G Ionian is one degree
             brighter than C Ionian because it has one more sharp.
           </p>
           <p className="pb-6">
@@ -646,12 +663,15 @@ function Scales() {
           </div>
           <p className="pb-6">
             In addition, arranging the modes this way has the added benefit of
-            ordering them by the circle of fifths. We know that D Phrygian has
-            one more flat than D Aeolian, but which one? It's{' '}
+            ordering them by the <SmartLink>circle of fifths</SmartLink>. We
+            know that D Phrygian has one more flat than D{' '}
+            <SmartLink>Aeolian</SmartLink>, but which one? It's{' '}
             {replaceSymbols('Eb')}, the next in the circle of fifths.
           </p>
           <p className="pb-6">
-            Note: this only applies to diatonic scales (the Major scale-family).
+            Note: this only applies to{' '}
+            <SmartLink term="diatonic scale">diatonic scales</SmartLink> (the
+            Major scale-family).
           </p>
           <p className="pb-6">
             For non-diatonic scales which frequently contain both sharps and
@@ -661,7 +681,8 @@ function Scales() {
           <p className="pb-6">
             For example, G Harmonic Minor has one sharp and two flats, giving it
             a composite sharpness of minus-one, which is one degree brighter
-            than G Phrygian Dominant, which has two flats and no sharps.
+            than G <SmartLink>Phrygian Dominant</SmartLink>, which has two flats
+            and no sharps.
           </p>
           <div className="flex flex-col sm:flex-row flex-wrap justify-evenly">
             <VexFigure
@@ -681,11 +702,11 @@ function Scales() {
             single note difference between neighboring modes. Since, not all
             scale degrees are created equal, not all scale degree alterations
             have the same effect on a scale's perceived brightness. That being
-            said, Composer's Reference defines brightness as an objective
-            measure based on the composite sharpness of a scale, not as a
-            subjective measure of how bright a scale sounds. While this model
-            may not be perfect, it still serves as a useful organizational
-            pattern and is used throughout the app.
+            said, Composer's Reference defines brightness as the objective
+            measure of the composite sharpness of a scale, not as a subjective
+            measure of how bright a scale sounds. While this model may not be
+            perfect, it still serves as a useful organizational pattern and is
+            used throughout the application.
           </p>
         </div>
       </div>

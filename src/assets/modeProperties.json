@@ -118,7 +118,7 @@
     "nextMode": "034679b"
   },
   "023679a": {
-    "modeName": "Lydian Minor",
+    "modeName": "Dorian #4",
     "parentTonality": "Harmonic-Minor",
     "previousMode": "023578b",
     "nextMode": "024589b"
@@ -142,7 +142,7 @@
     "nextMode": "014578a"
   },
   "0134689": {
-    "modeName": "Altered Diminished",
+    "modeName": "Altered bb7",
     "parentTonality": "Harmonic-Minor",
     "previousMode": null,
     "nextMode": "013569a"
