@@ -470,10 +470,34 @@ function Scales() {
             autoMargins={true}
           />
           <p className="pb-6">
-            Note: neighboring scale degrees may be used in place if
+            Keep in mind that scale degree alterations are always written with
+            respect to the major scale. Calling something{' '}
+            <i>{replaceSymbols('Lydian Augmented #4')}</i> would simply be
+            redundant; it would not imply a scale with a double-sharp 4.
+            Likewise, specifying a natural scale degree means that it is natural
+            with respect the the major scale, not necessarily with respect to
+            the key. <SmartLink>Locrian nat2</SmartLink> could still have an
+            accidental on the second scale degree, depending on the key it's
+            written in:
+          </p>
+          <div className="flex flex-col sm:flex-row justify-evenly">
+            <VexFigure
+              pitches={[0, 2, 3, 4, 7, 8, 10]}
+              pitchCenter={4}
+              caption="E Locrian nat2"
+              autoMargins={true}
+            />
+            <VexFigure
+              pitches={[0, 2, 4, 5, 7, 9, 11]}
+              pitchCenter={4}
+              caption="E Major"
+            />
+          </div>
+          <p className="pb-6">
+            Note: neighboring scale degrees may be used in place of others if
             enharmonically equivalent. An example of this is the{' '}
             <SmartLink term="altered">Altered Scale</SmartLink> where the
-            lowered 4th may substitute for a natural 3rd for chordal
+            flattened 4th may substitute for a natural 3rd for chordal
             implications
           </p>
           <VexFigure
