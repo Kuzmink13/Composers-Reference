@@ -25,7 +25,7 @@ function Options(props) {
     },
     {
       id: 'quick guide display',
-      text: "Don't show Quick Start Guide on start",
+      text: "Don't show Quick Start Guide",
       checked: props.isGuideDismissed,
       onChange: props.toggleDismissGuide,
     },
@@ -80,7 +80,7 @@ function Options(props) {
 
       {/* TONALITY SELECTION */}
       <fieldset className="pb-2">
-        <legend className="pb-2">Exclude Tonalities:</legend>
+        <legend className="pb-2">Exclude scale-families:</legend>
         {supportedTonalities.map((tonality, i) => (
           <div key={tonality.name} className="flex items-center pb-1">
             <input
