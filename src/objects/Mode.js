@@ -2,7 +2,6 @@ import * as modeProps from '../assets/modeProperties.json';
 
 import getScaleNotes from '../logic/getScaleNotes';
 import getChordList from '../logic/getChordList';
-import playback from '../logic/playback';
 import {
   octaveMod,
   replaceSymbols,
@@ -80,10 +79,6 @@ class Mode extends PitchCollection {
 
   getChordList() {
     return getChordList(this);
-  }
-
-  play() {
-    playback(this);
   }
 
   relativeShift(isFwShift) {
