@@ -21,8 +21,8 @@ function Scales() {
         </Link>
       </Navbar>
       <div className="w-full h-full overflow-y-auto scrolling-auto">
-        <div className="flex flex-col mx-auto px-4 pt-12 pb-24 md:max-w-screen-md text-lg lg:text-xl">
-          <h2 className="font-bold pb-6 text-3xl text-gray-900">
+        <div className="flex flex-col mx-auto px-4 pb-24 md:max-w-screen-md text-lg lg:text-xl">
+          <h2 className="font-bold pt-12 pb-6 text-3xl text-gray-900">
             Meet the Scales
           </h2>
           <p className="pb-6">
@@ -122,7 +122,10 @@ function Scales() {
               caption="C Aeolian Dominant"
             />
           </div>
-          <h3 className="font-bold py-6 text-2xl text-gray-900">
+          <h3
+            id="upper_bound"
+            className="font-bold py-6 text-2xl text-gray-900"
+          >
             Finding an Upper-Bound
           </h3>
           <p className="pb-6">
@@ -152,7 +155,7 @@ function Scales() {
               caption="C Diminished Inverse"
             />
           </div>
-          <p className="pb-6">
+          <p id="scale_family" className="pb-6">
             These two modes comprise our first scale-family: Diminished! This is
             one of seven scale-families that ships with Composer’s Reference.
             The term <i>scale-family</i> refers to the collection of all modes
@@ -160,7 +163,10 @@ function Scales() {
             be act as the parent scale, we have chosen the most historically
             common to represent each family.
           </p>
-          <h3 className="font-bold py-6 text-2xl text-gray-900">
+          <h3
+            id="lower_bound"
+            className="font-bold py-6 text-2xl text-gray-900"
+          >
             Finding a Lower-Bound
           </h3>
           <p className="pb-6">
@@ -234,7 +240,7 @@ function Scales() {
               caption="C Augmented Inverse"
             />
           </div>
-          <h3 className="font-bold py-6 text-2xl text-gray-900">
+          <h3 id="the_rest" className="font-bold py-6 text-2xl text-gray-900">
             Finding the Rest
           </h3>
           <p className="pb-6">
@@ -505,7 +511,7 @@ function Scales() {
             caption="C Altered"
             autoMargins={true}
           />
-          <h3 className="font-bold py-6 text-2xl text-gray-900">
+          <h3 id="pentatonic" className="font-bold py-6 text-2xl text-gray-900">
             But What About the Pentatonic Scales?
           </h3>
           <p className="pb-6">
@@ -574,7 +580,10 @@ function Scales() {
             little bit of ear, a little bit of taste, and a little bit of
             creativity to unlock their full potential.
           </p>
-          <h3 className="font-bold py-6 text-2xl text-gray-900">
+          <h3
+            id="modal_organization"
+            className="font-bold py-6 text-2xl text-gray-900"
+          >
             A Note on Modal Organization
           </h3>
           <p className="pb-6">

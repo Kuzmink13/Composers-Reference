@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 
 import VexFigure from './VexFigure';
 import SmartLink from './SmartLink';
@@ -98,7 +99,7 @@ const guideContent = [
     </ul>
     <p className="mb-4">
       Tip: to get the most out of Composer’s Reference,{' '}
-      <Link to="./scales" className="external-link">
+      <Link to="/scales" className="external-link">
         click here
       </Link>{' '}
       to <i>meet the scales</i>
@@ -156,7 +157,10 @@ const guideContent = [
         />
       </li>
       <li className="pb-2">
-        The settings drop down is also where you can filter out scale-families
+        The settings drop down is also where you can filter out{' '}
+        <HashLink to="/scales#scale_family" className="external-link">
+          scale-families
+        </HashLink>{' '}
         that you never want to see in your results
       </li>
     </ul>
@@ -199,8 +203,11 @@ const guideContent = [
       src="videos/lr_shift.mp4"
     />
     <p className="mb-4">
-      Shift-select or long-press the left/right arrows to move by relative mode
-      brightness instead.
+      Shift-select or long-press the left/right arrows to move by{' '}
+      <HashLink to="/scales#modal_organization" className="external-link">
+        relative mode brightness
+      </HashLink>{' '}
+      instead.
     </p>
   </Fragment>,
 
@@ -271,13 +278,13 @@ const guideContent = [
     </p>
     <ul className="list-disc px-8 pb-2 mx-auto">
       <li className="pb-2">
-        <Link to="./scales" className="external-link">
+        <Link to="/scales" className="external-link">
           Meet the Scales:
         </Link>{' '}
         a primer on the scale-theory concepts behind Composer's Reference
       </li>
       <li className="pb-2">
-        <Link to="./glossary" className="external-link">
+        <Link to="/glossary" className="external-link">
           Glossary:
         </Link>{' '}
         more on terms commonly used throughout Composer's Reference
@@ -285,7 +292,7 @@ const guideContent = [
     </ul>
     <p className="text-center text-base pb-4">
       Have a feature request?{' '}
-      <Link to="./contact" className="external-link">
+      <Link to="/contact" className="external-link">
         Submit it here!
       </Link>
     </p>
