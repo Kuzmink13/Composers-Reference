@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import guideContent from './guideContent';
 
+import useKeyboarFn, { keyArrays } from '../hooks/useKeyboardFn';
+
 function QuickGuide(props) {
   const [isChecked, setIsChecked] = useState(props.isGuideDismissed);
 
@@ -13,12 +15,15 @@ function QuickGuide(props) {
   const [index, setIndex] = useState(0);
 
   function incrementPage() {
-    setIndex(index + 1);
+    index < guideContent.length - 1 && setIndex(index + 1);
   }
 
   function decrementPage() {
-    setIndex(index - 1);
+    index > 0 && setIndex(index - 1);
   }
+
+  useKeyboarFn(incrementPage, keyArrays.right);
+  useKeyboarFn(decrementPage, keyArrays.left);
 
   return (
     <div className="flex flex-col items-center relative p-4">
