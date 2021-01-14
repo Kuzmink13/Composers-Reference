@@ -16,14 +16,13 @@ import { ModeProvider } from '../contexts/ModeContext';
 import useModeCard from '../hooks/useModeCard';
 import useOverlay from '../hooks/useOverlay';
 import useSelectionFilter from '../hooks/useSelectionFilter';
-import useQuickGuide from '../hooks/useQuickGuide';
 import useClef from '../hooks/useClef';
 import useTonalities from '../hooks/useTonalities';
 import useScreenSize from '../hooks/useScreenSize';
 
 import getModeLists from '../logic/getModeLists';
 
-function App({ noteProps }) {
+function App({ noteProps, quickGuideProps }) {
   const [
     { notes, root },
     handleNoteSelection,
@@ -51,11 +50,12 @@ function App({ noteProps }) {
   ] = useSelectionFilter();
 
   const [
-    { isGuideDismissed, isGuideShown },
+    { isGuideDismissed, isGuideShown, guideIndex },
+    indexFns,
     toggleDismissGuide,
     toggleShowGuide,
     resetGuide,
-  ] = useQuickGuide();
+  ] = quickGuideProps;
 
   const [clef, handleClefChange, resetClef] = useClef();
   const [tonalities, toggleTonality, resetTonalities] = useTonalities();
@@ -126,7 +126,13 @@ function App({ noteProps }) {
           showCloseButton={true}
         >
           <QuickGuide
-            {...{ isGuideDismissed, toggleShowGuide, toggleDismissGuide }}
+            {...{
+              isGuideDismissed,
+              guideIndex,
+              indexFns,
+              toggleShowGuide,
+              toggleDismissGuide,
+            }}
           />
         </PopOver>
       )}

@@ -4,26 +4,22 @@ import guideContent from './guideContent';
 
 import useKeyboarFn, { keyArrays } from '../hooks/useKeyboardFn';
 
-function QuickGuide(props) {
-  const [isChecked, setIsChecked] = useState(props.isGuideDismissed);
+function QuickGuide({
+  isGuideDismissed,
+  guideIndex,
+  indexFns,
+  toggleShowGuide,
+  toggleDismissGuide,
+}) {
+  const [isChecked, setIsChecked] = useState(isGuideDismissed);
 
   function skipGuide() {
-    props.toggleDismissGuide(isChecked);
-    props.toggleShowGuide();
+    toggleDismissGuide(isChecked);
+    toggleShowGuide();
   }
 
-  const [index, setIndex] = useState(0);
-
-  function incrementPage() {
-    index < guideContent.length - 1 && setIndex(index + 1);
-  }
-
-  function decrementPage() {
-    index > 0 && setIndex(index - 1);
-  }
-
-  useKeyboarFn(incrementPage, keyArrays.right);
-  useKeyboarFn(decrementPage, keyArrays.left);
+  useKeyboarFn(indexFns.incrementPage, keyArrays.right);
+  useKeyboarFn(indexFns.decrementPage, keyArrays.left);
 
   return (
     <div className="flex flex-col items-center relative p-4">
@@ -32,7 +28,7 @@ function QuickGuide(props) {
         tabIndex="0"
         className="flex flex-col px-12 pb-4 text-gray-800 text-lg focus:outline-none"
       >
-        {guideContent[index]}
+        {guideContent[guideIndex]}
       </div>
 
       {/* BUTTONS */}
@@ -64,23 +60,23 @@ function QuickGuide(props) {
           <button
             name="previous slide"
             className="tab-selection p-1 disabled:opacity-50"
-            onClick={decrementPage}
-            disabled={index === 0}
+            onClick={indexFns.decrementPage}
+            disabled={guideIndex === 0}
           >
             <div className="btn btn-text btn-p">PREV.</div>
           </button>
           <button
             name="next slide"
             className="tab-selection p-1 disabled:opacity-50"
-            onClick={incrementPage}
-            disabled={index === guideContent.length - 1}
+            onClick={indexFns.incrementPage}
+            disabled={guideIndex === guideContent.length - 1}
           >
             <div className="btn btn-text btn-p">NEXT</div>
           </button>
         </div>
       </div>
       <div className="absolute top-0 left-0 m-2 px-1 text-sm text-gray-600">
-        {index + 1}/{guideContent.length}
+        {guideIndex + 1}/{guideContent.length}
       </div>
     </div>
   );

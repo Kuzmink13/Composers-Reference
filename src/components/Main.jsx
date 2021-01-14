@@ -5,13 +5,19 @@ import Scales from './Scales';
 import App from './App';
 
 import useNotes from '../hooks/useNotes';
+import useQuickGuide from '../hooks/useQuickGuide';
 
 function Main() {
   const noteProps = useNotes();
+  const quickGuideProps = useQuickGuide();
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/" exact render={() => <App {...{ noteProps }} />} />
+        <Route
+          path="/"
+          exact
+          render={() => <App {...{ noteProps, quickGuideProps }} />}
+        />
         <Route path="/Scales" component={Scales} />
       </Switch>
     </BrowserRouter>
