@@ -27,10 +27,14 @@ const guideContent = [
       Show Us What You’re Hearing…
     </h3>
     <p className="mb-4">
-      To get started, Composer’s Reference needs a <i>fragment</i>, a collection
-      of notes <SmartLink term="pitch class">(pitch classes)</SmartLink> that
-      represent an abstract musical idea. A fragment can be a deconstructed
-      melody, a chord, or any otherwise related group of notes:
+      To get started, Composer’s Reference requires a{' '}
+      <i>
+        <SmartLink term="set">pitch class set</SmartLink>
+      </i>
+      , an unordered collection of notes{' '}
+      <SmartLink term="pitch class">(pitch classes)</SmartLink> that represent
+      an abstract musical idea. A fragment can be a deconstructed melody, a
+      chord, or any otherwise related group of notes:
     </p>
     <VexFigure
       pitches={[0, 4, 5, 7]}
@@ -39,8 +43,8 @@ const guideContent = [
       mb6={false}
     />
     <p className="mb-4">
-      Show us your fragment by selecting its notes on the on-screen keyboard or
-      with your actual keyboard.
+      Show us your set by selecting its notes on the on-screen keyboard or with
+      your computer keyboard:
     </p>
     <VideoEmbed
       key="note_selection"
@@ -48,7 +52,7 @@ const guideContent = [
       src="videos/note_selection.mp4"
     />
     <p className="mb-4">
-      Tip: You can toggle the keyboard overlay in the settings drop-down
+      Tip: you can toggle various keyboard overlays in the settings drop-down
     </p>
   </Fragment>,
 
@@ -57,9 +61,9 @@ const guideContent = [
       The Scales Are Coming!
     </h3>
     <p className="mb-4">
-      When you start selecting notes, you’ll notice the bottom part of the
-      screen instantly fill up with results! These are all the scales Composer’s
-      Reference knows that contain your fragment!
+      When you start selecting notes, the bottom part of the screen instantly
+      fill up with results! These are the scales Composer’s Reference knows that
+      contain all the notes in your set!
     </p>
     <VideoEmbed
       key="scale_generation"
@@ -73,26 +77,27 @@ const guideContent = [
       Time to Get Creative!
     </h3>
     <p className="mb-4">
-      There are many ways to work your results back into your music. Here’s a
+      There are many ways to work these results back into your music. Here’s a
       few ideas to get you started:
     </p>
     <ul className="list-disc px-8 pb-2">
       <li className="pb-2">
-        Use your newfound scalar wisdom to write an exciting melody over your
-        fragment
+        Use your newfound scalar wisdom to write an exciting melody that relates
+        to your chosen set
       </li>
       <li className="pb-2">
-        See what disparate keys are related to your original idea and string
-        them together to go on a musical journey around the circle of fifths
+        See what disparate tonalities are related to your original idea and
+        string them together to go on a musical journey around the circle of
+        fifths
       </li>
       <li className="pb-2">
-        Take a set of chord changes and turn them into fragments. Then use the
-        results to improvise a dynamic solo to take your{' '}
+        Take some chord changes and turn them into sets. Then use the results to
+        improvise a dynamic solo to take your{' '}
         <span className="tracking-widest">jazz</span> to the next level
       </li>
     </ul>
     <p className="mb-4">
-      Tip: To get the most out of Composer’s Reference,{' '}
+      Tip: to get the most out of Composer’s Reference,{' '}
       <Link to="./scales" className="external-link">
         click here
       </Link>{' '}
@@ -105,7 +110,7 @@ const guideContent = [
       Too Many Notes!
     </h3>
     <p className="mb-4">
-      If you find that there are just too many scales to work with, Composer’s
+      If you find that there are just too many options to work with, Composer’s
       Reference offers a few ways to help narrow down what you’re looking for:
     </p>
     <ul className="list-disc px-8 pb-2">
@@ -141,8 +146,8 @@ const guideContent = [
     <ul className="list-disc px-8 pb-2">
       <li className="pb-2">
         <p className="pb-2">
-          Visit the settings drop-down to filter for scales that have a fragment
-          note as their tonic.
+          Visit the settings drop-down to filter for scales that have one of
+          your selected notes as a tonic.
         </p>
         <VideoEmbed
           key="fiilter_settings"
@@ -164,8 +169,9 @@ const guideContent = [
     <p className="mb-4">
       Now it’s time to get into the heart of the Composer’s Reference workflow!
       Click on a scale to enter the <i>mode-card view</i>. Here, Composer’s
-      Reference will generate a list of tonic chords that are implied by the
-      chosen scale.
+      Reference will generate a list of{' '}
+      <SmartLink term="chord scale system">tonic chords</SmartLink> that are
+      implied by the chosen scale.
     </p>
     <VideoEmbed
       key="open_card"
@@ -184,8 +190,8 @@ const guideContent = [
     </h3>
     <p className="mb-4">
       Want the chords from a neighoring scale degree instead? Click the
-      left/right arrows (or use the arrow keys) to move between modes in your
-      key.
+      left/right arrows (or use the arrow keys) to move to the next{' '}
+      <SmartLink term="relative key">relative mode</SmartLink> in your key.
     </p>
     <VideoEmbed
       key="lr_shift"
@@ -205,9 +211,9 @@ const guideContent = [
     <p className="mb-4">
       Eventually you will decide it's time to go beyond the constraints of a
       single pitch class set. When you're ready, click the up/down arrows to
-      move to the parallel mode that is one degree brighter/darker than the
-      current. This allows you to introduce brand new sounds into your music
-      without leaving the current key.
+      move to the <SmartLink term="parallel key">parallel mode</SmartLink> that
+      is one degree brighter/darker than the current. This allows you to
+      introduce brand new sounds into your music without leaving the key.
     </p>
     <VideoEmbed
       key="ud_shift"
@@ -216,8 +222,11 @@ const guideContent = [
     />
     <p className="mb-4">
       If you want to move beyond your key altogether, shift-select or long-press
-      the up/down arrows to step through the transpositionally equivalent scales
-      in the circle of fifths.
+      the up/down arrows to step through the{' '}
+      <SmartLink term="transpositional equivalence">
+        transpositionally equivalent
+      </SmartLink>{' '}
+      scales in the <SmartLink>circle of fifths</SmartLink>.
     </p>
   </Fragment>,
 
@@ -254,7 +263,7 @@ const guideContent = [
     <p className="mb-4">
       Composer's Reference is a simple tool with with complex implications.
       There are over four thousand possible pitch class sets that can reduce to
-      any of the thirty-three supported transpositionally equivalent modes.
+      any of the thirty-three supported transpositionally equivalent scales.
     </p>
     <p className="mb-4">
       While Composer's Reference can never be a true subsitute for knowing your
