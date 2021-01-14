@@ -1,13 +1,14 @@
 import React from 'react';
 
-function VideoEmbed({ classAddOn, src }) {
+function VideoEmbed({ classAddOn, width, src }) {
   return (
     <video
       autoPlay
       loop
       className={`${classAddOn} mx-auto border border-gray-400 rounded-md`}
+      width={width}
+      src={src}
     >
-      <source {...{ src }} type="video/mp4" />
       Your browser does not support the video tag.
     </video>
   );

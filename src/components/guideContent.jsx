@@ -50,6 +50,7 @@ const guideContent = [
     <VideoEmbed
       key="note_selection"
       classAddOn="h-40 mb-4"
+      width="302"
       src="videos/note_selection.mp4"
     />
     <p className="mb-4">
@@ -69,6 +70,7 @@ const guideContent = [
     <VideoEmbed
       key="scale_generation"
       classAddOn="h-80 mb-4"
+      width="547"
       src="videos/scale_generation.mp4"
     />
   </Fragment>,
@@ -123,6 +125,7 @@ const guideContent = [
         <VideoEmbed
           key="length_selection"
           classAddOn="h-12"
+          width="462"
           src="videos/length_selection.mp4"
         />
       </li>
@@ -134,6 +137,7 @@ const guideContent = [
         <VideoEmbed
           key="root_selection"
           classAddOn="h-40"
+          width="302"
           src="videos/root_selection.mp4"
         />
       </li>
@@ -153,6 +157,7 @@ const guideContent = [
         <VideoEmbed
           key="fiilter_settings"
           classAddOn="h-80"
+          width="247"
           src="videos/filter_settings.mp4"
         />
       </li>
@@ -180,6 +185,7 @@ const guideContent = [
     <VideoEmbed
       key="open_card"
       classAddOn="h-80 mb-4"
+      width="494"
       src="videos/open_card.mp4"
     />
     <p className="mb-4">
@@ -200,6 +206,7 @@ const guideContent = [
     <VideoEmbed
       key="lr_shift"
       classAddOn="h-80 mb-4"
+      width="265"
       src="videos/lr_shift.mp4"
     />
     <p className="mb-4">
@@ -225,6 +232,7 @@ const guideContent = [
     <VideoEmbed
       key="ud_shift"
       classAddOn="h-80 mb-4"
+      width="265"
       src="videos/ud_shift.mp4"
     />
     <p className="mb-4">
