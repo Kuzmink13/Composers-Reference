@@ -13,13 +13,18 @@ const guideContent = [
     </h3>
     <p className="mb-4">
       Composer’s Reference is a one-stop interactive tool that packages
-      centuries of music theory sage wisdom into a streamlined interface focused
-      on getting you what you need fast!
+      centuries of music theory wisdom into a streamlined interface focused on
+      getting you what you need fast!
     </p>
     <p className="mb-4">
       Built from the ground up to seamlessly integrate into any songwriting
       workflow, Composer’s Reference was designed to be used in many ways right
       out of the box.
+    </p>
+    <p className="mb-4">
+      This guide is intended to get you working with Composer's Reference as
+      quickly as possible. You can always return here by accessing{' '}
+      <i>Quick Start Guide</i> in the menu drop-down.
     </p>
   </Fragment>,
 
@@ -34,8 +39,8 @@ const guideContent = [
       </i>
       , an unordered collection of notes{' '}
       <SmartLink term="pitch class">(pitch classes)</SmartLink> that represent
-      an abstract musical idea. A fragment can be a deconstructed melody, a
-      chord, or any otherwise related group of notes:
+      an abstract musical idea. A set can be a deconstructed melody, a chord, or
+      any otherwise related group of notes:
     </p>
     <VexFigure
       pitches={[0, 4, 5, 7]}
@@ -63,9 +68,10 @@ const guideContent = [
       The Scales Are Coming!
     </h3>
     <p className="mb-4">
-      When you start selecting notes, the bottom part of the screen instantly
-      fill up with results! These are the scales Composer’s Reference knows that
-      contain all the notes in your set!
+      When you start selecting notes, the bottom part of the screen will
+      instantly generate all the scales Composer’s Reference knows that contain
+      every note in your set! Think of your collection of notes as a subset of
+      each of these scales.
     </p>
     <VideoEmbed
       key="scale_generation"
@@ -85,18 +91,18 @@ const guideContent = [
     </p>
     <ul className="list-disc px-8 pb-2">
       <li className="pb-2">
-        Use your newfound scalar wisdom to write an exciting melody that relates
-        to your chosen set
+        Use your newfound scalar wisdom to write an exciting melody that fits
+        with your chosen set.
       </li>
       <li className="pb-2">
         See what disparate tonalities are related to your original idea and
         string them together to go on a musical journey around the circle of
-        fifths
+        fifths.
       </li>
       <li className="pb-2">
         Take some chord changes and turn them into sets. Then use the results to
         improvise a dynamic solo to take your{' '}
-        <span className="tracking-widest">jazz</span> to the next level
+        <span className="tracking-widest">jazz</span> to the next level.
       </li>
     </ul>
     <p className="mb-4">
@@ -166,7 +172,7 @@ const guideContent = [
         <HashLink to="/scales#scale_family" className="external-link">
           scale-families
         </HashLink>{' '}
-        that you never want to see in your results
+        that you never want to see in your results.
       </li>
     </ul>
   </Fragment>,
@@ -199,7 +205,7 @@ const guideContent = [
       More Chords Please!
     </h3>
     <p className="mb-4">
-      Want the chords from a neighoring scale degree instead? Click the
+      Want the chords from a neighboring scale degree instead? Click the
       left/right arrows (or use the arrow keys) to move to the next{' '}
       <SmartLink term="relative key">relative mode</SmartLink> in your key.
     </p>
@@ -226,8 +232,9 @@ const guideContent = [
       Eventually you will decide it's time to go beyond the constraints of a
       single pitch class set. When you're ready, click the up/down arrows to
       move to the <SmartLink term="parallel key">parallel mode</SmartLink> that
-      is one degree brighter/darker than the current. This allows you to
-      introduce brand new sounds into your music without leaving the key.
+      is one degree brighter/darker than the current. This can help you
+      introduce brand new sounds into your music without leaving your chosen
+      key.
     </p>
     <VideoEmbed
       key="ud_shift"
@@ -237,23 +244,20 @@ const guideContent = [
     />
     <p className="mb-4">
       If you want to move beyond your key altogether, shift-select or long-press
-      the up/down arrows to step through the{' '}
-      <SmartLink term="transpositional equivalence">
-        transpositionally equivalent
-      </SmartLink>{' '}
-      scales in the <SmartLink>circle of fifths</SmartLink>.
+      the up/down arrows to transpose your scale by one step in the{' '}
+      <SmartLink>circle of fifths</SmartLink>.
     </p>
   </Fragment>,
 
   <Fragment>
     <h3 className="text-xl font-bold tracking-wider text-center mb-4">
-      Mode-Card Movement Recap
+      Mode-Card Movement Summary
     </h3>
     <p className="mb-4">
-      Combinging the four ways of moving between mode-cards lets you find new
+      Combining the four ways of moving between mode-cards lets you find new
       tonalities quickly and organically. That's why it's important to have a
       strong understanding of mode-card motion before jumping in. Here's a quick
-      summary:
+      recap:
     </p>
     <ul className="list-disc px-8 pb-2 mx-auto">
       <li className="pb-2">
@@ -276,12 +280,16 @@ const guideContent = [
       That's All For Now!
     </h3>
     <p className="mb-4">
-      Composer's Reference is a simple tool with with complex implications.
-      There are over four thousand possible pitch class sets that can reduce to
-      any of the thirty-three supported transpositionally equivalent scales.
+      Composer's Reference is a simple tool with complex implications. There are
+      over four thousand possible pitch class sets that can reduce to any of the
+      thirty-three supported{' '}
+      <SmartLink term="transpositional equivalence">
+        transpositionally equivalent
+      </SmartLink>{' '}
+      scales.
     </p>
     <p className="mb-4">
-      While Composer's Reference can never be a true subsitute for knowing your
+      While Composer's Reference can never be a true substitute for knowing your
       music theory, we can offer some resources to make using it more effective:
     </p>
     <ul className="list-disc px-8 pb-2 mx-auto">
@@ -289,7 +297,7 @@ const guideContent = [
         <Link to="/scales" className="external-link">
           Meet the Scales:
         </Link>{' '}
-        a primer on the scale-theory concepts behind Composer's Reference
+        a primer on the scale-theory concepts driving Composer's Reference
       </li>
       <li className="pb-2">
         <Link to="/glossary" className="external-link">
