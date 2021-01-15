@@ -8,10 +8,7 @@ function ChordTable({ mode }) {
   const isThreeNoteChord = (noteNames) => noteNames.length === 3;
 
   return (
-    <div
-      className="tab-selection px-6 max-h-card overflow-y-auto scrolling-auto"
-      tabIndex="0"
-    >
+    <div className="tab-selection px-6 max-h-card overflow-y-auto" tabIndex="0">
       <table className="m-auto">
         <tbody>
           {Array.from(chordList, ({ chordName, noteNames, scaleDegrees }) => (

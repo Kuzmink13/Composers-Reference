@@ -6,7 +6,7 @@ const buttonLabels = ['SIX', 'SEVEN', 'EIGHT'];
 
 function ButtonPanel({ modeLists }) {
   return (
-    <div className="flex flex-row justify-center">
+    <div className="flex-none flex flex-row justify-center">
       {buttonLabels.map((buttonLabel, i) => (
         <ModeButton
           key={i}

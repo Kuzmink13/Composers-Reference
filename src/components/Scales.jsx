@@ -20,7 +20,7 @@ function Scales() {
           return to app
         </Link>
       </Navbar>
-      <div className="w-full h-full overflow-y-auto scrolling-auto">
+      <div className="w-full h-full overflow-y-auto overscroll-y-auto">
         <div className="flex flex-col mx-auto px-4 pb-24 md:max-w-screen-md text-lg lg:text-xl">
           <h2 className="font-bold pt-12 pb-6 text-3xl text-gray-900">
             Meet the Scales
@@ -274,7 +274,7 @@ function Scales() {
             range of possibilities is still available, only now with a much more
             digestible set of base components!
           </p>
-          <div className="box mb-6 p-2 overflow-x-auto scrolling-auto">
+          <div className="box mb-6 p-2 overflow-x-auto">
             <table className="text-base text-center">
               <thead>
                 <tr>

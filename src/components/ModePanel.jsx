@@ -13,7 +13,7 @@ function ModePanel({ selectedList }) {
   let scrollParentRef;
   return (
     <div
-      className="h-full overflow-y-auto pb-1 scrolling-auto"
+      className="h-full overflow-y-auto pb-1 overscroll-y-auto"
       ref={(ref) => (scrollParentRef = ref)}
     >
       <InfiniteScroll

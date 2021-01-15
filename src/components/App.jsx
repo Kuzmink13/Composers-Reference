@@ -9,6 +9,7 @@ import QuickGuide from './QuickGuide';
 import ModeCard from './ModeCard';
 import Keys from './Keys';
 import ModeController from './ModeController';
+import Footer from './Footer';
 
 import { KeyProvider } from '../contexts/KeyContext';
 import { ModeProvider } from '../contexts/ModeContext';
@@ -137,7 +138,7 @@ function App({ noteProps, quickGuideProps }) {
         </PopOver>
       )}
 
-      <main className="w-full overflow-y-hidden mx-auto flex flex-col lg:max-w-screen-lg">
+      <main className="flex-grow w-full overflow-y-hidden mx-auto flex flex-col lg:max-w-screen-lg">
         <KeyProvider
           keyProps={{
             ...{ notes, root, handleNoteSelection },
@@ -152,6 +153,8 @@ function App({ noteProps, quickGuideProps }) {
           <ModeController {...{ modeLists }} />
         </ModeProvider>
       </main>
+
+      <Footer />
     </Fragment>
   );
 }

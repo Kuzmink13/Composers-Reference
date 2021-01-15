@@ -21,7 +21,7 @@ function Keys({ screenHeight, screenWidth }) {
     <div
       className={`mx-8 ${
         isShort ? 'py-4' : 'py-8'
-      } flex flex-row justify-center border-b border-gray-400`}
+      } flex-none flex flex-row justify-center border-b border-gray-400`}
     >
       {keys}
     </div>
