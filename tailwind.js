@@ -360,6 +360,7 @@ module.exports = {
     }),
     maxHeight: {
       card: '20rem',
+      guide: '30rem',
       full: '100%',
       screen: '100vh',
     },

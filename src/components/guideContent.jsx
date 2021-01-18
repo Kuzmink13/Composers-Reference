@@ -6,11 +6,23 @@ import VexFigure from './VexFigure';
 import SmartLink from './SmartLink';
 import VideoEmbed from './VideoEmbed';
 
-const guideContent = [
+const headings = [
+  "Welcome to Composer's Reference!",
+  'Show Us What You’re Hearing…',
+  'The Scales Are Coming!',
+  'Time to Get Creative!',
+  'Too Many Notes!',
+  'Too Many Notes! (pt.2)',
+  'We Need To Go Deeper...',
+  'More Chords Please!',
+  'Time to Get Modal!',
+  'Mode-Card Movement Summary',
+  "That's All For Now!",
+];
+
+const content = [
   <Fragment>
-    <h3 className="text-xl font-bold tracking-wider text-center mb-4">
-      Welcome to Composer's Reference!
-    </h3>
+    {/* Welcome to Composer's Reference! */}
     <p className="mb-4">
       Composer’s Reference is a one-stop interactive tool that packages
       centuries of music theory wisdom into a streamlined interface focused on
@@ -29,18 +41,16 @@ const guideContent = [
   </Fragment>,
 
   <Fragment>
-    <h3 className="text-xl font-bold tracking-wider text-center mb-4">
-      Show Us What You’re Hearing…
-    </h3>
+    {/* Show Us What You’re Hearing… */}
     <p className="mb-4">
-      To get started, Composer’s Reference requires a{' '}
+      To get started, Composer’s Reference requires you to define a{' '}
       <i>
         <SmartLink term="set">pitch class set</SmartLink>
       </i>
-      , an unordered collection of notes{' '}
-      <SmartLink term="pitch class">(pitch classes)</SmartLink> that represent
-      an abstract musical idea. A set can be a deconstructed melody, a chord, or
-      any otherwise related group of notes:
+      , an unordered collection of notes (
+      <SmartLink term="pitch class">pitch classes</SmartLink>) that represent an
+      abstract musical idea. This can be a deconstructed melody, a chord, or any
+      otherwise related group of notes:
     </p>
     <VexFigure
       pitches={[0, 4, 5, 7]}
@@ -64,9 +74,7 @@ const guideContent = [
   </Fragment>,
 
   <Fragment>
-    <h3 className="text-xl font-bold tracking-wider text-center mb-4">
-      The Scales Are Coming!
-    </h3>
+    {/* The Scales Are Coming! */}
     <p className="mb-4">
       When you start selecting notes, the bottom part of the screen will
       instantly generate all the scales Composer’s Reference knows that contain
@@ -82,9 +90,7 @@ const guideContent = [
   </Fragment>,
 
   <Fragment>
-    <h3 className="text-xl font-bold tracking-wider text-center mb-4">
-      Time to Get Creative!
-    </h3>
+    {/* Time to Get Creative! */}
     <p className="mb-4">
       There are many ways to work these results back into your music. Here’s a
       few ideas to get you started:
@@ -96,8 +102,8 @@ const guideContent = [
       </li>
       <li className="pb-2">
         See what disparate tonalities are related to your original idea and
-        string them together to go on a musical journey around the circle of
-        fifths.
+        string them together to go on a musical journey around the{' '}
+        <SmartLink>circle of fifths</SmartLink>.
       </li>
       <li className="pb-2">
         Take some chord changes and turn them into sets. Then use the results to
@@ -115,59 +121,53 @@ const guideContent = [
   </Fragment>,
 
   <Fragment>
-    <h3 className="text-xl font-bold tracking-wider text-center mb-4">
-      Too Many Notes!
-    </h3>
+    {/* Too Many Notes! */}
     <p className="mb-4">
       If you find that there are just too many options to work with, Composer’s
       Reference offers a few ways to help narrow down what you’re looking for:
     </p>
-    <ul className="list-disc px-8 pb-2">
-      <li className="pb-2">
-        <p className="pb-2">
-          Six, seven, and eight notes scales are separated into their own
-          results panels. Click the buttons to toggle between them.
-        </p>
-        <VideoEmbed
-          key="length_selection"
-          classAddOn="h-12"
-          width="462"
-          src="videos/length_selection.mp4"
-        />
-      </li>
-      <li className="pb-2">
-        <p className="pb-2">
-          Filter for a specific key by holding down <i>shift</i> and selecting a
-          note as usual. (long-press on mobile)
-        </p>
-        <VideoEmbed
-          key="root_selection"
-          classAddOn="h-40"
-          width="302"
-          src="videos/root_selection.mp4"
-        />
+    <ul className="list-disc px-8 pb-4">
+      <li>
+        Six, seven, and eight notes scales are separated into their own results
+        panels. Click the buttons to toggle between them.
       </li>
     </ul>
+    <VideoEmbed
+      key="length_selection"
+      classAddOn="h-12 mb-4"
+      width="462"
+      src="videos/length_selection.mp4"
+    />
+    <ul className="list-disc px-8 pb-4">
+      <li>
+        Filter for a specific key by holding down <i>shift</i> and selecting a
+        note as usual. (long-press on mobile)
+      </li>
+    </ul>
+    <VideoEmbed
+      key="root_selection"
+      classAddOn="h-40"
+      width="302"
+      src="videos/root_selection.mp4"
+    />
   </Fragment>,
 
   <Fragment>
-    <h3 className="text-xl font-bold tracking-wider text-center mb-4">
-      Too Many Notes! (pt.2)
-    </h3>
-    <ul className="list-disc px-8 pb-2">
-      <li className="pb-2">
-        <p className="pb-2">
-          Visit the settings drop-down to filter for scales that have one of
-          your selected notes as a tonic.
-        </p>
-        <VideoEmbed
-          key="fiilter_settings"
-          classAddOn="h-80"
-          width="247"
-          src="videos/filter_settings.mp4"
-        />
+    {/* Too Many Notes! (pt.2) */}
+    <ul className="list-disc px-8 pb-4">
+      <li>
+        Visit the settings drop-down to filter for scales that have one of your
+        selected notes as a tonic.
       </li>
-      <li className="pb-2">
+    </ul>
+    <VideoEmbed
+      key="fiilter_settings"
+      classAddOn="h-80 mb-4"
+      width="247"
+      src="videos/filter_settings.mp4"
+    />
+    <ul className="list-disc px-8 pb-2">
+      <li>
         The settings drop down is also where you can filter out{' '}
         <HashLink to="/scales#scale_family" className="external-link">
           scale-families
@@ -178,9 +178,7 @@ const guideContent = [
   </Fragment>,
 
   <Fragment>
-    <h3 className="text-xl font-bold tracking-wider text-center mb-4">
-      We Need To Go Deeper...
-    </h3>
+    {/* We Need To Go Deeper... */}
     <p className="mb-4">
       Now it’s time to get into the heart of the Composer’s Reference workflow!
       Click on a scale to enter the <i>mode-card view</i>. Here, Composer’s
@@ -201,9 +199,7 @@ const guideContent = [
   </Fragment>,
 
   <Fragment>
-    <h3 className="text-xl font-bold tracking-wider text-center mb-4">
-      More Chords Please!
-    </h3>
+    {/* More Chords Please! */}
     <p className="mb-4">
       Want the chords from a neighboring scale degree instead? Click the
       left/right arrows (or use the arrow keys) to move to the next{' '}
@@ -225,9 +221,7 @@ const guideContent = [
   </Fragment>,
 
   <Fragment>
-    <h3 className="text-xl font-bold tracking-wider text-center mb-4">
-      Time to Get Modal!
-    </h3>
+    {/* Time to Get Modal! */}
     <p className="mb-4">
       Eventually you will decide it's time to go beyond the constraints of a
       single pitch class set. When you're ready, click the up/down arrows to
@@ -244,15 +238,13 @@ const guideContent = [
     />
     <p className="mb-4">
       If you want to move beyond your key altogether, shift-select or long-press
-      the up/down arrows to transpose your scale by one step in the{' '}
-      <SmartLink>circle of fifths</SmartLink>.
+      the up/down arrows to transpose your scale by one step in the circle of
+      fifths.
     </p>
   </Fragment>,
 
   <Fragment>
-    <h3 className="text-xl font-bold tracking-wider text-center mb-4">
-      Mode-Card Movement Summary
-    </h3>
+    {/* Mode-Card Movement Summary */}
     <p className="mb-4">
       Combining the four ways of moving between mode-cards lets you find new
       tonalities quickly and organically. That's why it's important to have a
@@ -276,9 +268,7 @@ const guideContent = [
   </Fragment>,
 
   <Fragment>
-    <h3 className="text-xl font-bold tracking-wider text-center mb-4">
-      That's All For Now!
-    </h3>
+    {/* That's All For Now! */}
     <p className="mb-4">
       Composer's Reference is a simple tool with complex implications. There are
       over four thousand possible pitch class sets that can reduce to any of the
@@ -306,7 +296,7 @@ const guideContent = [
         more on terms commonly used throughout Composer's Reference
       </li>
     </ul>
-    <p className="text-center text-base pb-4">
+    <p className="text-center text-sm md:text-base pb-4">
       Have a feature request?{' '}
       <Link to="/contact" className="external-link">
         Submit it here!
@@ -315,4 +305,23 @@ const guideContent = [
   </Fragment>,
 ];
 
-export default guideContent;
+export const numPages = headings.length;
+
+function GuideContent({ guideIndex }) {
+  return (
+    <Fragment>
+      <h3 className="px-8 mb-4 text-base md:text-xl font-bold tracking-wider text-center">
+        {headings[guideIndex]}
+      </h3>
+      <div
+        tabIndex="0"
+        className="flex flex-col px-0 md:px-12 mb-4 max-h-card sm:max-h-guide overflow-y-auto
+  text-base md:text-lg text-gray-800 focus:outline-none"
+      >
+        {content[guideIndex]}
+      </div>
+    </Fragment>
+  );
+}
+
+export default GuideContent;

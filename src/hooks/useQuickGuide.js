@@ -2,7 +2,7 @@ import { useState } from 'react';
 import useToggle from './useToggle';
 import useKeyboardFn, { keyArrays } from './useKeyboardFn';
 
-import guideContent from '../components/guideContent';
+import { numPages } from '../components/GuideContent';
 
 const initialState = {
   isGuideDismissed: false,
@@ -27,7 +27,7 @@ function useQuickGuide() {
   const [guideIndex, setGuideIndex] = useState(initialState.guideIndex);
 
   const incrementPage = () =>
-    guideIndex < guideContent.length - 1 && setGuideIndex(guideIndex + 1);
+    guideIndex < numPages - 1 && setGuideIndex(guideIndex + 1);
 
   const decrementPage = () => guideIndex > 0 && setGuideIndex(guideIndex - 1);
 

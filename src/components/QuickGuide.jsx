@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import guideContent from './guideContent';
+import GuideContent, { numPages } from './GuideContent';
 
 import useKeyboarFn, { keyArrays } from '../hooks/useKeyboardFn';
 
@@ -24,16 +24,11 @@ function QuickGuide({
   return (
     <div className="flex flex-col items-center relative p-4">
       {/* CONTENT */}
-      <div
-        tabIndex="0"
-        className="flex flex-col px-12 pb-4 text-gray-800 text-lg focus:outline-none"
-      >
-        {guideContent[guideIndex]}
-      </div>
+      <GuideContent key={guideIndex} {...{ guideIndex }} />
 
       {/* BUTTONS */}
       <div className="flex flex-col-reverse xs:flex-row w-full justify-between items-center">
-        <div className="flex items-center pb-1 mx-2 mt-3 xs:mt-0">
+        <div className="flex items-center pb-1 mx-2">
           <button
             name="skip quick start guide"
             className="tab-selection p-1"
@@ -69,14 +64,14 @@ function QuickGuide({
             name="next slide"
             className="tab-selection p-1 disabled:opacity-50"
             onClick={indexFns.incrementPage}
-            disabled={guideIndex === guideContent.length - 1}
+            disabled={guideIndex === numPages - 1}
           >
             <div className="btn btn-text btn-p">NEXT</div>
           </button>
         </div>
       </div>
       <div className="absolute top-0 left-0 m-2 px-1 text-sm text-gray-600">
-        {guideIndex + 1}/{guideContent.length}
+        {guideIndex + 1}/{numPages}
       </div>
     </div>
   );
