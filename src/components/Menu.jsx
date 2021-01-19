@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 
 function Menu({ toggleShowGuide }) {
   const links = [
-    { title: 'About' },
+    { title: 'About', link: '/about' },
+    { title: 'Contact', link: '/contact' },
+    { title: 'Meet the Scales', link: '/scales' },
+    { title: 'Glossary', link: '/glossary' },
     { title: 'Quick Start Guide', click: () => toggleShowGuide() },
-    { title: 'Meet the Scales', link: '/Scales' },
-    { title: 'FAQ' },
-    { title: 'Contact' },
   ];
 
   return (
