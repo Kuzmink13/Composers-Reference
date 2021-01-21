@@ -30,6 +30,7 @@ function QuickGuide({
       <div className="flex flex-col-reverse xs:flex-row w-full justify-between items-center">
         <div className="flex items-center pb-1 mx-2">
           <button
+            aria-label="skip quick start guide"
             name="skip quick start guide"
             className="tab-selection p-1"
             onClick={skipGuide}
@@ -53,6 +54,7 @@ function QuickGuide({
 
         <div>
           <button
+            aria-label="previous slide"
             name="previous slide"
             className="tab-selection p-1 disabled:opacity-50"
             onClick={indexFns.decrementPage}
@@ -61,6 +63,7 @@ function QuickGuide({
             <div className="btn btn-text btn-p">PREV.</div>
           </button>
           <button
+            aria-label="next slide"
             name="next slide"
             className="tab-selection p-1 disabled:opacity-50"
             onClick={indexFns.incrementPage}
@@ -70,7 +73,7 @@ function QuickGuide({
           </button>
         </div>
       </div>
-      <div className="absolute top-0 left-0 m-2 px-1 text-sm text-gray-600">
+      <div className="absolute top-0 left-0 m-2 px-1 text-sm text-gray-700">
         {guideIndex + 1}/{numPages}
       </div>
     </div>

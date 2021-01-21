@@ -8,6 +8,7 @@ function ModeBlock({ mode }) {
 
   return (
     <button
+      aria-label={`open mode-card for ${mode.getModeName()}`}
       onClick={() => openModeCard(mode)}
       className="tab-selection m-1 p-1"
     >

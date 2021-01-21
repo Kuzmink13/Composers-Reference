@@ -10,6 +10,7 @@ function VexStaff({ mode, clef = supportedClefs.treble }) {
     <figure
       id={mode.getAbsoluteModeCode()}
       className="h-staff-height w-staff-width"
+      alt={mode.getScaleNotes()}
     ></figure>
   );
 }

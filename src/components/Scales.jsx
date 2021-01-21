@@ -15,12 +15,12 @@ function Scales() {
           to="/"
           className="my-2 pl-5 sm:mr-5 whitespace-no-wrap
           text-sm sm:text-base font-medium hover:underline
-          text-gray-600 hover:text-gray-800"
+          text-gray-700 hover:text-gray-900"
         >
           return to app
         </Link>
       </Navbar>
-      <div className="w-full h-full overflow-y-auto overscroll-y-auto">
+      <div className="text-gray-900 w-full h-full overflow-y-auto overscroll-y-auto">
         <div className="flex flex-col mx-auto px-4 pb-24 md:max-w-screen-md text-lg lg:text-xl">
           <h2 className="font-bold pt-12 pb-6 text-3xl text-gray-900">
             Meet the Scales

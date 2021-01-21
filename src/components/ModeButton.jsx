@@ -13,15 +13,14 @@ function ModeButton({ listIndex, buttonLabel, listSize }) {
       }`}
     >
       <button
+        aria-label={`select ${buttonLabel.toLowerCase()} note mode list`}
         onClick={() => handleSelectorChange(listIndex)}
         className="text-xs sm:text-base tab-selection py-2 px-1 sm:px-2 font-semibold tracking-wider cursor-pointer"
       >
-        <span className={isSelected ? 'text-gray-800' : 'text-gray-500'}>
-          {buttonLabel}-NOTE
-        </span>
+        <span className="text-gray-900">{buttonLabel}-NOTE</span>
         <span
-          className={`text-white text-xs ml-1 sm:ml-3 py-1 px-1 sm:px-2 rounded-full shadow-md ${
-            isSelected ? 'bg-gray-700' : 'bg-gray-400'
+          className={`font-bold text-xs ml-1 sm:ml-3 py-1 px-1 sm:px-2 rounded-full shadow-md ${
+            isSelected ? 'text-white bg-gray-700' : 'text-gray-800 bg-gray-400'
           }`}
         >
           {listSize}

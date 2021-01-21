@@ -113,7 +113,7 @@ const content = [
     </ul>
     <p className="mb-4">
       Tip: to get the most out of Composer’s Reference,{' '}
-      <Link to="/scales" className="external-link">
+      <Link aria-label="Meet the Scales" to="/scales" className="external-link">
         click here
       </Link>{' '}
       to <i>meet the scales</i>
@@ -298,7 +298,11 @@ const content = [
     </ul>
     <p className="text-center text-sm md:text-base pb-4">
       Have a feature request?{' '}
-      <Link to="/contact" className="external-link">
+      <Link
+        aria-label="Submit a feature request"
+        to="/contact"
+        className="external-link"
+      >
         Submit it here!
       </Link>
     </p>

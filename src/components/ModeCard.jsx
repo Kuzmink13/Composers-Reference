@@ -14,6 +14,7 @@ function ModeCard({ mode, clef, openModeCard }) {
   const buttons = [
     {
       name: 'ArrowLeft',
+      function: 'get mode-card for previous relative-mode',
       clicks: useLongPress(
         (e) => shift.LR(e, false, true),
         (e) => shift.LR(e, false)
@@ -22,6 +23,7 @@ function ModeCard({ mode, clef, openModeCard }) {
     },
     {
       name: 'ArrowDown',
+      function: 'get mode-card for previous key/parallel-mode',
       clicks: useLongPress(
         (e) => shift.UD(e, false, true),
         (e) => shift.UD(e, false)
@@ -30,6 +32,7 @@ function ModeCard({ mode, clef, openModeCard }) {
     },
     {
       name: 'ArrowUp',
+      function: 'get mode-card for next key/parallel-mode',
       clicks: useLongPress(
         (e) => shift.UD(e, true, true),
         (e) => shift.UD(e, true)
@@ -38,6 +41,7 @@ function ModeCard({ mode, clef, openModeCard }) {
     },
     {
       name: 'ArrowRight',
+      function: 'get mode-card for next relative-mode',
       clicks: useLongPress(
         (e) => shift.LR(e, true, true),
         (e) => shift.LR(e, true)
@@ -71,6 +75,7 @@ function ModeCard({ mode, clef, openModeCard }) {
       <div className="flex">
         {buttons.map((button) => (
           <button
+            aria-label={button.function}
             name={button.name}
             key={button.name}
             className="tab-selection p-2 text-gray-600 hover:text-gray-800"

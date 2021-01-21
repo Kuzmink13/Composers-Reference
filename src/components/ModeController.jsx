@@ -27,7 +27,7 @@ function ModeController({ modeLists }) {
       {selectedList.length ? (
         <ModePanel selectedList={selectedList} />
       ) : (
-        <span className="text-gray-500 text-sm font-semibold tracking-wider m-auto mt-12 px-4 text-center">
+        <span className="text-gray-700 text-sm font-semibold tracking-wider m-auto mt-12 px-4 text-center">
           no results to display for the current selection
         </span>
       )}

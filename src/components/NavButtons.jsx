@@ -45,6 +45,7 @@ function NavButtons({
       {buttons.map((button) => (
         <Fragment key={button.name}>
           <button
+            aria-label={button.name}
             name={button.name}
             className="tab-selection p-2 text-gray-600 hover:text-gray-800 sm:mr-2"
             onClick={() => button.onClick()}

@@ -11,12 +11,12 @@ function About() {
           to="/"
           className="my-2 pl-5 sm:mr-5 whitespace-no-wrap
           text-sm sm:text-base font-medium hover:underline
-          text-gray-600 hover:text-gray-800"
+          text-gray-700 hover:text-gray-900"
         >
           return to app
         </Link>
       </Navbar>
-      <div className="w-full h-full overflow-y-auto overscroll-y-auto">
+      <div className="text-gray-900 w-full h-full overflow-y-auto overscroll-y-auto">
         <div className="flex flex-col mx-auto px-4 pb-16 md:max-w-screen-md text-lg lg:text-xl">
           <h2 className="font-bold pt-12 pb-6 text-3xl text-gray-900">About</h2>
           <p className="mb-6">
@@ -53,6 +53,7 @@ function About() {
             provided under the GNU General Public Licsence v3.0. Support its
             development on{' '}
             <a
+              aria-label="Support development on GitHub"
               href="https://github.com/Kuzmink13/Composers-Reference"
               target="_"
               className="external-link"
@@ -63,6 +64,7 @@ function About() {
           <p className="mb-6">
             Composer's Reference is created and maintained by{' '}
             <a
+              aria-label="Visit Konstantin Kuzmin's Website"
               href="https://konstantinkuzmin.com"
               target="_"
               className="external-link"

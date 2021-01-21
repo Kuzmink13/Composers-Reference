@@ -69,7 +69,8 @@ function PopOver({
       {children}
       {showCloseButton && (
         <button
-          name="close mode-card"
+          aria-label="close pop-over"
+          name="close pop-over"
           className="absolute top-0 right-0 tab-selection p-2 m-1 text-gray-600 hover:text-gray-800"
           onClick={closeFn}
         >

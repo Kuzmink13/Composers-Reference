@@ -7,6 +7,7 @@ function Footer() {
         Composer's Reference is provided under the GNU General Public License
         v3.0. Contribute on{' '}
         <a
+          aria-label="Support development on GitHub"
           href="https://github.com/Kuzmink13/Composers-Reference"
           target="_"
           className="external-link"
