@@ -1,6 +1,7 @@
+// https://stackoverflow.com/a/48057286/13995128
+
 import { useState, useCallback, useRef } from 'react';
 
-// https://stackoverflow.com/questions/48048957/react-long-press-event
 const useLongPress = (
   onLongPress,
   onClick,

@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) Konstantin Kuzmin. All Rights Reserved.
+ * This source code is licensed under the GNU General Public License v3.0
+ */
+
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';

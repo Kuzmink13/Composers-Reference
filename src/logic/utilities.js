@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) Konstantin Kuzmin. All Rights Reserved.
+ * This source code is licensed under the GNU General Public License v3.0
+ */
+
 const jsMusicSymbols = [
   { regex: /##/g, replacement: '\uD834\uDD2A' },
   { regex: /bb/g, replacement: '\uD834\uDD2B' },

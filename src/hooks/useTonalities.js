@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) Konstantin Kuzmin. All Rights Reserved.
+ * This source code is licensed under the GNU General Public License v3.0
+ */
+
 import { useState, useEffect } from 'react';
 
 import { getItem, setItem } from '../logic/storage';

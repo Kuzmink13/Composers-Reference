@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) Konstantin Kuzmin. All Rights Reserved.
+ * This source code is licensed under the GNU General Public License v3.0
+ */
+
 import { useReducer, useCallback } from 'react';
 import * as keyMap from '../assets/keyMap.json';
 

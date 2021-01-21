@@ -23,6 +23,11 @@ function getOctave(clef, firstNote) {
   return baseOctaves[clef] + clefAdjustment[clef] - isCflat;
 }
 
+/**
+ * Copyright (c) Konstantin Kuzmin. All Rights Reserved.
+ * This source code is licensed under the GNU General Public License v3.0
+ */
+
 function toVexScale(mode, octave, clef) {
   const pitches = mode.getAbsolutePitches();
   const noteAdjustment = (note, i) =>
