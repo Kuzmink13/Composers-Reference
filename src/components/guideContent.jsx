@@ -295,10 +295,10 @@ const content = [
         a primer on the scale-theory concepts driving Composer's Reference
       </li>
       <li className="pb-2">
-        <Link to="/glossary" className="external-link">
-          Glossary:
+        <Link to="/references" className="external-link">
+          References:
         </Link>{' '}
-        more on terms commonly used throughout Composer's Reference
+        more on terms and concepts commonly used throughout Composer's Reference
       </li>
     </ul>
     {/* <p className="text-center text-sm md:text-base pb-4">

@@ -19,13 +19,13 @@
     "",
     {
       "diminishedFifth": [
-        "dim",
+        "dim_",
         {
           "diminishedSeventh": [
-            "dim7",
+            "dim_7",
             {
-              "minorNinth": ["dim7 (b9)", {}],
-              "majorNinth": ["dim9", {}]
+              "minorNinth": ["dim_7 (b9)", {}],
+              "majorNinth": ["dim_9", {}]
             }
           ],
           "minorSeventh": [

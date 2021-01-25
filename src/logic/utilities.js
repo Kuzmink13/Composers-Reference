@@ -9,7 +9,7 @@ const jsMusicSymbols = [
   { regex: /#/g, replacement: '\u266F' },
   { regex: /b/g, replacement: '\u266D' },
   { regex: /nat/g, replacement: '\u266E' },
-  { regex: /dim/g, replacement: '\uD834\uDDC8' },
+  { regex: /dim_/g, replacement: '\uD834\uDDC8' },
 ];
 
 export const notesInOctave = 12;

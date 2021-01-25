@@ -10,7 +10,7 @@ import App from './App';
 import About from './About';
 // import Contact from './Contact';
 import Scales from './Scales';
-import Glossary from './Glossary';
+import References from './References';
 
 import useNotes from '../hooks/useNotes';
 import useQuickGuide from '../hooks/useQuickGuide';
@@ -29,7 +29,7 @@ function Main() {
         <Route path="/about" component={About} />
         {/* <Route path="/contact" component={Contact} /> */}
         <Route path="/scales" component={Scales} />
-        <Route path="/glossary" component={Glossary} />
+        <Route path="/references" component={References} />
       </Switch>
     </BrowserRouter>
   );

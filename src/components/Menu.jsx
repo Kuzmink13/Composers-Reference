@@ -10,9 +10,9 @@ function Menu({ toggleShowGuide }) {
   const links = [
     { title: 'About', link: '/about' },
     // { title: 'Contact', link: '/contact' },
+    { title: 'Quick Start Guide', click: () => toggleShowGuide(), link: '' },
     { title: 'Meet the Scales', link: '/scales' },
-    { title: 'Glossary', link: '/glossary' },
-    { title: 'Quick Start Guide', click: () => toggleShowGuide() },
+    { title: 'References', link: '/references' },
   ];
 
   return (
