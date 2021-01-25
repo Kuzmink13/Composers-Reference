@@ -301,7 +301,7 @@ const content = [
         more on terms commonly used throughout Composer's Reference
       </li>
     </ul>
-    <p className="text-center text-sm md:text-base pb-4">
+    {/* <p className="text-center text-sm md:text-base pb-4">
       Have a feature request?{' '}
       <Link
         aria-label="Submit a feature request"
@@ -310,7 +310,7 @@ const content = [
       >
         Submit it here!
       </Link>
-    </p>
+    </p> */}
   </Fragment>,
 ];
 

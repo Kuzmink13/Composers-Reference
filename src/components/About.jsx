@@ -5,10 +5,39 @@
 
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import * as svg from '../assets/svg.json';
 
 import Navbar from './Navbar';
 
 function About() {
+  const socialLinks = [
+    {
+      name: 'github',
+      link: 'https://github.com/Kuzmink13',
+      path: svg.github,
+    },
+    {
+      name: 'linkedin',
+      link: 'https://www.linkedin.com/in/konstantin-k-8b1a82b0/',
+      path: svg.linkedin,
+    },
+    // {
+    //   name: 'twitter',
+    //   link: '',
+    //   path: svg.twitter,
+    // },
+    // {
+    //   name: 'instagram',
+    //   link: '',
+    //   path: svg.instagram,
+    // },
+    // {
+    //   name: 'medium',
+    //   link: 'https://medium.com/@konstantinkuzmin9',
+    //   path: svg.medium,
+    // },
+  ];
+
   return (
     <Fragment>
       <Navbar>
@@ -22,7 +51,7 @@ function About() {
         </Link>
       </Navbar>
       <div className="text-gray-900 w-full h-full overflow-y-auto overscroll-y-auto">
-        <div className="flex flex-col mx-auto px-4 pb-16 md:max-w-screen-md text-lg lg:text-xl">
+        <div className="flex flex-col mx-auto px-4 pb-8 md:max-w-screen-md text-lg lg:text-xl">
           <h2 className="font-bold pt-12 pb-6 text-3xl text-gray-900">About</h2>
           <p className="mb-6">
             Composer's Reference is a open-source web application with a
@@ -76,11 +105,31 @@ function About() {
             >
               Konstantin Kuzmin
             </a>
-            , a software developer and composer from Minneapolis, Minnesota.{' '}
-            <Link to="/contact" className="external-link">
+            , a software developer and composer from Minneapolis, Minnesota.
+            {/* <Link to="/contact" className="external-link">
               Contact here.
-            </Link>
+            </Link> */}
           </p>
+          <ul className="flex flex-row mx-auto">
+            {socialLinks.map((el) => (
+              <li key={el.name}>
+                <a
+                  aria-label={el.name}
+                  name={el.name}
+                  target="_"
+                  className="tab-selection text-gray-600 hover:text-gray-800 sm:mr-2"
+                  href={el.link}
+                >
+                  <svg
+                    className="fill-current h-8 w-8 z-30 cursor-pointer mx-3"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d={el.path} />
+                  </svg>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
         <p className="mb-4 text-center">
           Composer's Reference &#169; Konstantin Kuzmin 2021

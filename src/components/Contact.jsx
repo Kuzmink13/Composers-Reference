@@ -74,7 +74,7 @@ function Contact() {
               id="message"
               name="message"
               placeholder="write something..."
-              className="py-1 px-2 mt-1 border border-gray-400 rounded-md"
+              className="py-1 px-2 mt-2 border border-gray-400 rounded-md"
             ></textarea>
 
             <input

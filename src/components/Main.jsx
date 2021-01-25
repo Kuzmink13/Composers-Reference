@@ -8,7 +8,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import App from './App';
 import About from './About';
-import Contact from './Contact';
+// import Contact from './Contact';
 import Scales from './Scales';
 import Glossary from './Glossary';
 
@@ -27,7 +27,7 @@ function Main() {
           render={() => <App {...{ noteProps, quickGuideProps }} />}
         />
         <Route path="/about" component={About} />
-        <Route path="/contact" component={Contact} />
+        {/* <Route path="/contact" component={Contact} /> */}
         <Route path="/scales" component={Scales} />
         <Route path="/glossary" component={Glossary} />
       </Switch>
