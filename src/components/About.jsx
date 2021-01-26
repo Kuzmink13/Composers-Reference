@@ -21,6 +21,11 @@ function About() {
       link: 'https://www.linkedin.com/in/konstantin-k-8b1a82b0/',
       path: svg.linkedin,
     },
+    {
+      name: 'stack overflow',
+      link: 'https://stackoverflow.com/users/13995128/kuzmink13',
+      path: svg.stackoverflow,
+    },
     // {
     //   name: 'twitter',
     //   link: '',
