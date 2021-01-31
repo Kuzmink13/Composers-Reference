@@ -30,7 +30,7 @@ function ModeController({ modeLists }) {
       </ModeButtonProvider>
 
       {selectedList.length ? (
-        <ModePanel selectedList={selectedList} />
+        <ModePanel key={selectedList} selectedList={selectedList} />
       ) : (
         <span className="text-gray-700 text-sm font-semibold tracking-wider m-auto mt-12 px-4 text-center">
           no results to display for the current selection
