@@ -5,43 +5,43 @@
 
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import * as svg from '../assets/svg.json';
+// import * as svg from '../assets/svg.json';
 
 import Navbar from './Navbar';
 
 function About() {
-  const socialLinks = [
-    {
-      name: 'github',
-      link: 'https://github.com/Kuzmink13',
-      path: svg.github,
-    },
-    {
-      name: 'linkedin',
-      link: 'https://www.linkedin.com/in/konstantin-k-8b1a82b0/',
-      path: svg.linkedin,
-    },
-    {
-      name: 'stack overflow',
-      link: 'https://stackoverflow.com/users/13995128/kuzmink13',
-      path: svg.stackoverflow,
-    },
-    // {
-    //   name: 'twitter',
-    //   link: '',
-    //   path: svg.twitter,
-    // },
-    // {
-    //   name: 'instagram',
-    //   link: '',
-    //   path: svg.instagram,
-    // },
-    // {
-    //   name: 'medium',
-    //   link: 'https://medium.com/@konstantinkuzmin9',
-    //   path: svg.medium,
-    // },
-  ];
+  // const socialLinks = [
+  //   {
+  //     name: 'github',
+  //     link: '',
+  //     path: svg.github,
+  //   },
+  //   {
+  //     name: 'linkedin',
+  //     link: '',
+  //     path: svg.linkedin,
+  //   },
+  //   {
+  //     name: 'stack overflow',
+  //     link: '',
+  //     path: svg.stackoverflow,
+  //   },
+  //   {
+  //     name: 'twitter',
+  //     link: '',
+  //     path: svg.twitter,
+  //   },
+  //   {
+  //     name: 'instagram',
+  //     link: '',
+  //     path: svg.instagram,
+  //   },
+  //   {
+  //     name: 'medium',
+  //     link: '',
+  //     path: svg.medium,
+  //   },
+  // ];
 
   return (
     <Fragment>
@@ -83,8 +83,8 @@ function About() {
             inundating users with an untenable number of possibilities. The
             scales, modes, and chords supported by Composer's Reference have
             been deliberately chosen to provide a complete sense of what's
-            musically possible without undermining the practicallity of working
-            with a simplified model.
+            musically possible without undermining the practicality of working
+            within a theoretical model.
           </p>
           <p className="mb-6">
             Composer's Reference, in its current form, serves as the foundation
@@ -115,7 +115,7 @@ function About() {
               Contact here.
             </Link> */}
           </p>
-          <ul className="flex flex-row mx-auto">
+          {/* <ul className="flex flex-row mx-auto">
             {socialLinks.map((el) => (
               <li key={el.name}>
                 <a
@@ -134,7 +134,7 @@ function About() {
                 </a>
               </li>
             ))}
-          </ul>
+          </ul> */}
         </div>
         <p className="mb-4 text-center">
           Composer's Reference &#169; Konstantin Kuzmin 2021
