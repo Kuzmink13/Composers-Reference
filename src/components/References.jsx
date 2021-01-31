@@ -30,14 +30,15 @@ function References() {
       </Navbar>
       <div className="text-gray-900 w-full h-full overflow-y-auto overscroll-y-auto">
         <div className="flex flex-col mx-auto px-4 pb-16 md:max-w-screen-md text-lg lg:text-xl">
-          <h2 className="font-bold pt-12 pb-6 text-3xl text-gray-900">
+          <h2 className="font-bold pt-12 pb-6 pl-3 text-3xl text-gray-900">
             References
           </h2>
-          <ul className="flex flex-row flex-wrap">
+          <ul className="flex flex-col xs:flex-row flex-wrap">
             {Object.keys(ref.default)
               .sort(alphabetize)
+              .filter((el) => ref.default[el] !== '')
               .map((el) => (
-                <li key={el} className="pr-8 pb-3 capitalize">
+                <li key={el} className="px-3 pb-3 capitalize">
                   <a
                     className="tab-selection hover:underline"
                     href={ref.default[el]}
