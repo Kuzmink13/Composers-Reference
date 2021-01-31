@@ -15,7 +15,7 @@ function Footer() {
           aria-label="Support development on GitHub"
           href="https://github.com/Kuzmink13/Composers-Reference"
           target="_"
-          className="external-link"
+          className="tab-selection external-link"
         >
           GitHub!
         </a>

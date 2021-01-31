@@ -48,7 +48,7 @@ function About() {
       <Navbar>
         <Link
           to="/"
-          className="my-2 pl-5 sm:mr-5 whitespace-no-wrap
+          className="tab-selection my-2 px-1 ml-4 sm:mr-4 whitespace-no-wrap
           text-sm sm:text-base font-medium hover:underline
           text-gray-700 hover:text-gray-900"
         >
@@ -95,7 +95,7 @@ function About() {
               aria-label="Support development on GitHub"
               href="https://github.com/Kuzmink13/Composers-Reference"
               target="_"
-              className="external-link"
+              className="tab-selection external-link"
             >
               GitHub.
             </a>
@@ -106,12 +106,12 @@ function About() {
               aria-label="Visit Konstantin Kuzmin's Website"
               href="https://konstantinkuzmin.com"
               target="_"
-              className="external-link"
+              className="tab-selection external-link"
             >
               Konstantin Kuzmin
             </a>
             , a software developer and composer from Minneapolis, Minnesota.
-            {/* <Link to="/contact" className="external-link">
+            {/* <Link to="/contact" className="tab-selection external-link">
               Contact here.
             </Link> */}
           </p>
@@ -122,11 +122,11 @@ function About() {
                   aria-label={el.name}
                   name={el.name}
                   target="_"
-                  className="tab-selection text-gray-600 hover:text-gray-800 sm:mr-2"
+                  className="tab-selection block h-10 w-10 mx-6 text-gray-600 hover:text-gray-800 sm:mr-2"
                   href={el.link}
                 >
                   <svg
-                    className="fill-current h-8 w-8 z-30 cursor-pointer mx-3"
+                    className="fill-current h-auto w-auto m-1 z-30 cursor-pointer"
                     viewBox="0 0 24 24"
                   >
                     <path d={el.path} />

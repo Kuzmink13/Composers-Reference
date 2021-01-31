@@ -118,7 +118,11 @@ const content = [
     </ul>
     <p className="mb-4">
       Tip: to get the most out of Composer’s Reference,{' '}
-      <Link aria-label="Meet the Scales" to="/scales" className="external-link">
+      <Link
+        aria-label="Meet the Scales"
+        to="/scales"
+        className="tab-selection external-link"
+      >
         click here
       </Link>{' '}
       to <i>meet the scales</i>
@@ -174,7 +178,10 @@ const content = [
     <ul className="list-disc px-8 pb-2">
       <li>
         The settings drop down is also where you can filter out{' '}
-        <HashLink to="/scales#scale_family" className="external-link">
+        <HashLink
+          to="/scales#scale_family"
+          className="tab-selection external-link"
+        >
           scale-families
         </HashLink>{' '}
         that you never want to see in your results.
@@ -218,7 +225,10 @@ const content = [
     />
     <p className="mb-4">
       Shift-select or long-press the left/right arrows to move by{' '}
-      <HashLink to="/scales#modal_organization" className="external-link">
+      <HashLink
+        to="/scales#modal_organization"
+        className="tab-selection external-link"
+      >
         relative mode brightness
       </HashLink>{' '}
       instead.
@@ -289,13 +299,13 @@ const content = [
     </p>
     <ul className="list-disc px-8 pb-2 mx-auto">
       <li className="pb-2">
-        <Link to="/scales" className="external-link">
+        <Link to="/scales" className="tab-selection external-link">
           Meet the Scales:
         </Link>{' '}
         a primer on the scale-theory concepts driving Composer's Reference
       </li>
       <li className="pb-2">
-        <Link to="/references" className="external-link">
+        <Link to="/references" className="tab-selection external-link">
           References:
         </Link>{' '}
         more on terms and concepts commonly used throughout Composer's Reference
@@ -306,7 +316,7 @@ const content = [
       <Link
         aria-label="Submit a feature request"
         to="/contact"
-        className="external-link"
+        className="tab-selection external-link"
       >
         Submit it here!
       </Link>

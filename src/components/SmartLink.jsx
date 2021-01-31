@@ -16,7 +16,11 @@ function SmartLink({
 }) {
   const link = refs.default[term];
   return link ? (
-    <a href={link} target={newTab ? '_' : ''} className="external-link">
+    <a
+      href={link}
+      target={newTab ? '_' : ''}
+      className="tab-selection external-link"
+    >
       {willReplaceSymbols ? replaceSymbols(children) : children}
     </a>
   ) : willReplaceSymbols ? (

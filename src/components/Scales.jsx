@@ -18,7 +18,7 @@ function Scales() {
       <Navbar>
         <Link
           to="/"
-          className="my-2 pl-5 sm:mr-5 whitespace-no-wrap
+          className="tab-selection my-2 px-1 ml-4 sm:mr-4 whitespace-no-wrap
           text-sm sm:text-base font-medium hover:underline
           text-gray-700 hover:text-gray-900"
         >
