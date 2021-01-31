@@ -10,6 +10,6 @@ Composer's Reference values consistency and conciseness over inundating users wi
 
 Composer's Reference, in its current form, serves as the foundation for a comprehensive, music theory application resource. It is provided under the GNU General Public Licsence v3.0. Support its development on GitHub.
 
-Composer's Reference is created and maintained by [Konstantin Kuzmin](www.konstantinkuzmin.com), a software developer and composer from Minneapolis, Minnesota.
+Composer's Reference is created and maintained by Konstantin Kuzmin, a software developer and composer from Minneapolis, Minnesota.
 
 Composer's Reference © Konstantin Kuzmin 2021
