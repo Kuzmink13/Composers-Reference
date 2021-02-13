@@ -15,6 +15,6 @@ export const rootSelect = (noteIndex) => ({
   payload: { noteIndex },
 });
 
-export const noteRESET = () => ({
+export const noteReset = () => ({
   type: NOTE_RESET,
 });
