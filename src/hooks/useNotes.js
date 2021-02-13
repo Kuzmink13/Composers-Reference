@@ -3,84 +3,42 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import { useReducer, useCallback } from 'react';
+import { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+
 import * as keyMap from '../assets/keyMap.json';
 
 import useKeyboardFn, { keyArrays } from './useKeyboardFn';
 
-import { notesInOctave } from '../logic/utilities';
-
-const initialState = {
-  notes: Array(notesInOctave).fill(false),
-  root: undefined,
-};
-
-const actions = {
-  select: 'select',
-  rootSelect: 'root_select',
-  reset: 'reset',
-};
-
-function reducer(state, action) {
-  const isSelection = (i) => {
-    return i === action.payload.note;
-  };
-
-  switch (action.type) {
-    case actions.select:
-      return {
-        notes: state.notes.map((el, i) => (isSelection(i) ? !el : el)),
-        root: action.payload.isRoot ? initialState.root : state.root,
-      };
-
-    case actions.rootSelect:
-      return {
-        notes: state.notes.map((el, i) => (isSelection(i) ? true : el)),
-        root: action.payload.isRoot ? initialState.root : action.payload.note,
-      };
-
-    case actions.reset:
-      return initialState;
-
-    default:
-      return state;
-  }
-}
+import { noteReset, noteSelect, rootSelect } from '../redux/actions';
 
 function useNotes() {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  const handleNoteSelection = useCallback(
-    (event, note, isRootSelect = event.shiftKey) => {
-      dispatch({
-        type: isRootSelect ? actions.rootSelect : actions.select,
-        payload: { note, isRoot: state.root === note },
-      });
-    },
-    [state.root]
-  );
-
-  const resetNotes = () => {
-    dispatch({ type: actions.reset });
-  };
+  const dispatch = useDispatch();
 
   const KeyBoardPress = useCallback(
     (event) => {
       const pressedNote = keyMap.keyToNote[event.code];
-      pressedNote !== undefined && handleNoteSelection(event, pressedNote);
+      if (pressedNote !== undefined) {
+        event.shiftKey
+          ? dispatch(rootSelect(pressedNote))
+          : dispatch(noteSelect(pressedNote));
+      }
     },
-    [handleNoteSelection]
+    [dispatch]
   );
 
   const [toggleFreezeKeys] = useKeyboardFn(KeyBoardPress);
-  const [toggleFreezeDel] = useKeyboardFn(resetNotes, keyArrays.delete);
+  const [toggleFreezeDel] = useKeyboardFn(
+    () => dispatch(noteReset()),
+    keyArrays.delete
+  );
 
   const toggleFreeze = (isFrozen) => {
     toggleFreezeKeys(isFrozen);
     toggleFreezeDel(isFrozen);
   };
 
-  return [state, handleNoteSelection, resetNotes, toggleFreeze];
+  return [toggleFreeze];
 }
 
 export default useNotes;

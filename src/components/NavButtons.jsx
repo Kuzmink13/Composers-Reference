@@ -4,29 +4,28 @@
  */
 
 import React, { Fragment } from 'react';
+import { useDispatch } from 'react-redux';
+
 import * as svg from '../assets/svg.json';
 
 import PopOver from './PopOver';
 
 import useNavButtons from '../hooks/useNavButtons';
 
-function NavButtons({
-  isModeCardShown,
-  isGuideShown,
-  resetNotes,
-  options,
-  menu,
-}) {
+import { noteReset } from '../redux/actions';
+
+function NavButtons({ isModeCardShown, isGuideShown, options, menu }) {
   const [
     { optionsIsOpen, menuIsOpen },
     toggleOptions,
     toggleMenu,
   ] = useNavButtons(isModeCardShown || isGuideShown);
+  const dispatch = useDispatch();
 
   const buttons = [
     {
       name: 'reset note selection',
-      onClick: resetNotes,
+      onClick: () => dispatch(noteReset()),
       path: svg.reset,
     },
     {

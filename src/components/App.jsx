@@ -4,6 +4,7 @@
  */
 
 import React, { Fragment, useMemo } from 'react';
+import { useSelector } from 'react-redux';
 
 import Navbar from './Navbar';
 import NavButtons from './NavButtons';
@@ -28,13 +29,11 @@ import useScreenSize from '../hooks/useScreenSize';
 
 import getModeLists from '../logic/getModeLists';
 
+import { getNotesState } from '../redux/selectors';
+
 function App({ noteProps, quickGuideProps }) {
-  const [
-    { notes, root },
-    handleNoteSelection,
-    resetNotes,
-    toggleFreezeKeys,
-  ] = noteProps;
+  const [toggleFreezeKeys] = noteProps;
+  const { notes, root } = useSelector(getNotesState);
 
   const [
     { isModeCardShown, mode },
@@ -87,7 +86,7 @@ function App({ noteProps, quickGuideProps }) {
     <Fragment>
       <Navbar>
         <NavButtons
-          {...{ isModeCardShown, isGuideShown, resetNotes }}
+          {...{ isModeCardShown, isGuideShown }}
           options={
             <Options
               {...{
@@ -146,7 +145,6 @@ function App({ noteProps, quickGuideProps }) {
       <main className="flex-grow w-full overflow-y-hidden mx-auto flex flex-col lg:max-w-screen-lg">
         <KeyProvider
           keyProps={{
-            ...{ notes, root, handleNoteSelection },
             areKeysShown,
             areNoteNamesShown,
           }}
