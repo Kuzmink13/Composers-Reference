@@ -51,5 +51,5 @@ export const openModeCard = (mode) => ({
 });
 
 export const closeModeCard = () => ({
-  type: _.OPEN_MODE_CARD,
+  type: _.CLOSE_MODE_CARD,
 });
