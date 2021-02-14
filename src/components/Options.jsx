@@ -4,11 +4,16 @@
  */
 
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { supportedClefs } from '../hooks/useClef';
 import { supportedTonalities } from '../hooks/useTonalities';
 
+import { toggleGuideDismissed } from '../redux/actions';
+import { getIsGuideDismissed } from '../redux/selectors';
+
 function Options(props) {
+  const dispatch = useDispatch();
   const generalOptions = [
     {
       id: 'keyboard-overlay',
@@ -31,8 +36,8 @@ function Options(props) {
     {
       id: 'quick guide display',
       text: "Don't show Quick Start Guide",
-      checked: props.isGuideDismissed,
-      onChange: props.toggleDismissGuide,
+      checked: useSelector(getIsGuideDismissed),
+      onChange: () => dispatch(toggleGuideDismissed()),
     },
   ];
 

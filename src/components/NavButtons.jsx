@@ -4,7 +4,7 @@
  */
 
 import React, { Fragment } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import * as svg from '../assets/svg.json';
 
@@ -13,8 +13,10 @@ import PopOver from './PopOver';
 import useNavButtons from '../hooks/useNavButtons';
 
 import { noteReset } from '../redux/actions';
+import { getIsGuideShown } from '../redux/selectors';
 
-function NavButtons({ isModeCardShown, isGuideShown, options, menu }) {
+function NavButtons({ isModeCardShown, options, menu }) {
+  const isGuideShown = useSelector(getIsGuideShown);
   const [
     { optionsIsOpen, menuIsOpen },
     toggleOptions,

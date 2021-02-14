@@ -4,13 +4,21 @@
  */
 
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-function Menu({ toggleShowGuide }) {
+import { toggleGuideShown } from '../redux/actions';
+
+function Menu() {
+  const dispatch = useDispatch();
   const links = [
     { title: 'About', link: '/about' },
     // { title: 'Contact', link: '/contact' },
-    { title: 'Quick Start Guide', click: () => toggleShowGuide(), link: '' },
+    {
+      title: 'Quick Start Guide',
+      click: () => dispatch(toggleGuideShown()),
+      link: '',
+    },
     { title: 'Meet the Scales', link: '/scales' },
     { title: 'References', link: '/references' },
   ];

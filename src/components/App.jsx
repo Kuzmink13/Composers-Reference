@@ -4,7 +4,7 @@
  */
 
 import React, { Fragment, useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Navbar from './Navbar';
 import NavButtons from './NavButtons';
@@ -26,13 +26,17 @@ import useSelectionFilter from '../hooks/useSelectionFilter';
 import useClef from '../hooks/useClef';
 import useTonalities from '../hooks/useTonalities';
 import useScreenSize from '../hooks/useScreenSize';
+import useQuickGuide from '../hooks/useQuickGuide';
+import useNotes from '../hooks/useNotes';
 
 import getModeLists from '../logic/getModeLists';
 
-import { getNotesState } from '../redux/selectors';
+import { getIsGuideShown, getNotesState } from '../redux/selectors';
+import { guideReset, toggleGuideShown } from '../redux/actions';
 
-function App({ noteProps, quickGuideProps }) {
-  const [toggleFreezeKeys] = noteProps;
+function App() {
+  const dispatch = useDispatch();
+  const [toggleFreezeKeys] = useNotes();
   const { notes, root } = useSelector(getNotesState);
 
   const [
@@ -54,13 +58,8 @@ function App({ noteProps, quickGuideProps }) {
     resetSelectionFilter,
   ] = useSelectionFilter();
 
-  const [
-    { isGuideDismissed, isGuideShown, guideIndex },
-    indexFns,
-    toggleDismissGuide,
-    toggleShowGuide,
-    resetGuide,
-  ] = quickGuideProps;
+  useQuickGuide();
+  const isGuideShown = useSelector(getIsGuideShown);
 
   const [clef, handleClefChange, resetClef] = useClef();
   const [tonalities, toggleTonality, resetTonalities] = useTonalities();
@@ -71,7 +70,7 @@ function App({ noteProps, quickGuideProps }) {
     event.preventDefault();
     resetOverlay();
     resetSelectionFilter();
-    resetGuide();
+    dispatch(guideReset());
     resetClef();
     resetTonalities();
   };
@@ -86,7 +85,7 @@ function App({ noteProps, quickGuideProps }) {
     <Fragment>
       <Navbar>
         <NavButtons
-          {...{ isModeCardShown, isGuideShown }}
+          {...{ isModeCardShown }}
           options={
             <Options
               {...{
@@ -95,12 +94,11 @@ function App({ noteProps, quickGuideProps }) {
                 ...{ isSelectionFiltered, toggleSelectionFilter },
                 ...{ clef, handleClefChange },
                 ...{ tonalities, toggleTonality },
-                ...{ isGuideDismissed, toggleDismissGuide },
                 resetSettings,
               }}
             />
           }
-          menu={<Menu {...{ toggleShowGuide }} />}
+          menu={<Menu />}
         />
       </Navbar>
 
@@ -123,22 +121,14 @@ function App({ noteProps, quickGuideProps }) {
 
       {isGuideShown && (
         <PopOver
-          closeFn={() => toggleShowGuide()}
+          closeFn={() => dispatch(toggleGuideShown())}
           freezeFn={toggleFreezeKeys}
           ID="guide-pop-over"
           isAnimated={false}
           isWide={true}
           showCloseButton={true}
         >
-          <QuickGuide
-            {...{
-              isGuideDismissed,
-              guideIndex,
-              indexFns,
-              toggleShowGuide,
-              toggleDismissGuide,
-            }}
-          />
+          <QuickGuide />
         </PopOver>
       )}
 

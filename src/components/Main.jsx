@@ -12,20 +12,11 @@ import About from './About';
 import Scales from './Scales';
 import References from './References';
 
-import useNotes from '../hooks/useNotes';
-import useQuickGuide from '../hooks/useQuickGuide';
-
 function Main() {
-  const noteProps = useNotes();
-  const quickGuideProps = useQuickGuide();
   return (
     <BrowserRouter>
       <Switch>
-        <Route
-          path="/"
-          exact
-          render={() => <App {...{ noteProps, quickGuideProps }} />}
-        />
+        <Route path="/" exact component={App} />
         <Route path="/about" component={About} />
         {/* <Route path="/contact" component={Contact} /> */}
         <Route path="/scales" component={Scales} />

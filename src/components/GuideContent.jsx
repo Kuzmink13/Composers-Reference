@@ -10,6 +10,8 @@ import { HashLink } from 'react-router-hash-link';
 import VexFigure from './VexFigure';
 import SmartLink from './SmartLink';
 import VideoEmbed from './VideoEmbed';
+import { useSelector } from 'react-redux';
+import { getGuideIndex } from '../redux/selectors';
 
 const headings = [
   "Welcome to Composer's Reference!",
@@ -326,18 +328,19 @@ const content = [
 
 export const numPages = headings.length;
 
-function GuideContent({ guideIndex }) {
+function GuideContent() {
+  const index = useSelector(getGuideIndex);
   return (
     <Fragment>
       <h3 className="px-8 mb-4 text-base md:text-xl font-bold tracking-wider text-center">
-        {headings[guideIndex]}
+        {headings[index]}
       </h3>
       <div
         tabIndex="0"
         className="flex flex-col px-0 md:px-12 mb-4 max-h-card sm:max-h-guide overflow-y-auto
   text-base md:text-lg text-gray-800 focus:outline-none"
       >
-        {content[guideIndex]}
+        {content[index]}
       </div>
     </Fragment>
   );
