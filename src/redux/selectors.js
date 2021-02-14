@@ -3,6 +3,7 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
+// NOTES
 export const getNotesState = (store) => store.notes;
 
 export const getNoteSelection = (store) =>
@@ -13,3 +14,15 @@ export const getNoteStateByIndex = (store, index) =>
 
 export const getRoot = (store) =>
   getNotesState(store) ? getNotesState(store).root : undefined;
+
+// QUICK_GUIDE
+export const getGuideState = (store) => store.quickGuide;
+
+export const getIsGuideDismissed = (store) =>
+  getGuideState(store) ? getGuideState(store).isDismissed : undefined;
+
+export const getIsGuideShown = (store) =>
+  getGuideState(store) ? getGuideState(store).isShown : undefined;
+
+// GUIDE_INDEX
+export const getGuideIndex = (store) => store.guideIndex;

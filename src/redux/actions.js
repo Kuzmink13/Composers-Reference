@@ -35,6 +35,7 @@ export const guideReset = () => ({
   type: _.GUIDE_RESET,
 });
 
+// GUIDE_INDEX
 export const guideIncrement = () => ({
   type: _.GUIDE_INCREMENT,
 });
