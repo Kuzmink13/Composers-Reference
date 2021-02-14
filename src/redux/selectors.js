@@ -26,3 +26,12 @@ export const getIsGuideShown = (store) =>
 
 // GUIDE_INDEX
 export const getGuideIndex = (store) => store.guideIndex;
+
+// MODE_CARD
+export const getModeCardState = (store) => store.modeCard;
+
+export const getIsModeCardShown = (store) =>
+  getModeCardState(store) ? getModeCardState(store).isShown : undefined;
+
+export const getModeCardMode = (store) =>
+  getModeCardState(store) ? getModeCardState(store).mode : undefined;

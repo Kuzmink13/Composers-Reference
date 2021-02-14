@@ -43,3 +43,13 @@ export const guideIncrement = () => ({
 export const guideDecrement = () => ({
   type: _.GUIDE_DECREMENT,
 });
+
+// MODE_CARD
+export const openModeCard = (mode) => ({
+  type: _.OPEN_MODE_CARD,
+  payload: { mode },
+});
+
+export const closeModeCard = () => ({
+  type: _.OPEN_MODE_CARD,
+});
