@@ -31,19 +31,20 @@ import useNotes from '../hooks/useNotes';
 
 import getModeLists from '../logic/getModeLists';
 
-import { getIsGuideShown, getNotesState } from '../redux/selectors';
-import { guideReset, toggleGuideShown } from '../redux/actions';
+import {
+  getIsGuideShown,
+  getIsModeCardShown,
+  getNotesState,
+} from '../redux/selectors';
+import { closeModeCard, guideReset, toggleGuideShown } from '../redux/actions';
 
 function App() {
   const dispatch = useDispatch();
   const [toggleFreezeKeys] = useNotes();
   const { notes, root } = useSelector(getNotesState);
 
-  const [
-    { isModeCardShown, mode },
-    openModeCard,
-    closeModeCard,
-  ] = useModeCard();
+  useModeCard();
+  const isModeCardShown = useSelector(getIsModeCardShown);
 
   const [
     { areKeysShown, areNoteNamesShown },
@@ -85,7 +86,6 @@ function App() {
     <Fragment>
       <Navbar>
         <NavButtons
-          {...{ isModeCardShown }}
           options={
             <Options
               {...{
@@ -104,16 +104,14 @@ function App() {
 
       {isModeCardShown && (
         <PopOver
-          closeFn={closeModeCard}
+          closeFn={() => dispatch(closeModeCard())}
           freezeFn={toggleFreezeKeys}
           ID="mode-card-pop-over"
           showCloseButton={true}
         >
           <ModeCard
             {...{
-              mode,
               clef,
-              openModeCard,
             }}
           />
         </PopOver>
@@ -142,7 +140,7 @@ function App() {
           <Keys {...{ screenWidth, screenHeight }} />
         </KeyProvider>
 
-        <ModeProvider modeProps={{ clef, openModeCard }}>
+        <ModeProvider modeProps={{ clef }}>
           <ModeController {...{ modeLists }} />
         </ModeProvider>
       </main>

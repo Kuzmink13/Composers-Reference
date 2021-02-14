@@ -7,14 +7,17 @@ import React from 'react';
 import VexStaff from './VexStaff';
 
 import { useModeContext } from '../contexts/ModeContext';
+import { useDispatch } from 'react-redux';
+import { openModeCard } from '../redux/actions';
 
 function ModeBlock({ mode }) {
-  const { clef, openModeCard } = useModeContext();
+  const dispatch = useDispatch();
+  const { clef } = useModeContext();
 
   return (
     <button
       aria-label={`open mode-card for ${mode.getModeName()}`}
-      onClick={() => openModeCard(mode)}
+      onClick={() => dispatch(openModeCard(mode))}
       className="tab-selection m-1 p-1"
     >
       <div className="box p-2 hover:shadow-md">

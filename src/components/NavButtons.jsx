@@ -13,10 +13,11 @@ import PopOver from './PopOver';
 import useNavButtons from '../hooks/useNavButtons';
 
 import { noteReset } from '../redux/actions';
-import { getIsGuideShown } from '../redux/selectors';
+import { getIsGuideShown, getIsModeCardShown } from '../redux/selectors';
 
-function NavButtons({ isModeCardShown, options, menu }) {
+function NavButtons({ options, menu }) {
   const isGuideShown = useSelector(getIsGuideShown);
+  const isModeCardShown = useSelector(getIsModeCardShown);
   const [
     { optionsIsOpen, menuIsOpen },
     toggleOptions,

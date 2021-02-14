@@ -3,21 +3,29 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
+import { useDispatch, useSelector } from 'react-redux';
+
 import useKeyboardFn, { keyArrays } from './useKeyboardFn';
 
-function useShift(mode, openModeCard) {
+import { openModeCard } from '../redux/actions';
+import { getModeCardMode } from '../redux/selectors';
+
+function useShift() {
+  const dispatch = useDispatch();
+  const mode = useSelector(getModeCardMode);
+  const open = (mode) => dispatch(openModeCard(mode));
   const shift = {
     relative: (isFwShift) => {
-      openModeCard(mode.relativeShift(isFwShift));
+      open(mode.relativeShift(isFwShift));
     },
     parallel: (isFwShift) => {
-      openModeCard(mode.parallelShift(isFwShift));
+      open(mode.parallelShift(isFwShift));
     },
     key: (isFwShift) => {
-      openModeCard(mode.keyShift(isFwShift));
+      open(mode.keyShift(isFwShift));
     },
     relativeBrightness: (isFwShift) => {
-      openModeCard(mode.relativeBrightnessShift(isFwShift));
+      open(mode.relativeBrightnessShift(isFwShift));
     },
   };
 

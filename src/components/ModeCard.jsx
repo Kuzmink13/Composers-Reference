@@ -11,10 +11,13 @@ import ChordTable from './ChordTable';
 
 import useShift from '../hooks/useShift';
 import useLongPress from '../hooks/useLongPress';
+import { useSelector } from 'react-redux';
+import { getModeCardMode } from '../redux/selectors';
 
-function ModeCard({ mode, clef, openModeCard }) {
+function ModeCard({ clef }) {
+  const mode = useSelector(getModeCardMode);
   const modeName = mode.getModeName();
-  const [shift] = useShift(mode, openModeCard);
+  const [shift] = useShift();
 
   const buttons = [
     {
