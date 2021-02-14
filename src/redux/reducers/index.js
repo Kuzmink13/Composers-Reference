@@ -5,5 +5,6 @@
 
 import { combineReducers } from 'redux';
 import notes from './notes';
+import quickGuide from './quickGude';
 
-export default combineReducers({ notes });
+export default combineReducers({ notes, quickGuide });

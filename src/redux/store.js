@@ -4,6 +4,24 @@
  */
 
 import { createStore } from 'redux';
+import throttle from 'lodash/throttle';
+
 import rootReducer from './reducers/index';
 
-export default createStore(rootReducer);
+import { loadState, saveState } from './localStorage';
+
+const persistedState = loadState();
+const store = createStore(rootReducer, persistedState);
+
+store.subscribe(
+  throttle(() => {
+    saveState({
+      quickGuide: {
+        isDismissed: store.getState().quickGuide.isDismissed,
+        isShown: !store.getState().quickGuide.isDismissed,
+      },
+    });
+  }, 1000)
+);
+
+export default store;
