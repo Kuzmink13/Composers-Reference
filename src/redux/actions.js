@@ -63,3 +63,16 @@ export const toggleDropDown = (dropDownState) => ({
 export const closeDropDown = () => ({
   type: _.CLOSE_DROP_DOWN,
 });
+
+// OVERLAY
+export const toggleKeyOverlay = () => ({
+  type: _.TOGGLE_KEY_OVERLAY,
+});
+
+export const toggleNoteOverlay = () => ({
+  type: _.TOGGLE_NOTE_OVERLAY,
+});
+
+export const clearOverlays = () => ({
+  type: _.CLEAR_OVERLAYS,
+});

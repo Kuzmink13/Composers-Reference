@@ -38,3 +38,14 @@ export const getModeCardMode = (store) =>
 
 // NAV_DROP_DOWNS
 export const getDropDownState = (store) => store.navDropDowns;
+
+// OVERLAY
+export const getOverlayState = (store) => store.overlay;
+
+export const getAreKeysShown = (store) =>
+  getModeCardState(store) ? getModeCardState(store).areKeysShown : undefined;
+
+export const getAreNoteNamesShown = (store) =>
+  getModeCardState(store)
+    ? getModeCardState(store).areNoteNamesShown
+    : undefined;
