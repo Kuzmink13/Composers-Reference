@@ -20,6 +20,10 @@ store.subscribe(
         isDismissed: store.getState().quickGuide.isDismissed,
         isShown: !store.getState().quickGuide.isDismissed,
       },
+      overlay: {
+        areKeysShown: store.getState().overlay.areKeysShown,
+        areNoteNamesShown: store.getState().overlay.areNoteNamesShown,
+      },
     });
   }, 1000)
 );
