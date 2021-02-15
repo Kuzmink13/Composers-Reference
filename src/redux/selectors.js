@@ -35,3 +35,6 @@ export const getIsModeCardShown = (store) =>
 
 export const getModeCardMode = (store) =>
   getModeCardState(store) ? getModeCardState(store).mode : undefined;
+
+// NAV_DROP_DOWNS
+export const getDropDownState = (store) => store.navDropDowns;

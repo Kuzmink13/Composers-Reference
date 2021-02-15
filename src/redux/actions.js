@@ -53,3 +53,13 @@ export const openModeCard = (mode) => ({
 export const closeModeCard = () => ({
   type: _.CLOSE_MODE_CARD,
 });
+
+// NAV_DROP_DOWNS
+export const openDropDown = (dropDownState) => ({
+  type: _.OPEN_DROP_DOWN,
+  payload: { dropDownState },
+});
+
+export const closeDropDown = () => ({
+  type: _.CLOSE_DROP_DOWN,
+});
