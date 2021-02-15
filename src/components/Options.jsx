@@ -9,8 +9,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { supportedClefs } from '../hooks/useClef';
 import { supportedTonalities } from '../hooks/useTonalities';
 
-import { toggleGuideDismissed } from '../redux/actions';
-import { getIsGuideDismissed } from '../redux/selectors';
+import {
+  toggleGuideDismissed,
+  toggleKeyOverlay,
+  toggleNoteOverlay,
+} from '../redux/actions';
+import {
+  getAreKeysShown,
+  getAreNoteNamesShown,
+  getIsGuideDismissed,
+} from '../redux/selectors';
 
 function Options(props) {
   const dispatch = useDispatch();
@@ -18,14 +26,14 @@ function Options(props) {
     {
       id: 'keyboard-overlay',
       text: 'Display keyboard overlay',
-      checked: props.areKeysShown,
-      onChange: props.toggleKeys,
+      checked: useSelector(getAreKeysShown),
+      onChange: () => dispatch(toggleKeyOverlay()),
     },
     {
       id: 'names-on-keys',
       text: 'Display note names on keys',
-      checked: props.areNoteNamesShown,
-      onChange: props.toggleNoteNames,
+      checked: useSelector(getAreNoteNamesShown),
+      onChange: () => dispatch(toggleNoteOverlay()),
     },
     {
       id: 'root-scale-display',

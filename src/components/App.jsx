@@ -17,11 +17,9 @@ import Keys from './Keys';
 import ModeController from './ModeController';
 import Footer from './Footer';
 
-import { KeyProvider } from '../contexts/KeyContext';
 import { ModeProvider } from '../contexts/ModeContext';
 
 import useModeCard from '../hooks/useModeCard';
-import useOverlay from '../hooks/useOverlay';
 import useSelectionFilter from '../hooks/useSelectionFilter';
 import useClef from '../hooks/useClef';
 import useTonalities from '../hooks/useTonalities';
@@ -36,7 +34,12 @@ import {
   getIsModeCardShown,
   getNotesState,
 } from '../redux/selectors';
-import { closeModeCard, guideReset, toggleGuideShown } from '../redux/actions';
+import {
+  clearOverlays,
+  closeModeCard,
+  guideReset,
+  toggleGuideShown,
+} from '../redux/actions';
 
 function App() {
   const dispatch = useDispatch();
@@ -45,13 +48,6 @@ function App() {
 
   useModeCard();
   const isModeCardShown = useSelector(getIsModeCardShown);
-
-  const [
-    { areKeysShown, areNoteNamesShown },
-    toggleKeys,
-    toggleNoteNames,
-    resetOverlay,
-  ] = useOverlay();
 
   const [
     isSelectionFiltered,
@@ -69,7 +65,7 @@ function App() {
   // REVERT TO DEFAULT SETTINGS
   const resetSettings = (event) => {
     event.preventDefault();
-    resetOverlay();
+    dispatch(clearOverlays());
     resetSelectionFilter();
     dispatch(guideReset());
     resetClef();
@@ -89,8 +85,6 @@ function App() {
           options={
             <Options
               {...{
-                ...{ areKeysShown, toggleKeys },
-                ...{ areNoteNamesShown, toggleNoteNames },
                 ...{ isSelectionFiltered, toggleSelectionFilter },
                 ...{ clef, handleClefChange },
                 ...{ tonalities, toggleTonality },
@@ -131,14 +125,7 @@ function App() {
       )}
 
       <main className="flex-grow w-full overflow-y-hidden mx-auto flex flex-col lg:max-w-screen-lg">
-        <KeyProvider
-          keyProps={{
-            areKeysShown,
-            areNoteNamesShown,
-          }}
-        >
-          <Keys {...{ screenWidth, screenHeight }} />
-        </KeyProvider>
+        <Keys {...{ screenWidth, screenHeight }} />
 
         <ModeProvider modeProps={{ clef }}>
           <ModeController {...{ modeLists }} />

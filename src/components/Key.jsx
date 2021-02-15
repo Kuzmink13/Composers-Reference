@@ -9,18 +9,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as keyMap from '../assets/keyMap.json';
 import * as keyNotes from '../assets/notes.json';
 
-import { useKeyContext } from '../contexts/KeyContext';
-
 import useLongPress from '../hooks/useLongPress';
 
-import { getNotesState } from '../redux/selectors';
+import { getNotesState, getOverlayState } from '../redux/selectors';
 import { noteSelect, rootSelect } from '../redux/actions';
 
 function Key({ value, index, isShort }) {
-  const { areKeysShown, areNoteNamesShown } = useKeyContext();
-
-  const { notes, root } = useSelector(getNotesState);
   const dispatch = useDispatch();
+  const { areKeysShown, areNoteNamesShown } = useSelector(getOverlayState);
+  const { notes, root } = useSelector(getNotesState);
 
   const longPressEvent = useLongPress(
     () => dispatch(rootSelect(value)),
