@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) Konstantin Kuzmin. All Rights Reserved.
+ * This source code is licensed under the GNU General Public License v3.0
+ */
+
 import { useEffect } from 'react';
 
 import * as vs from '../logic/vexScale';
@@ -22,11 +27,6 @@ function getOctave(clef, firstNote) {
 
   return baseOctaves[clef] + clefAdjustment[clef] - isCflat;
 }
-
-/**
- * Copyright (c) Konstantin Kuzmin. All Rights Reserved.
- * This source code is licensed under the GNU General Public License v3.0
- */
 
 function toVexScale(mode, octave, clef) {
   const pitches = mode.getAbsolutePitches();
