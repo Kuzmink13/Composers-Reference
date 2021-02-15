@@ -43,9 +43,7 @@ export const getDropDownState = (store) => store.navDropDowns;
 export const getOverlayState = (store) => store.overlay;
 
 export const getAreKeysShown = (store) =>
-  getModeCardState(store) ? getModeCardState(store).areKeysShown : undefined;
+  getOverlayState(store) ? getOverlayState(store).areKeysShown : undefined;
 
 export const getAreNoteNamesShown = (store) =>
-  getModeCardState(store)
-    ? getModeCardState(store).areNoteNamesShown
-    : undefined;
+  getOverlayState(store) ? getOverlayState(store).areNoteNamesShown : undefined;
