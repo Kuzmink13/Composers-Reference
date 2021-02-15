@@ -26,6 +26,7 @@ store.subscribe(
       },
       selectionFilter: store.getState().selectionFilter,
       clef: store.getState().clef,
+      tonalities: store.getState().tonalities,
     });
   }, 1000)
 );

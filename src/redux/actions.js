@@ -95,3 +95,13 @@ export const changeClef = (clef) => ({
 export const resetClef = () => ({
   type: _.RESET_CLEF,
 });
+
+// TONALITIES
+export const toggleTonality = (index) => ({
+  type: _.TOGGLE_TONALITY,
+  payload: { index },
+});
+
+export const resetTonalities = () => ({
+  type: _.RESET_TONALITIES,
+});

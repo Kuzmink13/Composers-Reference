@@ -53,3 +53,9 @@ export const getSelectionFilterState = (store) => store.selectionFilter;
 
 // CLEF
 export const getClef = (store) => store.clef;
+
+// TONALITIES
+export const getTonalityState = (store) => store.tonalities;
+
+export const getTonalityStateByIndex = (store, index) =>
+  getTonalityState(store)[index];
