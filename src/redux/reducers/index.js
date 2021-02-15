@@ -10,6 +10,7 @@ import guideIndex from './guideIndex';
 import modeCard from './modeCard';
 import navDropDowns from './navDropDowns';
 import overlay from './overlay';
+import selectionFilter from './selectionFilter';
 
 export default combineReducers({
   notes,
@@ -18,4 +19,5 @@ export default combineReducers({
   modeCard,
   navDropDowns,
   overlay,
+  selectionFilter,
 });

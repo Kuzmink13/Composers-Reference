@@ -47,3 +47,6 @@ export const getAreKeysShown = (store) =>
 
 export const getAreNoteNamesShown = (store) =>
   getOverlayState(store) ? getOverlayState(store).areNoteNamesShown : undefined;
+
+// SELECTION FILTER
+export const getSelectionFilterState = (store) => store.selectionFilter;

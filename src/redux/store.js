@@ -24,6 +24,7 @@ store.subscribe(
         areKeysShown: store.getState().overlay.areKeysShown,
         areNoteNamesShown: store.getState().overlay.areNoteNamesShown,
       },
+      selectionFilter: store.getState().selectionFilter,
     });
   }, 1000)
 );

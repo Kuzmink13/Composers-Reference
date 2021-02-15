@@ -76,3 +76,12 @@ export const toggleNoteOverlay = () => ({
 export const clearOverlays = () => ({
   type: _.CLEAR_OVERLAYS,
 });
+
+// SELECTION_FILTER
+export const toggleSelectionFilter = () => ({
+  type: _.TOGGLE_SELECTION_FILTER,
+});
+
+export const resetSelectionFilter = () => ({
+  type: _.RESET_SELECTION_FILTER,
+});
