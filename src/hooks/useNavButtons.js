@@ -3,32 +3,29 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import useToggle from './useToggle';
+import { useDispatch, useSelector } from 'react-redux';
+
 import useKeyboardFn, { keyArrays } from './useKeyboardFn';
 
-const initialState = {
-  optionsIsOpen: false,
-  menuIsOpen: false,
-};
+import { closeDropDown, toggleDropDown } from '../redux/actions';
+import { getIsGuideShown, getIsModeCardShown } from '../redux/selectors';
 
-function useNavButtons(areKeysFrozen = false) {
-  const [optionsIsOpen, toggleOptions, resetOptions] = useToggle(
-    initialState.optionsIsOpen
-  );
-  const [menuIsOpen, toggleMenu, resetMenu] = useToggle(
-    initialState.menuIsOpen
-  );
+import { DROP_DOWN_STATE } from '../constants';
+
+function useNavButtons() {
+  const dispatch = useDispatch();
+  const isGuideShown = useSelector(getIsGuideShown);
+  const isModeCardShown = useSelector(getIsModeCardShown);
+  const areKeysFrozen = isGuideShown || isModeCardShown;
 
   const handleNavShortcuts = (event) => {
     if (areKeysFrozen) return;
     switch (event.code) {
       case 'KeyO':
-        toggleOptions();
-        menuIsOpen && toggleMenu();
+        dispatch(toggleDropDown(DROP_DOWN_STATE.OPTIONS));
         return;
       case 'KeyL':
-        toggleMenu();
-        optionsIsOpen && toggleOptions();
+        dispatch(toggleDropDown(DROP_DOWN_STATE.MENU));
         return;
       default:
         return;
@@ -37,14 +34,13 @@ function useNavButtons(areKeysFrozen = false) {
 
   function closeAll() {
     if (areKeysFrozen) return;
-    resetOptions();
-    resetMenu();
+    dispatch(closeDropDown());
   }
 
   useKeyboardFn(handleNavShortcuts);
   useKeyboardFn(closeAll, keyArrays.escape);
 
-  return [{ optionsIsOpen, menuIsOpen }, toggleOptions, toggleMenu];
+  return [];
 }
 
 export default useNavButtons;

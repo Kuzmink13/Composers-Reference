@@ -12,18 +12,14 @@ import PopOver from './PopOver';
 
 import useNavButtons from '../hooks/useNavButtons';
 
-import { noteReset } from '../redux/actions';
-import { getIsGuideShown, getIsModeCardShown } from '../redux/selectors';
+import { closeDropDown, noteReset, toggleDropDown } from '../redux/actions';
+import { getDropDownState } from '../redux/selectors';
+
+import { DROP_DOWN_STATE } from '../constants';
 
 function NavButtons({ options, menu }) {
-  const isGuideShown = useSelector(getIsGuideShown);
-  const isModeCardShown = useSelector(getIsModeCardShown);
-  const [
-    { optionsIsOpen, menuIsOpen },
-    toggleOptions,
-    toggleMenu,
-  ] = useNavButtons(isModeCardShown || isGuideShown);
   const dispatch = useDispatch();
+  useNavButtons();
 
   const buttons = [
     {
@@ -33,16 +29,16 @@ function NavButtons({ options, menu }) {
     },
     {
       name: 'options',
-      onClick: toggleOptions,
+      onClick: () => dispatch(toggleDropDown(DROP_DOWN_STATE.OPTIONS)),
       path: svg.options,
-      isOpen: optionsIsOpen,
+      isOpen: useSelector(getDropDownState) === DROP_DOWN_STATE.OPTIONS,
       child: options,
     },
     {
       name: 'menu',
-      onClick: toggleMenu,
+      onClick: () => dispatch(toggleDropDown(DROP_DOWN_STATE.MENU)),
       path: svg.menu,
-      isOpen: menuIsOpen,
+      isOpen: useSelector(getDropDownState) === DROP_DOWN_STATE.MENU,
       child: menu,
     },
   ];
@@ -67,7 +63,7 @@ function NavButtons({ options, menu }) {
 
           {button.child && button.isOpen && (
             <PopOver
-              closeFn={() => button.onClick()}
+              closeFn={() => dispatch(closeDropDown())}
               isAnimated={false}
               isGray={false}
               overridePositioning={true}
