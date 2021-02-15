@@ -20,7 +20,6 @@ import Footer from './Footer';
 import { ModeProvider } from '../contexts/ModeContext';
 
 import useModeCard from '../hooks/useModeCard';
-import useSelectionFilter from '../hooks/useSelectionFilter';
 import useClef from '../hooks/useClef';
 import useTonalities from '../hooks/useTonalities';
 import useScreenSize from '../hooks/useScreenSize';
@@ -33,11 +32,13 @@ import {
   getIsGuideShown,
   getIsModeCardShown,
   getNotesState,
+  getSelectionFilterState,
 } from '../redux/selectors';
 import {
   clearOverlays,
   closeModeCard,
   guideReset,
+  resetSelectionFilter,
   toggleGuideShown,
 } from '../redux/actions';
 
@@ -49,11 +50,7 @@ function App() {
   useModeCard();
   const isModeCardShown = useSelector(getIsModeCardShown);
 
-  const [
-    isSelectionFiltered,
-    toggleSelectionFilter,
-    resetSelectionFilter,
-  ] = useSelectionFilter();
+  const isSelectionFiltered = useSelector(getSelectionFilterState);
 
   useQuickGuide();
   const isGuideShown = useSelector(getIsGuideShown);
@@ -66,7 +63,7 @@ function App() {
   const resetSettings = (event) => {
     event.preventDefault();
     dispatch(clearOverlays());
-    resetSelectionFilter();
+    dispatch(resetSelectionFilter());
     dispatch(guideReset());
     resetClef();
     resetTonalities();
@@ -85,7 +82,6 @@ function App() {
           options={
             <Options
               {...{
-                ...{ isSelectionFiltered, toggleSelectionFilter },
                 ...{ clef, handleClefChange },
                 ...{ tonalities, toggleTonality },
                 resetSettings,

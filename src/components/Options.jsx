@@ -13,11 +13,13 @@ import {
   toggleGuideDismissed,
   toggleKeyOverlay,
   toggleNoteOverlay,
+  toggleSelectionFilter,
 } from '../redux/actions';
 import {
   getAreKeysShown,
   getAreNoteNamesShown,
   getIsGuideDismissed,
+  getSelectionFilterState,
 } from '../redux/selectors';
 
 function Options(props) {
@@ -38,8 +40,8 @@ function Options(props) {
     {
       id: 'root-scale-display',
       text: 'Display scale only if its tonic is selected',
-      checked: props.isSelectionFiltered,
-      onChange: props.toggleSelectionFilter,
+      checked: useSelector(getSelectionFilterState),
+      onChange: () => dispatch(toggleSelectionFilter()),
     },
     {
       id: 'quick guide display',
