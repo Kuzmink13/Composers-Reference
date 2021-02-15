@@ -4,14 +4,15 @@
  */
 
 import React from 'react';
+import { useSelector } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 
 import useModePanel from '../hooks/useModePanel';
 
-import { useModeContext } from '../contexts/ModeContext';
+import { getClef } from '../redux/selectors';
 
 function ModePanel({ selectedList }) {
-  const { clef } = useModeContext();
+  const clef = useSelector(getClef);
 
   const [{ items, hasMore }, loadMore] = useModePanel(selectedList, clef);
 

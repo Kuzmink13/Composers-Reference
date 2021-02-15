@@ -6,9 +6,10 @@
 import React from 'react';
 
 import useVexScale from '../hooks/useVexScale';
-import { supportedClefs } from '../hooks/useClef';
 
-function VexStaff({ mode, clef = supportedClefs.treble }) {
+import { SUPPORTED_CLEFS } from '../constants';
+
+function VexStaff({ mode, clef = SUPPORTED_CLEFS.TREBLE }) {
   useVexScale(mode, clef);
 
   return (

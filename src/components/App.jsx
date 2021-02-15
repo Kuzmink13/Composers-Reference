@@ -17,10 +17,7 @@ import Keys from './Keys';
 import ModeController from './ModeController';
 import Footer from './Footer';
 
-import { ModeProvider } from '../contexts/ModeContext';
-
 import useModeCard from '../hooks/useModeCard';
-import useClef from '../hooks/useClef';
 import useTonalities from '../hooks/useTonalities';
 import useScreenSize from '../hooks/useScreenSize';
 import useQuickGuide from '../hooks/useQuickGuide';
@@ -38,6 +35,7 @@ import {
   clearOverlays,
   closeModeCard,
   guideReset,
+  resetClef,
   resetSelectionFilter,
   toggleGuideShown,
 } from '../redux/actions';
@@ -55,7 +53,6 @@ function App() {
   useQuickGuide();
   const isGuideShown = useSelector(getIsGuideShown);
 
-  const [clef, handleClefChange, resetClef] = useClef();
   const [tonalities, toggleTonality, resetTonalities] = useTonalities();
   const [screenHeight, screenWidth] = useScreenSize();
 
@@ -65,7 +62,7 @@ function App() {
     dispatch(clearOverlays());
     dispatch(resetSelectionFilter());
     dispatch(guideReset());
-    resetClef();
+    dispatch(resetClef());
     resetTonalities();
   };
 
@@ -82,7 +79,6 @@ function App() {
           options={
             <Options
               {...{
-                ...{ clef, handleClefChange },
                 ...{ tonalities, toggleTonality },
                 resetSettings,
               }}
@@ -99,11 +95,7 @@ function App() {
           ID="mode-card-pop-over"
           showCloseButton={true}
         >
-          <ModeCard
-            {...{
-              clef,
-            }}
-          />
+          <ModeCard />
         </PopOver>
       )}
 
@@ -123,9 +115,7 @@ function App() {
       <main className="flex-grow w-full overflow-y-hidden mx-auto flex flex-col lg:max-w-screen-lg">
         <Keys {...{ screenWidth, screenHeight }} />
 
-        <ModeProvider modeProps={{ clef }}>
-          <ModeController {...{ modeLists }} />
-        </ModeProvider>
+        <ModeController {...{ modeLists }} />
       </main>
 
       <Footer />

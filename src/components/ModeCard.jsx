@@ -4,6 +4,8 @@
  */
 
 import React from 'react';
+import { useSelector } from 'react-redux';
+
 import * as svg from '../assets/svg.json';
 
 import VexStaff from './VexStaff';
@@ -11,11 +13,12 @@ import ChordTable from './ChordTable';
 
 import useShift from '../hooks/useShift';
 import useLongPress from '../hooks/useLongPress';
-import { useSelector } from 'react-redux';
-import { getModeCardMode } from '../redux/selectors';
 
-function ModeCard({ clef }) {
+import { getClef, getModeCardMode } from '../redux/selectors';
+
+function ModeCard() {
   const mode = useSelector(getModeCardMode);
+  const clef = useSelector(getClef);
   const modeName = mode.getModeName();
   const [shift] = useShift();
 

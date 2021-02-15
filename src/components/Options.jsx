@@ -6,10 +6,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { supportedClefs } from '../hooks/useClef';
 import { supportedTonalities } from '../hooks/useTonalities';
 
 import {
+  changeClef,
   toggleGuideDismissed,
   toggleKeyOverlay,
   toggleNoteOverlay,
@@ -18,12 +18,16 @@ import {
 import {
   getAreKeysShown,
   getAreNoteNamesShown,
+  getClef,
   getIsGuideDismissed,
   getSelectionFilterState,
 } from '../redux/selectors';
 
+import { SUPPORTED_CLEFS } from '../constants';
+
 function Options(props) {
   const dispatch = useDispatch();
+  const clef = useSelector(getClef);
   const generalOptions = [
     {
       id: 'keyboard-overlay',
@@ -81,15 +85,15 @@ function Options(props) {
       {/* CLEF SELECTION */}
       <fieldset className="pb-2">
         <legend className="pb-2">Clef Selection:</legend>
-        {Object.values(supportedClefs).map((el) => (
+        {Object.values(SUPPORTED_CLEFS).map((el) => (
           <div key={el} className="flex items-center pb-1">
             <input
               id={el}
               type="radio"
               name="clef"
               className="mx-2 cursor-pointer"
-              onChange={() => props.handleClefChange(el)}
-              checked={el === props.clef}
+              onChange={() => dispatch(changeClef(el))}
+              checked={el === clef}
             />
             <label htmlFor={el} className="cursor-pointer">
               {el.charAt(0).toUpperCase() + el.slice(1)}

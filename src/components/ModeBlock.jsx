@@ -4,15 +4,16 @@
  */
 
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import VexStaff from './VexStaff';
 
-import { useModeContext } from '../contexts/ModeContext';
-import { useDispatch } from 'react-redux';
 import { openModeCard } from '../redux/actions';
+import { getClef } from '../redux/selectors';
 
 function ModeBlock({ mode }) {
   const dispatch = useDispatch();
-  const { clef } = useModeContext();
+  const clef = useSelector(getClef);
 
   return (
     <button

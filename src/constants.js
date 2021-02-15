@@ -10,7 +10,7 @@ export const DROP_DOWN_STATE = {
 };
 
 export const SUPPORTED_CLEFS = {
-  TREBLE: 'TREBLE',
-  ALTO: 'ALTO',
-  BASS: 'BASS',
+  TREBLE: 'treble',
+  ALTO: 'alto',
+  BASS: 'bass',
 };
