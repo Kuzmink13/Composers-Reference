@@ -3,7 +3,7 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import { supportedTonalities } from '../hooks/useTonalities';
+import { SUPPORTED_TONALITIES } from '../constants';
 
 import getModesFromTonality from './getModesfromTonality';
 
@@ -33,8 +33,7 @@ function modeCompare(pitchArray) {
 }
 
 function getAllModes(pitchArray, root, tonalities) {
-  return supportedTonalities
-    .filter(tonalityFilter(tonalities))
+  return SUPPORTED_TONALITIES.filter(tonalityFilter(tonalities))
     .map((tonality) =>
       getModesFromTonality(tonality, pitchArray, root).sort(
         modeCompare(pitchArray)

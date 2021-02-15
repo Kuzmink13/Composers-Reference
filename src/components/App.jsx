@@ -18,7 +18,6 @@ import ModeController from './ModeController';
 import Footer from './Footer';
 
 import useModeCard from '../hooks/useModeCard';
-import useTonalities from '../hooks/useTonalities';
 import useScreenSize from '../hooks/useScreenSize';
 import useQuickGuide from '../hooks/useQuickGuide';
 import useNotes from '../hooks/useNotes';
@@ -30,15 +29,9 @@ import {
   getIsModeCardShown,
   getNotesState,
   getSelectionFilterState,
+  getTonalityState,
 } from '../redux/selectors';
-import {
-  clearOverlays,
-  closeModeCard,
-  guideReset,
-  resetClef,
-  resetSelectionFilter,
-  toggleGuideShown,
-} from '../redux/actions';
+import { closeModeCard, toggleGuideShown } from '../redux/actions';
 
 function App() {
   const dispatch = useDispatch();
@@ -53,18 +46,8 @@ function App() {
   useQuickGuide();
   const isGuideShown = useSelector(getIsGuideShown);
 
-  const [tonalities, toggleTonality, resetTonalities] = useTonalities();
+  const tonalities = useSelector(getTonalityState);
   const [screenHeight, screenWidth] = useScreenSize();
-
-  // REVERT TO DEFAULT SETTINGS
-  const resetSettings = (event) => {
-    event.preventDefault();
-    dispatch(clearOverlays());
-    dispatch(resetSelectionFilter());
-    dispatch(guideReset());
-    dispatch(resetClef());
-    resetTonalities();
-  };
 
   // SCALE LIST GENERATION
   const modeLists = useMemo(() => {
@@ -75,17 +58,7 @@ function App() {
   return (
     <Fragment>
       <Navbar>
-        <NavButtons
-          options={
-            <Options
-              {...{
-                ...{ tonalities, toggleTonality },
-                resetSettings,
-              }}
-            />
-          }
-          menu={<Menu />}
-        />
+        <NavButtons options={<Options />} menu={<Menu />} />
       </Navbar>
 
       {isModeCardShown && (

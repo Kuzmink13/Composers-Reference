@@ -6,14 +6,20 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { supportedTonalities } from '../hooks/useTonalities';
+import { SUPPORTED_TONALITIES } from '../constants';
 
 import {
   changeClef,
+  clearOverlays,
+  guideReset,
+  resetClef,
+  resetSelectionFilter,
+  resetTonalities,
   toggleGuideDismissed,
   toggleKeyOverlay,
   toggleNoteOverlay,
   toggleSelectionFilter,
+  toggleTonality,
 } from '../redux/actions';
 import {
   getAreKeysShown,
@@ -21,13 +27,15 @@ import {
   getClef,
   getIsGuideDismissed,
   getSelectionFilterState,
+  getTonalityState,
 } from '../redux/selectors';
 
 import { SUPPORTED_CLEFS } from '../constants';
 
-function Options(props) {
+function Options() {
   const dispatch = useDispatch();
   const clef = useSelector(getClef);
+  const tonalities = useSelector(getTonalityState);
   const generalOptions = [
     {
       id: 'keyboard-overlay',
@@ -105,14 +113,14 @@ function Options(props) {
       {/* TONALITY SELECTION */}
       <fieldset className="pb-2">
         <legend className="pb-2">Exclude scale-families:</legend>
-        {supportedTonalities.map((tonality, i) => (
+        {SUPPORTED_TONALITIES.map((tonality, i) => (
           <div key={tonality.name} className="flex items-center pb-1">
             <input
               id={tonality.name}
               type="checkbox"
               className="mx-2 cursor-pointer"
-              onChange={() => props.toggleTonality(i)}
-              checked={!props.tonalities[i]}
+              onChange={() => dispatch(toggleTonality(i))}
+              checked={!tonalities[i]}
             />
             <label htmlFor={tonality.name} className="cursor-pointer">
               {tonality.name}
@@ -124,7 +132,14 @@ function Options(props) {
       {/* RESET SETTINGS BUTTON */}
       <button
         className="tab-selection p-1 mx-auto"
-        onClick={(event) => props.resetSettings(event)}
+        onClick={(event) => {
+          event.preventDefault();
+          dispatch(clearOverlays());
+          dispatch(resetSelectionFilter());
+          dispatch(guideReset());
+          dispatch(resetClef());
+          dispatch(resetTonalities());
+        }}
       >
         <div className="btn btn-text btn-p cursor-pointer leading-normal">
           REVERT TO DEFAULT
