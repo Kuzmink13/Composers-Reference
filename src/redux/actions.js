@@ -85,3 +85,13 @@ export const toggleSelectionFilter = () => ({
 export const resetSelectionFilter = () => ({
   type: _.RESET_SELECTION_FILTER,
 });
+
+// CLEF
+export const changeClef = (clef) => ({
+  type: _.CHANGE_CLEF,
+  payload: { clef },
+});
+
+export const resetClef = () => ({
+  type: _.RESET_CLEF,
+});

@@ -11,6 +11,7 @@ import modeCard from './modeCard';
 import navDropDowns from './navDropDowns';
 import overlay from './overlay';
 import selectionFilter from './selectionFilter';
+import clef from './clef';
 
 export default combineReducers({
   notes,
@@ -20,4 +21,5 @@ export default combineReducers({
   navDropDowns,
   overlay,
   selectionFilter,
+  clef,
 });

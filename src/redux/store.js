@@ -25,6 +25,7 @@ store.subscribe(
         areNoteNamesShown: store.getState().overlay.areNoteNamesShown,
       },
       selectionFilter: store.getState().selectionFilter,
+      clef: store.getState().clef,
     });
   }, 1000)
 );

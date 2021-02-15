@@ -8,3 +8,9 @@ export const DROP_DOWN_STATE = {
   OPTIONS: 'OPTIONS',
   MENU: 'MENU',
 };
+
+export const SUPPORTED_CLEFS = {
+  TREBLE: 'TREBLE',
+  ALTO: 'ALTO',
+  BASS: 'BASS',
+};

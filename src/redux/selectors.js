@@ -50,3 +50,6 @@ export const getAreNoteNamesShown = (store) =>
 
 // SELECTION FILTER
 export const getSelectionFilterState = (store) => store.selectionFilter;
+
+// CLEF
+export const getClef = (store) => store.clef;
