@@ -3,12 +3,10 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-import { getItem, setItem } from '../logic/storage';
-
-function useToggle(initialState = false, storageKey = undefined) {
-  const [state, setState] = useState(getItem(storageKey) || initialState);
+function useToggle(initialState = false) {
+  const [state, setState] = useState(initialState);
 
   const toggleState = (newState = undefined) => {
     newState === undefined
@@ -19,10 +17,6 @@ function useToggle(initialState = false, storageKey = undefined) {
   const resetState = () => {
     setState(initialState);
   };
-
-  useEffect(() => {
-    storageKey && setItem(storageKey, state);
-  }, [state, storageKey]);
 
   return [state, toggleState, resetState];
 }
