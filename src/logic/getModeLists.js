@@ -5,6 +5,7 @@
 
 import getAllModes from './getAllModes';
 import { supportedScaleLengths } from './scaleUtilities';
+import { SUPPORTED_TONALITIES } from '../constants';
 
 function convertToPitchArray(notes) {
   return notes
@@ -25,6 +26,14 @@ function getModeLists(notes, root, tonalities, isSelectionFiltered) {
     getAllModes(convertToPitchArray(notes), root, tonalities)
       .filter(noteQuantityFilter(noteQuantity))
       .filter(noteSelectionFilter(notes, isSelectionFiltered))
+  );
+}
+
+export function getModeList(notes) {
+  return getAllModes(
+    convertToPitchArray(notes),
+    undefined,
+    SUPPORTED_TONALITIES
   );
 }
 

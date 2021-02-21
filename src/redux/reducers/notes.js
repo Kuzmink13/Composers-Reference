@@ -4,11 +4,14 @@
  */
 
 import { NOTE_SELECT, ROOT_SELECT, NOTE_RESET } from '../actionTypes';
+
 import { notesInOctave } from '../../logic/utilities';
+import { getModeList } from '../../logic/getModeLists';
 
 const initialState = {
   notes: Array(notesInOctave).fill(false),
   root: undefined,
+  modeList: [],
 };
 
 export default function (state = initialState, action) {
@@ -16,22 +19,31 @@ export default function (state = initialState, action) {
     case NOTE_SELECT: {
       const i = action.payload.noteIndex;
       const isRoot = i === state.root;
+      const notes = [
+        ...state.notes.slice(0, i),
+        !state.notes[i],
+        ...state.notes.slice(i + 1),
+      ];
+      console.log(getModeList(notes));
       return {
-        notes: [
-          ...state.notes.slice(0, i),
-          !state.notes[i],
-          ...state.notes.slice(i + 1),
-        ],
+        notes,
         root: isRoot ? initialState.root : state.root,
+        modeList: getModeList(notes),
       };
     }
 
     case ROOT_SELECT: {
       const i = action.payload.noteIndex;
       const isRoot = i === state.root;
+      const notes = [
+        ...state.notes.slice(0, i),
+        true,
+        ...state.notes.slice(i + 1),
+      ];
       return {
-        notes: [...state.notes.slice(0, i), true, ...state.notes.slice(i + 1)],
+        notes,
         root: isRoot ? initialState.root : i,
+        modeList: getModeList(notes),
       };
     }
 

@@ -15,6 +15,11 @@ export const getNoteStateByIndex = (store, index) =>
 export const getRoot = (store) =>
   getNotesState(store) ? getNotesState(store).root : undefined;
 
+export const getModeList = (store) =>
+  getNotesState(store) ? getNotesState(store).modeList : [];
+
+// export const getFilteredModeList = (store) => getModeList(store).filter()
+
 // QUICK_GUIDE
 export const getGuideState = (store) => store.quickGuide;
 
