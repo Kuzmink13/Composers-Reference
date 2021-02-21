@@ -24,3 +24,9 @@ export const SUPPORTED_TONALITIES = [
   { name: 'Harmonic Major', pitches: [0, 2, 4, 5, 7, 8, 11] },
   { name: 'Diminished', pitches: [0, 1, 3, 4, 6, 7, 9, 10] },
 ];
+
+export const SUPPORTED_SCALE_LENGTHS = {
+  SIX: 'SIX',
+  SEVEN: 'SEVEN',
+  EIGHT: 'EIGHT',
+};

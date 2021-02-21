@@ -105,3 +105,9 @@ export const toggleTonality = (index) => ({
 export const resetTonalities = () => ({
   type: _.RESET_TONALITIES,
 });
+
+// CARDINALITY
+export const changeCardinality = (cardinality) => ({
+  type: _.CHANGE_CARDINALITY,
+  payload: { cardinality },
+});

@@ -13,6 +13,7 @@ import overlay from './overlay';
 import selectionFilter from './selectionFilter';
 import clef from './clef';
 import tonalities from './tonalities';
+import cardinality from './cardinality';
 
 export default combineReducers({
   notes,
@@ -24,4 +25,5 @@ export default combineReducers({
   selectionFilter,
   clef,
   tonalities,
+  cardinality,
 });
