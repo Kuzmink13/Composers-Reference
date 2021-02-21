@@ -24,7 +24,6 @@ export default function (state = initialState, action) {
         !state.notes[i],
         ...state.notes.slice(i + 1),
       ];
-      console.log(getModeList(notes));
       return {
         notes,
         root: isRoot ? initialState.root : state.root,
