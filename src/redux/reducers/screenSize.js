@@ -7,7 +7,7 @@ import { UPDATE_SCREEN_SIZE } from '../actionTypes';
 
 const initialState = {
   width: window.innerWidth,
-  height: window.innnerHeight,
+  height: window.innerHeight,
 };
 
 export default function (state = initialState, action) {
@@ -15,7 +15,7 @@ export default function (state = initialState, action) {
     case UPDATE_SCREEN_SIZE:
       return {
         width: window.innerWidth,
-        height: window.innnerHeight,
+        height: window.innerHeight,
       };
 
     default:
