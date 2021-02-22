@@ -30,28 +30,4 @@ describe('Testing generateModes', () => {
       expect(el.getAbsolutePitches()).toStrictEqual(output[i]);
     });
   });
-
-  test('returns all concrete modes of the pitch collection - filtered', () => {
-    let input = {
-      tonality: { pitches: [0, 3, 4, 7] },
-      modePitches: [1, 4],
-      root: 1,
-    };
-
-    let testCase = getModesFromTonality(
-      input.tonality,
-      input.modePitches,
-      input.root
-    );
-
-    let output = [
-      [1, 4, 5, 8],
-      [1, 4, 9, 12],
-    ];
-
-    expect(testCase.length).toBe(2);
-    testCase.forEach((el, i) => {
-      expect(el.getAbsolutePitches()).toStrictEqual(output[i]);
-    });
-  });
 });
