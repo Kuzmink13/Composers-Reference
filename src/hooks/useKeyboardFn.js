@@ -38,8 +38,6 @@ function useKeyboardFn(callback, keyArray = undefined, callOnRepeat = false) {
       document.removeEventListener('keydown', callFn);
     };
   }, [callFn]);
-
-  return [];
 }
 
 export default useKeyboardFn;

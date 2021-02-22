@@ -10,8 +10,6 @@ import * as svg from '../assets/svg.json';
 
 import PopOver from './PopOver';
 
-import useNavButtons from '../hooks/useNavButtons';
-
 import { closeDropDown, noteReset, toggleDropDown } from '../redux/actions';
 import { getDropDownState } from '../redux/selectors';
 
@@ -19,7 +17,6 @@ import { DROP_DOWN_STATE } from '../constants';
 
 function NavButtons({ options, menu }) {
   const dispatch = useDispatch();
-  useNavButtons();
 
   const buttons = [
     {

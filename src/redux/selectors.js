@@ -3,6 +3,7 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
+import { DROP_DOWN_STATE } from '../constants';
 import * as filters from '../logic/filters';
 
 // NOTES
@@ -82,3 +83,10 @@ export const getTonalityStateByIndex = (store, index) =>
 
 // CARDINALITY
 export const getCardinality = (store) => store.cardinality;
+
+// KEY_FREEZE
+export const getArePopOversActive = (store) =>
+  getIsModeCardShown(store) || getIsGuideShown(store);
+
+export const getAreDropDownsActive = (store) =>
+  getDropDownState(store) !== DROP_DOWN_STATE.NONE;

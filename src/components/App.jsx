@@ -18,10 +18,8 @@ import ButtonPanel from './ButtonPanel';
 import ModePanel from './ModePanel';
 import Footer from './Footer';
 
-import useModeCard from '../hooks/useModeCard';
+import useKeyboard from '../hooks/useKeyboard';
 import useScreenSize from '../hooks/useScreenSize';
-import useQuickGuide from '../hooks/useQuickGuide';
-import useNotes from '../hooks/useNotes';
 
 import { getIsGuideShown, getIsModeCardShown } from '../redux/selectors';
 import { closeModeCard, toggleGuideShown } from '../redux/actions';
@@ -29,9 +27,7 @@ import { closeModeCard, toggleGuideShown } from '../redux/actions';
 function App() {
   const dispatch = useDispatch();
   const [screenHeight, screenWidth] = useScreenSize();
-  useNotes();
-  useModeCard();
-  useQuickGuide();
+  useKeyboard();
 
   const isModeCardShown = useSelector(getIsModeCardShown);
   const isGuideShown = useSelector(getIsGuideShown);
