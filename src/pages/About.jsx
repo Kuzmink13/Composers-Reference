@@ -7,7 +7,7 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 // import * as svg from '../assets/svg.json';
 
-import Navbar from './Navbar';
+import Navbar from '../components/Navbar';
 
 function About() {
   // const socialLinks = [

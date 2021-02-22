@@ -9,7 +9,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
-import Main from './components/Main';
+import Main from './pages/Main';
 import './assets/main.css';
 
 ReactDOM.render(

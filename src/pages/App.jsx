@@ -6,17 +6,17 @@
 import React, { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Navbar from './Navbar';
-import NavButtons from './NavButtons';
-import Options from './Options';
-import Menu from './Menu';
-import PopOver from './PopOver';
-import QuickGuide from './QuickGuide';
-import ModeCard from './ModeCard';
-import Keys from './Keys';
-import ButtonPanel from './ButtonPanel';
-import ModePanel from './ModePanel';
-import Footer from './Footer';
+import Navbar from '../components/Navbar';
+import NavButtons from '../components/NavButtons';
+import Options from '../components/Options';
+import Menu from '../components/Menu';
+import PopOver from '../components/PopOver';
+import QuickGuide from '../components/QuickGuide';
+import ModeCard from '../components/ModeCard';
+import Keys from '../components/Keys';
+import ButtonPanel from '../components/ButtonPanel';
+import ModePanel from '../components/ModePanel';
+import Footer from '../components/Footer';
 
 import useKeyboard from '../hooks/useKeyboard';
 import useScreenSize from '../hooks/useScreenSize';
