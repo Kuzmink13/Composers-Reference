@@ -4,8 +4,17 @@
  */
 
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { isEqual } from 'lodash';
 
 import ModeBlock from '../components/ModeBlock';
+
+import {
+  getCardinality,
+  getNoteSelection,
+  getNotesState,
+  getTonalityState,
+} from '../redux/selectors';
 
 const initialState = {
   items: () => [],
@@ -37,9 +46,14 @@ function useModePanel(selectedList) {
     return <ModeBlock key={mode.getAbsoluteModeCode()} mode={mode} />;
   };
 
+  const notes = useSelector(getNotesState, isEqual);
+  const selection = useSelector(getNoteSelection, isEqual);
+  const tonalities = useSelector(getTonalityState, isEqual);
+  const cardinality = useSelector(getCardinality, isEqual);
+
   useEffect(() => {
     clearState();
-  }, [selectedList]);
+  }, [notes, selection, tonalities, cardinality]);
 
   return [{ items, hasMore }, loadMore];
 }
