@@ -42,6 +42,7 @@ function References() {
                   <a
                     className="tab-selection hover:underline"
                     href={ref.default[el]}
+                    target="_"
                   >
                     {replaceSymbols(el)}
                   </a>
