@@ -14,8 +14,8 @@ function ModeButton({ buttonCardinality }) {
     getFilteredModeList(store, buttonCardinality)
   );
   const cardinality = useSelector(getCardinality);
+  const isSelected = buttonCardinality === cardinality;
   const buttonLabel = buttonCardinality.string;
-  const isSelected = buttonLabel === cardinality;
 
   return (
     <div
@@ -25,7 +25,7 @@ function ModeButton({ buttonCardinality }) {
     >
       <button
         aria-label={`select ${buttonLabel.toLowerCase()} note mode list`}
-        onClick={() => dispatch(changeCardinality(buttonLabel))}
+        onClick={() => dispatch(changeCardinality(buttonCardinality))}
         className="text-xs sm:text-base tab-selection py-2 px-1 sm:px-2 font-semibold tracking-wider cursor-pointer"
       >
         <span className="text-gray-900">{buttonLabel}-NOTE</span>
