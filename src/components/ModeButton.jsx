@@ -5,13 +5,15 @@
 
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { isEqual } from 'lodash';
 import { changeCardinality } from '../redux/actions';
 import { getCardinality, getFilteredModeList } from '../redux/selectors';
 
 function ModeButton({ buttonCardinality }) {
   const dispatch = useDispatch();
-  const modeList = useSelector((store) =>
-    getFilteredModeList(store, buttonCardinality)
+  const modeList = useSelector(
+    (store) => getFilteredModeList(store, buttonCardinality),
+    isEqual
   );
   const cardinality = useSelector(getCardinality);
   const isSelected = buttonCardinality === cardinality;

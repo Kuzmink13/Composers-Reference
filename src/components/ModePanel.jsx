@@ -5,6 +5,7 @@
 
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { isEqual } from 'lodash';
 import InfiniteScroll from 'react-infinite-scroller';
 
 import useModePanel from '../hooks/useModePanel';
@@ -12,7 +13,7 @@ import useModePanel from '../hooks/useModePanel';
 import { getFilteredModeList } from '../redux/selectors';
 
 function ModePanel() {
-  const selectedList = useSelector(getFilteredModeList);
+  const selectedList = useSelector(getFilteredModeList, isEqual);
 
   const [{ items, hasMore }, loadMore] = useModePanel(selectedList);
 
