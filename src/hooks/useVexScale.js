@@ -37,8 +37,8 @@ function toVexScale(mode, octave, clef) {
     vs.getVFNote(note, octave + noteAdjustment(note, i), clef);
 }
 
-function generateStaff(mode, clef) {
-  const context = vs.getContext(mode.getAbsoluteModeCode());
+function generateStaff(mode, clef, altID) {
+  const context = vs.getContext(altID ?? mode.getAbsoluteModeCode());
   const stave = vs.getStave().addClef(clef);
   const octave = getOctave(clef, mode.getModeRoot());
   const notes = mode.getScaleNotes().map(toVexScale(mode, octave, clef));
@@ -49,11 +49,12 @@ function generateStaff(mode, clef) {
   voice.draw(context, stave);
 }
 
-function useVexScale(mode, clef) {
+function useVexScale(mode, clef, altID) {
   useEffect(() => {
-    generateStaff(mode, clef);
+    generateStaff(mode, clef, altID);
     return () => {
-      document.getElementById(mode.getAbsoluteModeCode()).innerHTML = '';
+      document.getElementById(altID ?? mode.getAbsoluteModeCode()).innerHTML =
+        '';
     };
   });
 }

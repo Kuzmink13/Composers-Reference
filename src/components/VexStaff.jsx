@@ -9,12 +9,12 @@ import useVexScale from '../hooks/useVexScale';
 
 import { SUPPORTED_CLEFS } from '../constants';
 
-function VexStaff({ mode, clef = SUPPORTED_CLEFS.TREBLE }) {
-  useVexScale(mode, clef);
+function VexStaff({ mode, clef = SUPPORTED_CLEFS.TREBLE, altID }) {
+  useVexScale(mode, clef, altID);
 
   return (
     <figure
-      id={mode.getAbsoluteModeCode()}
+      id={altID ?? mode.getAbsoluteModeCode()}
       className="h-staff-height w-staff-width"
       alt={mode.getScaleNotes()}
     ></figure>

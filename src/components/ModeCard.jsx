@@ -80,7 +80,7 @@ function ModeCard() {
       </hgroup>
 
       {/* SCALE FIGURE*/}
-      <VexStaff key={modeName} {...{ mode, clef }} />
+      <VexStaff key={modeName} {...{ mode, clef }} altID="mode-card" />
 
       {/* MODE-SHIFT BUTTON PANEL */}
       <div className="flex">
