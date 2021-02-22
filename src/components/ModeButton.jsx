@@ -6,12 +6,15 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeCardinality } from '../redux/actions';
-import { getCardinality, getModeList } from '../redux/selectors';
+import { getCardinality, getFilteredModeList } from '../redux/selectors';
 
-function ModeButton({ buttonLabel }) {
+function ModeButton({ buttonCardinality }) {
   const dispatch = useDispatch();
-  const modeList = useSelector(getModeList);
+  const modeList = useSelector((store) =>
+    getFilteredModeList(store, buttonCardinality)
+  );
   const cardinality = useSelector(getCardinality);
+  const buttonLabel = buttonCardinality.string;
   const isSelected = buttonLabel === cardinality;
 
   return (

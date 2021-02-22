@@ -7,10 +7,6 @@ import { SUPPORTED_TONALITIES } from '../constants';
 
 import getModesFromTonality from './getModesfromTonality';
 
-function tonalityFilter(tonalities) {
-  return (el, i) => tonalities[i];
-}
-
 function modeCompare(pitchArray) {
   return (a, b) => {
     const aRoot = a.getPitchCenter();
@@ -32,14 +28,10 @@ function modeCompare(pitchArray) {
   };
 }
 
-function getAllModes(pitchArray, root, tonalities) {
-  return SUPPORTED_TONALITIES.filter(tonalityFilter(tonalities))
-    .map((tonality) =>
-      getModesFromTonality(tonality, pitchArray, root).sort(
-        modeCompare(pitchArray)
-      )
-    )
-    .flat();
+function getAllModes(pitchArray) {
+  return SUPPORTED_TONALITIES.map((tonality) =>
+    getModesFromTonality(tonality, pitchArray).sort(modeCompare(pitchArray))
+  ).flat();
 }
 
 export default getAllModes;

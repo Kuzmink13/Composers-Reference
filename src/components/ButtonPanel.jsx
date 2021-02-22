@@ -12,8 +12,8 @@ import { SUPPORTED_SCALE_LENGTHS } from '../constants';
 function ButtonPanel() {
   return (
     <div className="flex-none flex flex-row justify-center">
-      {Object.values(SUPPORTED_SCALE_LENGTHS).map((buttonLabel) => (
-        <ModeButton key={buttonLabel} {...{ buttonLabel }} />
+      {Object.values(SUPPORTED_SCALE_LENGTHS).map((cardinality) => (
+        <ModeButton key={cardinality.string} buttonCardinality={cardinality} />
       ))}
     </div>
   );

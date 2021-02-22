@@ -6,7 +6,7 @@
 import { NOTE_SELECT, ROOT_SELECT, NOTE_RESET } from '../actionTypes';
 
 import { notesInOctave } from '../../logic/utilities';
-import { getModeList } from '../../logic/getModeLists';
+import getModeList from '../../logic/getModeList';
 
 const initialState = {
   notes: Array(notesInOctave).fill(false),

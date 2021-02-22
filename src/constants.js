@@ -26,7 +26,7 @@ export const SUPPORTED_TONALITIES = [
 ];
 
 export const SUPPORTED_SCALE_LENGTHS = {
-  SIX: 'SIX',
-  SEVEN: 'SEVEN',
-  EIGHT: 'EIGHT',
+  SIX: { string: 'SIX', number: 6 },
+  SEVEN: { string: 'SEVEN', number: 7 },
+  EIGHT: { string: 'EIGHT', number: 8 },
 };

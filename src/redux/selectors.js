@@ -3,6 +3,8 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
+import * as filters from '../logic/filters';
+
 // NOTES
 export const getNotesState = (store) => store.notes;
 
@@ -18,7 +20,20 @@ export const getRoot = (store) =>
 export const getModeList = (store) =>
   getNotesState(store) ? getNotesState(store).modeList : [];
 
-// export const getFilteredModeList = (store) => getModeList(store).filter()
+export const getFilteredModeList = (
+  store,
+  cardinality = getCardinality(store)
+) =>
+  getModeList(store)
+    .filter(filters.byRoot(getRoot(store)))
+    .filter(filters.byCardinality(cardinality))
+    .filter(
+      filters.bySelection(
+        getNoteSelection(store),
+        getSelectionFilterState(store)
+      )
+    )
+    .filter(filters.byTonality(getTonalityState(store)));
 
 // QUICK_GUIDE
 export const getGuideState = (store) => store.quickGuide;
