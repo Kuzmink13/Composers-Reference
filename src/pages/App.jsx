@@ -19,6 +19,7 @@ import ModePanel from '../components/ModePanel';
 import Footer from '../components/Footer';
 
 import useKeyboard from '../hooks/useKeyboard';
+import useScreenSize from '../hooks/useScreenSize';
 
 import { getIsGuideShown, getIsModeCardShown } from '../redux/selectors';
 import { closeModeCard, toggleGuideShown } from '../redux/actions';
@@ -28,6 +29,7 @@ function App() {
   const isModeCardShown = useSelector(getIsModeCardShown);
   const isGuideShown = useSelector(getIsGuideShown);
   useKeyboard();
+  useScreenSize();
 
   // RENDER
   return (
