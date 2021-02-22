@@ -6,6 +6,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { isEqual } from 'lodash';
+
 import { changeCardinality } from '../redux/actions';
 import { getCardinality, getFilteredModeList } from '../redux/selectors';
 

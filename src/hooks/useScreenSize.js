@@ -5,20 +5,13 @@
 
 import { useState, useEffect, useCallback } from 'react';
 
-const breakpoints = {
-  xs: 512,
-  sm: 640,
-  md: 768,
-  ht: 820,
-  lg: 1024,
-  xl: 1280,
-};
+import { BREAKPOINTS } from '../constants';
 
 export function octavesToDisplay(screenWidth) {
   switch (true) {
-    case screenWidth < breakpoints.sm:
+    case screenWidth < BREAKPOINTS.sm:
       return 1;
-    case screenWidth < breakpoints.lg:
+    case screenWidth < BREAKPOINTS.lg:
       return 2;
     default:
       return 3;
@@ -26,7 +19,7 @@ export function octavesToDisplay(screenWidth) {
 }
 
 export function isShortModeActive(screenHeight) {
-  return screenHeight < breakpoints.ht;
+  return screenHeight < BREAKPOINTS.ht;
 }
 
 function useScreenSize() {

@@ -19,18 +19,15 @@ import ModePanel from '../components/ModePanel';
 import Footer from '../components/Footer';
 
 import useKeyboard from '../hooks/useKeyboard';
-import useScreenSize from '../hooks/useScreenSize';
 
 import { getIsGuideShown, getIsModeCardShown } from '../redux/selectors';
 import { closeModeCard, toggleGuideShown } from '../redux/actions';
 
 function App() {
   const dispatch = useDispatch();
-  const [screenHeight, screenWidth] = useScreenSize();
-  useKeyboard();
-
   const isModeCardShown = useSelector(getIsModeCardShown);
   const isGuideShown = useSelector(getIsGuideShown);
+  useKeyboard();
 
   // RENDER
   return (
@@ -62,7 +59,7 @@ function App() {
       )}
 
       <main className="flex-grow w-full overflow-y-hidden mx-auto flex flex-col lg:max-w-screen-lg">
-        <Keys {...{ screenWidth, screenHeight }} />
+        <Keys />
         <ButtonPanel />
         <ModePanel />
       </main>

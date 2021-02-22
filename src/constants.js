@@ -30,3 +30,22 @@ export const SUPPORTED_SCALE_LENGTHS = {
   SEVEN: { string: 'SEVEN', number: 7 },
   EIGHT: { string: 'EIGHT', number: 8 },
 };
+
+export const KEY_ARRAYS = {
+  delete: ['Del', 'Delete'],
+  escape: ['Esc', 'Escape'],
+  space: ['Spacebar', ' '],
+  left: ['ArrowLeft'],
+  right: ['ArrowRight'],
+  up: ['ArrowUp'],
+  down: ['ArrowDown'],
+};
+
+export const BREAKPOINTS = {
+  xs: 512,
+  sm: 640,
+  md: 768,
+  ht: 820,
+  lg: 1024,
+  xl: 1280,
+};

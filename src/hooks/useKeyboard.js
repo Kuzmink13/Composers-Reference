@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import * as keyMap from '../assets/keyMap.json';
 
-import useKeyboardFn, { keyArrays } from './useKeyboardFn';
+import useKeyboardFn from './useKeyboardFn';
 
 import {
   closeDropDown,
@@ -23,7 +23,8 @@ import {
   getArePopOversActive,
   getAreDropDownsActive,
 } from '../redux/selectors';
-import { DROP_DOWN_STATE } from '../constants';
+
+import { DROP_DOWN_STATE, KEY_ARRAYS } from '../constants';
 
 function useKeyboard() {
   const dispatch = useDispatch();
@@ -71,11 +72,11 @@ function useKeyboard() {
 
   // SET LISTENERS
   useKeyboardFn(KeyBoardPress);
-  useKeyboardFn(clearKeys, keyArrays.delete);
-  useKeyboardFn(() => dispatch(closeModeCard()), keyArrays.escape);
+  useKeyboardFn(clearKeys, KEY_ARRAYS.delete);
+  useKeyboardFn(() => dispatch(closeModeCard()), KEY_ARRAYS.escape);
   useKeyboardFn(handleNavShortcuts);
-  useKeyboardFn(closeAll, keyArrays.escape);
-  useKeyboardFn(() => dispatch(toggleGuideShown(false)), keyArrays.escape);
+  useKeyboardFn(closeAll, KEY_ARRAYS.escape);
+  useKeyboardFn(() => dispatch(toggleGuideShown(false)), KEY_ARRAYS.escape);
 }
 
 export default useKeyboard;

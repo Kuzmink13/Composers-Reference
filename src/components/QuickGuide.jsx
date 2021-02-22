@@ -4,11 +4,12 @@
  */
 
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import GuideContent, { numPages } from './GuideContent';
 
-import useKeyboarFn, { keyArrays } from '../hooks/useKeyboardFn';
-import { useDispatch, useSelector } from 'react-redux';
+import useKeyboarFn from '../hooks/useKeyboardFn';
+
 import { getGuideIndex, getIsGuideDismissed } from '../redux/selectors';
 import {
   guideDecrement,
@@ -16,6 +17,8 @@ import {
   toggleGuideDismissed,
   toggleGuideShown,
 } from '../redux/actions';
+
+import { KEY_ARRAYS } from '../constants';
 
 function QuickGuide() {
   const dispatch = useDispatch();
@@ -32,8 +35,8 @@ function QuickGuide() {
 
   const dec = () => dispatch(guideDecrement());
 
-  useKeyboarFn(inc, keyArrays.right);
-  useKeyboarFn(dec, keyArrays.left);
+  useKeyboarFn(inc, KEY_ARRAYS.right);
+  useKeyboarFn(dec, KEY_ARRAYS.left);
 
   return (
     <div className="flex flex-col items-center relative p-4">

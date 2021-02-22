@@ -5,6 +5,7 @@
 
 import React, { useEffect, Fragment } from 'react';
 import { createFocusTrap } from 'focus-trap';
+
 import * as svg from '../assets/svg.json';
 
 function PopOver({

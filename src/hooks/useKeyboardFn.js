@@ -5,16 +5,6 @@
 
 import { useCallback, useEffect } from 'react';
 
-export const keyArrays = {
-  delete: ['Del', 'Delete'],
-  escape: ['Esc', 'Escape'],
-  space: ['Spacebar', ' '],
-  left: ['ArrowLeft'],
-  right: ['ArrowRight'],
-  up: ['ArrowUp'],
-  down: ['ArrowDown'],
-};
-
 function useKeyboardFn(callback, keyArray = undefined, callOnRepeat = false) {
   const keyIsPressed = useCallback(
     (key) => {

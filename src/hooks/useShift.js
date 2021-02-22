@@ -5,10 +5,12 @@
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import useKeyboardFn, { keyArrays } from './useKeyboardFn';
+import useKeyboardFn from './useKeyboardFn';
 
 import { openModeCard } from '../redux/actions';
 import { getModeCardMode } from '../redux/selectors';
+
+import { KEY_ARRAYS } from '../constants';
 
 function useShift() {
   const dispatch = useDispatch();
@@ -41,13 +43,13 @@ function useShift() {
 
   const handleKeyShift = (event) => {
     switch (event.key) {
-      case keyArrays.left.join():
+      case KEY_ARRAYS.left.join():
         return shiftLR(event, false);
-      case keyArrays.right.join():
+      case KEY_ARRAYS.right.join():
         return shiftLR(event, true);
-      case keyArrays.down.join():
+      case KEY_ARRAYS.down.join():
         return shiftUD(event, false);
-      case keyArrays.up.join():
+      case KEY_ARRAYS.up.join():
         return shiftUD(event, true);
       default:
         return;

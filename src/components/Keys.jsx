@@ -6,11 +6,15 @@
 import React, { useMemo } from 'react';
 import Key from './Key';
 
-import { octavesToDisplay, isShortModeActive } from '../hooks/useScreenSize';
+import useScreenSize, {
+  octavesToDisplay,
+  isShortModeActive,
+} from '../hooks/useScreenSize';
 
 import { notesInOctave, octaveMod } from '../logic/utilities';
 
-function Keys({ screenHeight, screenWidth }) {
+function Keys() {
+  const [screenHeight, screenWidth] = useScreenSize();
   const isShort = isShortModeActive(screenHeight);
 
   const keys = useMemo(() => {

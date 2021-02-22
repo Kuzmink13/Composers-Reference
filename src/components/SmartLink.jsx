@@ -4,6 +4,7 @@
  */
 
 import React from 'react';
+
 import * as refs from '../assets/externalReferences.json';
 
 import { replaceSymbols } from '../logic/utilities';
