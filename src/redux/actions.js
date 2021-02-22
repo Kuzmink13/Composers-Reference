@@ -111,3 +111,8 @@ export const changeCardinality = (cardinality) => ({
   type: _.CHANGE_CARDINALITY,
   payload: { cardinality },
 });
+
+// SCREEN_SIZE
+export const updateScreenSize = () => ({
+  type: _.UPDATE_SCREEN_SIZE,
+});

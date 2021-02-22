@@ -3,7 +3,7 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import { DROP_DOWN_STATE } from '../constants';
+import { BREAKPOINTS, DROP_DOWN_STATE } from '../constants';
 import * as filters from '../logic/filters';
 
 // NOTES
@@ -90,3 +90,18 @@ export const getArePopOversActive = (store) =>
 
 export const getAreDropDownsActive = (store) =>
   getDropDownState(store) !== DROP_DOWN_STATE.NONE;
+
+// SCREEN_SIZE
+export const getNumOctaves = (store) => {
+  switch (true) {
+    case store.screenSize.width < BREAKPOINTS.sm:
+      return 1;
+    case store.screenSize.width < BREAKPOINTS.lg:
+      return 2;
+    default:
+      return 3;
+  }
+};
+
+export const isShortModeActive = (store) =>
+  store.screenSize.height < BREAKPOINTS.ht;
