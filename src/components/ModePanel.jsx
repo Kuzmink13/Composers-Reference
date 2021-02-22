@@ -9,15 +9,15 @@ import InfiniteScroll from 'react-infinite-scroller';
 
 import useModePanel from '../hooks/useModePanel';
 
-import { getClef } from '../redux/selectors';
+import { getModeList } from '../redux/selectors';
 
-function ModePanel({ selectedList }) {
-  const clef = useSelector(getClef);
+function ModePanel() {
+  const selectedList = useSelector(getModeList);
 
-  const [{ items, hasMore }, loadMore] = useModePanel(selectedList, clef);
+  const [{ items, hasMore }, loadMore] = useModePanel(selectedList);
 
   let scrollParentRef;
-  return (
+  return selectedList.length ? (
     <div
       className="h-full overflow-y-auto pb-1 overscroll-y-auto"
       ref={(ref) => (scrollParentRef = ref)}
@@ -32,6 +32,10 @@ function ModePanel({ selectedList }) {
         {items}
       </InfiniteScroll>
     </div>
+  ) : (
+    <span className="text-gray-700 text-sm font-semibold tracking-wider m-auto mt-12 px-4 text-center">
+      no results to display for the current selection
+    </span>
   );
 }
 

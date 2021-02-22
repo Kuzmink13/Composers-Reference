@@ -13,7 +13,7 @@ const initialState = {
 
 const itemsToLoad = 6;
 
-function useModePanel(selectedList, clef) {
+function useModePanel(selectedList) {
   const [items, setItems] = useState(initialState.items());
   const itemsLoaded = items.length;
   const listLength = selectedList.length;
@@ -39,7 +39,7 @@ function useModePanel(selectedList, clef) {
 
   useEffect(() => {
     clearState();
-  }, [selectedList, clef]);
+  }, [selectedList]);
 
   return [{ items, hasMore }, loadMore];
 }

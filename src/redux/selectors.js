@@ -64,3 +64,6 @@ export const getTonalityState = (store) => store.tonalities;
 
 export const getTonalityStateByIndex = (store, index) =>
   getTonalityState(store)[index];
+
+// CARDINALITY
+export const getCardinality = (store) => store.cardinality;

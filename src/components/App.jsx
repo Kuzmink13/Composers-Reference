@@ -3,7 +3,7 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import React, { Fragment, useMemo } from 'react';
+import React, { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Navbar from './Navbar';
@@ -14,7 +14,8 @@ import PopOver from './PopOver';
 import QuickGuide from './QuickGuide';
 import ModeCard from './ModeCard';
 import Keys from './Keys';
-import ModeController from './ModeController';
+import ButtonPanel from './ButtonPanel';
+import ModePanel from './ModePanel';
 import Footer from './Footer';
 
 import useModeCard from '../hooks/useModeCard';
@@ -22,37 +23,20 @@ import useScreenSize from '../hooks/useScreenSize';
 import useQuickGuide from '../hooks/useQuickGuide';
 import useNotes from '../hooks/useNotes';
 
-import getModeLists from '../logic/getModeLists';
-
-import {
-  getIsGuideShown,
-  getIsModeCardShown,
-  getNotesState,
-  getSelectionFilterState,
-  getTonalityState,
-} from '../redux/selectors';
+import { getIsGuideShown, getIsModeCardShown } from '../redux/selectors';
 import { closeModeCard, toggleGuideShown } from '../redux/actions';
 
 function App() {
   const dispatch = useDispatch();
   const [toggleFreezeKeys] = useNotes();
-  const { notes, root } = useSelector(getNotesState);
 
   useModeCard();
   const isModeCardShown = useSelector(getIsModeCardShown);
 
-  const isSelectionFiltered = useSelector(getSelectionFilterState);
-
   useQuickGuide();
   const isGuideShown = useSelector(getIsGuideShown);
 
-  const tonalities = useSelector(getTonalityState);
   const [screenHeight, screenWidth] = useScreenSize();
-
-  // SCALE LIST GENERATION
-  const modeLists = useMemo(() => {
-    return getModeLists(notes, root, tonalities, isSelectionFiltered);
-  }, [notes, root, tonalities, isSelectionFiltered]);
 
   // RENDER
   return (
@@ -87,8 +71,8 @@ function App() {
 
       <main className="flex-grow w-full overflow-y-hidden mx-auto flex flex-col lg:max-w-screen-lg">
         <Keys {...{ screenWidth, screenHeight }} />
-
-        <ModeController {...{ modeLists }} />
+        <ButtonPanel />
+        <ModePanel />
       </main>
 
       <Footer />
