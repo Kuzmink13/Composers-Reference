@@ -111,9 +111,3 @@ export const changeCardinality = (cardinality) => ({
   type: _.CHANGE_CARDINALITY,
   payload: { cardinality },
 });
-
-// KEYS_ACTIVE
-export const changeKeyState = (bool) => ({
-  type: _.CHANGE_KEY_STATE,
-  payload: { bool },
-});
