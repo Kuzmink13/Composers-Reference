@@ -28,15 +28,13 @@ import { closeModeCard, toggleGuideShown } from '../redux/actions';
 
 function App() {
   const dispatch = useDispatch();
-  const [toggleFreezeKeys] = useNotes();
-
-  useModeCard();
-  const isModeCardShown = useSelector(getIsModeCardShown);
-
-  useQuickGuide();
-  const isGuideShown = useSelector(getIsGuideShown);
-
   const [screenHeight, screenWidth] = useScreenSize();
+  useNotes();
+  useModeCard();
+  useQuickGuide();
+
+  const isModeCardShown = useSelector(getIsModeCardShown);
+  const isGuideShown = useSelector(getIsGuideShown);
 
   // RENDER
   return (
@@ -48,7 +46,6 @@ function App() {
       {isModeCardShown && (
         <PopOver
           closeFn={() => dispatch(closeModeCard())}
-          freezeFn={toggleFreezeKeys}
           ID="mode-card-pop-over"
           showCloseButton={true}
         >
@@ -59,7 +56,6 @@ function App() {
       {isGuideShown && (
         <PopOver
           closeFn={() => dispatch(toggleGuideShown())}
-          freezeFn={toggleFreezeKeys}
           ID="guide-pop-over"
           isAnimated={false}
           isWide={true}

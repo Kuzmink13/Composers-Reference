@@ -6,11 +6,12 @@
 import React, { useEffect, Fragment } from 'react';
 import { createFocusTrap } from 'focus-trap';
 import * as svg from '../assets/svg.json';
+import { useDispatch } from 'react-redux';
+import { changeKeyState } from '../redux/actions';
 
 function PopOver({
   children,
   closeFn = () => {},
-  freezeFn = () => {},
   ID = 'pop-over-wrapper',
   isAnimated = true,
   isGray = true,
@@ -19,6 +20,7 @@ function PopOver({
   overrideStyles = false,
   showCloseButton = false,
 }) {
+  const dispatch = useDispatch();
   // FOCUS-TRAP
   useEffect(() => {
     const container = document.getElementById(ID);
@@ -55,9 +57,9 @@ function PopOver({
 
   // FREEZE KEY LISTENERS
   useEffect(() => {
-    freezeFn(true);
-    return () => freezeFn(false);
-  }, [freezeFn]);
+    dispatch(changeKeyState(false));
+    return () => dispatch(changeKeyState(true));
+  }, [dispatch]);
 
   // RENDER
   const popOverWrapper = (

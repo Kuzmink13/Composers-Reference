@@ -4,19 +4,22 @@
  */
 
 import { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import * as keyMap from '../assets/keyMap.json';
 
 import useKeyboardFn, { keyArrays } from './useKeyboardFn';
 
 import { noteReset, noteSelect, rootSelect } from '../redux/actions';
+import { getKeyState } from '../redux/selectors';
 
 function useNotes() {
   const dispatch = useDispatch();
+  const isFrozen = !useSelector(getKeyState);
 
   const KeyBoardPress = useCallback(
     (event) => {
+      if (isFrozen) return;
       const pressedNote = keyMap.keyToNote[event.code];
       if (pressedNote !== undefined) {
         event.shiftKey
@@ -24,21 +27,18 @@ function useNotes() {
           : dispatch(noteSelect(pressedNote));
       }
     },
-    [dispatch]
+    [dispatch, isFrozen]
   );
 
-  const [toggleFreezeKeys] = useKeyboardFn(KeyBoardPress);
-  const [toggleFreezeDel] = useKeyboardFn(
-    () => dispatch(noteReset()),
-    keyArrays.delete
-  );
-
-  const toggleFreeze = (isFrozen) => {
-    toggleFreezeKeys(isFrozen);
-    toggleFreezeDel(isFrozen);
+  const clearKeys = () => {
+    if (isFrozen) return;
+    dispatch(noteReset());
   };
 
-  return [toggleFreeze];
+  useKeyboardFn(KeyBoardPress);
+  useKeyboardFn(clearKeys, keyArrays.delete);
+
+  return [];
 }
 
 export default useNotes;

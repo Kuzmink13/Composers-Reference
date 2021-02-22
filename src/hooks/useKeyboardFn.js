@@ -5,8 +5,6 @@
 
 import { useCallback, useEffect } from 'react';
 
-import useToggle from './useToggle';
-
 export const keyArrays = {
   delete: ['Del', 'Delete'],
   escape: ['Esc', 'Escape'],
@@ -18,8 +16,6 @@ export const keyArrays = {
 };
 
 function useKeyboardFn(callback, keyArray = undefined, callOnRepeat = false) {
-  const [isFrozen, toggleFreeze] = useToggle(false);
-
   const keyIsPressed = useCallback(
     (key) => {
       if (!keyArray) return true;
@@ -30,10 +26,10 @@ function useKeyboardFn(callback, keyArray = undefined, callOnRepeat = false) {
 
   const callFn = useCallback(
     (event) => {
-      if ((!callOnRepeat && event.repeat) || isFrozen) return;
+      if (!callOnRepeat && event.repeat) return;
       keyIsPressed(event.key) && callback(event);
     },
-    [callOnRepeat, isFrozen, keyIsPressed, callback]
+    [callOnRepeat, keyIsPressed, callback]
   );
 
   useEffect(() => {
@@ -43,7 +39,7 @@ function useKeyboardFn(callback, keyArray = undefined, callOnRepeat = false) {
     };
   }, [callFn]);
 
-  return [toggleFreeze];
+  return [];
 }
 
 export default useKeyboardFn;
