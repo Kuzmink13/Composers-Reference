@@ -14,6 +14,7 @@ import selectionFilter from './selectionFilter';
 import clef from './clef';
 import tonalities from './tonalities';
 import cardinality from './cardinality';
+import keysActive from './keysActive';
 
 export default combineReducers({
   notes,
@@ -26,4 +27,5 @@ export default combineReducers({
   clef,
   tonalities,
   cardinality,
+  keysActive,
 });
