@@ -6,8 +6,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { SUPPORTED_TONALITIES } from '../constants';
-
 import {
   changeClef,
   clearOverlays,
@@ -30,12 +28,13 @@ import {
   getTonalityState,
 } from '../redux/selectors';
 
-import { SUPPORTED_CLEFS } from '../constants';
+import { SUPPORTED_CLEFS, SUPPORTED_TONALITIES } from '../constants';
 
 function Options() {
   const dispatch = useDispatch();
   const clef = useSelector(getClef);
   const tonalities = useSelector(getTonalityState);
+
   const generalOptions = [
     {
       id: 'keyboard-overlay',

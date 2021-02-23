@@ -4,13 +4,14 @@
  */
 
 import React, { Fragment } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 
 import VexFigure from './VexFigure';
 import SmartLink from './SmartLink';
 import VideoEmbed from './VideoEmbed';
-import { useSelector } from 'react-redux';
+
 import { getGuideIndex } from '../redux/selectors';
 
 const headings = [

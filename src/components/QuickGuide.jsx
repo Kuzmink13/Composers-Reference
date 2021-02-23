@@ -32,7 +32,6 @@ function QuickGuide() {
   };
 
   const inc = () => dispatch(guideIncrement());
-
   const dec = () => dispatch(guideDecrement());
 
   useKeyboarFn(inc, KEY_ARRAYS.right);

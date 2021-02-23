@@ -11,13 +11,18 @@ import * as keyNotes from '../assets/notes.json';
 
 import useLongPress from '../hooks/useLongPress';
 
-import { getNotesState, getOverlayState } from '../redux/selectors';
+import {
+  getNotesState,
+  getOverlayState,
+  isShortModeActive,
+} from '../redux/selectors';
 import { noteSelect, rootSelect } from '../redux/actions';
 
-function Key({ value, index, isShort }) {
+function Key({ value, index }) {
   const dispatch = useDispatch();
   const { areKeysShown, areNoteNamesShown } = useSelector(getOverlayState);
   const { notes, root } = useSelector(getNotesState);
+  const isShort = useSelector(isShortModeActive);
 
   const longPressEvent = useLongPress(
     () => dispatch(rootSelect(value)),

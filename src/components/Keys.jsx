@@ -18,9 +18,9 @@ function Keys() {
 
   const keys = useMemo(() => {
     return Array.from(Array(notesInOctave * numOctaves), (el, i) => (
-      <Key key={i} value={octaveMod(i)} index={i} isShort={isShort} />
+      <Key key={i} value={octaveMod(i)} index={i} />
     ));
-  }, [isShort, numOctaves]);
+  }, [numOctaves]);
 
   return (
     <div
