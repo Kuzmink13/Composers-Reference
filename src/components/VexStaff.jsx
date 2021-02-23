@@ -6,14 +6,15 @@
 import React from 'react';
 
 import useVexScale from '../hooks/useVexScale';
-import { supportedClefs } from '../hooks/useClef';
 
-function VexStaff({ mode, clef = supportedClefs.treble }) {
-  useVexScale(mode, clef);
+import { SUPPORTED_CLEFS } from '../constants';
+
+function VexStaff({ mode, clef = SUPPORTED_CLEFS.TREBLE, altID }) {
+  useVexScale(mode, clef, altID);
 
   return (
     <figure
-      id={mode.getAbsoluteModeCode()}
+      id={altID ?? mode.getAbsoluteModeCode()}
       className="h-staff-height w-staff-width"
       alt={mode.getScaleNotes()}
     ></figure>

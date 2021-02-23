@@ -6,9 +6,9 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-import Navbar from './Navbar';
-import SmartLink from './SmartLink';
-import VexFigure from './VexFigure';
+import Navbar from '../components/Navbar';
+import SmartLink from '../components/SmartLink';
+import VexFigure from '../components/VexFigure';
 
 import { replaceSymbols } from '../logic/utilities';
 

@@ -4,25 +4,30 @@
  */
 
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import * as keyMap from '../assets/keyMap.json';
 import * as keyNotes from '../assets/notes.json';
 
-import { useKeyContext } from '../contexts/KeyContext';
-
 import useLongPress from '../hooks/useLongPress';
 
-function Key({ value, index, isShort }) {
-  const {
-    notes,
-    root,
-    areKeysShown,
-    areNoteNamesShown,
-    handleNoteSelection,
-  } = useKeyContext();
+import {
+  getNotesState,
+  getOverlayState,
+  isShortModeActive,
+} from '../redux/selectors';
+import { noteSelect, rootSelect } from '../redux/actions';
+
+function Key({ value, index }) {
+  const dispatch = useDispatch();
+  const { areKeysShown, areNoteNamesShown } = useSelector(getOverlayState);
+  const { notes, root } = useSelector(getNotesState);
+  const isShort = useSelector(isShortModeActive);
 
   const longPressEvent = useLongPress(
-    (event) => handleNoteSelection(event, value, true),
-    (event) => handleNoteSelection(event, value)
+    () => dispatch(rootSelect(value)),
+    (event) =>
+      event.shiftKey ? dispatch(rootSelect(value)) : dispatch(noteSelect(value))
   );
 
   const isKeySelected = notes[value];

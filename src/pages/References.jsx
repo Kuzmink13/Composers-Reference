@@ -7,7 +7,7 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import * as ref from '../assets/externalReferences.json';
 
-import Navbar from './Navbar';
+import Navbar from '../components/Navbar';
 
 import { replaceSymbols } from '../logic/utilities';
 
@@ -42,6 +42,7 @@ function References() {
                   <a
                     className="tab-selection hover:underline"
                     href={ref.default[el]}
+                    target="_"
                   >
                     {replaceSymbols(el)}
                   </a>

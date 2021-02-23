@@ -3,49 +3,21 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import { useState, useEffect, useCallback } from 'react';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
-const breakpoints = {
-  xs: 512,
-  sm: 640,
-  md: 768,
-  ht: 820,
-  lg: 1024,
-  xl: 1280,
-};
-
-export function octavesToDisplay(screenWidth) {
-  switch (true) {
-    case screenWidth < breakpoints.sm:
-      return 1;
-    case screenWidth < breakpoints.lg:
-      return 2;
-    default:
-      return 3;
-  }
-}
-
-export function isShortModeActive(screenHeight) {
-  return screenHeight < breakpoints.ht;
-}
+import { updateScreenSize } from '../redux/actions';
 
 function useScreenSize() {
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  const [screenHeight, setScreenHeight] = useState(window.innerHeight);
-
-  const handleResize = useCallback(() => {
-    setScreenWidth(window.innerWidth);
-    setScreenHeight(window.innerHeight);
-  }, []);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    window.addEventListener('resize', handleResize);
+    const update = () => dispatch(updateScreenSize());
+    window.addEventListener('resize', update);
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', update);
     };
-  }, [handleResize]);
-
-  return [screenHeight, screenWidth];
+  }, [dispatch]);
 }
 
 export default useScreenSize;

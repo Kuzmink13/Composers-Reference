@@ -21,10 +21,6 @@ function getRelativeModes(mode) {
   return output;
 }
 
-function rootFilter(root) {
-  return (mode) => root === undefined || root === mode.getPitchCenter();
-}
-
 function duplicateFilter() {
   const seenModes = {};
 
@@ -37,15 +33,14 @@ function duplicateFilter() {
   return (mode) => checkSeen(mode.getAbsoluteModeCode());
 }
 
-function getModesFromTonality(tonality, pitchArray, root) {
+function getModesFromTonality(tonality, pitchArray) {
   const tonalitiyCollection = new PitchCollection(tonality.pitches);
   const baseMode = new Mode(pitchArray);
 
   return getMatchedModes(tonalitiyCollection, baseMode)
     .map((mode) => getRelativeModes(mode))
     .flat()
-    .filter(duplicateFilter())
-    .filter(rootFilter(root));
+    .filter(duplicateFilter());
 }
 
 export default getModesFromTonality;

@@ -7,18 +7,13 @@ import React from 'react';
 
 import ModeButton from './ModeButton';
 
-const buttonLabels = ['SIX', 'SEVEN', 'EIGHT'];
+import { SUPPORTED_SCALE_LENGTHS } from '../constants';
 
-function ButtonPanel({ modeLists }) {
+function ButtonPanel() {
   return (
     <div className="flex-none flex flex-row justify-center">
-      {buttonLabels.map((buttonLabel, i) => (
-        <ModeButton
-          key={i}
-          listIndex={i}
-          buttonLabel={buttonLabel}
-          listSize={modeLists[i].length}
-        />
+      {Object.values(SUPPORTED_SCALE_LENGTHS).map((cardinality) => (
+        <ModeButton key={cardinality.string} buttonCardinality={cardinality} />
       ))}
     </div>
   );

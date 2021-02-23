@@ -3,21 +3,31 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import useKeyboardFn, { keyArrays } from './useKeyboardFn';
+import { useDispatch, useSelector } from 'react-redux';
 
-function useShift(mode, openModeCard) {
+import useKeyboardFn from './useKeyboardFn';
+
+import { openModeCard } from '../redux/actions';
+import { getModeCardMode } from '../redux/selectors';
+
+import { KEY_ARRAYS } from '../constants';
+
+function useShift() {
+  const dispatch = useDispatch();
+  const mode = useSelector(getModeCardMode);
+  const open = (mode) => dispatch(openModeCard(mode));
   const shift = {
     relative: (isFwShift) => {
-      openModeCard(mode.relativeShift(isFwShift));
+      open(mode.relativeShift(isFwShift));
     },
     parallel: (isFwShift) => {
-      openModeCard(mode.parallelShift(isFwShift));
+      open(mode.parallelShift(isFwShift));
     },
     key: (isFwShift) => {
-      openModeCard(mode.keyShift(isFwShift));
+      open(mode.keyShift(isFwShift));
     },
     relativeBrightness: (isFwShift) => {
-      openModeCard(mode.relativeBrightnessShift(isFwShift));
+      open(mode.relativeBrightnessShift(isFwShift));
     },
   };
 
@@ -33,13 +43,13 @@ function useShift(mode, openModeCard) {
 
   const handleKeyShift = (event) => {
     switch (event.key) {
-      case keyArrays.left.join():
+      case KEY_ARRAYS.left.join():
         return shiftLR(event, false);
-      case keyArrays.right.join():
+      case KEY_ARRAYS.right.join():
         return shiftLR(event, true);
-      case keyArrays.down.join():
+      case KEY_ARRAYS.down.join():
         return shiftUD(event, false);
-      case keyArrays.up.join():
+      case KEY_ARRAYS.up.join():
         return shiftUD(event, true);
       default:
         return;

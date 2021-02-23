@@ -4,6 +4,8 @@
  */
 
 import React from 'react';
+import { useSelector } from 'react-redux';
+
 import * as svg from '../assets/svg.json';
 
 import VexStaff from './VexStaff';
@@ -12,9 +14,13 @@ import ChordTable from './ChordTable';
 import useShift from '../hooks/useShift';
 import useLongPress from '../hooks/useLongPress';
 
-function ModeCard({ mode, clef, openModeCard }) {
+import { getClef, getModeCardMode } from '../redux/selectors';
+
+function ModeCard() {
+  const mode = useSelector(getModeCardMode);
+  const clef = useSelector(getClef);
   const modeName = mode.getModeName();
-  const [shift] = useShift(mode, openModeCard);
+  const [shift] = useShift();
 
   const buttons = [
     {
@@ -74,7 +80,7 @@ function ModeCard({ mode, clef, openModeCard }) {
       </hgroup>
 
       {/* SCALE FIGURE*/}
-      <VexStaff key={modeName} {...{ mode, clef }} />
+      <VexStaff key={modeName} {...{ mode, clef }} altID="mode-card" />
 
       {/* MODE-SHIFT BUTTON PANEL */}
       <div className="flex">

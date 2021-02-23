@@ -5,12 +5,16 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Main from './components/Main';
+
+import { Provider } from 'react-redux';
+import store from './redux/store';
+
+import Main from './pages/Main';
 import './assets/main.css';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <Main />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );

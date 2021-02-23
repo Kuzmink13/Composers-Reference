@@ -3,13 +3,9 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import { supportedTonalities } from '../hooks/useTonalities';
+import { SUPPORTED_TONALITIES } from '../constants';
 
 import getModesFromTonality from './getModesfromTonality';
-
-function tonalityFilter(tonalities) {
-  return (el, i) => tonalities[i];
-}
 
 function modeCompare(pitchArray) {
   return (a, b) => {
@@ -32,15 +28,10 @@ function modeCompare(pitchArray) {
   };
 }
 
-function getAllModes(pitchArray, root, tonalities) {
-  return supportedTonalities
-    .filter(tonalityFilter(tonalities))
-    .map((tonality) =>
-      getModesFromTonality(tonality, pitchArray, root).sort(
-        modeCompare(pitchArray)
-      )
-    )
-    .flat();
+function getAllModes(pitchArray) {
+  return SUPPORTED_TONALITIES.map((tonality) =>
+    getModesFromTonality(tonality, pitchArray).sort(modeCompare(pitchArray))
+  ).flat();
 }
 
 export default getAllModes;

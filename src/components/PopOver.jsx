@@ -5,12 +5,12 @@
 
 import React, { useEffect, Fragment } from 'react';
 import { createFocusTrap } from 'focus-trap';
+
 import * as svg from '../assets/svg.json';
 
 function PopOver({
   children,
   closeFn = () => {},
-  freezeFn = () => {},
   ID = 'pop-over-wrapper',
   isAnimated = true,
   isGray = true,
@@ -52,12 +52,6 @@ function PopOver({
       popOverWrapper.classList.add('scale-100', 'opacity-100');
     }
   }, [ID, isAnimated]);
-
-  // FREEZE KEY LISTENERS
-  useEffect(() => {
-    freezeFn(true);
-    return () => freezeFn(false);
-  }, [freezeFn]);
 
   // RENDER
   const popOverWrapper = (

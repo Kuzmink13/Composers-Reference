@@ -64,129 +64,129 @@
 
   "024689b": {
     "modeName": "Lydian Augmented",
-    "parentTonality": "Melodic-Minor",
+    "parentTonality": "Melodic Minor",
     "previousMode": "024679a",
     "nextMode": null
   },
   "024679a": {
     "modeName": "Lydian Dominant",
-    "parentTonality": "Melodic-Minor",
+    "parentTonality": "Melodic Minor",
     "previousMode": "023579b",
     "nextMode": "024689b"
   },
   "023579b": {
     "modeName": "Melodic Minor",
-    "parentTonality": "Melodic-Minor",
+    "parentTonality": "Melodic Minor",
     "previousMode": "024578a",
     "nextMode": "024679a"
   },
   "024578a": {
     "modeName": "Aeolian Dominant",
-    "parentTonality": "Melodic-Minor",
+    "parentTonality": "Melodic Minor",
     "previousMode": "013579a",
     "nextMode": "023579b"
   },
   "013579a": {
     "modeName": "Dorian b2",
-    "parentTonality": "Melodic-Minor",
+    "parentTonality": "Melodic Minor",
     "previousMode": "023568a",
     "nextMode": "024578a"
   },
   "023568a": {
     "modeName": "Locrian nat2",
-    "parentTonality": "Melodic-Minor",
+    "parentTonality": "Melodic Minor",
     "previousMode": "013468a",
     "nextMode": "013579a"
   },
   "013468a": {
     "modeName": "Altered",
-    "parentTonality": "Melodic-Minor",
+    "parentTonality": "Melodic Minor",
     "previousMode": null,
     "nextMode": "023568a"
   },
 
   "034679b": {
     "modeName": "Lydian #2",
-    "parentTonality": "Harmonic-Minor",
+    "parentTonality": "Harmonic Minor",
     "previousMode": "024589b",
     "nextMode": null
   },
   "024589b": {
     "modeName": "Major Augmented",
-    "parentTonality": "Harmonic-Minor",
+    "parentTonality": "Harmonic Minor",
     "previousMode": "023679a",
     "nextMode": "034679b"
   },
   "023679a": {
     "modeName": "Dorian #4",
-    "parentTonality": "Harmonic-Minor",
+    "parentTonality": "Harmonic Minor",
     "previousMode": "023578b",
     "nextMode": "024589b"
   },
   "023578b": {
     "modeName": "Harmonic Minor",
-    "parentTonality": "Harmonic-Minor",
+    "parentTonality": "Harmonic Minor",
     "previousMode": "014578a",
     "nextMode": "023679a"
   },
   "014578a": {
     "modeName": "Phrygian Dominant",
-    "parentTonality": "Harmonic-Minor",
+    "parentTonality": "Harmonic Minor",
     "previousMode": "013569a",
     "nextMode": "023578b"
   },
   "013569a": {
     "modeName": "Locrian nat6",
-    "parentTonality": "Harmonic-Minor",
+    "parentTonality": "Harmonic Minor",
     "previousMode": "0134689",
     "nextMode": "014578a"
   },
   "0134689": {
     "modeName": "Altered bb7",
-    "parentTonality": "Harmonic-Minor",
+    "parentTonality": "Harmonic Minor",
     "previousMode": null,
     "nextMode": "013569a"
   },
 
   "034689b": {
     "modeName": "Lydian Augmented #2",
-    "parentTonality": "Harmonic-Major",
+    "parentTonality": "Harmonic Major",
     "previousMode": "023679b",
     "nextMode": null
   },
   "023679b": {
     "modeName": "Melodic Minor #4",
-    "parentTonality": "Harmonic-Major",
+    "parentTonality": "Harmonic Major",
     "previousMode": "024578b",
     "nextMode": "034689b"
   },
   "024578b": {
     "modeName": "Harmonic Major",
-    "parentTonality": "Harmonic-Major",
+    "parentTonality": "Harmonic Major",
     "previousMode": "014579a",
     "nextMode": "023679b"
   },
   "014579a": {
     "modeName": "Mixolydian b2",
-    "parentTonality": "Harmonic-Major",
+    "parentTonality": "Harmonic Major",
     "previousMode": "023569a",
     "nextMode": "024578b"
   },
   "023569a": {
     "modeName": "Dorian b5",
-    "parentTonality": "Harmonic-Major",
+    "parentTonality": "Harmonic Major",
     "previousMode": "013478a",
     "nextMode": "014579a"
   },
   "013478a": {
     "modeName": "Altered nat5",
-    "parentTonality": "Harmonic-Major",
+    "parentTonality": "Harmonic Major",
     "previousMode": "0135689",
     "nextMode": "023569a"
   },
   "0135689": {
     "modeName": "Locrian bb7",
-    "parentTonality": "Harmonic-Major",
+    "parentTonality": "Harmonic Major",
     "previousMode": null,
     "nextMode": "013478a"
   },

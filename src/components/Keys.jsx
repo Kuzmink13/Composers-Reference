@@ -4,23 +4,23 @@
  */
 
 import React, { useMemo } from 'react';
-import Key from './Key';
+import { useSelector } from 'react-redux';
 
-import { octavesToDisplay, isShortModeActive } from '../hooks/useScreenSize';
+import Key from './Key';
 
 import { notesInOctave, octaveMod } from '../logic/utilities';
 
-function Keys({ screenHeight, screenWidth }) {
-  const isShort = isShortModeActive(screenHeight);
+import { getNumOctaves, isShortModeActive } from '../redux/selectors';
+
+function Keys() {
+  const isShort = useSelector(isShortModeActive);
+  const numOctaves = useSelector(getNumOctaves);
 
   const keys = useMemo(() => {
-    return Array.from(
-      Array(notesInOctave * octavesToDisplay(screenWidth)),
-      (el, i) => (
-        <Key key={i} value={octaveMod(i)} index={i} isShort={isShort} />
-      )
-    );
-  }, [isShort, screenWidth]);
+    return Array.from(Array(notesInOctave * numOctaves), (el, i) => (
+      <Key key={i} value={octaveMod(i)} index={i} />
+    ));
+  }, [numOctaves]);
 
   return (
     <div

@@ -4,32 +4,43 @@
  */
 
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import GuideContent, { numPages } from './GuideContent';
 
-import useKeyboarFn, { keyArrays } from '../hooks/useKeyboardFn';
+import useKeyboarFn from '../hooks/useKeyboardFn';
 
-function QuickGuide({
-  isGuideDismissed,
-  guideIndex,
-  indexFns,
-  toggleShowGuide,
-  toggleDismissGuide,
-}) {
-  const [isChecked, setIsChecked] = useState(isGuideDismissed);
+import { getGuideIndex, getIsGuideDismissed } from '../redux/selectors';
+import {
+  guideDecrement,
+  guideIncrement,
+  toggleGuideDismissed,
+  toggleGuideShown,
+} from '../redux/actions';
 
-  function skipGuide() {
-    toggleDismissGuide(isChecked);
-    toggleShowGuide();
-  }
+import { KEY_ARRAYS } from '../constants';
 
-  useKeyboarFn(indexFns.incrementPage, keyArrays.right);
-  useKeyboarFn(indexFns.decrementPage, keyArrays.left);
+function QuickGuide() {
+  const dispatch = useDispatch();
+  const isDismissed = useSelector(getIsGuideDismissed);
+  const index = useSelector(getGuideIndex);
+  const [isChecked, setIsChecked] = useState(isDismissed);
+
+  const skipGuide = () => {
+    dispatch(toggleGuideDismissed(isChecked));
+    dispatch(toggleGuideShown());
+  };
+
+  const inc = () => dispatch(guideIncrement());
+  const dec = () => dispatch(guideDecrement());
+
+  useKeyboarFn(inc, KEY_ARRAYS.right);
+  useKeyboarFn(dec, KEY_ARRAYS.left);
 
   return (
     <div className="flex flex-col items-center relative p-4">
       {/* CONTENT */}
-      <GuideContent key={guideIndex} {...{ guideIndex }} />
+      <GuideContent key={index} />
 
       {/* BUTTONS */}
       <div className="flex flex-col-reverse xs:flex-row w-full justify-between items-center">
@@ -62,8 +73,8 @@ function QuickGuide({
             aria-label="previous slide"
             name="previous slide"
             className="tab-selection p-1 disabled:opacity-50"
-            onClick={indexFns.decrementPage}
-            disabled={guideIndex === 0}
+            onClick={dec}
+            disabled={index === 0}
           >
             <div className="btn btn-text btn-p">PREV.</div>
           </button>
@@ -71,15 +82,15 @@ function QuickGuide({
             aria-label="next slide"
             name="next slide"
             className="tab-selection p-1 disabled:opacity-50"
-            onClick={indexFns.incrementPage}
-            disabled={guideIndex === numPages - 1}
+            onClick={inc}
+            disabled={index === numPages - 1}
           >
             <div className="btn btn-text btn-p">NEXT</div>
           </button>
         </div>
       </div>
       <div className="absolute top-0 left-0 m-2 px-1 text-sm text-gray-700">
-        {guideIndex + 1}/{numPages}
+        {index + 1}/{numPages}
       </div>
     </div>
   );

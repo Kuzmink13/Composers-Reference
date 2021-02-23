@@ -4,12 +4,21 @@
  */
 
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { isEqual } from 'lodash';
 
-import { useModeButtonContext } from '../contexts/ModeButtonContext';
+import { changeCardinality } from '../redux/actions';
+import { getCardinality, getFilteredModeList } from '../redux/selectors';
 
-function ModeButton({ listIndex, buttonLabel, listSize }) {
-  const { selectedListIndex, handleSelectorChange } = useModeButtonContext();
-  const isSelected = listIndex === selectedListIndex;
+function ModeButton({ buttonCardinality }) {
+  const dispatch = useDispatch();
+  const modeList = useSelector(
+    (store) => getFilteredModeList(store, buttonCardinality),
+    isEqual
+  );
+  const cardinality = useSelector(getCardinality);
+  const isSelected = buttonCardinality === cardinality;
+  const buttonLabel = buttonCardinality.string;
 
   return (
     <div
@@ -19,7 +28,7 @@ function ModeButton({ listIndex, buttonLabel, listSize }) {
     >
       <button
         aria-label={`select ${buttonLabel.toLowerCase()} note mode list`}
-        onClick={() => handleSelectorChange(listIndex)}
+        onClick={() => dispatch(changeCardinality(buttonCardinality))}
         className="text-xs sm:text-base tab-selection py-2 px-1 sm:px-2 font-semibold tracking-wider cursor-pointer"
       >
         <span className="text-gray-900">{buttonLabel}-NOTE</span>
@@ -28,7 +37,7 @@ function ModeButton({ listIndex, buttonLabel, listSize }) {
             isSelected ? 'text-white bg-gray-700' : 'text-gray-800 bg-gray-400'
           }`}
         >
-          {listSize}
+          {modeList.length}
         </span>
       </button>
     </div>
