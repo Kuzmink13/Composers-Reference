@@ -12,12 +12,10 @@ import useKeyboardFn from './useKeyboardFn';
 
 import {
   closeDropDown,
-  closeModeCard,
   noteReset,
   noteSelect,
   rootSelect,
   toggleDropDown,
-  toggleGuideShown,
 } from '../redux/actions';
 import {
   getArePopOversActive,
@@ -73,10 +71,8 @@ function useKeyboard() {
   // SET LISTENERS
   useKeyboardFn(KeyBoardPress);
   useKeyboardFn(clearKeys, KEY_ARRAYS.delete);
-  useKeyboardFn(() => dispatch(closeModeCard()), KEY_ARRAYS.escape);
   useKeyboardFn(handleNavShortcuts);
   useKeyboardFn(closeAll, KEY_ARRAYS.escape);
-  useKeyboardFn(() => dispatch(toggleGuideShown(false)), KEY_ARRAYS.escape);
 }
 
 export default useKeyboard;

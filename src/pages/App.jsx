@@ -4,15 +4,12 @@
  */
 
 import React, { Fragment } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 import Navbar from '../components/Navbar';
 import NavButtons from '../components/NavButtons';
 import Options from '../components/Options';
 import Menu from '../components/Menu';
-import PopOver from '../components/PopOver';
-import QuickGuide from '../components/QuickGuide';
-import ModeCard from '../components/ModeCard';
+import PopOvers from '../components/PopOvers';
 import Keys from '../components/Keys';
 import ButtonPanel from '../components/ButtonPanel';
 import ModePanel from '../components/ModePanel';
@@ -21,13 +18,7 @@ import Footer from '../components/Footer';
 import useKeyboard from '../hooks/useKeyboard';
 import useScreenSize from '../hooks/useScreenSize';
 
-import { getIsGuideShown, getIsModeCardShown } from '../redux/selectors';
-import { closeModeCard, toggleGuideShown } from '../redux/actions';
-
 function App() {
-  const dispatch = useDispatch();
-  const isModeCardShown = useSelector(getIsModeCardShown);
-  const isGuideShown = useSelector(getIsGuideShown);
   useKeyboard();
   useScreenSize();
 
@@ -38,27 +29,7 @@ function App() {
         <NavButtons options={<Options />} menu={<Menu />} />
       </Navbar>
 
-      {isModeCardShown && (
-        <PopOver
-          closeFn={() => dispatch(closeModeCard())}
-          ID="mode-card-pop-over"
-          showCloseButton={true}
-        >
-          <ModeCard />
-        </PopOver>
-      )}
-
-      {isGuideShown && (
-        <PopOver
-          closeFn={() => dispatch(toggleGuideShown())}
-          ID="guide-pop-over"
-          isAnimated={false}
-          isWide={true}
-          showCloseButton={true}
-        >
-          <QuickGuide />
-        </PopOver>
-      )}
+      <PopOvers />
 
       <main className="flex-grow w-full overflow-y-hidden mx-auto flex flex-col lg:max-w-screen-lg">
         <Keys />
