@@ -11,8 +11,8 @@ import ModeBlock from '../components/ModeBlock';
 
 import {
   getCardinality,
-  getNoteSelection,
   getNotesState,
+  getSelectionFilterState,
   getTonalityState,
 } from '../redux/selectors';
 
@@ -47,7 +47,7 @@ function useModePanel(selectedList) {
   };
 
   const notes = useSelector(getNotesState, isEqual);
-  const selection = useSelector(getNoteSelection, isEqual);
+  const selection = useSelector(getSelectionFilterState, isEqual);
   const tonalities = useSelector(getTonalityState, isEqual);
   const cardinality = useSelector(getCardinality, isEqual);
 
