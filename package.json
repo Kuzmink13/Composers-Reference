@@ -1,6 +1,6 @@
 {
   "name": "composers-reference",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
   "packageManager": "bun@1.2.18",
   "dependencies": {
@@ -17,18 +17,6 @@
     "preview": "vite preview",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   },
   "devDependencies": {
     "@types/node": "^24.10.0",
