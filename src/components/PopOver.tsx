@@ -67,7 +67,7 @@ function PopOver({
         !overrideStyles &&
         `box pop-out transform w-full ${isWide ? 'max-w-3xl' : 'max-w-md'}`
       }
-      ${animationClasses}`}
+      ${animationClasses} ${showCloseButton ? 'relative' : ''}`}
       onClick={(e) => e.stopPropagation()}
     >
       {children}
