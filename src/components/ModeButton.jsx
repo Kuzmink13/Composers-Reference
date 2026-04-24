@@ -33,7 +33,7 @@ function ModeButton({ buttonCardinality }) {
       >
         <span className="text-gray-900">{buttonLabel}-NOTE</span>
         <span
-          className={`font-bold text-xs ml-1 sm:ml-3 py-1 px-1 sm:px-2 rounded-full shadow-md ${
+          className={`font-bold text-xs ml-1 sm:ml-3 py-1 px-1 sm:px-2 rounded-3xl shadow-md ${
             isSelected ? 'text-white bg-gray-700' : 'text-gray-800 bg-gray-400'
           }`}
         >

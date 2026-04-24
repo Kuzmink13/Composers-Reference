@@ -8,7 +8,7 @@ import { SUPPORTED_SCALE_LENGTHS } from '../../constants';
 
 const initialState = SUPPORTED_SCALE_LENGTHS.SEVEN;
 
-export default function (state = initialState, action) {
+function cardinalityReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_CARDINALITY:
       return action.payload.cardinality;
@@ -17,3 +17,5 @@ export default function (state = initialState, action) {
       return state;
   }
 }
+
+export default cardinalityReducer;

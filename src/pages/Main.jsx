@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import App from './App';
 import About from './About';
@@ -15,13 +15,13 @@ import References from './References';
 function Main() {
   return (
     <BrowserRouter>
-      <Switch>
-        <Route path="/" exact component={App} />
-        <Route path="/about" component={About} />
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/about" element={<About />} />
         {/* <Route path="/contact" component={Contact} /> */}
-        <Route path="/scales" component={Scales} />
-        <Route path="/references" component={References} />
-      </Switch>
+        <Route path="/scales" element={<Scales />} />
+        <Route path="/references" element={<References />} />
+      </Routes>
     </BrowserRouter>
   );
 }

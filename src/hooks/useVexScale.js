@@ -8,8 +8,6 @@ import { useEffect } from 'react';
 import * as vs from '../logic/vexScale';
 import { notesInOctave } from '../logic/utilities';
 
-const formattedWidth = 260;
-
 function getOctave(clef, firstNote) {
   const baseOctaves = {
     treble: 4,
@@ -37,26 +35,33 @@ function toVexScale(mode, octave, clef) {
     vs.getVFNote(note, octave + noteAdjustment(note, i), clef);
 }
 
-function generateStaff(mode, clef, altID) {
-  const context = vs.getContext(altID ?? mode.getAbsoluteModeCode());
+function generateStaff(mode, clef, elementID) {
+  const context = vs.getContext(elementID);
   const stave = vs.getStave().addClef(clef);
   const octave = getOctave(clef, mode.getModeRoot());
   const notes = mode.getScaleNotes().map(toVexScale(mode, octave, clef));
   const voice = vs.getVoice(notes.length).addTickables(notes);
 
-  vs.formatter.format([voice], formattedWidth);
+  vs.formatVoice(voice, stave);
   stave.setContext(context).draw();
   voice.draw(context, stave);
 }
 
 function useVexScale(mode, clef, altID) {
   useEffect(() => {
-    generateStaff(mode, clef, altID);
+    const elementID = altID ?? mode.getAbsoluteModeCode();
+    const element = document.getElementById(elementID);
+    if (!element) return undefined;
+
+    generateStaff(mode, clef, elementID);
+
     return () => {
-      document.getElementById(altID ?? mode.getAbsoluteModeCode()).innerHTML =
-        '';
+      const currentElement = document.getElementById(elementID);
+      if (currentElement) {
+        currentElement.innerHTML = '';
+      }
     };
-  });
+  }, [mode, clef, altID]);
 }
 
 export default useVexScale;

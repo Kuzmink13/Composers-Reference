@@ -6,7 +6,7 @@
 import React, { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import * as svg from '../assets/svg.json';
+import svg from '../assets/svg.json';
 
 import PopOver from './PopOver';
 

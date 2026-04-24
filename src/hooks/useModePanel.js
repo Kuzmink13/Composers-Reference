@@ -3,7 +3,7 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { isEqual } from 'lodash';
 
@@ -23,28 +23,28 @@ const initialState = {
 const itemsToLoad = 6;
 
 function useModePanel(selectedList) {
-  const [items, setItems] = useState(initialState.items());
-  const itemsLoaded = items.length;
+  const [itemsLoaded, setItemsLoaded] = useState(initialState.items().length);
   const listLength = selectedList.length;
   const hasMore = listLength > itemsLoaded;
 
-  const loadMore = () => {
-    setItems(
-      items.concat(
-        selectedList
-          .slice(itemsLoaded, Math.min(listLength, itemsLoaded + itemsToLoad))
-          .map((mode) => generateModeBlock(mode))
-      )
+  const loadMore = useCallback(() => {
+    setItemsLoaded((currentLength) =>
+      Math.min(listLength, currentLength + itemsToLoad)
     );
-  };
+  }, [listLength]);
 
   const clearState = () => {
-    setItems(initialState.items());
+    setItemsLoaded(initialState.items().length);
   };
 
   const generateModeBlock = (mode) => {
     return <ModeBlock key={mode.getAbsoluteModeCode()} mode={mode} />;
   };
+
+  const items = useMemo(
+    () => selectedList.slice(0, itemsLoaded).map(generateModeBlock),
+    [selectedList, itemsLoaded]
+  );
 
   const notes = useSelector(getNotesState, isEqual);
   const selection = useSelector(getSelectionFilterState, isEqual);

@@ -27,7 +27,7 @@ function Menu() {
     <ul
       className="box pop-out drop-down
       flex flex-col
-      mt-10 mr-6 py-2
+      mt-10 mr-6 py-2 z-50
       font-semibold text-sm sm:text-base"
     >
       {links.map((el) => (

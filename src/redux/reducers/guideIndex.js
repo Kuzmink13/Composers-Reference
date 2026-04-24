@@ -8,7 +8,7 @@ import { numPages } from '../../components/GuideContent';
 
 const initialState = 0;
 
-export default function (state = initialState, action) {
+function guideIndexReducer(state = initialState, action) {
   switch (action.type) {
     case GUIDE_INCREMENT:
       return state < numPages - 1 ? state + 1 : state;
@@ -20,3 +20,5 @@ export default function (state = initialState, action) {
       return state;
   }
 }
+
+export default guideIndexReducer;

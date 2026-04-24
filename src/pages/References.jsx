@@ -5,7 +5,7 @@
 
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import * as ref from '../assets/externalReferences.json';
+import ref from '../assets/externalReferences.json';
 
 import Navbar from '../components/Navbar';
 
@@ -34,14 +34,14 @@ function References() {
             References
           </h2>
           <ul className="flex flex-col xs:flex-row flex-wrap">
-            {Object.keys(ref.default)
+            {Object.keys(ref)
               .sort(alphabetize)
-              .filter((el) => ref.default[el] !== '')
+              .filter((el) => ref[el] !== '')
               .map((el) => (
                 <li key={el} className="px-3 pb-3 capitalize">
                   <a
                     className="tab-selection hover:underline"
-                    href={ref.default[el]}
+                    href={ref[el]}
                     target="_"
                   >
                     {replaceSymbols(el)}

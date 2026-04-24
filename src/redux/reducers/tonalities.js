@@ -8,7 +8,7 @@ import { SUPPORTED_TONALITIES } from '../../constants';
 
 const initialState = Array.from(SUPPORTED_TONALITIES, () => true);
 
-export default function (state = initialState, action) {
+function tonalitiesReducer(state = initialState, action) {
   switch (action.type) {
     case TOGGLE_TONALITY: {
       const i = action.payload.index;
@@ -22,3 +22,5 @@ export default function (state = initialState, action) {
       return state;
   }
 }
+
+export default tonalitiesReducer;

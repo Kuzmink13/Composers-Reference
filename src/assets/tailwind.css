@@ -1,5 +1,6 @@
-@tailwind base;
-@tailwind components;
+@config "../../tailwind.custom.config.js";
+
+@import "tailwindcss";
 
 @font-face {
   font-family: 'FreeSans';
@@ -14,8 +15,6 @@
   font-style: normal;
   font-weight: 600;
 }
-
-@tailwind utilities;
 
 @layer components {
   /* KEYS */
@@ -85,7 +84,7 @@
   }
 
   .drop-down {
-    @apply absolute right-0 top-0 z-30;
+    @apply absolute right-0 top-0 z-50;
   }
 
   /* TAB-SELECTION */

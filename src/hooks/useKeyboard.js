@@ -6,7 +6,7 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import * as keyMap from '../assets/keyMap.json';
+import keyMap from '../assets/keyMap.json';
 
 import useKeyboardFn from './useKeyboardFn';
 

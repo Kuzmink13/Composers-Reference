@@ -6,8 +6,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import * as keyMap from '../assets/keyMap.json';
-import * as keyNotes from '../assets/notes.json';
+import keyMap from '../assets/keyMap.json';
+import keyNotes from '../assets/notes.json';
 
 import useLongPress from '../hooks/useLongPress';
 
@@ -32,8 +32,8 @@ function Key({ value, index }) {
 
   const isKeySelected = notes[value];
   const isKeyRoot = root === value;
-  const keyNoteName = keyNotes.default[value].absoluteName;
-  const keyColor = keyNotes.default[value].isWhite ? 'white' : 'black';
+  const keyNoteName = keyNotes[value].absoluteName;
+  const keyColor = keyNotes[value].isWhite ? 'white' : 'black';
   const selectionType = isKeySelected
     ? isKeyRoot
       ? 'root'

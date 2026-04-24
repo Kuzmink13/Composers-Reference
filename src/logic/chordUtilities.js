@@ -3,10 +3,10 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import * as chordTree from '../assets/chordTree.json';
-import * as ints from '../assets/intervals.json';
+import chordTree from '../assets/chordTree.json';
+import ints from '../assets/intervals.json';
 
-export const tree = chordTree.default;
+export const tree = chordTree;
 
 export const maxTreeDepth = 4;
 
@@ -26,7 +26,7 @@ export function getNextNoteName(mode, interval) {
 }
 
 export function getIntervalProps(interval) {
-  return ints.default[interval];
+  return ints[interval];
 }
 
 export function containsInterval(mode, interval) {

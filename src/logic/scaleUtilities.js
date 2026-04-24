@@ -3,7 +3,7 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import * as notes from '../assets/notes.json';
+import notes from '../assets/notes.json';
 import { octaveMod } from './utilities';
 
 export const letterNames = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
@@ -26,11 +26,11 @@ export const oneLetterWholeSteps = {
 };
 
 export function getKey(pitch) {
-  return notes.default[octaveMod(pitch)];
+  return notes[octaveMod(pitch)];
 }
 
 export function getEnharmonics(pitch) {
-  return notes.default[octaveMod(pitch)].enharmonics;
+  return notes[octaveMod(pitch)].enharmonics;
 }
 
 export function getShortestOrDefault(pitch, isSharp) {

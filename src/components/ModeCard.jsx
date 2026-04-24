@@ -6,7 +6,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import * as svg from '../assets/svg.json';
+import svg from '../assets/svg.json';
 
 import VexStaff from './VexStaff';
 import ChordTable from './ChordTable';

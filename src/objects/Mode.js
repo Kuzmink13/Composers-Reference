@@ -3,7 +3,7 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import * as modeProps from '../assets/modeProperties.json';
+import modeProps from '../assets/modeProperties.json';
 
 import getScaleNotes from '../logic/getScaleNotes';
 import getChordList from '../logic/getChordList';
@@ -68,14 +68,14 @@ class Mode extends PitchCollection {
 
   getModeName() {
     const name = `${this.getModeRoot()} ${
-      modeProps.default[this.getAbstractModeCode()].modeName
+      modeProps[this.getAbstractModeCode()].modeName
     }`;
 
     return replaceSymbols(name);
   }
 
   getParentTonality() {
-    return modeProps.default[this.getAbstractModeCode()].parentTonality;
+    return modeProps[this.getAbstractModeCode()].parentTonality;
   }
 
   getSharpness() {
@@ -100,8 +100,8 @@ class Mode extends PitchCollection {
     const modeCode = this.getAbstractModeCode();
 
     const code = isFwShift
-      ? modeProps.default[modeCode].nextMode
-      : modeProps.default[modeCode].previousMode;
+      ? modeProps[modeCode].nextMode
+      : modeProps[modeCode].previousMode;
 
     return code ? this.fromCode(code, pitchCenter) : this;
   }

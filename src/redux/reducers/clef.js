@@ -8,7 +8,7 @@ import { SUPPORTED_CLEFS } from '../../constants';
 
 const initialState = SUPPORTED_CLEFS.TREBLE;
 
-export default function (state = initialState, action) {
+function clefReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_CLEF:
       return action.payload.clef;
@@ -20,3 +20,5 @@ export default function (state = initialState, action) {
       return state;
   }
 }
+
+export default clefReducer;

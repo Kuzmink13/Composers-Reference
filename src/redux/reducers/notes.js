@@ -14,7 +14,7 @@ const initialState = {
   modeList: [],
 };
 
-export default function (state = initialState, action) {
+function notesReducer(state = initialState, action) {
   switch (action.type) {
     case NOTE_SELECT: {
       const i = action.payload.noteIndex;
@@ -53,3 +53,5 @@ export default function (state = initialState, action) {
       return state;
   }
 }
+
+export default notesReducer;

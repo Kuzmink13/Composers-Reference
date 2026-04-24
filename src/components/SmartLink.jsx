@@ -5,7 +5,7 @@
 
 import React from 'react';
 
-import * as refs from '../assets/externalReferences.json';
+import refs from '../assets/externalReferences.json';
 
 import { replaceSymbols } from '../logic/utilities';
 
@@ -15,7 +15,7 @@ function SmartLink({
   newTab = true,
   willReplaceSymbols = true,
 }) {
-  const link = refs.default[term];
+  const link = refs[term];
   return link ? (
     <a
       href={link}

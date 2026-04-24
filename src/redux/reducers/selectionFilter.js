@@ -10,7 +10,7 @@ import {
 
 const initialState = false;
 
-export default function (state = initialState, action) {
+function selectionFilterReducer(state = initialState, action) {
   switch (action.type) {
     case TOGGLE_SELECTION_FILTER:
       return !state;
@@ -22,3 +22,5 @@ export default function (state = initialState, action) {
       return state;
   }
 }
+
+export default selectionFilterReducer;

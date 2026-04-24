@@ -10,7 +10,7 @@ const initialState = {
   height: window.innerHeight,
 };
 
-export default function (state = initialState, action) {
+function screenSizeReducer(state = initialState, action) {
   switch (action.type) {
     case UPDATE_SCREEN_SIZE:
       return {
@@ -22,3 +22,5 @@ export default function (state = initialState, action) {
       return state;
   }
 }
+
+export default screenSizeReducer;

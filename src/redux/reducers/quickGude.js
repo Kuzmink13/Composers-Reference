@@ -14,7 +14,7 @@ const initialState = {
   isShown: true,
 };
 
-export default function (state = initialState, action) {
+function quickGuideReducer(state = initialState, action) {
   switch (action.type) {
     case TOGGLE_GUIDE_DISMISSED:
       return {
@@ -38,3 +38,5 @@ export default function (state = initialState, action) {
       return state;
   }
 }
+
+export default quickGuideReducer;

@@ -3,49 +3,59 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import Vex from 'vexflow';
-
-const vf = Vex.Flow;
+import {
+  Accidental,
+  Formatter,
+  Renderer,
+  Stave,
+  StaveNote,
+  Voice,
+} from 'vexflow';
 
 const format = {
-  canvasWidth: 280,
+  canvasWidth: 300,
   canvasHeight: 85,
-  xPosition: 0,
+  xPosition: 4,
   yPosition: -15,
 };
 
-export const formatter = new vf.Formatter();
+export function formatVoice(voice, stave) {
+  new Formatter().joinVoices([voice]).formatToStave([voice], stave);
+}
 
 export function getContext(elementID) {
-  return new vf.Renderer(
+  return new Renderer(
     document.getElementById(elementID),
-    vf.Renderer.Backends.SVG
+    Renderer.Backends.SVG
   )
     .resize(format.canvasWidth, format.canvasHeight)
     .getContext();
 }
 
 export function getStave() {
-  return new vf.Stave(format.xPosition, format.yPosition, format.canvasWidth);
+  return new Stave(
+    format.xPosition,
+    format.yPosition,
+    format.canvasWidth - format.xPosition * 2
+  );
 }
 
 export function getVoice(length) {
-  return new vf.Voice({
+  return new Voice({
     num_beats: length,
     beat_value: 1,
-  });
+  }).setStrict(false);
 }
 
 export function getVFNote(note, octave, clef) {
   const accidentalValue = note.slice(1);
-  const vfNote = new vf.StaveNote({
+  const vfNote = new StaveNote({
     clef: clef,
     keys: [`${note}/${octave}`],
     duration: 'w',
   });
 
-  accidentalValue &&
-    vfNote.addAccidental(0, new vf.Accidental(accidentalValue));
+  accidentalValue && vfNote.addModifier(new Accidental(accidentalValue), 0);
 
   return vfNote;
 }

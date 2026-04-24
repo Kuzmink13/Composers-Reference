@@ -8,7 +8,7 @@ import { DROP_DOWN_STATE } from '../../constants';
 
 const initialState = DROP_DOWN_STATE.NONE;
 
-export default function (state = initialState, action) {
+function navDropDownsReducer(state = initialState, action) {
   switch (action.type) {
     case TOGGLE_DROP_DOWN:
       return action.payload.dropDownState === state
@@ -22,3 +22,5 @@ export default function (state = initialState, action) {
       return state;
   }
 }
+
+export default navDropDownsReducer;

@@ -10,7 +10,7 @@ const initialState = {
   mode: undefined,
 };
 
-export default function (state = initialState, action) {
+function modeCardReducer(state = initialState, action) {
   switch (action.type) {
     case OPEN_MODE_CARD: {
       return {
@@ -27,3 +27,5 @@ export default function (state = initialState, action) {
       return state;
   }
 }
+
+export default modeCardReducer;
