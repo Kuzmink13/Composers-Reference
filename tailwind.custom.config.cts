@@ -124,7 +124,7 @@ module.exports = {
       },
       spacing: {
         'staff-height': '85px',
-        'staff-width': '300px',
+        'staff-width': '280px',
       },
     },
   },

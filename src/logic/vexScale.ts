@@ -13,9 +13,9 @@ import {
 } from 'vexflow';
 
 const format = {
-  canvasWidth: 300,
+  canvasWidth: 280,
   canvasHeight: 85,
-  xPosition: 4,
+  xPosition: 1,
   yPosition: -15,
 };
 
