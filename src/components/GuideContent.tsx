@@ -300,16 +300,6 @@ const content = [
         more on terms and concepts commonly used throughout Composer's Reference
       </li>
     </ul>
-    {/* <p className="text-center text-sm md:text-base pb-4">
-      Have a feature request?{' '}
-      <Link
-        aria-label="Submit a feature request"
-        to="/contact"
-        className="tab-selection external-link"
-      >
-        Submit it here!
-      </Link>
-    </p> */}
   </Fragment>,
 ];
 

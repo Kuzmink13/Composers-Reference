@@ -5,44 +5,10 @@
 
 import React, { Fragment } from 'react';
 import { Link } from '@tanstack/react-router';
-// import * as svg from '../assets/svg.json';
 
 import Navbar from '../components/Navbar';
 
 function About() {
-  // const socialLinks = [
-  //   {
-  //     name: 'github',
-  //     link: '',
-  //     path: svg.github,
-  //   },
-  //   {
-  //     name: 'linkedin',
-  //     link: '',
-  //     path: svg.linkedin,
-  //   },
-  //   {
-  //     name: 'stack overflow',
-  //     link: '',
-  //     path: svg.stackoverflow,
-  //   },
-  //   {
-  //     name: 'twitter',
-  //     link: '',
-  //     path: svg.twitter,
-  //   },
-  //   {
-  //     name: 'instagram',
-  //     link: '',
-  //     path: svg.instagram,
-  //   },
-  //   {
-  //     name: 'medium',
-  //     link: '',
-  //     path: svg.medium,
-  //   },
-  // ];
-
   return (
     <Fragment>
       <Navbar>
@@ -111,30 +77,7 @@ function About() {
               Konstantin Kuzmin
             </a>
             , a software developer and composer from Minneapolis, Minnesota.
-            {/* <Link to="/contact" className="tab-selection external-link">
-              Contact here.
-            </Link> */}
           </p>
-          {/* <ul className="flex flex-row mx-auto">
-            {socialLinks.map((el) => (
-              <li key={el.name}>
-                <a
-                  aria-label={el.name}
-                  name={el.name}
-                  target="_"
-                  className="tab-selection block h-10 w-10 mx-6 text-gray-600 hover:text-gray-800 sm:mr-2"
-                  href={el.link}
-                >
-                  <svg
-                    className="fill-current h-auto w-auto m-1 z-30 cursor-pointer"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d={el.path} />
-                  </svg>
-                </a>
-              </li>
-            ))}
-          </ul> */}
         </div>
         <p className="mb-4 text-center">
           Composer's Reference &#169; Konstantin Kuzmin 2021

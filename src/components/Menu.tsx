@@ -11,7 +11,6 @@ function Menu() {
   const toggleGuideShown = useStore((state) => state.toggleGuideShown);
   const links = [
     { title: 'About', link: '/about' },
-    // { title: 'Contact', link: '/contact' },
     {
       title: 'Quick Start Guide',
       click: toggleGuideShown,

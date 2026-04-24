@@ -13,7 +13,6 @@ import {
 
 import App from './App';
 import About from './About';
-// import Contact from './Contact';
 import Scales from './Scales';
 import References from './References';
 
@@ -46,7 +45,6 @@ const referencesRoute = createRoute({
 const routeTree = rootRoute.addChildren([
   indexRoute,
   aboutRoute,
-  // contactRoute,
   scalesRoute,
   referencesRoute,
 ]);
