@@ -4,7 +4,7 @@
  */
 
 import React, { Fragment } from 'react';
-import { useSelector } from '../zustand/hooks';
+import { useStore } from '../zustand/hooks';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 
@@ -12,8 +12,6 @@ import VexFigure from './VexFigure';
 import SmartLink from './SmartLink';
 import VideoEmbed from './VideoEmbed';
 import { guideHeadings } from './guidePages';
-
-import { getGuideIndex } from '../zustand/selectors';
 
 const content = [
   <Fragment>
@@ -315,7 +313,7 @@ const content = [
 ];
 
 function GuideContent() {
-  const index = useSelector(getGuideIndex);
+  const index = useStore((state) => state.guideIndex);
   return (
     <Fragment>
       <h3 className="px-8 mb-4 text-base md:text-xl font-bold tracking-wider text-center">

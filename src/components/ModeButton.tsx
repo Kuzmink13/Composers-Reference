@@ -4,19 +4,24 @@
  */
 
 import React from 'react';
-import { useDispatch, useSelector } from '../zustand/hooks';
+import { useStore } from '../zustand/hooks';
 import { isEqual } from 'lodash';
-
-import { changeCardinality } from '../zustand/actions';
-import { getCardinality, getFilteredModeList } from '../zustand/selectors';
+import * as filters from '../logic/filters';
 
 function ModeButton({ buttonCardinality }) {
-  const dispatch = useDispatch();
-  const modeList = useSelector(
-    (store) => getFilteredModeList(store, buttonCardinality),
+  const changeCardinality = useStore((state) => state.changeCardinality);
+  const modeList = useStore(
+    (state) =>
+      state.notes.modeList
+        .filter(filters.byRoot(state.notes.root))
+        .filter(filters.byCardinality(buttonCardinality))
+        .filter(
+          filters.bySelection(state.notes.notes, state.selectionFilter)
+        )
+        .filter(filters.byTonality(state.tonalities)),
     isEqual
   );
-  const cardinality = useSelector(getCardinality);
+  const cardinality = useStore((state) => state.cardinality);
   const isSelected = buttonCardinality === cardinality;
   const buttonLabel = buttonCardinality.string;
 
@@ -28,7 +33,7 @@ function ModeButton({ buttonCardinality }) {
     >
       <button
         aria-label={`select ${buttonLabel.toLowerCase()} note mode list`}
-        onClick={() => dispatch(changeCardinality(buttonCardinality))}
+        onClick={() => changeCardinality(buttonCardinality)}
         className="text-xs sm:text-base tab-selection py-2 px-1 sm:px-2 font-semibold tracking-wider cursor-pointer"
       >
         <span className="text-gray-900">{buttonLabel}-NOTE</span>

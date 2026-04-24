@@ -4,17 +4,25 @@
  */
 
 import React, { useMemo } from 'react';
-import { useSelector } from '../zustand/hooks';
+import { useStore } from '../zustand/hooks';
 
 import Key from './Key';
 
 import { notesInOctave, octaveMod } from '../logic/utilities';
-
-import { getNumOctaves, isShortModeActive } from '../zustand/selectors';
+import { BREAKPOINTS } from '../constants';
 
 function Keys() {
-  const isShort = useSelector(isShortModeActive);
-  const numOctaves = useSelector(getNumOctaves);
+  const isShort = useStore((state) => state.screenSize.height < BREAKPOINTS.ht);
+  const numOctaves = useStore((state) => {
+    switch (true) {
+      case state.screenSize.width < BREAKPOINTS.sm:
+        return 1;
+      case state.screenSize.width < BREAKPOINTS.lg:
+        return 2;
+      default:
+        return 3;
+    }
+  });
 
   const keys = useMemo(() => {
     return Array.from(Array(notesInOctave * numOctaves), (el, i) => (

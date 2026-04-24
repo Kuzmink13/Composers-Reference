@@ -4,21 +4,18 @@
  */
 
 import React from 'react';
-import { useDispatch, useSelector } from '../zustand/hooks';
+import { useStore } from '../zustand/hooks';
 
 import VexStaff from './VexStaff';
 
-import { openModeCard } from '../zustand/actions';
-import { getClef } from '../zustand/selectors';
-
 function ModeBlock({ mode }) {
-  const dispatch = useDispatch();
-  const clef = useSelector(getClef);
+  const openModeCard = useStore((state) => state.openModeCard);
+  const clef = useStore((state) => state.clef);
 
   return (
     <button
       aria-label={`open mode-card for ${mode.getModeName()}`}
-      onClick={() => dispatch(openModeCard(mode))}
+      onClick={() => openModeCard(mode)}
       className="tab-selection m-1 p-1"
     >
       <div className="box p-2 hover:shadow-md">

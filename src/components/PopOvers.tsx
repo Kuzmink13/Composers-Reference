@@ -4,31 +4,28 @@
  */
 
 import React, { Fragment } from 'react';
-import { useDispatch, useSelector } from '../zustand/hooks';
+import { useStore } from '../zustand/hooks';
 
 import PopOver from './PopOver';
 import QuickGuide from './QuickGuide';
 import ModeCard from './ModeCard';
 
 import useKeyboardFn from '../hooks/useKeyboardFn';
-
-import { getIsGuideShown, getIsModeCardShown } from '../zustand/selectors';
-import { closeModeCard, toggleGuideShown } from '../zustand/actions';
-
 import { KEY_ARRAYS } from '../constants';
 
 function PopOvers() {
-  const dispatch = useDispatch();
-  const isModeCardShown = useSelector(getIsModeCardShown);
-  const isGuideShown = useSelector(getIsGuideShown);
-  useKeyboardFn(() => dispatch(closeModeCard()), KEY_ARRAYS.escape);
-  useKeyboardFn(() => dispatch(toggleGuideShown(false)), KEY_ARRAYS.escape);
+  const closeModeCard = useStore((state) => state.closeModeCard);
+  const toggleGuideShown = useStore((state) => state.toggleGuideShown);
+  const isModeCardShown = useStore((state) => state.modeCard.isShown);
+  const isGuideShown = useStore((state) => state.quickGuide.isShown);
+  useKeyboardFn(() => closeModeCard(), KEY_ARRAYS.escape);
+  useKeyboardFn(() => toggleGuideShown(false), KEY_ARRAYS.escape);
 
   return (
     <Fragment>
       {isModeCardShown && (
         <PopOver
-          closeFn={() => dispatch(closeModeCard())}
+          closeFn={() => closeModeCard()}
           ID="mode-card-pop-over"
           overlayZClass="z-[60]"
           showCloseButton={true}
@@ -39,7 +36,7 @@ function PopOvers() {
 
       {isGuideShown && (
         <PopOver
-          closeFn={() => dispatch(toggleGuideShown())}
+          closeFn={() => toggleGuideShown()}
           ID="guide-pop-over"
           isAnimated={false}
           isWide={true}

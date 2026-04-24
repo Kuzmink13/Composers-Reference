@@ -3,19 +3,16 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import { useDispatch, useSelector } from '../zustand/hooks';
+import { useStore } from '../zustand/hooks';
 
 import useKeyboardFn from './useKeyboardFn';
-
-import { openModeCard } from '../zustand/actions';
-import { getModeCardMode } from '../zustand/selectors';
 
 import { KEY_ARRAYS } from '../constants';
 
 function useShift() {
-  const dispatch = useDispatch();
-  const mode = useSelector(getModeCardMode);
-  const open = (mode) => dispatch(openModeCard(mode));
+  const openModeCard = useStore((state) => state.openModeCard);
+  const mode = useStore((state) => state.modeCard.mode);
+  const open = (mode) => openModeCard(mode);
   const shift = {
     relative: (isFwShift) => {
       open(mode.relativeShift(isFwShift));

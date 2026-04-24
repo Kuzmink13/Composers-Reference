@@ -4,61 +4,51 @@
  */
 
 import React from 'react';
-import { useDispatch, useSelector } from '../zustand/hooks';
-
-import {
-  changeClef,
-  clearOverlays,
-  guideReset,
-  resetClef,
-  resetSelectionFilter,
-  resetTonalities,
-  toggleGuideDismissed,
-  toggleKeyOverlay,
-  toggleNoteOverlay,
-  toggleSelectionFilter,
-  toggleTonality,
-} from '../zustand/actions';
-import {
-  getAreKeysShown,
-  getAreNoteNamesShown,
-  getClef,
-  getIsGuideDismissed,
-  getSelectionFilterState,
-  getTonalityState,
-} from '../zustand/selectors';
+import { useStore } from '../zustand/hooks';
 
 import { SUPPORTED_CLEFS, SUPPORTED_TONALITIES } from '../constants';
 
 function Options() {
-  const dispatch = useDispatch();
-  const clef = useSelector(getClef);
-  const tonalities = useSelector(getTonalityState);
+  const changeClef = useStore((state) => state.changeClef);
+  const clearOverlays = useStore((state) => state.clearOverlays);
+  const guideReset = useStore((state) => state.guideReset);
+  const resetClef = useStore((state) => state.resetClef);
+  const resetSelectionFilter = useStore((state) => state.resetSelectionFilter);
+  const resetTonalities = useStore((state) => state.resetTonalities);
+  const toggleGuideDismissed = useStore((state) => state.toggleGuideDismissed);
+  const toggleKeyOverlay = useStore((state) => state.toggleKeyOverlay);
+  const toggleNoteOverlay = useStore((state) => state.toggleNoteOverlay);
+  const toggleSelectionFilter = useStore(
+    (state) => state.toggleSelectionFilter
+  );
+  const toggleTonality = useStore((state) => state.toggleTonality);
+  const clef = useStore((state) => state.clef);
+  const tonalities = useStore((state) => state.tonalities);
 
   const generalOptions = [
     {
       id: 'keyboard-overlay',
       text: 'Display keyboard overlay',
-      checked: useSelector(getAreKeysShown),
-      onChange: () => dispatch(toggleKeyOverlay()),
+      checked: useStore((state) => state.overlay.areKeysShown),
+      onChange: () => toggleKeyOverlay(),
     },
     {
       id: 'names-on-keys',
       text: 'Display note names on keys',
-      checked: useSelector(getAreNoteNamesShown),
-      onChange: () => dispatch(toggleNoteOverlay()),
+      checked: useStore((state) => state.overlay.areNoteNamesShown),
+      onChange: () => toggleNoteOverlay(),
     },
     {
       id: 'root-scale-display',
       text: 'Display scale only if its tonic is selected',
-      checked: useSelector(getSelectionFilterState),
-      onChange: () => dispatch(toggleSelectionFilter()),
+      checked: useStore((state) => state.selectionFilter),
+      onChange: () => toggleSelectionFilter(),
     },
     {
       id: 'quick guide display',
       text: "Don't show Quick Start Guide",
-      checked: useSelector(getIsGuideDismissed),
-      onChange: () => dispatch(toggleGuideDismissed()),
+      checked: useStore((state) => state.quickGuide.isDismissed),
+      onChange: () => toggleGuideDismissed(),
     },
   ];
 
@@ -99,7 +89,7 @@ function Options() {
               type="radio"
               name="clef"
               className="mx-2 cursor-pointer"
-              onChange={() => dispatch(changeClef(el))}
+              onChange={() => changeClef(el)}
               checked={el === clef}
             />
             <label htmlFor={el} className="cursor-pointer">
@@ -118,7 +108,7 @@ function Options() {
               id={tonality.name}
               type="checkbox"
               className="mx-2 cursor-pointer"
-              onChange={() => dispatch(toggleTonality(i))}
+              onChange={() => toggleTonality(i)}
               checked={!tonalities[i]}
             />
             <label htmlFor={tonality.name} className="cursor-pointer">
@@ -133,11 +123,11 @@ function Options() {
         className="tab-selection p-1 mx-auto"
         onClick={(event) => {
           event.preventDefault();
-          dispatch(clearOverlays());
-          dispatch(resetSelectionFilter());
-          dispatch(guideReset());
-          dispatch(resetClef());
-          dispatch(resetTonalities());
+          clearOverlays();
+          resetSelectionFilter();
+          guideReset();
+          resetClef();
+          resetTonalities();
         }}
       >
         <div className="btn btn-text btn-p cursor-pointer leading-normal">

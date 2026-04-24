@@ -4,38 +4,38 @@
  */
 
 import React, { Fragment } from 'react';
-import { useDispatch, useSelector } from '../zustand/hooks';
+import { useStore } from '../zustand/hooks';
 
 import svg from '../assets/svg.json';
 
 import PopOver from './PopOver';
 
-import { closeDropDown, noteReset, toggleDropDown } from '../zustand/actions';
-import { getDropDownState } from '../zustand/selectors';
-
 import { DROP_DOWN_STATE } from '../constants';
 
 function NavButtons({ options, menu }) {
-  const dispatch = useDispatch();
+  const noteReset = useStore((state) => state.noteReset);
+  const toggleDropDown = useStore((state) => state.toggleDropDown);
+  const closeDropDown = useStore((state) => state.closeDropDown);
+  const dropDownState = useStore((state) => state.navDropDowns);
 
   const buttons = [
     {
       name: 'reset note selection',
-      onClick: () => dispatch(noteReset()),
+      onClick: () => noteReset(),
       path: svg.reset,
     },
     {
       name: 'options',
-      onClick: () => dispatch(toggleDropDown(DROP_DOWN_STATE.OPTIONS)),
+      onClick: () => toggleDropDown(DROP_DOWN_STATE.OPTIONS),
       path: svg.options,
-      isOpen: useSelector(getDropDownState) === DROP_DOWN_STATE.OPTIONS,
+      isOpen: dropDownState === DROP_DOWN_STATE.OPTIONS,
       child: options,
     },
     {
       name: 'menu',
-      onClick: () => dispatch(toggleDropDown(DROP_DOWN_STATE.MENU)),
+      onClick: () => toggleDropDown(DROP_DOWN_STATE.MENU),
       path: svg.menu,
-      isOpen: useSelector(getDropDownState) === DROP_DOWN_STATE.MENU,
+      isOpen: dropDownState === DROP_DOWN_STATE.MENU,
       child: menu,
     },
   ];
@@ -60,7 +60,7 @@ function NavButtons({ options, menu }) {
 
           {button.child && button.isOpen && (
             <PopOver
-              closeFn={() => dispatch(closeDropDown())}
+              closeFn={() => closeDropDown()}
               isAnimated={false}
               isGray={false}
               overridePositioning={true}

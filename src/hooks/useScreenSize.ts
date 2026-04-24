@@ -4,20 +4,18 @@
  */
 
 import { useEffect } from 'react';
-import { useDispatch } from '../zustand/hooks';
-
-import { updateScreenSize } from '../zustand/actions';
+import { useStore } from '../zustand/hooks';
 
 function useScreenSize() {
-  const dispatch = useDispatch();
+  const updateScreenSize = useStore((state) => state.updateScreenSize);
 
   useEffect(() => {
-    const update = () => dispatch(updateScreenSize());
+    const update = () => updateScreenSize();
     window.addEventListener('resize', update);
     return () => {
       window.removeEventListener('resize', update);
     };
-  }, [dispatch]);
+  }, [updateScreenSize]);
 }
 
 export default useScreenSize;

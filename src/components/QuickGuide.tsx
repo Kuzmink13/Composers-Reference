@@ -4,36 +4,33 @@
  */
 
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from '../zustand/hooks';
+import { useStore } from '../zustand/hooks';
 
 import GuideContent from './GuideContent';
 import { numPages } from './guidePages';
 
 import useKeyboarFn from '../hooks/useKeyboardFn';
 
-import { getGuideIndex, getIsGuideDismissed } from '../zustand/selectors';
-import {
-  guideDecrement,
-  guideIncrement,
-  toggleGuideDismissed,
-  toggleGuideShown,
-} from '../zustand/actions';
-
 import { KEY_ARRAYS } from '../constants';
 
 function QuickGuide() {
-  const dispatch = useDispatch();
-  const isDismissed = useSelector(getIsGuideDismissed);
-  const index = useSelector(getGuideIndex);
+  const guideDecrement = useStore((state) => state.guideDecrement);
+  const guideIncrement = useStore((state) => state.guideIncrement);
+  const toggleGuideDismissed = useStore(
+    (state) => state.toggleGuideDismissed
+  );
+  const toggleGuideShown = useStore((state) => state.toggleGuideShown);
+  const isDismissed = useStore((state) => state.quickGuide.isDismissed);
+  const index = useStore((state) => state.guideIndex);
   const [isChecked, setIsChecked] = useState(isDismissed);
 
   const skipGuide = () => {
-    dispatch(toggleGuideDismissed(isChecked));
-    dispatch(toggleGuideShown());
+    toggleGuideDismissed(isChecked);
+    toggleGuideShown();
   };
 
-  const inc = () => dispatch(guideIncrement());
-  const dec = () => dispatch(guideDecrement());
+  const inc = () => guideIncrement();
+  const dec = () => guideDecrement();
 
   useKeyboarFn(inc, KEY_ARRAYS.right);
   useKeyboarFn(dec, KEY_ARRAYS.left);

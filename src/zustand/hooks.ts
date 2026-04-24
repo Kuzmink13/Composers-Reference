@@ -7,8 +7,5 @@ import { useStoreWithEqualityFn } from 'zustand/traditional';
 
 import store from './store';
 
-export const useDispatch = () =>
-  useStoreWithEqualityFn(store, (state) => state.dispatch);
-
-export const useSelector = (selector, equalityFn = Object.is) =>
+export const useStore = (selector, equalityFn = Object.is) =>
   useStoreWithEqualityFn(store, selector, equalityFn);

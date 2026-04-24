@@ -4,17 +4,26 @@
  */
 
 import React, { useCallback, useEffect, useRef } from 'react';
-import { useSelector } from '../zustand/hooks';
+import { useStore } from '../zustand/hooks';
 import { isEqual } from 'lodash';
+import * as filters from '../logic/filters';
 
 import useModePanel from '../hooks/useModePanel';
-
-import { getFilteredModeList } from '../zustand/selectors';
 
 const scrollLoadThresholdPx = 96;
 
 function ModePanel() {
-  const selectedList = useSelector(getFilteredModeList, isEqual);
+  const selectedList = useStore(
+    (state) =>
+      state.notes.modeList
+        .filter(filters.byRoot(state.notes.root))
+        .filter(filters.byCardinality(state.cardinality))
+        .filter(
+          filters.bySelection(state.notes.notes, state.selectionFilter)
+        )
+        .filter(filters.byTonality(state.tonalities)),
+    isEqual
+  );
 
   const [{ items, hasMore }, loadMore] = useModePanel(selectedList);
   const scrollParentRef = useRef(null);

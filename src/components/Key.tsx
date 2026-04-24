@@ -4,30 +4,25 @@
  */
 
 import React from 'react';
-import { useDispatch, useSelector } from '../zustand/hooks';
+import { useStore } from '../zustand/hooks';
 
 import keyMap from '../assets/keyMap.json';
 import keyNotes from '../assets/notes.json';
 
 import useLongPress from '../hooks/useLongPress';
-
-import {
-  getNotesState,
-  getOverlayState,
-  isShortModeActive,
-} from '../zustand/selectors';
-import { noteSelect, rootSelect } from '../zustand/actions';
+import { BREAKPOINTS } from '../constants';
 
 function Key({ value, index }) {
-  const dispatch = useDispatch();
-  const { areKeysShown, areNoteNamesShown } = useSelector(getOverlayState);
-  const { notes, root } = useSelector(getNotesState);
-  const isShort = useSelector(isShortModeActive);
+  const noteSelect = useStore((state) => state.noteSelect);
+  const rootSelect = useStore((state) => state.rootSelect);
+  const { areKeysShown, areNoteNamesShown } = useStore((state) => state.overlay);
+  const { notes, root } = useStore((state) => state.notes);
+  const isShort = useStore((state) => state.screenSize.height < BREAKPOINTS.ht);
 
   const longPressEvent = useLongPress(
-    () => dispatch(rootSelect(value)),
+    () => rootSelect(value),
     (event) =>
-      event.shiftKey ? dispatch(rootSelect(value)) : dispatch(noteSelect(value))
+      event.shiftKey ? rootSelect(value) : noteSelect(value)
   );
 
   const isKeySelected = notes[value];

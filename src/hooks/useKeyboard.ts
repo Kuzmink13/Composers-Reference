@@ -4,30 +4,26 @@
  */
 
 import { useCallback } from 'react';
-import { useDispatch, useSelector } from '../zustand/hooks';
+import { useStore } from '../zustand/hooks';
 
 import keyMap from '../assets/keyMap.json';
 
 import useKeyboardFn from './useKeyboardFn';
 
-import {
-  closeDropDown,
-  noteReset,
-  noteSelect,
-  rootSelect,
-  toggleDropDown,
-} from '../zustand/actions';
-import {
-  getArePopOversActive,
-  getAreDropDownsActive,
-} from '../zustand/selectors';
-
 import { DROP_DOWN_STATE, KEY_ARRAYS } from '../constants';
 
 function useKeyboard() {
-  const dispatch = useDispatch();
-  const arePopOversActive = useSelector(getArePopOversActive);
-  const areDropDownsActive = useSelector(getAreDropDownsActive);
+  const closeDropDown = useStore((state) => state.closeDropDown);
+  const noteReset = useStore((state) => state.noteReset);
+  const noteSelect = useStore((state) => state.noteSelect);
+  const rootSelect = useStore((state) => state.rootSelect);
+  const toggleDropDown = useStore((state) => state.toggleDropDown);
+  const arePopOversActive = useStore(
+    (state) => state.modeCard.isShown || state.quickGuide.isShown
+  );
+  const areDropDownsActive = useStore(
+    (state) => state.navDropDowns !== DROP_DOWN_STATE.NONE
+  );
 
   // NOTE-SELECTION
   const KeyBoardPress = useCallback(
@@ -35,17 +31,20 @@ function useKeyboard() {
       if (arePopOversActive || areDropDownsActive) return;
       const pressedNote = keyMap.keyToNote[event.code];
       if (pressedNote !== undefined) {
-        event.shiftKey
-          ? dispatch(rootSelect(pressedNote))
-          : dispatch(noteSelect(pressedNote));
+        event.shiftKey ? rootSelect(pressedNote) : noteSelect(pressedNote);
       }
     },
-    [dispatch, arePopOversActive, areDropDownsActive]
+    [
+      arePopOversActive,
+      areDropDownsActive,
+      rootSelect,
+      noteSelect,
+    ]
   );
 
   const clearKeys = () => {
     if (arePopOversActive || areDropDownsActive) return;
-    dispatch(noteReset());
+    noteReset();
   };
 
   // DROP-DOWNS
@@ -53,10 +52,10 @@ function useKeyboard() {
     if (arePopOversActive) return;
     switch (event.code) {
       case 'KeyO':
-        dispatch(toggleDropDown(DROP_DOWN_STATE.OPTIONS));
+        toggleDropDown(DROP_DOWN_STATE.OPTIONS);
         return;
       case 'KeyL':
-        dispatch(toggleDropDown(DROP_DOWN_STATE.MENU));
+        toggleDropDown(DROP_DOWN_STATE.MENU);
         return;
       default:
         return;
@@ -65,7 +64,7 @@ function useKeyboard() {
 
   function closeAll() {
     if (arePopOversActive) return;
-    dispatch(closeDropDown());
+    closeDropDown();
   }
 
   // SET LISTENERS

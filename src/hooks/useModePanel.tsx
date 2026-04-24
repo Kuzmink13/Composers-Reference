@@ -4,17 +4,8 @@
  */
 
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { useSelector } from '../zustand/hooks';
-import { isEqual } from 'lodash';
 
 import ModeBlock from '../components/ModeBlock';
-
-import {
-  getCardinality,
-  getNotesState,
-  getSelectionFilterState,
-  getTonalityState,
-} from '../zustand/selectors';
 
 const initialState = {
   items: () => [],
@@ -46,14 +37,9 @@ function useModePanel(selectedList) {
     [selectedList, itemsLoaded]
   );
 
-  const notes = useSelector(getNotesState, isEqual);
-  const selection = useSelector(getSelectionFilterState, isEqual);
-  const tonalities = useSelector(getTonalityState, isEqual);
-  const cardinality = useSelector(getCardinality, isEqual);
-
   useEffect(() => {
     clearState();
-  }, [notes, selection, tonalities, cardinality]);
+  }, [selectedList]);
 
   return [{ items, hasMore }, loadMore];
 }

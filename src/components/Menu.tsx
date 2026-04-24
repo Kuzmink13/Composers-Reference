@@ -4,19 +4,17 @@
  */
 
 import React from 'react';
-import { useDispatch } from '../zustand/hooks';
+import { useStore } from '../zustand/hooks';
 import { Link } from 'react-router-dom';
 
-import { toggleGuideShown } from '../zustand/actions';
-
 function Menu() {
-  const dispatch = useDispatch();
+  const toggleGuideShown = useStore((state) => state.toggleGuideShown);
   const links = [
     { title: 'About', link: '/about' },
     // { title: 'Contact', link: '/contact' },
     {
       title: 'Quick Start Guide',
-      click: () => dispatch(toggleGuideShown()),
+      click: () => toggleGuideShown(),
       link: '',
     },
     { title: 'Meet the Scales', link: '/scales' },

@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { useSelector } from '../zustand/hooks';
+import { useStore } from '../zustand/hooks';
 
 import svg from '../assets/svg.json';
 
@@ -14,11 +14,9 @@ import ChordTable from './ChordTable';
 import useShift from '../hooks/useShift';
 import useLongPress from '../hooks/useLongPress';
 
-import { getClef, getModeCardMode } from '../zustand/selectors';
-
 function ModeCard() {
-  const mode = useSelector(getModeCardMode);
-  const clef = useSelector(getClef);
+  const mode = useStore((state) => state.modeCard.mode);
+  const clef = useStore((state) => state.clef);
   const modeName = mode.getModeName();
   const [shift] = useShift();
 
