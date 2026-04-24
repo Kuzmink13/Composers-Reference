@@ -30,6 +30,7 @@ function PopOvers() {
         <PopOver
           closeFn={() => dispatch(closeModeCard())}
           ID="mode-card-pop-over"
+          overlayZClass="z-[60]"
           showCloseButton={true}
         >
           <ModeCard />
@@ -42,6 +43,7 @@ function PopOvers() {
           ID="guide-pop-over"
           isAnimated={false}
           isWide={true}
+          overlayZClass="z-[60]"
           showCloseButton={true}
         >
           <QuickGuide />

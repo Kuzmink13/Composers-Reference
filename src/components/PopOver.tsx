@@ -15,6 +15,7 @@ function PopOver({
   isAnimated = true,
   isGray = true,
   isWide = false,
+  overlayZClass = 'z-30',
   overridePositioning = false,
   overrideStyles = false,
   showCloseButton = false,
@@ -93,7 +94,7 @@ function PopOver({
     <Fragment>
       <div
         id="clickable-bg"
-        className={`fixed inset-0 z-30 flex justify-center items-center p-2
+        className={`fixed inset-0 ${overlayZClass} flex justify-center items-center p-2
         ${isGray ? (isAnimated ? 'bg-gray-400/0' : 'bg-gray-400/25') : 'bg-transparent'}
         transition delay-25 duration-50`}
         onClick={closeFn}
