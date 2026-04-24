@@ -13,7 +13,6 @@
 /dist
 
 # misc
-.firebase
 .github
 .DS_Store
 .env.local
