@@ -40,7 +40,7 @@ function Menu() {
             </Link>
           ) : (
             <button
-              className="tab-selection px-2 py-1 cursor-pointer hover:underline bg-transparent border-0 text-left"
+              className="tab-selection px-2 py-1 cursor-pointer hover:underline bg-transparent text-left appearance-none"
               type="button"
               onClick={el.click}
             >

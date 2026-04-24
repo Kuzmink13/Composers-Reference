@@ -4,9 +4,9 @@
  */
 
 import React, { useEffect, Fragment } from 'react';
-import { createFocusTrap } from 'focus-trap';
 
 import svg from '../assets/svg.json';
+import useFocusTrap from '../hooks/useFocusTrap';
 
 function PopOver({
   children,
@@ -20,26 +20,7 @@ function PopOver({
   overrideStyles = false,
   showCloseButton = false,
 }) {
-  // FOCUS-TRAP
-  useEffect(() => {
-    const container = document.getElementById(ID);
-
-    const focusTrap = createFocusTrap(`#${ID}`, {
-      allowOutsideClick: true,
-      onActivate: function () {
-        container.classList.add('trap', 'is-active');
-      },
-      onDeactivate: function () {
-        container.classList.remove('is-active');
-      },
-    });
-
-    focusTrap.activate();
-
-    return () => {
-      focusTrap.deactivate();
-    };
-  }, [ID]);
+  useFocusTrap(ID);
 
   // ANIMATE COMPONENT
   useEffect(() => {
@@ -51,8 +32,10 @@ function PopOver({
       }
 
       const popOverWrapper = document.getElementById(ID);
-      popOverWrapper.classList.remove('scale-95', 'opacity-0');
-      popOverWrapper.classList.add('scale-100', 'opacity-100');
+      if (popOverWrapper) {
+        popOverWrapper.classList.remove('scale-95', 'opacity-0');
+        popOverWrapper.classList.add('scale-100', 'opacity-100');
+      }
     }
   }, [ID, isAnimated, isGray]);
 

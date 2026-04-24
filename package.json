@@ -5,7 +5,6 @@
   "packageManager": "bun@1.2.18",
   "dependencies": {
     "@tanstack/react-router": "^1.168.23",
-    "focus-trap": "^8.0.1",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "vexflow": "^5.0.0",
