@@ -4,13 +4,13 @@
  */
 
 import React, { useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector } from '../zustand/hooks';
 
 import Key from './Key';
 
 import { notesInOctave, octaveMod } from '../logic/utilities';
 
-import { getNumOctaves, isShortModeActive } from '../redux/selectors';
+import { getNumOctaves, isShortModeActive } from '../zustand/selectors';
 
 function Keys() {
   const isShort = useSelector(isShortModeActive);

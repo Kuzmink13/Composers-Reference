@@ -4,12 +4,12 @@
  */
 
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../zustand/hooks';
 
 import VexStaff from './VexStaff';
 
-import { openModeCard } from '../redux/actions';
-import { getClef } from '../redux/selectors';
+import { openModeCard } from '../zustand/actions';
+import { getClef } from '../zustand/selectors';
 
 function ModeBlock({ mode }) {
   const dispatch = useDispatch();

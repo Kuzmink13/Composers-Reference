@@ -4,10 +4,10 @@
  */
 
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../zustand/hooks';
 import { Link } from 'react-router-dom';
 
-import { toggleGuideShown } from '../redux/actions';
+import { toggleGuideShown } from '../zustand/actions';
 
 function Menu() {
   const dispatch = useDispatch();

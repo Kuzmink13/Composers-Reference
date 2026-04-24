@@ -4,7 +4,7 @@
  */
 
 import React, { Fragment } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../zustand/hooks';
 
 import PopOver from './PopOver';
 import QuickGuide from './QuickGuide';
@@ -12,8 +12,8 @@ import ModeCard from './ModeCard';
 
 import useKeyboardFn from '../hooks/useKeyboardFn';
 
-import { getIsGuideShown, getIsModeCardShown } from '../redux/selectors';
-import { closeModeCard, toggleGuideShown } from '../redux/actions';
+import { getIsGuideShown, getIsModeCardShown } from '../zustand/selectors';
+import { closeModeCard, toggleGuideShown } from '../zustand/actions';
 
 import { KEY_ARRAYS } from '../constants';
 

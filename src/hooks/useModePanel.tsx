@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector } from '../zustand/hooks';
 import { isEqual } from 'lodash';
 
 import ModeBlock from '../components/ModeBlock';
@@ -14,7 +14,7 @@ import {
   getNotesState,
   getSelectionFilterState,
   getTonalityState,
-} from '../redux/selectors';
+} from '../zustand/selectors';
 
 const initialState = {
   items: () => [],

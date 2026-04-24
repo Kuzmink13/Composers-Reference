@@ -4,9 +4,9 @@
  */
 
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../zustand/hooks';
 
-import { updateScreenSize } from '../redux/actions';
+import { updateScreenSize } from '../zustand/actions';
 
 function useScreenSize() {
   const dispatch = useDispatch();

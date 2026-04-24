@@ -12,11 +12,11 @@
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-infinite-scroll-component": "^7.1.0",
-    "react-redux": "^9.2.0",
     "react-router-dom": "^7.14.2",
     "react-router-hash-link": "^2.4.3",
-    "redux": "^5.0.1",
-    "vexflow": "^5.0.0"
+    "use-sync-external-store": "^1.6.0",
+    "vexflow": "^5.0.0",
+    "zustand": "^5.0.12"
   },
   "scripts": {
     "dev": "vite",

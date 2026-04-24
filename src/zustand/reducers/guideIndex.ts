@@ -4,7 +4,7 @@
  */
 
 import { GUIDE_DECREMENT, GUIDE_INCREMENT } from '../actionTypes';
-import { numPages } from '../../components/GuideContent';
+import { numPages } from '../../components/guidePages';
 
 const initialState = 0;
 

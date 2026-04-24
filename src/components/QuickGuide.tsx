@@ -4,19 +4,20 @@
  */
 
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../zustand/hooks';
 
-import GuideContent, { numPages } from './GuideContent';
+import GuideContent from './GuideContent';
+import { numPages } from './guidePages';
 
 import useKeyboarFn from '../hooks/useKeyboardFn';
 
-import { getGuideIndex, getIsGuideDismissed } from '../redux/selectors';
+import { getGuideIndex, getIsGuideDismissed } from '../zustand/selectors';
 import {
   guideDecrement,
   guideIncrement,
   toggleGuideDismissed,
   toggleGuideShown,
-} from '../redux/actions';
+} from '../zustand/actions';
 
 import { KEY_ARRAYS } from '../constants';
 

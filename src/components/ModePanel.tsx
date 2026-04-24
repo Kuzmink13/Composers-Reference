@@ -4,12 +4,12 @@
  */
 
 import React, { useCallback, useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector } from '../zustand/hooks';
 import { isEqual } from 'lodash';
 
 import useModePanel from '../hooks/useModePanel';
 
-import { getFilteredModeList } from '../redux/selectors';
+import { getFilteredModeList } from '../zustand/selectors';
 
 const scrollLoadThresholdPx = 96;
 

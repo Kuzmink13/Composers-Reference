@@ -4,14 +4,14 @@
  */
 
 import React, { Fragment } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../zustand/hooks';
 
 import svg from '../assets/svg.json';
 
 import PopOver from './PopOver';
 
-import { closeDropDown, noteReset, toggleDropDown } from '../redux/actions';
-import { getDropDownState } from '../redux/selectors';
+import { closeDropDown, noteReset, toggleDropDown } from '../zustand/actions';
+import { getDropDownState } from '../zustand/selectors';
 
 import { DROP_DOWN_STATE } from '../constants';
 

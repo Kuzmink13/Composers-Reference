@@ -4,11 +4,11 @@
  */
 
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../zustand/hooks';
 import { isEqual } from 'lodash';
 
-import { changeCardinality } from '../redux/actions';
-import { getCardinality, getFilteredModeList } from '../redux/selectors';
+import { changeCardinality } from '../zustand/actions';
+import { getCardinality, getFilteredModeList } from '../zustand/selectors';
 
 function ModeButton({ buttonCardinality }) {
   const dispatch = useDispatch();

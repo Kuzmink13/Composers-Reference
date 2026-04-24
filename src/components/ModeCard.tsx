@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector } from '../zustand/hooks';
 
 import svg from '../assets/svg.json';
 
@@ -14,7 +14,7 @@ import ChordTable from './ChordTable';
 import useShift from '../hooks/useShift';
 import useLongPress from '../hooks/useLongPress';
 
-import { getClef, getModeCardMode } from '../redux/selectors';
+import { getClef, getModeCardMode } from '../zustand/selectors';
 
 function ModeCard() {
   const mode = useSelector(getModeCardMode);

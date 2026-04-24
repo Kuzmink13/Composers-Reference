@@ -3,12 +3,12 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../zustand/hooks';
 
 import useKeyboardFn from './useKeyboardFn';
 
-import { openModeCard } from '../redux/actions';
-import { getModeCardMode } from '../redux/selectors';
+import { openModeCard } from '../zustand/actions';
+import { getModeCardMode } from '../zustand/selectors';
 
 import { KEY_ARRAYS } from '../constants';
 

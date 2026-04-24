@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../zustand/hooks';
 
 import {
   changeClef,
@@ -18,7 +18,7 @@ import {
   toggleNoteOverlay,
   toggleSelectionFilter,
   toggleTonality,
-} from '../redux/actions';
+} from '../zustand/actions';
 import {
   getAreKeysShown,
   getAreNoteNamesShown,
@@ -26,7 +26,7 @@ import {
   getIsGuideDismissed,
   getSelectionFilterState,
   getTonalityState,
-} from '../redux/selectors';
+} from '../zustand/selectors';
 
 import { SUPPORTED_CLEFS, SUPPORTED_TONALITIES } from '../constants';
 

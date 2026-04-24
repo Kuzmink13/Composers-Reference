@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../zustand/hooks';
 
 import keyMap from '../assets/keyMap.json';
 import keyNotes from '../assets/notes.json';
@@ -15,8 +15,8 @@ import {
   getNotesState,
   getOverlayState,
   isShortModeActive,
-} from '../redux/selectors';
-import { noteSelect, rootSelect } from '../redux/actions';
+} from '../zustand/selectors';
+import { noteSelect, rootSelect } from '../zustand/actions';
 
 function Key({ value, index }) {
   const dispatch = useDispatch();

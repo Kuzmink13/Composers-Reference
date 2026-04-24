@@ -4,7 +4,7 @@
  */
 
 import { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../zustand/hooks';
 
 import keyMap from '../assets/keyMap.json';
 
@@ -16,11 +16,11 @@ import {
   noteSelect,
   rootSelect,
   toggleDropDown,
-} from '../redux/actions';
+} from '../zustand/actions';
 import {
   getArePopOversActive,
   getAreDropDownsActive,
-} from '../redux/selectors';
+} from '../zustand/selectors';
 
 import { DROP_DOWN_STATE, KEY_ARRAYS } from '../constants';
 

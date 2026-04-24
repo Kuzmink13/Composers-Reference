@@ -4,29 +4,16 @@
  */
 
 import React, { Fragment } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector } from '../zustand/hooks';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 
 import VexFigure from './VexFigure';
 import SmartLink from './SmartLink';
 import VideoEmbed from './VideoEmbed';
+import { guideHeadings } from './guidePages';
 
-import { getGuideIndex } from '../redux/selectors';
-
-const headings = [
-  "Welcome to Composer's Reference!",
-  'Show Us What You’re Hearing…',
-  'The Scales Are Coming!',
-  'Time to Get Creative!',
-  'Too Many Notes!',
-  'Too Many Notes! (pt.2)',
-  'We Need To Go Deeper...',
-  'More Chords Please!',
-  'Time to Get Modal!',
-  'Mode-Card Movement Summary',
-  "That's All For Now!",
-];
+import { getGuideIndex } from '../zustand/selectors';
 
 const content = [
   <Fragment>
@@ -327,14 +314,12 @@ const content = [
   </Fragment>,
 ];
 
-export const numPages = headings.length;
-
 function GuideContent() {
   const index = useSelector(getGuideIndex);
   return (
     <Fragment>
       <h3 className="px-8 mb-4 text-base md:text-xl font-bold tracking-wider text-center">
-        {headings[index]}
+        {guideHeadings[index]}
       </h3>
       <div
         tabIndex="0"
