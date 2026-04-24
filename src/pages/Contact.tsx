@@ -6,7 +6,7 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-import Navbar from './Navbar';
+import Navbar from '../components/Navbar';
 
 function Contact() {
   const fromElements = [
