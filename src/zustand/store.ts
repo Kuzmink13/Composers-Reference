@@ -3,7 +3,6 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import throttle from 'lodash/throttle';
 import { createStore } from 'zustand/vanilla';
 
 import { loadState, saveState } from './localStorage';
@@ -25,22 +24,20 @@ const store = createStore((set, get) => ({
   ...createViewportSlice(set, get, persistedState),
 }));
 
-store.subscribe(
-  throttle((state) => {
-    saveState({
-      quickGuide: {
-        isDismissed: state.quickGuide.isDismissed,
-        isShown: !state.quickGuide.isDismissed,
-      },
-      overlay: {
-        areKeysShown: state.overlay.areKeysShown,
-        areNoteNamesShown: state.overlay.areNoteNamesShown,
-      },
-      selectionFilter: state.selectionFilter,
-      clef: state.clef,
-      tonalities: state.tonalities,
-    });
-  }, 1000)
-);
+store.subscribe((state) => {
+  saveState({
+    quickGuide: {
+      isDismissed: state.quickGuide.isDismissed,
+      isShown: !state.quickGuide.isDismissed,
+    },
+    overlay: {
+      areKeysShown: state.overlay.areKeysShown,
+      areNoteNamesShown: state.overlay.areNoteNamesShown,
+    },
+    selectionFilter: state.selectionFilter,
+    clef: state.clef,
+    tonalities: state.tonalities,
+  });
+});
 
 export default store;
