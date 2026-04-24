@@ -7,14 +7,10 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 
 import ModeBlock from '../components/ModeBlock';
 
-const initialState = {
-  items: () => [],
-};
-
 const itemsToLoad = 6;
 
 function useModePanel(selectedList) {
-  const [itemsLoaded, setItemsLoaded] = useState(initialState.items().length);
+  const [itemsLoaded, setItemsLoaded] = useState(0);
   const listLength = selectedList.length;
   const hasMore = listLength > itemsLoaded;
 
@@ -23,10 +19,6 @@ function useModePanel(selectedList) {
       Math.min(listLength, currentLength + itemsToLoad)
     );
   }, [listLength]);
-
-  const clearState = () => {
-    setItemsLoaded(initialState.items().length);
-  };
 
   const generateModeBlock = (mode) => {
     return <ModeBlock key={mode.getAbsoluteModeCode()} mode={mode} />;
@@ -38,8 +30,8 @@ function useModePanel(selectedList) {
   );
 
   useEffect(() => {
-    clearState();
-  }, [selectedList]);
+    setItemsLoaded(Math.min(itemsToLoad, listLength));
+  }, [selectedList, listLength]);
 
   return [{ items, hasMore }, loadMore];
 }

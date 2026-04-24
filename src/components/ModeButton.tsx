@@ -3,23 +3,23 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useStore } from '../zustand/hooks';
-import { isEqual } from 'lodash';
 import * as filters from '../logic/filters';
 
 function ModeButton({ buttonCardinality }) {
+  const notesState = useStore((state) => state.notes);
+  const selectionFilter = useStore((state) => state.selectionFilter);
+  const tonalities = useStore((state) => state.tonalities);
   const changeCardinality = useStore((state) => state.changeCardinality);
-  const modeList = useStore(
-    (state) =>
-      state.notes.modeList
-        .filter(filters.byRoot(state.notes.root))
+  const modeList = useMemo(
+    () =>
+      notesState.modeList
+        .filter(filters.byRoot(notesState.root))
         .filter(filters.byCardinality(buttonCardinality))
-        .filter(
-          filters.bySelection(state.notes.notes, state.selectionFilter)
-        )
-        .filter(filters.byTonality(state.tonalities)),
-    isEqual
+        .filter(filters.bySelection(notesState.notes, selectionFilter))
+        .filter(filters.byTonality(tonalities)),
+    [notesState, selectionFilter, tonalities, buttonCardinality]
   );
   const cardinality = useStore((state) => state.cardinality);
   const isSelected = buttonCardinality === cardinality;

@@ -3,9 +3,8 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import { useStore } from '../zustand/hooks';
-import { isEqual } from 'lodash';
 import * as filters from '../logic/filters';
 
 import useModePanel from '../hooks/useModePanel';
@@ -13,16 +12,19 @@ import useModePanel from '../hooks/useModePanel';
 const scrollLoadThresholdPx = 96;
 
 function ModePanel() {
-  const selectedList = useStore(
-    (state) =>
-      state.notes.modeList
-        .filter(filters.byRoot(state.notes.root))
-        .filter(filters.byCardinality(state.cardinality))
-        .filter(
-          filters.bySelection(state.notes.notes, state.selectionFilter)
-        )
-        .filter(filters.byTonality(state.tonalities)),
-    isEqual
+  const notesState = useStore((state) => state.notes);
+  const cardinality = useStore((state) => state.cardinality);
+  const selectionFilter = useStore((state) => state.selectionFilter);
+  const tonalities = useStore((state) => state.tonalities);
+
+  const selectedList = useMemo(
+    () =>
+      notesState.modeList
+        .filter(filters.byRoot(notesState.root))
+        .filter(filters.byCardinality(cardinality))
+        .filter(filters.bySelection(notesState.notes, selectionFilter))
+        .filter(filters.byTonality(tonalities)),
+    [notesState, cardinality, selectionFilter, tonalities]
   );
 
   const [{ items, hasMore }, loadMore] = useModePanel(selectedList);
