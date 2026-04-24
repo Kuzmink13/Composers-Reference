@@ -14,19 +14,15 @@
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.14.2",
     "react-router-hash-link": "^2.4.3",
-    "react-scripts": "5.0.1",
     "redux": "^5.0.1",
     "vexflow": "^5.0.0"
   },
   "scripts": {
-    "start": "npm run watch:css && react-scripts start",
-    "build": "npm run watch:css && react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "dev": "vite",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run"
   },
   "browserslist": {
     "production": [
@@ -41,9 +37,10 @@
     ]
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.2.4",
-    "autoprefixer": "^10.5.0",
-    "postcss-cli": "^11.0.1",
-    "tailwindcss": "^4.2.4"
+    "@tailwindcss/vite": "^4.2.4",
+    "@vitejs/plugin-react": "^6.0.1",
+    "tailwindcss": "^4.2.4",
+    "vite": "^8.0.10",
+    "vitest": "^4.1.5"
   }
 }

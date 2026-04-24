@@ -10,7 +10,7 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 
 import Main from './pages/Main';
-import './assets/main.css';
+import './assets/tailwind.css';
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);

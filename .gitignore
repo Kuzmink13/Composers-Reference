@@ -10,6 +10,7 @@
 
 # production
 /build
+/dist
 
 # misc
 .firebase
@@ -23,5 +24,4 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-src/assets/main.css
 debug.log
