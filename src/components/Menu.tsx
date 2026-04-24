@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { useStore } from '../zustand/hooks';
-import { Link } from 'react-router-dom';
+import { Link } from '@tanstack/react-router';
 
 function Menu() {
   const toggleGuideShown = useStore((state) => state.toggleGuideShown);
@@ -14,8 +14,7 @@ function Menu() {
     // { title: 'Contact', link: '/contact' },
     {
       title: 'Quick Start Guide',
-      click: () => toggleGuideShown(),
-      link: '',
+      click: toggleGuideShown,
     },
     { title: 'Meet the Scales', link: '/scales' },
     { title: 'References', link: '/references' },
@@ -30,14 +29,24 @@ function Menu() {
     >
       {links.map((el) => (
         <li key={el.title} className="px-4 py-2">
-          <Link
-            className="tab-selection px-2 py-1 cursor-pointer hover:underline"
-            tabIndex="0"
-            onClick={el.click}
-            to={el.link}
-          >
-            {el.title}
-          </Link>
+          {el.link ? (
+            <Link
+              className="tab-selection px-2 py-1 cursor-pointer hover:underline"
+              tabIndex={0}
+              onClick={el.click}
+              to={el.link}
+            >
+              {el.title}
+            </Link>
+          ) : (
+            <button
+              className="tab-selection px-2 py-1 cursor-pointer hover:underline bg-transparent border-0 text-left"
+              type="button"
+              onClick={el.click}
+            >
+              {el.title}
+            </button>
+          )}
         </li>
       ))}
     </ul>

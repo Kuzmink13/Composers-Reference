@@ -5,8 +5,7 @@
 
 import React, { Fragment } from 'react';
 import { useStore } from '../zustand/hooks';
-import { Link } from 'react-router-dom';
-import { HashLink } from 'react-router-hash-link';
+import { Link } from '@tanstack/react-router';
 
 import VexFigure from './VexFigure';
 import SmartLink from './SmartLink';
@@ -166,12 +165,13 @@ const content = [
     <ul className="list-disc px-8 pb-2">
       <li>
         The settings drop down is also where you can filter out{' '}
-        <HashLink
-          to="/scales#scale_family"
+        <Link
+          to="/scales"
+          hash="scale_family"
           className="tab-selection external-link"
         >
           scale-families
-        </HashLink>{' '}
+        </Link>{' '}
         that you never want to see in your results.
       </li>
     </ul>
@@ -213,12 +213,13 @@ const content = [
     />
     <p className="mb-4">
       Shift-select or long-press the left/right arrows to move by{' '}
-      <HashLink
-        to="/scales#modal_organization"
+      <Link
+        to="/scales"
+        hash="modal_organization"
         className="tab-selection external-link"
       >
         relative mode brightness
-      </HashLink>{' '}
+      </Link>{' '}
       instead.
     </p>
   </Fragment>,

@@ -4,7 +4,7 @@
  */
 
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '@tanstack/react-router';
 // import * as svg from '../assets/svg.json';
 
 import Navbar from '../components/Navbar';
