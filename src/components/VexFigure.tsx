@@ -1,0 +1,44 @@
+/**
+ * Copyright (c) Konstantin Kuzmin. All Rights Reserved.
+ * This source code is licensed under the GNU General Public License v3.0
+ */
+
+
+import VexStaff from './VexStaff';
+
+import { replaceSymbols } from '../logic/utilities';
+
+import Mode from '../objects/Mode';
+
+interface VexFigureProps {
+  pitches: number[];
+  pitchCenter?: number;
+  caption?: string;
+  autoMargins?: boolean;
+  showBox?: boolean;
+  mb6?: boolean;
+}
+
+const VexFigure = ({
+  pitches,
+  pitchCenter,
+  caption,
+  autoMargins = false,
+  showBox = true,
+  mb6 = true,
+}: VexFigureProps) => (
+  <figure
+    className={`${showBox && 'box'} p-2 ${mb6 ? 'mb-6' : 'mb-4'} mx-auto ${
+      !autoMargins && 'mx-0'
+    }`}
+  >
+    <VexStaff mode={new Mode(pitches, pitchCenter)} />
+    {caption && (
+      <div className="text-base font-medium text-gray-800 text-center mt-1">
+        {replaceSymbols(caption)}
+      </div>
+    )}
+  </figure>
+);
+
+export default VexFigure;
