@@ -3,7 +3,6 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import React, { Fragment } from 'react';
 import { useStore } from '../zustand/hooks';
 
 import PopOver from './PopOver';
@@ -22,7 +21,7 @@ function PopOvers() {
   useKeyboardFn(() => toggleGuideShown(false), KEY_ARRAYS.escape);
 
   return (
-    <Fragment>
+    <>
       {isModeCardShown && (
         <PopOver
           closeFn={() => closeModeCard()}
@@ -46,7 +45,7 @@ function PopOvers() {
           <QuickGuide />
         </PopOver>
       )}
-    </Fragment>
+    </>
   );
 }
 

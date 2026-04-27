@@ -3,10 +3,11 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import React from 'react';
+import { ReactNode } from "react";
+
 
 interface NavbarProps {
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
 function Navbar({ children }: NavbarProps) {

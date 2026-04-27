@@ -1,11 +1,11 @@
 // https://stackoverflow.com/a/48057286/13995128
 
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, TouchEvent, MouseEvent } from 'react';
 import type React from 'react';
 
 export type LongPressEvent =
-  | React.MouseEvent<HTMLElement>
-  | React.TouchEvent<HTMLElement>;
+  | MouseEvent<HTMLElement>
+  | TouchEvent<HTMLElement>;
 
 interface LongPressOptions {
   shouldPreventDefault?: boolean;
@@ -60,15 +60,15 @@ const useLongPress = (
   );
 
   return {
-    onMouseDown: (e: React.MouseEvent<HTMLElement>) => start(e),
-    onTouchStart: (e: React.TouchEvent<HTMLElement>) => start(e),
-    onMouseUp: (e: React.MouseEvent<HTMLElement>) => clear(e),
-    onMouseLeave: (e: React.MouseEvent<HTMLElement>) => clear(e, false),
-    onTouchEnd: (e: React.TouchEvent<HTMLElement>) => clear(e),
+    onMouseDown: (e: MouseEvent<HTMLElement>) => start(e),
+    onTouchStart: (e: TouchEvent<HTMLElement>) => start(e),
+    onMouseUp: (e: MouseEvent<HTMLElement>) => clear(e),
+    onMouseLeave: (e: MouseEvent<HTMLElement>) => clear(e, false),
+    onTouchEnd: (e: TouchEvent<HTMLElement>) => clear(e),
   };
 };
 
-const isTouchEvent = (event: Event): event is TouchEvent => {
+const isTouchEvent = (event: Event): event is globalThis.TouchEvent => {
   return 'touches' in event;
 };
 

@@ -3,7 +3,6 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import React from 'react';
 import { createRoot } from 'react-dom/client';
 
 import Main from './pages/Main';

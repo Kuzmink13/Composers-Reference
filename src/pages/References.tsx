@@ -3,7 +3,6 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import React, { Fragment } from 'react';
 import { Link } from '@tanstack/react-router';
 import { externalReferences } from '../assets/data';
 
@@ -17,7 +16,7 @@ const alphabetize = (a: string, b: string): number => {
 
 function References() {
   return (
-    <Fragment>
+    <>
       <Navbar>
         <Link
           to="/"
@@ -51,7 +50,7 @@ function References() {
           </ul>
         </div>
       </div>
-    </Fragment>
+    </>
   );
 }
 

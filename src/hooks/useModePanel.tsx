@@ -3,7 +3,7 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, ReactElement } from 'react';
 
 import ModeBlock from '../components/ModeBlock';
 import type Mode from '../objects/Mode';
@@ -11,7 +11,7 @@ import type Mode from '../objects/Mode';
 const itemsToLoad = 6;
 
 interface ModePanelPage {
-  items: React.ReactElement[];
+  items: ReactElement[];
   hasMore: boolean;
 }
 
@@ -26,7 +26,7 @@ function useModePanel(selectedList: Mode[]): [ModePanelPage, () => void] {
     );
   }, [listLength]);
 
-  const generateModeBlock = (mode: Mode): React.ReactElement => {
+  const generateModeBlock = (mode: Mode): ReactElement => {
     return <ModeBlock key={mode.getAbsoluteModeCode()} mode={mode} />;
   };
 

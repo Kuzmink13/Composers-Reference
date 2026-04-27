@@ -3,7 +3,7 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { useStore } from '../zustand/hooks';
 import * as filters from '../logic/filters';
 import type { Cardinality } from '../zustand/types';

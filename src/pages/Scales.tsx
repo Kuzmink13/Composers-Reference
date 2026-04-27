@@ -3,7 +3,6 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import React, { Fragment } from 'react';
 import { Link } from '@tanstack/react-router';
 
 import Navbar from '../components/Navbar';
@@ -14,7 +13,7 @@ import { replaceSymbols } from '../logic/utilities';
 
 function Scales() {
   return (
-    <Fragment>
+    <>
       <Navbar>
         <Link
           to="/"
@@ -748,7 +747,7 @@ function Scales() {
           </p>
         </div>
       </div>
-    </Fragment>
+    </>
   );
 }
 

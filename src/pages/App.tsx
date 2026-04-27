@@ -3,7 +3,6 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import React, { Fragment } from 'react';
 
 import Navbar from '../components/Navbar';
 import NavButtons from '../components/NavButtons';
@@ -24,7 +23,7 @@ function App() {
 
   // RENDER
   return (
-    <Fragment>
+    <>
       <Navbar>
         <NavButtons options={<Options />} menu={<Menu />} />
       </Navbar>
@@ -38,7 +37,7 @@ function App() {
       </main>
 
       <Footer />
-    </Fragment>
+    </>
   );
 }
 

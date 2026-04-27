@@ -3,7 +3,7 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import type Mode from '../objects/Mode';
 
 interface ChordTableProps {
@@ -25,7 +25,6 @@ function ChordTable({ mode }: ChordTableProps) {
         <tbody>
           {Array.from(chordList, ({ chordName, noteNames, scaleDegrees }) => (
             <Fragment key={chordName}>
-              {/* ROW-DIVIDER */}
               {isThreeNoteChord(noteNames) && !isFirstChord(chordName) && (
                 <tr>
                   <th colSpan={3} scope="row">
@@ -34,8 +33,7 @@ function ChordTable({ mode }: ChordTableProps) {
                 </tr>
               )}
 
-              {/* TABLE ROW */}
-              <tr key={chordName}>
+              <tr>
                 <th className="whitespace-no-wrap font-semibold text-center pr-2 sm:pr-3 pt-1 border-r border-gray-400">
                   {`${modeRoot}${chordName}`.trim()}
                 </th>

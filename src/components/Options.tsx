@@ -3,7 +3,6 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import React from 'react';
 import { useStore } from '../zustand/hooks';
 
 import { SUPPORTED_CLEFS, SUPPORTED_TONALITIES } from '../constants';

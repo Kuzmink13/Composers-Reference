@@ -3,13 +3,13 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import React, { useEffect, Fragment } from 'react';
+import { useEffect, ReactNode } from 'react';
 
 import { svg } from '../assets/data';
 import useFocusTrap from '../hooks/useFocusTrap';
 
 interface PopOverProps {
-  children: React.ReactNode;
+  children: ReactNode;
   closeFn?: () => void;
   ID?: string;
   isAnimated?: boolean;
@@ -87,7 +87,7 @@ function PopOver({
   );
 
   return (
-    <Fragment>
+    <>
       <div
         id="clickable-bg"
         className={`fixed inset-0 ${overlayZClass} flex justify-center items-center p-2
@@ -98,7 +98,7 @@ function PopOver({
         {!overridePositioning && popOverWrapper}
       </div>
       {overridePositioning && popOverWrapper}
-    </Fragment>
+    </>
   );
 }
 

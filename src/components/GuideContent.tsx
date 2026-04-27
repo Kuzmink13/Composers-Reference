@@ -3,7 +3,6 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import React, { Fragment } from 'react';
 import { useStore } from '../zustand/hooks';
 import { Link } from '@tanstack/react-router';
 
@@ -13,7 +12,7 @@ import VideoEmbed from './VideoEmbed';
 import { guideHeadings } from './guidePages';
 
 const content = [
-  <Fragment>
+  <>
     {/* Welcome to Composer's Reference! */}
     <p className="mb-4">
       Composer’s Reference is a one-stop interactive tool that packages
@@ -30,9 +29,9 @@ const content = [
       quickly as possible. You can always return here by accessing{' '}
       <i>Quick Start Guide</i> in the menu drop-down.
     </p>
-  </Fragment>,
+  </>,
 
-  <Fragment>
+  <>
     {/* Show Us What You’re Hearing… */}
     <p className="mb-4">
       To get started, Composer’s Reference requires you to define a{' '}
@@ -63,9 +62,9 @@ const content = [
     <p className="mb-4">
       Tip: you can toggle various keyboard overlays in the settings drop-down
     </p>
-  </Fragment>,
+  </>,
 
-  <Fragment>
+  <>
     {/* The Scales Are Coming! */}
     <p className="mb-4">
       When you start selecting notes, the bottom part of the screen will
@@ -79,9 +78,9 @@ const content = [
       width="547"
       src="videos/scale_generation.mp4"
     />
-  </Fragment>,
+  </>,
 
-  <Fragment>
+  <>
     {/* Time to Get Creative! */}
     <p className="mb-4">
       There are many ways to work these results back into your music. Here’s a
@@ -114,9 +113,9 @@ const content = [
       </Link>{' '}
       to <i>meet the scales</i>
     </p>
-  </Fragment>,
+  </>,
 
-  <Fragment>
+  <>
     {/* Too Many Notes! */}
     <p className="mb-4">
       If you find that there are just too many options to work with, Composer’s
@@ -146,9 +145,9 @@ const content = [
       width="302"
       src="videos/root_selection.mp4"
     />
-  </Fragment>,
+  </>,
 
-  <Fragment>
+  <>
     {/* Too Many Notes! (pt.2) */}
     <ul className="list-disc px-8 pb-4">
       <li>
@@ -175,9 +174,9 @@ const content = [
         that you never want to see in your results.
       </li>
     </ul>
-  </Fragment>,
+  </>,
 
-  <Fragment>
+  <>
     {/* We Need To Go Deeper... */}
     <p className="mb-4">
       Now it’s time to get into the heart of the Composer’s Reference workflow!
@@ -196,9 +195,9 @@ const content = [
       You can now effortlessly pair music written from that scale with any
       number of chords that fit over its structure.
     </p>
-  </Fragment>,
+  </>,
 
-  <Fragment>
+  <>
     {/* More Chords Please! */}
     <p className="mb-4">
       Want the chords from a neighboring scale degree instead? Click the
@@ -222,9 +221,9 @@ const content = [
       </Link>{' '}
       instead.
     </p>
-  </Fragment>,
+  </>,
 
-  <Fragment>
+  <>
     {/* Time to Get Modal! */}
     <p className="mb-4">
       Eventually you will decide it's time to go beyond the constraints of a
@@ -245,9 +244,9 @@ const content = [
       the up/down arrows to transpose your scale by one step in the circle of
       fifths.
     </p>
-  </Fragment>,
+  </>,
 
-  <Fragment>
+  <>
     {/* Mode-Card Movement Summary */}
     <p className="mb-4">
       Combining the four ways of moving between mode-cards lets you find new
@@ -269,9 +268,9 @@ const content = [
         <b>shift + down/up:</b> previous/next key via circle of fifths
       </li>
     </ul>
-  </Fragment>,
+  </>,
 
-  <Fragment>
+  <>
     {/* That's All For Now! */}
     <p className="mb-4">
       Composer's Reference is a simple tool with complex implications. There are
@@ -300,13 +299,13 @@ const content = [
         more on terms and concepts commonly used throughout Composer's Reference
       </li>
     </ul>
-  </Fragment>,
+  </>,
 ];
 
 function GuideContent() {
   const index = useStore((state) => state.guideIndex);
   return (
-    <Fragment>
+    <>
       <h3 className="px-8 mb-4 text-base md:text-xl font-bold tracking-wider text-center">
         {guideHeadings[index]}
       </h3>
@@ -317,7 +316,7 @@ function GuideContent() {
       >
         {content[index]}
       </div>
-    </Fragment>
+    </>
   );
 }
 

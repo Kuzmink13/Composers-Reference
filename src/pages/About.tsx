@@ -3,14 +3,13 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import React, { Fragment } from 'react';
 import { Link } from '@tanstack/react-router';
 
 import Navbar from '../components/Navbar';
 
 function About() {
   return (
-    <Fragment>
+    <>
       <Navbar>
         <Link
           to="/"
@@ -83,7 +82,7 @@ function About() {
           Composer's Reference &#169; Konstantin Kuzmin 2021
         </p>
       </div>
-    </Fragment>
+    </>
   );
 }
 

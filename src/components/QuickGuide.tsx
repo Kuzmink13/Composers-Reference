@@ -3,7 +3,7 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useStore } from '../zustand/hooks';
 
 import GuideContent from './GuideContent';
