@@ -5,17 +5,21 @@
 
 import { useCallback, useEffect } from 'react';
 
-function useKeyboardFn(callback, keyArray = undefined, callOnRepeat = false) {
+function useKeyboardFn(
+  callback: (event: KeyboardEvent) => void,
+  keyArray?: readonly string[],
+  callOnRepeat = false
+): void {
   const keyIsPressed = useCallback(
-    (key) => {
+    (key: string): boolean => {
       if (!keyArray) return true;
-      return keyArray.reduce((acc, cur) => acc || cur === key, false);
+      return keyArray.some((cur) => cur === key);
     },
     [keyArray]
   );
 
   const callFn = useCallback(
-    (event) => {
+    (event: KeyboardEvent) => {
       if (!callOnRepeat && event.repeat) return;
       keyIsPressed(event.key) && callback(event);
     },

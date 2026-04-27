@@ -6,7 +6,7 @@
 import React from 'react';
 import { useStore } from '../zustand/hooks';
 
-import svg from '../assets/svg.json';
+import { svg } from '../assets/data';
 
 import VexStaff from './VexStaff';
 import ChordTable from './ChordTable';
@@ -17,6 +17,10 @@ import useLongPress from '../hooks/useLongPress';
 function ModeCard() {
   const mode = useStore((state) => state.modeCard.mode);
   const clef = useStore((state) => state.clef);
+  if (!mode) {
+    return null;
+  }
+
   const modeName = mode.getModeName();
   const [shift] = useShift();
 
@@ -67,7 +71,7 @@ function ModeCard() {
       {/* MODE CARD HEADING */}
       <hgroup>
         <h2
-          tabIndex="0"
+          tabIndex={0}
           className="text-base sm:text-lg font-bold uppercase tracking-widest text-center focus:outline-none"
         >
           {modeName}

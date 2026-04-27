@@ -4,11 +4,12 @@
  */
 
 import { SUPPORTED_TONALITIES } from '../constants';
+import type Mode from '../objects/Mode';
 
 import getModesFromTonality from './getModesfromTonality';
 
-function modeCompare(pitchArray) {
-  return (a, b) => {
+function modeCompare(pitchArray: number[]) {
+  return (a: Mode, b: Mode): number => {
     const aRoot = a.getPitchCenter();
     const bRoot = b.getPitchCenter();
 
@@ -28,7 +29,7 @@ function modeCompare(pitchArray) {
   };
 }
 
-function getAllModes(pitchArray) {
+function getAllModes(pitchArray: number[]): Mode[] {
   return SUPPORTED_TONALITIES.map((tonality) =>
     getModesFromTonality(tonality, pitchArray).sort(modeCompare(pitchArray))
   ).flat();

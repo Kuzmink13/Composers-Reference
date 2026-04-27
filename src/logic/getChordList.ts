@@ -5,8 +5,23 @@
 
 import { replaceSymbols } from './utilities';
 import * as c from './chordUtilities';
+import type Mode from '../objects/Mode';
+import type { ChordProps } from './chordUtilities';
+import type { ChordTree } from '../assets/data';
 
-function updateChordProps(mode, chordProps, interval) {
+interface ChordListEntry {
+  chordName: string;
+  noteNames: string[];
+  scaleDegrees: string[];
+  pitches: number[];
+  intervals: string[];
+}
+
+function updateChordProps(
+  mode: Mode,
+  chordProps: ChordProps,
+  interval: string
+): ChordProps {
   const { intervalSize, scaleDegree } = c.getIntervalProps(interval);
   const { pitches, intervals, noteNames, scaleDegrees } = chordProps;
 
@@ -18,31 +33,39 @@ function updateChordProps(mode, chordProps, interval) {
   };
 }
 
-function constructNode(subtree, mode, chordProps) {
+function constructNode(
+  subtree: [string, [string, ChordTree]],
+  mode: Mode,
+  chordProps: ChordProps
+): ChordListEntry[] {
   const [interval, [chordName, nextNode]] = subtree;
 
   if (c.containsInterval(mode, interval)) {
-    chordProps = updateChordProps(mode, chordProps, interval);
+    const nextChordProps = updateChordProps(mode, chordProps, interval);
     return [
-      { chordName, ...chordProps },
-      ...treeCrawler(nextNode, mode, chordProps),
+      { chordName, ...nextChordProps },
+      ...treeCrawler(nextNode, mode, nextChordProps).flat(),
     ];
   }
 
-  return {};
+  return [];
 }
 
-function treeCrawler(tree, mode, chordProps = c.defaultChordProps(mode)) {
+function treeCrawler(
+  tree: ChordTree,
+  mode: Mode,
+  chordProps: ChordProps = c.defaultChordProps(mode)
+): ChordListEntry[][] {
   return Object.entries(tree).map((subtree) =>
-    constructNode(subtree, mode, chordProps)
+    constructNode(subtree as [string, [string, ChordTree]], mode, chordProps)
   );
 }
 
-function chordListFilter(chord) {
-  return chord.chordName;
+function chordListFilter(chord: ChordListEntry): boolean {
+  return Boolean(chord.chordName);
 }
 
-function chordListSorter(a, b) {
+function chordListSorter(a: ChordListEntry, b: ChordListEntry): number {
   const a_priorities = c.getPriorities(a.intervals);
   const b_priorities = c.getPriorities(b.intervals);
 
@@ -58,9 +81,15 @@ function chordListSorter(a, b) {
   // BY SEVENTH TYPE
   if (a_priorities.seventh !== b_priorities.seventh)
     return a_priorities.seventh - b_priorities.seventh;
+
+  return 0;
 }
 
-function chordListFormatter({ chordName, noteNames, scaleDegrees }) {
+function chordListFormatter({
+  chordName,
+  noteNames,
+  scaleDegrees,
+}: ChordListEntry) {
   return {
     chordName: replaceSymbols(chordName),
     noteNames: noteNames.map((el) => replaceSymbols(el)),
@@ -68,7 +97,7 @@ function chordListFormatter({ chordName, noteNames, scaleDegrees }) {
   };
 }
 
-function getChordList(mode) {
+function getChordList(mode: Mode) {
   return treeCrawler(c.tree, mode)
     .flat(c.maxTreeDepth)
     .filter(chordListFilter)

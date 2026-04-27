@@ -5,17 +5,28 @@
 
 import getModeList from '../../logic/getModeList';
 import { notesInOctave } from '../../logic/utilities';
+import type {
+  NotesSlice,
+  NotesState,
+  PersistedState,
+  StoreSet,
+  StoreGet,
+} from '../types';
 
-export const getInitialNotesState = () => ({
+export const getInitialNotesState = (): NotesState => ({
   notes: Array(notesInOctave).fill(false),
   root: undefined,
   modeList: [],
 });
 
-export const createNotesSlice = (set) => ({
+export const createNotesSlice = (
+  set: StoreSet,
+  _get: StoreGet,
+  _persistedState: PersistedState = {}
+): NotesSlice => ({
   notes: getInitialNotesState(),
 
-  noteSelect: (noteIndex) =>
+  noteSelect: (noteIndex: number) =>
     set((state) => {
       const isRoot = noteIndex === state.notes.root;
       const notes = [
@@ -33,7 +44,7 @@ export const createNotesSlice = (set) => ({
       };
     }),
 
-  rootSelect: (noteIndex) =>
+  rootSelect: (noteIndex: number) =>
     set((state) => {
       const isRoot = noteIndex === state.notes.root;
       const notes = [

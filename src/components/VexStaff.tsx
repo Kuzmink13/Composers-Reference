@@ -8,15 +8,23 @@ import React from 'react';
 import useVexScale from '../hooks/useVexScale';
 
 import { SUPPORTED_CLEFS } from '../constants';
+import type Mode from '../objects/Mode';
+import type { Clef } from '../zustand/types';
 
-function VexStaff({ mode, clef = SUPPORTED_CLEFS.TREBLE, altID }) {
+interface VexStaffProps {
+  mode: Mode;
+  clef?: Clef;
+  altID?: string;
+}
+
+function VexStaff({ mode, clef = SUPPORTED_CLEFS.TREBLE, altID }: VexStaffProps) {
   useVexScale(mode, clef, altID);
 
   return (
     <figure
       id={altID ?? mode.getAbsoluteModeCode()}
       className="h-staff-height w-staff-width"
-      alt={mode.getScaleNotes()}
+      aria-label={mode.getScaleNotes().join(' ')}
     ></figure>
   );
 }

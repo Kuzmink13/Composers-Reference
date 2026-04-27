@@ -28,7 +28,7 @@ function ModePanel() {
   );
 
   const [{ items, hasMore }, loadMore] = useModePanel(selectedList);
-  const scrollParentRef = useRef(null);
+  const scrollParentRef = useRef<HTMLDivElement | null>(null);
 
   const handleScroll = useCallback(() => {
     const scrollParent = scrollParentRef.current;

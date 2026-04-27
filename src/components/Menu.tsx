@@ -7,13 +7,25 @@ import React from 'react';
 import { useStore } from '../zustand/hooks';
 import { Link } from '@tanstack/react-router';
 
+type MenuLink = {
+  title: string;
+  link: string;
+  click?: () => void;
+};
+
+type MenuAction = {
+  title: string;
+  click: () => void;
+  link?: never;
+};
+
 function Menu() {
   const toggleGuideShown = useStore((state) => state.toggleGuideShown);
-  const links = [
+  const links: Array<MenuLink | MenuAction> = [
     { title: 'About', link: '/about' },
     {
       title: 'Quick Start Guide',
-      click: toggleGuideShown,
+      click: () => toggleGuideShown(),
     },
     { title: 'Meet the Scales', link: '/scales' },
     { title: 'References', link: '/references' },
@@ -41,7 +53,7 @@ function Menu() {
             <button
               className="tab-selection px-2 py-1 cursor-pointer hover:underline bg-transparent text-left appearance-none"
               type="button"
-              onClick={el.click}
+              onClick={() => el.click?.()}
             >
               {el.title}
             </button>

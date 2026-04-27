@@ -4,11 +4,22 @@
  */
 
 import { DROP_DOWN_STATE } from '../../constants';
+import type {
+  NavigationSlice,
+  PersistedState,
+  StoreSet,
+  StoreGet,
+  DropDownState,
+} from '../types';
 
-export const createNavigationSlice = (set) => ({
+export const createNavigationSlice = (
+  set: StoreSet,
+  _get: StoreGet,
+  _persistedState: PersistedState = {}
+): NavigationSlice => ({
   navDropDowns: DROP_DOWN_STATE.NONE,
 
-  toggleDropDown: (dropDownState) =>
+  toggleDropDown: (dropDownState: DropDownState) =>
     set((state) => ({
       navDropDowns:
         dropDownState === state.navDropDowns

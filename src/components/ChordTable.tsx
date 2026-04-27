@@ -4,16 +4,23 @@
  */
 
 import React, { Fragment } from 'react';
+import type Mode from '../objects/Mode';
 
-function ChordTable({ mode }) {
+interface ChordTableProps {
+  mode: Mode;
+}
+
+function ChordTable({ mode }: ChordTableProps) {
   const modeRoot = mode.getModeRoot();
   const chordList = mode.getChordList();
 
-  const isFirstChord = (chordName) => chordName === chordList[0].chordName;
-  const isThreeNoteChord = (noteNames) => noteNames.length === 3;
+  const isFirstChord = (chordName: string): boolean =>
+    chordName === chordList[0].chordName;
+  const isThreeNoteChord = (noteNames: string[]): boolean =>
+    noteNames.length === 3;
 
   return (
-    <div className="tab-selection px-6 max-h-card overflow-y-auto" tabIndex="0">
+    <div className="tab-selection px-6 max-h-card overflow-y-auto" tabIndex={0}>
       <table className="m-auto">
         <tbody>
           {Array.from(chordList, ({ chordName, noteNames, scaleDegrees }) => (
@@ -21,7 +28,7 @@ function ChordTable({ mode }) {
               {/* ROW-DIVIDER */}
               {isThreeNoteChord(noteNames) && !isFirstChord(chordName) && (
                 <tr>
-                  <th colSpan="3" scope="row">
+                  <th colSpan={3} scope="row">
                     <hr className="border-t border-gray-400 mt-2 mb-1" />
                   </th>
                 </tr>

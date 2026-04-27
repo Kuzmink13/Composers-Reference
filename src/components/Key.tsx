@@ -6,13 +6,17 @@
 import React from 'react';
 import { useStore } from '../zustand/hooks';
 
-import keyMap from '../assets/keyMap.json';
-import keyNotes from '../assets/notes.json';
+import { keyMap, notes as keyNotes } from '../assets/data';
 
 import useLongPress from '../hooks/useLongPress';
 import { BREAKPOINTS } from '../constants';
 
-function Key({ value, index }) {
+interface KeyProps {
+  value: number;
+  index: number;
+}
+
+function Key({ value, index }: KeyProps) {
   const noteSelect = useStore((state) => state.noteSelect);
   const rootSelect = useStore((state) => state.rootSelect);
   const { areKeysShown, areNoteNamesShown } = useStore((state) => state.overlay);
@@ -22,7 +26,9 @@ function Key({ value, index }) {
   const longPressEvent = useLongPress(
     () => rootSelect(value),
     (event) =>
-      event.shiftKey ? rootSelect(value) : noteSelect(value)
+      'shiftKey' in event && event.shiftKey
+        ? rootSelect(value)
+        : noteSelect(value)
   );
 
   const isKeySelected = notes[value];

@@ -15,21 +15,26 @@ const FOCUSABLE_SELECTOR = [
   '[contenteditable="true"]',
 ].join(', ');
 
-function getFocusableElements(container) {
-  return Array.from(container.querySelectorAll(FOCUSABLE_SELECTOR)).filter(
+function getFocusableElements(container: HTMLElement): HTMLElement[] {
+  return Array.from(container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)).filter(
     (element) =>
       !element.hasAttribute('disabled') &&
       element.getAttribute('aria-hidden') !== 'true'
   );
 }
 
-const trapStack = [];
+interface TrapHandle {
+  pause: () => void;
+  resume: () => void;
+}
 
-function getActiveTrap() {
+const trapStack: TrapHandle[] = [];
+
+function getActiveTrap(): TrapHandle | null {
   return trapStack.length > 0 ? trapStack[trapStack.length - 1] : null;
 }
 
-function addTrapToStack(trap) {
+function addTrapToStack(trap: TrapHandle): void {
   const existingIndex = trapStack.indexOf(trap);
   if (existingIndex >= 0) {
     trapStack.splice(existingIndex, 1);
@@ -43,29 +48,30 @@ function addTrapToStack(trap) {
   trapStack.push(trap);
 }
 
-function removeTrapFromStack(trap) {
+function removeTrapFromStack(trap: TrapHandle): void {
   const index = trapStack.indexOf(trap);
   if (index >= 0) {
     trapStack.splice(index, 1);
   }
 }
 
-function useFocusTrap(id) {
+function useFocusTrap(id: string): void {
   useEffect(() => {
     const container = document.getElementById(id);
     if (!container) return;
 
-    const previouslyFocusedElement = document.activeElement;
-    let initialFocusTimer = null;
+    const previouslyFocusedElement =
+      document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    let initialFocusTimer: number | null = null;
     let isPaused = false;
 
-    const focusFirstElement = () => {
+    const focusFirstElement = (): void => {
       const focusableElements = getFocusableElements(container);
       const targetElement = focusableElements[0] || container;
       targetElement.focus({ preventScroll: true });
     };
 
-    const handleKeyDown = (event) => {
+    const handleKeyDown = (event: KeyboardEvent): void => {
       if (event.key !== 'Tab') return;
 
       const focusableElements = getFocusableElements(container);
@@ -93,14 +99,14 @@ function useFocusTrap(id) {
       }
     };
 
-    const handleFocusIn = (event) => {
+    const handleFocusIn = (event: FocusEvent): void => {
       const target = event.target;
-      if (target && !container.contains(target)) {
+      if (target && target instanceof Node && !container.contains(target)) {
         focusFirstElement();
       }
     };
 
-    const startFocusTrap = () => {
+    const startFocusTrap = (): void => {
       if (!container.hasAttribute('tabindex')) {
         container.setAttribute('tabindex', '-1');
       }
@@ -111,7 +117,7 @@ function useFocusTrap(id) {
       document.addEventListener('focusin', handleFocusIn);
     };
 
-    const stopFocusTrap = ({ restoreFocus = false } = {}) => {
+    const stopFocusTrap = ({ restoreFocus = false }: { restoreFocus?: boolean } = {}): void => {
       if (initialFocusTimer !== null) {
         window.clearTimeout(initialFocusTimer);
         initialFocusTimer = null;

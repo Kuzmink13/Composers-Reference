@@ -7,8 +7,13 @@ import React from 'react';
 import { useStore } from '../zustand/hooks';
 
 import VexStaff from './VexStaff';
+import type Mode from '../objects/Mode';
 
-function ModeBlock({ mode }) {
+interface ModeBlockProps {
+  mode: Mode;
+}
+
+function ModeBlock({ mode }: ModeBlockProps) {
   const openModeCard = useStore((state) => state.openModeCard);
   const clef = useStore((state) => state.clef);
 

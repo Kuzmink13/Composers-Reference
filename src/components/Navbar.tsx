@@ -5,7 +5,11 @@
 
 import React from 'react';
 
-function Navbar({ children }) {
+interface NavbarProps {
+  children?: React.ReactNode;
+}
+
+function Navbar({ children }: NavbarProps) {
   return (
     <header className="py-1 px-auto bg-white border-b border-gray-400">
       <div className="relative flex justify-between items-center mx-auto px-4 lg:max-w-screen-lg text-gray-800">

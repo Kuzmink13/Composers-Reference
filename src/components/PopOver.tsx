@@ -5,8 +5,21 @@
 
 import React, { useEffect, Fragment } from 'react';
 
-import svg from '../assets/svg.json';
+import { svg } from '../assets/data';
 import useFocusTrap from '../hooks/useFocusTrap';
+
+interface PopOverProps {
+  children: React.ReactNode;
+  closeFn?: () => void;
+  ID?: string;
+  isAnimated?: boolean;
+  isGray?: boolean;
+  isWide?: boolean;
+  overlayZClass?: string;
+  overridePositioning?: boolean;
+  overrideStyles?: boolean;
+  showCloseButton?: boolean;
+}
 
 function PopOver({
   children,
@@ -19,7 +32,7 @@ function PopOver({
   overridePositioning = false,
   overrideStyles = false,
   showCloseButton = false,
-}) {
+}: PopOverProps) {
   useFocusTrap(ID);
 
   // ANIMATE COMPONENT

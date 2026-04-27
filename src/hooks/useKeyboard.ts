@@ -6,7 +6,7 @@
 import { useCallback } from 'react';
 import { useStore } from '../zustand/hooks';
 
-import keyMap from '../assets/keyMap.json';
+import { keyMap } from '../assets/data';
 
 import useKeyboardFn from './useKeyboardFn';
 
@@ -27,7 +27,7 @@ function useKeyboard() {
 
   // NOTE-SELECTION
   const KeyBoardPress = useCallback(
-    (event) => {
+    (event: KeyboardEvent) => {
       if (arePopOversActive || areDropDownsActive) return;
       const pressedNote = keyMap.keyToNote[event.code];
       if (pressedNote !== undefined) {
@@ -48,7 +48,7 @@ function useKeyboard() {
   };
 
   // DROP-DOWNS
-  const handleNavShortcuts = (event) => {
+  const handleNavShortcuts = (event: KeyboardEvent): void => {
     if (arePopOversActive) return;
     switch (event.code) {
       case 'KeyO':

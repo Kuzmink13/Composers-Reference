@@ -7,13 +7,13 @@ export const DROP_DOWN_STATE = {
   NONE: 'NONE',
   OPTIONS: 'OPTIONS',
   MENU: 'MENU',
-};
+} as const;
 
 export const SUPPORTED_CLEFS = {
   TREBLE: 'treble',
   ALTO: 'alto',
   BASS: 'bass',
-};
+} as const;
 
 export const SUPPORTED_TONALITIES = [
   { name: 'Whole-Tone', pitches: [0, 2, 4, 6, 8, 10] },
@@ -29,7 +29,7 @@ export const SUPPORTED_SCALE_LENGTHS = {
   SIX: { string: 'SIX', number: 6 },
   SEVEN: { string: 'SEVEN', number: 7 },
   EIGHT: { string: 'EIGHT', number: 8 },
-};
+} as const;
 
 export const KEY_ARRAYS = {
   delete: ['Del', 'Delete'],
@@ -39,7 +39,7 @@ export const KEY_ARRAYS = {
   right: ['ArrowRight'],
   up: ['ArrowUp'],
   down: ['ArrowDown'],
-};
+} as const;
 
 export const BREAKPOINTS = {
   xs: 512,
@@ -48,4 +48,4 @@ export const BREAKPOINTS = {
   ht: 820,
   lg: 1024,
   xl: 1280,
-};
+} as const;

@@ -12,10 +12,11 @@ import { createModeCardSlice } from './slices/modeCardSlice';
 import { createNavigationSlice } from './slices/navigationSlice';
 import { createDisplaySlice } from './slices/displaySlice';
 import { createViewportSlice } from './slices/viewportSlice';
+import type { AppState } from './types';
 
 const persistedState = loadState() || {};
 
-const store = createStore((set, get) => ({
+const store = createStore<AppState>((set, get) => ({
   ...createNotesSlice(set, get, persistedState),
   ...createGuideSlice(set, get, persistedState),
   ...createModeCardSlice(set, get, persistedState),

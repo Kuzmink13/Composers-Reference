@@ -9,6 +9,8 @@ import { notesInOctave } from '../logic/utilities';
  * A collection of successive pitches contained within an octave
  */
 class PitchCollection {
+  protected pitches: string;
+
   /**
    * Creates a new PitchCollection object
    * @param {Array<Numbers>} pitches - a non-empty array of abstract pitches where the difference between
@@ -16,26 +18,26 @@ class PitchCollection {
    *    be strictly increasing.
    * @throws {Error} if the range of the pitch collection exceeds an octave
    */
-  constructor(pitches) {
+  constructor(pitches: number[]) {
     const minimizedPitches = pitches.map((el, i, arr) => el - arr[0]);
 
-    if (minimizedPitches.slice(-1) >= notesInOctave)
+    if (minimizedPitches[minimizedPitches.length - 1] >= notesInOctave)
       throw new Error('Range of PitchCollection exceeds an octave!');
 
     this.pitches = JSON.stringify(minimizedPitches);
   }
 
-  getAbstractPitches() {
-    return JSON.parse(this.pitches);
+  getAbstractPitches(): number[] {
+    return JSON.parse(this.pitches) as number[];
   }
 
-  getAbstractModeCode() {
+  getAbstractModeCode(): string {
     return this.getAbstractPitches()
       .map((el) => el.toString(notesInOctave))
       .join('');
   }
 
-  getNoteQuantity() {
+  getNoteQuantity(): number {
     return this.getAbstractPitches().length;
   }
 }

@@ -311,7 +311,7 @@ function GuideContent() {
         {guideHeadings[index]}
       </h3>
       <div
-        tabIndex="0"
+        tabIndex={0}
         className="flex flex-col px-0 md:px-12 mb-4 max-h-card sm:max-h-guide overflow-y-auto
   text-base md:text-lg text-gray-800 focus:outline-none"
       >

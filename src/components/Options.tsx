@@ -7,6 +7,7 @@ import React from 'react';
 import { useStore } from '../zustand/hooks';
 
 import { SUPPORTED_CLEFS, SUPPORTED_TONALITIES } from '../constants';
+import type { Clef } from '../zustand/types';
 
 function Options() {
   const changeClef = useStore((state) => state.changeClef);
@@ -82,7 +83,7 @@ function Options() {
       {/* CLEF SELECTION */}
       <fieldset className="pb-2">
         <legend className="pb-2">Clef Selection:</legend>
-        {Object.values(SUPPORTED_CLEFS).map((el) => (
+        {(Object.values(SUPPORTED_CLEFS) as Clef[]).map((el) => (
           <div key={el} className="flex items-center pb-1">
             <input
               id={el}

@@ -5,7 +5,13 @@
 
 import React from 'react';
 
-function VideoEmbed({ classAddOn, width, src }) {
+interface VideoEmbedProps {
+  classAddOn: string;
+  width: string;
+  src: string;
+}
+
+function VideoEmbed({ classAddOn, width, src }: VideoEmbedProps) {
   return (
     <video
       autoPlay

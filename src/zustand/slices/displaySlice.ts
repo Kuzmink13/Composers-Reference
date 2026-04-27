@@ -8,16 +8,29 @@ import {
   SUPPORTED_SCALE_LENGTHS,
   SUPPORTED_TONALITIES,
 } from '../../constants';
+import type {
+  Clef,
+  DisplaySlice,
+  OverlayState,
+  PersistedState,
+  StoreSet,
+  StoreGet,
+  Cardinality,
+} from '../types';
 
-const getInitialOverlayState = () => ({
+const getInitialOverlayState = (): OverlayState => ({
   areKeysShown: false,
   areNoteNamesShown: false,
 });
 
-const getInitialTonalitiesState = () =>
+const getInitialTonalitiesState = (): boolean[] =>
   Array.from(SUPPORTED_TONALITIES, () => true);
 
-export const createDisplaySlice = (set, _get, persistedState = {}) => ({
+export const createDisplaySlice = (
+  set: StoreSet,
+  _get: StoreGet,
+  persistedState: PersistedState = {}
+): DisplaySlice => ({
   overlay: {
     ...getInitialOverlayState(),
     ...(persistedState.overlay || {}),
@@ -61,7 +74,7 @@ export const createDisplaySlice = (set, _get, persistedState = {}) => ({
       selectionFilter: false,
     }),
 
-  changeClef: (clef) =>
+  changeClef: (clef: Clef) =>
     set({
       clef,
     }),
@@ -71,7 +84,7 @@ export const createDisplaySlice = (set, _get, persistedState = {}) => ({
       clef: SUPPORTED_CLEFS.TREBLE,
     }),
 
-  toggleTonality: (index) =>
+  toggleTonality: (index: number) =>
     set((state) => ({
       tonalities: [
         ...state.tonalities.slice(0, index),
@@ -85,7 +98,7 @@ export const createDisplaySlice = (set, _get, persistedState = {}) => ({
       tonalities: getInitialTonalitiesState(),
     }),
 
-  changeCardinality: (cardinality) =>
+  changeCardinality: (cardinality: Cardinality) =>
     set({
       cardinality,
     }),

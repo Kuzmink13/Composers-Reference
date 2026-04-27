@@ -11,6 +11,15 @@ import { replaceSymbols } from '../logic/utilities';
 
 import Mode from '../objects/Mode';
 
+interface VexFigureProps {
+  pitches: number[];
+  pitchCenter?: number;
+  caption?: string;
+  autoMargins?: boolean;
+  showBox?: boolean;
+  mb6?: boolean;
+}
+
 const VexFigure = ({
   pitches,
   pitchCenter,
@@ -18,7 +27,7 @@ const VexFigure = ({
   autoMargins = false,
   showBox = true,
   mb6 = true,
-}) => (
+}: VexFigureProps) => (
   <figure
     className={`${showBox && 'box'} p-2 ${mb6 ? 'mb-6' : 'mb-4'} mx-auto ${
       !autoMargins && 'mx-0'

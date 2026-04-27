@@ -5,13 +5,13 @@
 
 import getAllModes from './getAllModes';
 
-function convertToPitchArray(notes) {
+function convertToPitchArray(notes: boolean[]): number[] {
   return notes
     .map((el, i) => (el ? i : undefined))
-    .filter((el) => el !== undefined);
+    .filter((el): el is number => el !== undefined);
 }
 
-function getModeList(notes) {
+function getModeList(notes: boolean[]) {
   return getAllModes(convertToPitchArray(notes));
 }
 

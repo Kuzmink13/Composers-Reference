@@ -5,13 +5,13 @@
 
 import React, { Fragment } from 'react';
 import { Link } from '@tanstack/react-router';
-import ref from '../assets/externalReferences.json';
+import { externalReferences } from '../assets/data';
 
 import Navbar from '../components/Navbar';
 
 import { replaceSymbols } from '../logic/utilities';
 
-const alphabetize = (a, b) => {
+const alphabetize = (a: string, b: string): number => {
   return a.localeCompare(b);
 };
 
@@ -34,14 +34,14 @@ function References() {
             References
           </h2>
           <ul className="flex flex-col xs:flex-row flex-wrap">
-            {Object.keys(ref)
+            {Object.keys(externalReferences)
               .sort(alphabetize)
-              .filter((el) => ref[el] !== '')
+              .filter((el) => externalReferences[el] !== '')
               .map((el) => (
                 <li key={el} className="px-3 pb-3 capitalize">
                   <a
                     className="tab-selection hover:underline"
-                    href={ref[el]}
+                    href={externalReferences[el]}
                     target="_"
                   >
                     {replaceSymbols(el)}

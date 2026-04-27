@@ -4,20 +4,31 @@
  */
 
 import { numPages } from '../../components/guidePages';
+import type {
+  GuideSlice,
+  PersistedState,
+  QuickGuideState,
+  StoreSet,
+  StoreGet,
+} from '../types';
 
-const getInitialQuickGuideState = () => ({
+const getInitialQuickGuideState = (): QuickGuideState => ({
   isDismissed: false,
   isShown: true,
 });
 
-export const createGuideSlice = (set, _get, persistedState = {}) => ({
+export const createGuideSlice = (
+  set: StoreSet,
+  _get: StoreGet,
+  persistedState: PersistedState = {}
+): GuideSlice => ({
   quickGuide: {
     ...getInitialQuickGuideState(),
     ...(persistedState.quickGuide || {}),
   },
   guideIndex: 0,
 
-  toggleGuideDismissed: (isDismissed = undefined) =>
+  toggleGuideDismissed: (isDismissed?: boolean) =>
     set((state) => ({
       quickGuide: {
         isDismissed: isDismissed ?? !state.quickGuide.isDismissed,
@@ -25,7 +36,7 @@ export const createGuideSlice = (set, _get, persistedState = {}) => ({
       },
     })),
 
-  toggleGuideShown: (isShown = undefined) =>
+  toggleGuideShown: (isShown?: boolean) =>
     set((state) => ({
       quickGuide: {
         isDismissed: state.quickGuide.isDismissed,

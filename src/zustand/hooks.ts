@@ -6,5 +6,7 @@
 import { useStore as useZustandStore } from 'zustand';
 
 import store from './store';
+import type { AppState } from './types';
 
-export const useStore = (selector) => useZustandStore(store, selector);
+export const useStore = <T>(selector: (state: AppState) => T): T =>
+  useZustandStore(store, selector);

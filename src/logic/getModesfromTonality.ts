@@ -9,31 +9,39 @@ import { notesInOctave } from './utilities';
 import PitchCollection from '../objects/PitchCollection';
 import Mode from '../objects/Mode';
 
-function getRelativeModes(mode) {
+interface Tonality {
+  name?: string;
+  pitches: number[];
+}
+
+function getRelativeModes(mode: Mode): Mode[] {
   const offsets = mode.getAbsolutePitches();
-  const output = [];
+  const output: Mode[] = [];
 
   offsets.forEach(() => {
     output.push(new Mode(offsets));
-    offsets.push(offsets.shift() + notesInOctave);
+    const shifted = offsets.shift();
+    if (shifted !== undefined) {
+      offsets.push(shifted + notesInOctave);
+    }
   });
 
   return output;
 }
 
 function duplicateFilter() {
-  const seenModes = {};
+  const seenModes: Record<string, boolean> = {};
 
-  const checkSeen = (modeCode) => {
+  const checkSeen = (modeCode: string): boolean => {
     if (seenModes[modeCode]) return false;
     seenModes[modeCode] = true;
     return true;
   };
 
-  return (mode) => checkSeen(mode.getAbsoluteModeCode());
+  return (mode: Mode): boolean => checkSeen(mode.getAbsoluteModeCode());
 }
 
-function getModesFromTonality(tonality, pitchArray) {
+function getModesFromTonality(tonality: Tonality, pitchArray: number[]): Mode[] {
   const tonalitiyCollection = new PitchCollection(tonality.pitches);
   const baseMode = new Mode(pitchArray);
 

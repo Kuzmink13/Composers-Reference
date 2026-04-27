@@ -3,7 +3,7 @@
  * This source code is licensed under the GNU General Public License v3.0
  */
 
-import modeProps from '../assets/modeProperties.json';
+import { modeProperties } from '../assets/data';
 
 import getScaleNotes from '../logic/getScaleNotes';
 import getChordList from '../logic/getChordList';
@@ -20,6 +20,9 @@ import PitchCollection from './PitchCollection';
  * A collection of successive pitches contained within an octave that start at a specific note
  */
 class Mode extends PitchCollection {
+  private pitchCenter: number;
+  private scaleNotes?: string;
+
   /**
    * Creates a new Mode object
    * @param {Array<Numbers>} pitches - a non-empty array of abstract pitches where the difference between
@@ -28,57 +31,57 @@ class Mode extends PitchCollection {
    * @param {Number} pitchCenter - a number representing a pitch class where 0 is c, 1 is c-sharp/d-flat, ... , 11 is b
    * @throws {Error} if the range of the pitch collection exceeds an octave
    */
-  constructor(pitches, pitchCenter = pitches[0]) {
+  constructor(pitches: number[], pitchCenter: number = pitches[0]) {
     super(pitches);
     this.pitchCenter = octaveMod(pitchCenter);
   }
 
-  fromCode(modeCode, pitchCenter) {
+  fromCode(modeCode: string, pitchCenter: number): Mode {
     return new Mode(
-      modeCode.split('').map((el) => parseInt(Number(`0x${el}`), 10)),
+      modeCode.split('').map((el) => parseInt(el, 16)),
       pitchCenter
     );
   }
 
-  getAbsolutePitches() {
+  getAbsolutePitches(): number[] {
     return this.getAbstractPitches().map(
       (el) => octaveMod(this.pitchCenter) + el
     );
   }
 
-  getPitchCenter() {
+  getPitchCenter(): number {
     return this.pitchCenter;
   }
 
-  getAbsoluteModeCode() {
+  getAbsoluteModeCode(): string {
     return `${this.getAbstractModeCode()}//${this.getPitchCenter()}`;
   }
 
-  getScaleNotes() {
+  getScaleNotes(): string[] {
     if (!this.scaleNotes) {
       this.scaleNotes = JSON.stringify(getScaleNotes(this));
     }
 
-    return JSON.parse(this.scaleNotes);
+    return JSON.parse(this.scaleNotes) as string[];
   }
 
-  getModeRoot() {
+  getModeRoot(): string {
     return this.getScaleNotes()[0];
   }
 
-  getModeName() {
-    const name = `${this.getModeRoot()} ${
-      modeProps[this.getAbstractModeCode()].modeName
-    }`;
+  getModeName(): string {
+    const modeCode = this.getAbstractModeCode();
+    const modeMeta = modeProperties[modeCode];
+    const name = `${this.getModeRoot()} ${modeMeta?.modeName ?? ''}`;
 
     return replaceSymbols(name);
   }
 
-  getParentTonality() {
-    return modeProps[this.getAbstractModeCode()].parentTonality;
+  getParentTonality(): string {
+    return modeProperties[this.getAbstractModeCode()]?.parentTonality ?? '';
   }
 
-  getSharpness() {
+  getSharpness(): number {
     return this.getAbstractPitches().reduce((acc, pitch) => acc + pitch);
   }
 
@@ -86,27 +89,37 @@ class Mode extends PitchCollection {
     return getChordList(this);
   }
 
-  relativeShift(isFwShift) {
+  relativeShift(isFwShift: boolean): Mode {
     let pitches = this.getAbsolutePitches();
 
-    isFwShift
-      ? pitches.push(pitches.shift() + notesInOctave)
-      : pitches.unshift(pitches.pop() - notesInOctave);
+    if (isFwShift) {
+      const next = pitches.shift();
+      if (next === undefined) {
+        return this;
+      }
+      pitches.push(next + notesInOctave);
+    } else {
+      const previous = pitches.pop();
+      if (previous === undefined) {
+        return this;
+      }
+      pitches.unshift(previous - notesInOctave);
+    }
 
     return new Mode(pitches);
   }
 
-  parallelShift(isFwShift, pitchCenter = this.getPitchCenter()) {
+  parallelShift(isFwShift: boolean, pitchCenter: number = this.getPitchCenter()): Mode {
     const modeCode = this.getAbstractModeCode();
 
     const code = isFwShift
-      ? modeProps[modeCode].nextMode
-      : modeProps[modeCode].previousMode;
+      ? modeProperties[modeCode]?.nextMode
+      : modeProperties[modeCode]?.previousMode;
 
     return code ? this.fromCode(code, pitchCenter) : this;
   }
 
-  keyShift(isFwShift) {
+  keyShift(isFwShift: boolean): Mode {
     const pitches = this.getAbsolutePitches();
     const pitchCenter = this.getPitchCenter();
 
@@ -118,7 +131,7 @@ class Mode extends PitchCollection {
     );
   }
 
-  relativeBrightnessShift(isFwShift) {
+  relativeBrightnessShift(isFwShift: boolean): Mode {
     const pitches = this.getAbsolutePitches();
     const newPitchCenter = isFwShift ? pitches[3] : pitches[4];
 

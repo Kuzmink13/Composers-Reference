@@ -4,13 +4,15 @@
  */
 
 import { SUPPORTED_TONALITIES } from '../constants';
+import type Mode from '../objects/Mode';
+import type { Cardinality } from '../zustand/types';
 
-export function byCardinality(cardinality) {
-  return (mode) => mode.getNoteQuantity() === cardinality.number;
+export function byCardinality(cardinality: Cardinality) {
+  return (mode: Mode): boolean => mode.getNoteQuantity() === cardinality.number;
 }
 
-export function byTonality(tonalities) {
-  return (mode) =>
+export function byTonality(tonalities: boolean[]) {
+  return (mode: Mode): boolean =>
     tonalities.reduce(
       (prev, curr, i) =>
         prev ||
@@ -19,8 +21,8 @@ export function byTonality(tonalities) {
     );
 }
 
-export function bySelection(notes, isFiltered) {
-  return (mode) =>
+export function bySelection(notes: boolean[], isFiltered: boolean) {
+  return (mode: Mode): boolean =>
     !isFiltered ||
     notes.reduce(
       (prev, curr, i) => prev || (curr && i === mode.getPitchCenter()),
@@ -28,6 +30,7 @@ export function bySelection(notes, isFiltered) {
     );
 }
 
-export function byRoot(root) {
-  return (mode) => (root === undefined ? true : mode.getPitchCenter() === root);
+export function byRoot(root: number | undefined) {
+  return (mode: Mode): boolean =>
+    root === undefined ? true : mode.getPitchCenter() === root;
 }

@@ -6,13 +6,18 @@
 import React, { Fragment } from 'react';
 import { useStore } from '../zustand/hooks';
 
-import svg from '../assets/svg.json';
+import { svg } from '../assets/data';
 
 import PopOver from './PopOver';
 
 import { DROP_DOWN_STATE } from '../constants';
 
-function NavButtons({ options, menu }) {
+interface NavButtonsProps {
+  options: React.ReactNode;
+  menu: React.ReactNode;
+}
+
+function NavButtons({ options, menu }: NavButtonsProps) {
   const noteReset = useStore((state) => state.noteReset);
   const toggleDropDown = useStore((state) => state.toggleDropDown);
   const closeDropDown = useStore((state) => state.closeDropDown);

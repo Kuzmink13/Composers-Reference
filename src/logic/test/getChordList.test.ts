@@ -6,7 +6,7 @@
 import getChordList from '../getChordList';
 import Mode from '../../objects/Mode';
 
-const toNames = (el) => el.chordName;
+const toNames = (el: { chordName: string }) => el.chordName;
 
 describe('testing chord generation', () => {
   test('expected list to contain all correct chords', () => {

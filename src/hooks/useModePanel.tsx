@@ -6,10 +6,16 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 
 import ModeBlock from '../components/ModeBlock';
+import type Mode from '../objects/Mode';
 
 const itemsToLoad = 6;
 
-function useModePanel(selectedList) {
+interface ModePanelPage {
+  items: React.ReactElement[];
+  hasMore: boolean;
+}
+
+function useModePanel(selectedList: Mode[]): [ModePanelPage, () => void] {
   const [itemsLoaded, setItemsLoaded] = useState(0);
   const listLength = selectedList.length;
   const hasMore = listLength > itemsLoaded;
@@ -20,7 +26,7 @@ function useModePanel(selectedList) {
     );
   }, [listLength]);
 
-  const generateModeBlock = (mode) => {
+  const generateModeBlock = (mode: Mode): React.ReactElement => {
     return <ModeBlock key={mode.getAbsoluteModeCode()} mode={mode} />;
   };
 

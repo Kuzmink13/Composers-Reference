@@ -4,31 +4,37 @@
  */
 
 import * as s from './scaleUtilities';
+import type Mode from '../objects/Mode';
 
 const defaultAccidental = s.accidentals.sharp;
 
-const scaleFn = {
+type Scale = Array<string | undefined>;
+type ValidScale = string[];
+type ScaleBuilder = (mode: Mode, options: { isSharp: boolean }) => Scale;
+
+const scaleFn: Record<number, ScaleBuilder> = {
   8: getEightNoteScale,
   7: getSevenNoteScale,
   6: getSixNoteScale,
 };
 
-function getEightNoteScale(mode, { isSharp }) {
-  const scale = [];
+function getEightNoteScale(mode: Mode, { isSharp }: { isSharp: boolean }): Scale {
+  const scale: Scale = [];
   const pitches = mode.getAbsolutePitches();
   const letterSequence = s.getLetterSequence(mode, isSharp);
 
-  let hasJumped = false;
+  let hasJumped = 0;
 
   letterSequence.forEach((letter, i) => {
-    const note = s.getEnharmonics(pitches[i + hasJumped])[letter];
-    const nextNote = s.oneLetterWholeSteps[note];
+    const enharmonics = s.getEnharmonics(pitches[i + hasJumped]);
+    const note = enharmonics[letter];
+    const nextNote = note ? s.oneLetterWholeSteps[note] : undefined;
 
     scale.push(note);
 
-    if (s.isWholeStep(pitches, i) && nextNote && !hasJumped) {
+    if (s.isWholeStep(pitches, i) && nextNote && hasJumped === 0) {
       scale.push(nextNote);
-      hasJumped = true;
+      hasJumped = 1;
     }
   });
 
@@ -37,7 +43,7 @@ function getEightNoteScale(mode, { isSharp }) {
   return scale;
 }
 
-function getSevenNoteScale(mode, { isSharp }) {
+function getSevenNoteScale(mode: Mode, { isSharp }: { isSharp: boolean }): Scale {
   const pitches = mode.getAbsolutePitches();
   const scale = s
     .getLetterSequence(mode, isSharp)
@@ -46,8 +52,8 @@ function getSevenNoteScale(mode, { isSharp }) {
   return scale;
 }
 
-function getSixNoteScale(mode, { isSharp }) {
-  const scale = [];
+function getSixNoteScale(mode: Mode, { isSharp }: { isSharp: boolean }): Scale {
+  const scale: Scale = [];
 
   mode.getAbsolutePitches().forEach((pitch, i) => {
     const shortestNote = s.getShortestOrDefault(pitch, isSharp);
@@ -65,7 +71,7 @@ function getSixNoteScale(mode, { isSharp }) {
   return scale;
 }
 
-function getDefaultScale(mode, { isSharp }) {
+function getDefaultScale(mode: Mode, { isSharp }: { isSharp: boolean }): Scale {
   const pitches = mode.getAbsolutePitches();
   const scale = pitches.map((pitch) => s.getShortestOrDefault(pitch, isSharp));
 
@@ -73,7 +79,7 @@ function getDefaultScale(mode, { isSharp }) {
 }
 
 function scaleLengthReducer() {
-  return (a, b) => {
+  return (a: ValidScale, b: ValidScale): ValidScale => {
     // BY SHORTEST ACCIDENTAL QUANTITY
     if (a.join().length !== b.join().length)
       return a.join().length < b.join().length ? a : b;
@@ -87,7 +93,7 @@ function scaleLengthReducer() {
   };
 }
 
-function getScales(mode) {
+function getScales(mode: Mode): Array<ValidScale | false> {
   const getScale = scaleFn[mode.getNoteQuantity()] || getDefaultScale;
   return [
     getScale(mode, { isSharp: true }),
@@ -95,10 +101,16 @@ function getScales(mode) {
   ].map((el) => s.isValid(el));
 }
 
-function getScaleNotes(mode) {
-  return getScales(mode)
-    .filter((el) => el !== false)
-    .reduce(scaleLengthReducer());
+function getScaleNotes(mode: Mode): ValidScale {
+  const validScales = getScales(mode).filter(
+    (el): el is ValidScale => el !== false
+  );
+
+  if (validScales.length === 0) {
+    return [];
+  }
+
+  return validScales.reduce(scaleLengthReducer());
 }
 
 export default getScaleNotes;

@@ -5,17 +5,25 @@
 
 import React from 'react';
 
-import refs from '../assets/externalReferences.json';
+import { externalReferences } from '../assets/data';
 
 import { replaceSymbols } from '../logic/utilities';
 
+interface SmartLinkProps {
+  children: string;
+  term?: string;
+  newTab?: boolean;
+  willReplaceSymbols?: boolean;
+}
+
 function SmartLink({
   children,
-  term = children.toLowerCase(),
+  term,
   newTab = true,
   willReplaceSymbols = true,
-}) {
-  const link = refs[term];
+}: SmartLinkProps) {
+  const fallbackTerm = children.toLowerCase();
+  const link = externalReferences[term ?? fallbackTerm];
   return link ? (
     <a
       href={link}

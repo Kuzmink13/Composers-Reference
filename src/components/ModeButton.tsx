@@ -6,8 +6,13 @@
 import React, { useMemo } from 'react';
 import { useStore } from '../zustand/hooks';
 import * as filters from '../logic/filters';
+import type { Cardinality } from '../zustand/types';
 
-function ModeButton({ buttonCardinality }) {
+interface ModeButtonProps {
+  buttonCardinality: Cardinality;
+}
+
+function ModeButton({ buttonCardinality }: ModeButtonProps) {
   const notesState = useStore((state) => state.notes);
   const selectionFilter = useStore((state) => state.selectionFilter);
   const tonalities = useStore((state) => state.tonalities);

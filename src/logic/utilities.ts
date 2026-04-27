@@ -16,11 +16,11 @@ export const notesInOctave = 12;
 
 export const notesInPerfectFifth = 7;
 
-export function octaveMod(pitch) {
+export function octaveMod(pitch: number): number {
   return ((pitch % notesInOctave) + notesInOctave) % notesInOctave;
 }
 
-export function replaceSymbols(str) {
+export function replaceSymbols(str: string): string {
   return jsMusicSymbols.reduce(
     (acc, symbol) => acc.replace(symbol.regex, symbol.replacement),
     str
